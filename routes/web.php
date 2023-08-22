@@ -3,13 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\CerradosController;
 use App\Http\Controllers\DiageoActivadosController;
 use App\Http\Controllers\DiageoCerradosController;
 use App\Http\Controllers\DiageoClienteFemsaController;
 use App\Http\Controllers\DiageoNoActivadosController;
 use App\Http\Controllers\EncuestaController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HighChartController;
+use App\Http\Controllers\QualityController;
+use App\Http\Controllers\ReemplazoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,9 +43,7 @@ Route::get(
 )->name('home');
 
 
-Route::resource('users', UserController::class)->only(['index', 'edit', 'update'])
-    ->names('admin.users');
-
+Route::resource('users', UserController::class)->only(['index', 'edit', 'update']);
 Route::post('cerrados', [EncuestaController::class, 'cerrados'])
     ->name('cerrados');
 Route::post(
@@ -52,13 +53,12 @@ Route::post(
     ]
 )
     ->name('encuesta.noconcretados');
+Route::resource('qualitys', QualityController::class)->names('quality');
 Route::resource('encuestas', EncuestaController::class)->names('encuesta.diageo');
-
 Route::resource('diageo_cerrados', DiageoCerradosController::class);
 Route::resource('diageo_activados', DiageoActivadosController::class);
 Route::resource('diageo_noactivados', DiageoNoActivadosController::class);
+Route::resource('reemplazo', ReemplazoController::class)
+    ->names('encuesta.reemplazo');
 Route::resource('diageo_clienteFemsa', DiageoClienteFemsaController::class);
-
-
-
-Route::resource('roles', RoleController::class)->names('admin.roles');
+Route::resource('roles', RoleController::class)->names('role');

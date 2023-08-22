@@ -3,10 +3,10 @@
 @section('css')
     <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
-       <link href="{{ asset('css/diageo_inicio.css') }}" type="text/css" rel="stylesheet">
+    {{--  <link href="{{ asset('css/diageo_inicio.css') }}" type="text/css" rel="stylesheet">  --}}
 @stop
 @section('content_header')
-    <div class="container">
+    {{--  <div class="container">
         <div class="row">
             <!-- flex-container -->
             <div class="col-md-12 flex-container">
@@ -51,7 +51,7 @@
                 <div class="flex-item">
                     <div class="flex-item-inner">
                         <!-- card -->
-                        <a href="{{ route('diageo_clienteFemsa.create')}}">
+                        <a href="#">
                             <div class="card-front bg-blue">
                                 <h4>Femsa <br> Hoy</h4>
                                 <p class="detail">{{ $femsaHoy }}</p>
@@ -87,22 +87,22 @@
             </div>
             <!-- /flex-container -->
         </div>
-    </div>
+    </div> --}}
 
-@stop
+@endsection
 @section('content')
 
     <div class="container">
         <table class="table table-bordered data-table" id="encuestas_table">
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>Razon Social</th>
-                    <th>Direccion</th>
-                    <th>Proceso</th>
-                    <th>Estado</th>
                     @can('encuesta.diageo.edit')
-                        <th>Estatus Calidad</th>
+                        <th>id</th>
+                        <th>Razon Social</th>
+                        <th>Estatus de Calidad</th>
+                        <th>Proceso</th>
+                        {{--  <th>Motivo</th>  --}}
+                        {{--  <th>Estatus Calidad</th>  --}}
                         <th width="105px">Acciones</th>
                     @endcan
                 </tr>
@@ -110,19 +110,18 @@
             <tbody>
                 @foreach ($encuestas as $encu)
                     <tr>
-                        <td>{{ $encu->id }}</td>
-                        <td>{{ $encu->razonSocial }}</td>
-                        <td>{{ $encu->direccion }}</td>
-                        <td>{{ $encu->gestionActual }}</td>
-                        <td>{{ $encu->estadoCarga }}</td>
                         @can('encuesta.diageo.edit')
-                            <td>{{ $encu->estatusCalidad }}</td>
+                            <td>{{ $encu->id }}</td>
+                            <td>{{ $encu->razonSocial }}</td>
+                            <td>{{ $encu->estadoEnvio }}</td>
+                            <td>{{ $encu->respuestaEnvio }}</td>
+                            {{--  <td>{{ $encu->estadoCarga }}</td>  --}}
+                            {{--  <td>{{ $encu->estatusCalidad }}</td>  --}}
                             <td>
                                 <div class="btn-group" role="group" aria-label="BasicExample">
                                     <a href="{{ url('/encuestas/' . $encu->id . '/edit') }}" class="btn btn-success btn-sm"><i
                                             class="fas fa-edit"></i></a>
-
-                                            &nbsp;&nbsp;
+                                    &nbsp;&nbsp;
                                     @can('admin.diageo')
                                         {!! Form::open(['route' => ['encuesta.diageo.destroy', $encu->id], 'method' => 'DELETE']) !!}
                                         <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
@@ -136,7 +135,7 @@
             </tbody>
         </table>
     </div>
-@stop
+@endsection
 
 @section('js')
 

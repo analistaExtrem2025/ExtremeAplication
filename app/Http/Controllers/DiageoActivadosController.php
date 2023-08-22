@@ -26,14 +26,9 @@ class DiageoActivadosController extends Controller
     {
         $tipoD =
             [
-                // 'CE – Cedula de extranjería' => 'CE – Cedula de extranjería',
+
                 'CC – Cedula de Ciudadanía' => 'CC – Cedula de Ciudadanía',
                 'NIT – Nit empresas' => 'NIT – Nit empresas',
-                // 'PAS – Pasaporte' => 'PAS – Pasaporte',
-                // 'PEP – Permiso especial de permanencia'
-                // => 'PEP – Permiso especial de permanencia',
-                // 'PPT – Permiso por protección temporal'
-                // => 'PPT – Permiso por protección temporal'
             ];
         $now = Carbon::now();
         if (Auth::user()->municipio  == "BOGOTA") {
@@ -87,8 +82,7 @@ class DiageoActivadosController extends Controller
      */
     public function store(Request $request)
     {
-
-
+        $now = Carbon::now();
         $datosCreacion = request()->except('token');
 
         if ($request->hasFile('fotoActiv')) {
@@ -100,45 +94,46 @@ class DiageoActivadosController extends Controller
         if ($request->hasFile('fotoGifts')) {
             $path3 = $request->file('fotoGifts')->store('public/activados');
         }
-               $data = new Encuestas();
-               $data->clienteFemsa = 'no';
-               $data->razonSocial = $request->razonSocial;
-               $data->tipoD = $request->Tipo_de_Documento;
-               $data->nDocumento = $request->nDocumento;
-               $data->fotoActiv = $path;
-               $data->fotoGifts = $path3;
-               $data->fotoDocs = $path2;
-               $data->nombreNegocio = $request->nombreNegocio;
-               $data->nFijo = $request->nFijo;
-               $data->nCelular = $request->nCelular;
-               $data->email = $request->email;
-               $data->departamento =  Auth::user()->departamento;
-               $data->municipio =  Auth::user()->municipio;
-               $data->localidad = $request->localidad;
-               $data->direccion = $request->direccion;
-               $data->barrio = $request->barrio;
-               $data->canal = $request->canal;
-               $data->star = $request->star;
-               $data->promotor =  Auth::user()->name;
-               $data->nombre_contacto = $request->nombre_contacto;
-               $data->apellidos_contacto = $request->apellidos_contacto;
-               $data->telContacto = $request->telContacto;
-               $data->mane_licores = $request->mane_licores;
-               $data->ventaPesos = $request->ventaPesos;
-               $data->tamañoEst = $request->tamañoEst;
-               $data->gestionActual = 'Activado';
-               $data->estadoCarga = 'Visitado';
-               $data->gift = $request->gift;
-               $data->cantidad = $request->cantidad;
-               $data->obsCierre = $request->ObsCierre;
-               $data->latitude = $request->lat;
-               $data->longitude = $request->lon;
-               $data->portafolioDiageo =   json_encode($request->portafolioDiageo);
-               $data->save();
-               $notification = 'El punto se ha registrado correctamente.';
-               return redirect('/encuestas')->with(compact('notification'));
-
-
+        $data = new Encuestas();
+        $data->clienteFemsa = 'no';
+        $data->razonSocial = $request->razonSocial;
+        $data->tipoD = $request->Tipo_de_Documento;
+        $data->nDocumento = $request->nDocumento;
+        $data->fotoActiv = $path;
+        $data->fotoGifts = $path3;
+        $data->fotoDocs = $path2;
+        $data->nombreNegocio = $request->nombreNegocio;
+        $data->nFijo = $request->nFijo;
+        $data->nCelular = $request->nCelular;
+        $data->email = $request->email;
+        $data->departamento =  Auth::user()->departamento;
+        $data->municipio =  Auth::user()->municipio;
+        $data->localidad = $request->localidad;
+        $data->direccion = $request->direccion;
+        $data->barrio = $request->barrio;
+        $data->canal = $request->canal;
+        $data->star = $request->star;
+        $data->promotor =  Auth::user()->name;
+        $data->nombre_contacto = $request->nombre_contacto;
+        $data->apellidos_contacto = $request->apellidos_contacto;
+        $data->telContacto = $request->telContacto;
+        $data->mane_licores = $request->mane_licores;
+        $data->ventaPesos = $request->ventaPesos;
+        $data->tamañoEst = $request->tamañoEst;
+        $data->gestionActual = 'Activado';
+        $data->estadoCarga = 'Visitado';
+        $data->gift = $request->gift;
+        $data->cantidad = $request->cantidad;
+        $data->obsCierre = $request->ObsCierre;
+        $data->latitude = $request->lat;
+        $data->longitude = $request->lon;
+        $data->portafolioDiageo =   json_encode($request->portafolioDiageo);
+        $data->estadoEnvio = 'Pendiente Gestion Calidad';
+        $data->respuestaEnvio = 'Enviado a Calidad';
+        $data->fechaRespuesta = $now;
+        $data->save();
+        $notification = 'El punto se ha registrado correctamente.';
+        return redirect('/encuestas')->with(compact('notification'));
     }
 
 
@@ -161,9 +156,36 @@ class DiageoActivadosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Diageo_Activados $diageo_Activados)
+    public function update(Request $request, $id)
     {
-        //
+        $now = Carbon::now();
+        $encuestas = Encuestas::findOrFail($id);
+        $datosActivados = request()->except(['_token', '_method']);
+
+        //dd($request->all());
+        if ($request->estatusCalidad != 'Revisado Ok') {
+            $encuestas->update(
+                [
+                    'estatusCalidad' => $request->estatusCalidad,
+                    'estadoEnvio' => 'Gestionado Calidad',
+                    'respuestaEnvio' => $request->estatusCalidad,
+                    'fechaRespuesta' => $now
+                ]
+            );
+        } else if ($request->estatusCalidad == 'Revisado Ok') {
+            $encuestas->update(
+                [
+                    'estatusCalidad' => $request->estatusCalidad,
+                    'estadoEnvio' => 'Gestionado Calidad',
+                    'respuestaEnvio' => 'Disponible envio Femsa',
+                    'fechaRespuesta' => $now
+                ]
+            );
+        }
+        $encuestas->update(
+            $datosActivados
+        );
+        return back()->with('info', 'El registro de actualizo con éxito');
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP version 10
  *
@@ -69,14 +70,14 @@ return [
     | For detailed instructions you can look the logo section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
-    */
+ */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '®',
+    'logo_img' => '\img\extrem_logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'Extrem Marketing',
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +95,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => '\img\extrem_logo.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -117,8 +118,8 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-            'alt' => 'AdminLTE Preloader Image',
+            'path' => '\img\extrem_logo.png',
+            'alt' => '',
             'effect' => 'animation__shake',
             'width' => 60,
             'height' => 60,
@@ -264,7 +265,7 @@ return [
     'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
-    'register_url' => 'register',
+    // 'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
     'profile_url' => false,
@@ -298,12 +299,7 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
+
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
@@ -313,28 +309,49 @@ return [
             'text' => 'Encuestas Femsa',
             'url'  => '/encuestas',
             'icon'          => 'fas fa-table fa-fw',
-            'can'  => 'home',
+            'can'  => 'encuesta.diageo.index'
+        ],
+        [
+            'text' => 'Puntos de Venta Cerrados',
+            'url'  => '/diageo_cerrados',
+            'icon' => 'fas fa-store-slash',
+            'can'  => 'encuesta.diageo.index'
         ],
 
-        ['header' => 'Administrativo'],
-
+        [
+            'text' => 'Gestion Area Calidad',
+            'url'  => 'qualitys',
+            'icon' => 'fas fa-store-slash',
+            'can'  => 'encuesta.diageo.edit'
+        ],
 
         [
+            'header' => 'Administrativo',
+             'can'    =>  'admin.diageo'
+        ],
+        [
             'text'          => 'Roles',
-            'route'         => 'admin.users.index',
+            'route'         => 'users.index',
             'icon'          => 'fas fa-users fa-fw',
-            'can'           =>  'admin.home',
+            'can'    =>  'admin.diageo'
         ],
 
 
         [
             'text'          => 'Permisos',
-            'route'         => 'admin.roles.index',
+            'route'         => 'role.index',
             'icon'          => 'fas fa-users-cog fa-fw',
-            //'can'           =>  'admin.home',
+            'can'    =>  'admin.diageo'
         ],
 
-     ],
+        [
+            'text'          => 'Reemplazos',
+            'route'         => 'encuesta.reemplazo.index',
+            'icon'          => 'fas fa-users-cog fa-fw',
+             'can'    =>  'admin.diageo'
+        ],
+
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -401,7 +418,7 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' =>
-                '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
+                    '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
                 ],
                 [
                     'type' => 'css',
@@ -418,7 +435,7 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' =>
-            '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
+                    '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
                 ],
             ],
         ],
@@ -439,7 +456,7 @@ return [
                     'type' => 'css',
                     'asset' => false,
                     'location' =>
-                '//cdnjs.cloudflare.com/
+                    '//cdnjs.cloudflare.com/
                 ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
                 ],
                 [

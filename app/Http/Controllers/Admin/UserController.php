@@ -16,7 +16,7 @@ class UserController extends Controller
     {
 
         $users = User::paginate();
-        return view('admin.users.index', compact('users'));
+        return view('users.index', compact('users'));
     }
 
 
@@ -28,7 +28,7 @@ class UserController extends Controller
     {
         $roles = Role::all();
 
-        return view('admin.users.edit', compact('user', 'roles'));
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -38,7 +38,7 @@ class UserController extends Controller
     {
         $user->roles()->sync($request->roles);
 
-        return redirect()->route('admin.users.edit', $user)->with('info', 'los roles han sido asignados de forma correcta.');
+        return redirect()->route('users.edit', $user)->with('info', 'los roles han sido asignados de forma correcta.');
     }
 
 

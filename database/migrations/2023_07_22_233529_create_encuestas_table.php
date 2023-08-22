@@ -41,9 +41,11 @@ return new class extends Migration
             $table->string('estadoCarga')->nullable();
             $table->string('motivo_nc')->nullable();
             $table->string('gestionActual');
+            $table->longText('obsCierre')->nullable();
             $table->date('fechaCalidad')->nullable();
             $table->string('usuarioCalidad')->nullable();
-            $table->longText('obsCierre')->nullable();
+            $table->string('estatusCalidad')->nullable();
+            $table->longText('obsCalidad')->nullable();
             $table->boolean('gift')->nullable();
             $table->integer('cantidad')->nullable();
             $table->string('portafolioDiageo', 250)->nullable();

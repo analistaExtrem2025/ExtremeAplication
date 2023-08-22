@@ -82,6 +82,18 @@
         <div class="form-group">
             <div class="col-sm-12">
                 <div class="card">
+                    <div id="fotoDoc">
+                        <div id="fotoDocs">
+                            {!! Form::label('Tome una foto de los documentos', 'Tome una foto de los documentos', ['class' => 'form-control']) !!}
+                            <input type="file" name="fotoDocs" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="card">
                     {!! Form::label('Observaciones de cierre', 'Observaciones de cierre', ['class' => 'form-control']) !!}
                     {!! Form::textarea('ObsCierre', null, ['class' => ' form-control','required', 'cols' => 5, 'rows' => 3 ]) !!}
                 </div>

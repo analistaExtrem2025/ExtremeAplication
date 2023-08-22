@@ -14,11 +14,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
 
-           // DepartamentosSeeder::class,
-           // MunicipiosSeeder::class,
+            DepartamentosSeeder::class,
+            MunicipiosSeeder::class,
             LocalidadesSeeder::class,
-            //RoleSeeder::class,
-            //UserSeeder::class
+            RoleSeeder::class,
+            UserSeeder::class
 
         ]);
     }

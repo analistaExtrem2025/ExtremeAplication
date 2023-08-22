@@ -1,0 +1,146 @@
+.container {
+    margin: 50px;
+}
+
+/*-------- flex container --------*/
+.flex-container {
+    display: flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    -webkit-flex-flow: row wrap;
+    position: relative;
+}
+
+.flex-item {
+    color: #fff;
+    height: 100px;
+    margin-top: 5%;
+    padding: 0;
+    width: 225px;
+    position: relative;
+
+
+}
+
+.container-fluid{
+    margin-top: -10%;
+}
+
+.flex-item-inner {
+    display: flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 210px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+}
+
+.flex-item-inner a {
+    color: #fff;
+    cursor: pointer;
+}
+
+/*-------- cards --------*/
+.card-front,
+.card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 185px;
+    height: 100px;
+    padding: 20px;
+    margin: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    justify-content: flex-end;
+    border-radius: 0.75rem;
+}
+.card-front.bg-violet {
+    background-color: #702082;
+}
+
+.card-front.bg-magenta {
+    background-color: #a79614;
+}
+
+.card-front.bg-blue {
+    background-color: #066683 !important;
+}
+
+.card-front.bg-green {
+    background-color: #00c389;
+}
+
+.card-back {
+    background-color: #1e1e1e;
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+
+
+.card-back.bg-violet {
+    background-color: #3c1245;
+
+}
+
+.card-back.bg-magenta {
+    background-color: #400435;
+}
+
+.card-back.bg-blue {
+    background-color: #0d181c;
+}
+
+.card-back.bg-green {
+    background-color: #02251b !important;
+}
+
+/*-------- cards / flip effect --------*/
+.flex-item:hover .card-front {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.flex-item:hover .card-back {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+}
+
+
+.card-front h4{
+    color: #ffffff !important;
+    font-size: 18px;
+    font-weight: bold !important;
+}
+.card-back h4{
+
+    color: #ffffff !important;
+    font-size: 18px;
+    font-weight: bold !important;
+}
+.card-front .detail{
+    color: #ffffff !important;
+    font-size: 16px;
+    font-weight: bold !important;
+}
+.card-back .detail{
+
+    color: #ffffff !important;
+    font-size: 16px;
+    font-weight: bold !important;
+}

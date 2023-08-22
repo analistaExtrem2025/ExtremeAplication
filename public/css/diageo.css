@@ -104,3 +104,26 @@ input[type="checkbox"]:checked + label {
     border-radius: 50%;
   }
 
+
+  .card-img-top {
+    padding: 1rem;
+    width: 200px;
+    height: 200px;
+    border: 1px solid blue;
+    border-radius: 0.75rem;
+    margin-left: 3rem;
+}
+.card-title {
+    font-weight: bold;
+    margin-left: 3rem;
+}
+.pics h6 {
+    font-weight: bold;
+}
+.cajon {
+    height: 500px;
+    position: relative;
+    border: 3px solid #dbe4ed;
+    /* Border color is optional */
+}
+

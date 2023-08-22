@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Diageo_Activados extends Model
+class Quality extends Model
 {
     use HasFactory;
 
+    protected $table = 'encuestas';
     protected $fillable = [
         'codigo',
         'clienteFemsa',
@@ -34,13 +35,15 @@ class Diageo_Activados extends Model
         'telContacto',
         'mane_licores',
         'ventaPesos',
-        'tamañoEst',
+        'tama単oEst',
         'promotor',
         'estadoCarga',
         'motivo_nc',
         'gestionActual',
-        'fechaCalidad',
+        'estatusCalidad',
         'usuarioCalidad',
+        'ObsCalidad',
+        'fechaCalidad',
         'obsCierre',
         'gift',
         'cantidad',
@@ -51,4 +54,10 @@ class Diageo_Activados extends Model
     ];
 
 
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

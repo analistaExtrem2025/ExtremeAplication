@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('departamento');
             $table->string('municipio');
             $table->string('localidad');
+            $table->string('gestionCalidad')->nullable();
+            $table->string('estatusCalidad')->nullable();
+            $table->string('ObsCalidad')->nullable();
+            $table->string('responsableCalidad')->nullable();
             $table->timestamps();
         });
     }
