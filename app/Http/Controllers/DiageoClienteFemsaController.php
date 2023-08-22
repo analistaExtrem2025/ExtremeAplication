@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class DiageoClienteFemsaController extends Controller
 {
     /**
@@ -16,7 +17,6 @@ class DiageoClienteFemsaController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -55,9 +55,13 @@ class DiageoClienteFemsaController extends Controller
         if ($request->hasFile('fachada')) {
             $path = $request->file('fachada')->store('public/clienteFemsa');
         }
+        if ($request->hasFile('fotoDocs')) {
+            $path2 = $request->file('fotoDocs')->store('public/clienteFemsa');
+        }
         $data = new Encuestas();
         $data->clienteFemsa = 'si';
         $data->fotoActiv =  $path;
+        $data->fotoDocs =  $path2;
         $data->codigo = $request->codigo;
         $data->razonSocial = $request->nombreNegocio;
         $data->nombreNegocio = $request->nombreNegocio;
@@ -74,6 +78,9 @@ class DiageoClienteFemsaController extends Controller
         $data->estadoCarga = 'Visitado';
         $data->obsCierre = $request->ObsCierre;
         $data->star = $request->star;
+        $data->estadoEnvio = 'Pendiente Gestion Calidad';
+        $data->respuestaEnvio = 'Enviado a Calidad';
+        $data->fechaRespuesta = $now;
         $data->save();
         $notification = 'El punto se ha registrado correctamente.';
         return redirect('/encuestas')->with(compact('notification'));
@@ -90,18 +97,47 @@ class DiageoClienteFemsaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Diageo_ClienteFemsa $diageo_ClienteFemsa)
+    public function edit($id)
     {
-        //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Diageo_ClienteFemsa $diageo_ClienteFemsa)
+
+    public function update(Request $request, $id)
     {
-        //
+        $now = Carbon::now();
+        $encuestas = Encuestas::findOrFail($id);
+
+        if ($request->hasFile('fotoActiv')) {
+            $path = $request->file('fotoActiv')->store('public/clienteFemsa');
+        }
+        $datosActivados = request()->except(['_token', '_method']);
+
+        //dd($request->all());
+        if ($request->estatusCalidad != 'Revisado Ok') {
+            $encuestas->update(
+                [
+                    'estatusCalidad' => $request->estatusCalidad,
+                    'estadoEnvio' => 'Gestionado Calidad',
+                    'respuestaEnvio' => $request->estatusCalidad,
+                    'fechaRespuesta' => $now
+                ]
+            );
+        } else if ($request->estatusCalidad == 'Revisado Ok') {
+            $encuestas->update(
+                [
+                    'estatusCalidad' => $request->estatusCalidad,
+                    'estadoEnvio' => 'Gestionado Calidad',
+                    'respuestaEnvio' => 'Disponible envio Femsa',
+                    'fechaRespuesta' => $now
+                ]
+            );
+        }
+        $encuestas->update(
+            $datosActivados
+        );
+        return back()->with('info', 'El registro de actualizo con éxito');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -111,3 +147,4 @@ class DiageoClienteFemsaController extends Controller
         //
     }
 }
+

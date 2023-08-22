@@ -54,7 +54,7 @@ class DiageoNoActivadosController extends Controller
                 => 'La actividad no le genera confianza',
                 'No hubo confirmacion por parte de FEMSA'
                 => 'No hubo confirmacion por parte de FEMSA',
-                'No es el dueño' => 'No es el dueño',
+                'No es el due&#209;o' => 'No es el due&#209;o',
                 'No sabe los datos' => 'No sabe los datos',
             ];
         return view('diageo_noConcretados.create', compact('canal', 'localidad', 'noConcreciones', 'now'));
@@ -66,6 +66,7 @@ class DiageoNoActivadosController extends Controller
     public function store(Request $request)
     {
 
+        $now = Carbon::now();
         $datosCreacion = request()->except('token');
         if ($request->hasFile('fachada')) {
             $path = $request->file('fachada')->store('public/activados');
@@ -82,12 +83,15 @@ class DiageoNoActivadosController extends Controller
         $data->municipio =  Auth::user()->municipio;
         $data->localidad = $request->localidad;
         $data->barrio = $request->barrio;
-        $data->gestionActual = 'No Activado';
+        $data->gestionActual = 'No Concretado';
         $data->estadoCarga = 'Visitado';
         $data->ObsCierre = $request->ObsCierre;
         $data->razonSocial = $request->razonSocial;
         $data->nombreNegocio = $request->razonSocial;
         $data->direccion = $request->direccion;
+        $data->estadoEnvio = 'Punto No Activado';
+        $data->respuestaEnvio = 'Finalizado no Concretado';
+        $data->fechaRespuesta = $now;
         $data->save();
 
         $notification = 'El punto se ha registrado correctamente.';
@@ -113,9 +117,12 @@ class DiageoNoActivadosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Diageo_NoActivados $diageo_NoActivados)
+    public function update(Request $request, $id)
     {
-        //
+        $now = Carbon::now();
+        $datosActivados = request()->except(['_token', '_method']);
+        Encuestas::where('id', $id)->update($datosActivados);
+        return redirect('encuestas')->with('info', 'El registro de actualizo con éxito');
     }
 
     /**

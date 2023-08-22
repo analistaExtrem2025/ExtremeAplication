@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'municipio' => 'BOGOTA',
                 'password' => bcrypt('79760755')
             ]
-        )->assignRole('Admin');
+        )->assignRole('admin');
 
 
         User::create(

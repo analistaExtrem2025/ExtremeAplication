@@ -37,7 +37,7 @@
             @endif
 
 
-                <img src="\img\extreme logo.png" alt="" class="logo">
+                <img src="\img\extrem_logo.png" alt="" class="logo">
 
                 </div>
             </div>

@@ -7,18 +7,7 @@
 @stop
 
 @section('content')
-    <div class="form-group">
-        <div class="col-sm-12">
-            {!! Form::label('tipoCliente', 'Es cliente FEMSA?', ['class' => 'form-control']) !!}
-            <div class="form-check radiosD">
-                {!! Form::label('clienteFemsa', 'Si', ['class' => 'form-check-label']) !!}
-                {!! Form::radio('clienteFemsa', 'si', '', null, ['class' => 'form-check-input circulo']) !!}
-                {!! Form::label('clienteFemsa', 'No', ['class' => 'form-check-label']) !!}
-                {!! Form::radio('clienteFemsa', 'no', '', null, ['class' => 'form-check-input circulo']) !!}
-            </div>
-        </div>
-    </div>
-<div id="inic" style="display: none">
+<div id="inic" style="display: block">
     <button class="btn btn-info" onclick="getLocation()" id="boton_begin">Comenzar</button>
     <p id="comenzar"></p>
 </div>
@@ -134,7 +123,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     {!! Form::label('Correo electronico', 'Correo electronico', ['class' => 'form-control']) !!}
-                    {!! Form::email('email', null, ['class' => 'form-control', 'required', 'pattern'=> '[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}']) !!}
+                    {!! Form::email('email', null, ['class' => 'form-control', 'required', 'pattern'=> '[a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}']) !!}
                 </div>
             </div>
         </div>
@@ -216,7 +205,7 @@
                         'maxlength' => 10,
                         'minlength' => 10,
                         'oninput' => 'if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)',
-                        'max' => 3999999999,
+                        'max' => 6099999999,
                         'min' => 3000000000,
                         'required',
                     ]) !!}

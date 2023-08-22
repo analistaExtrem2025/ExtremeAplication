@@ -20,7 +20,7 @@ class RoleController extends Controller
 
         $roles = ModelsRole::all();
 
-        return view('admin.roles.index', compact('roles'));
+        return view('roles.index', compact('roles'));
     }
 
     /**
@@ -30,7 +30,7 @@ class RoleController extends Controller
     {
         $permissions = Permission::all();
 
-        return view('admin.roles.create', compact('permissions'));
+        return view('roles.create', compact('permissions'));
     }
 
     /**
@@ -47,7 +47,7 @@ class RoleController extends Controller
         $role = ModelsRole::create($request->all());
         $role->permissions()->sync($request->permissions);
 
-        return redirect()->route('admin.roles.edit', $role)
+        return redirect()->route('role.edit', $role)
             ->with('info', 'El rol se creo con éxito');
     }
 
@@ -56,7 +56,7 @@ class RoleController extends Controller
      */
     public function show(ModelsRole $role)
     {
-        return view('admin.roles.show', compact('role'));
+        return view('roles.show', compact('role'));
     }
 
     /**
@@ -66,7 +66,7 @@ class RoleController extends Controller
     {
 
         $permissions = Permission::all();
-        return view('admin.roles.edit', compact('role', 'permissions'));
+        return view('roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -83,7 +83,7 @@ class RoleController extends Controller
         $role->update($request->all());
         $role->permissions()->sync($request->permissions);
 
-        return redirect()->route('admin.roles.edit', $role)
+        return redirect()->route('role.edit', $role)
             ->with('info', 'El rol se actualizo con éxito');
     }
 
@@ -94,6 +94,6 @@ class RoleController extends Controller
     {
         $role->delete();
 
-         return redirect()->route('admin.roles.index')->with('info', 'El rol se elimino con éxito');
+         return redirect()->route('role.index')->with('info', 'El rol se elimino con éxito');
     }
 }

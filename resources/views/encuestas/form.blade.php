@@ -17,13 +17,6 @@
                     </div>
                 </div>
             </div>
-            {{--  <div id="focoCerrado" style="display: none">
-                @include('encuestas.cerrados')
-            </div>  --}}
-
-            {{--  <div id="no_concret" style="display: none">
-                @include('encuestas.noConcretados')
-            </div>  --}}
             </div>
         </div>
     </div>
@@ -45,7 +38,6 @@
                     $("#focoCerrado").hide();
                     $("#efectivo").hide();
                     window.location.href= "/diageo_noactivados/create"
-
                 } else if (valor == "si") {
                     $("#efectivo").show();
                     $("#focoCerrado").hide();
