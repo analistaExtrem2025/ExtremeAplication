@@ -297,7 +297,6 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
     */
-
     'menu' => [
 
         [
@@ -306,51 +305,79 @@ return [
         ],
 
         [
-            'text' => 'Encuestas Femsa',
-            'url'  => '/encuestas',
-            'icon'          => 'fas fa-table fa-fw',
-            'can'  => 'encuesta.diageo.index'
+            'text'    => 'Marcha Blanca',
+            'icon'    => 'fas fa-walking',
+            'icon_color' => 'warning',
+            'can'    =>  'admin.diageo',
+            'submenu' => [
+                [
+                    'text' => 'Encuestas Femsa',
+                    'url'  => '/encuestas',
+                    'icon' => 'fas fa-table fa-fw',
+                    'shift' => 'ml-4',
+                    'can'  => 'encuesta.diageo.index'
+                ],
+                [
+                    'text' => 'Punto  Venta Cerrados',
+                    'url'  => '/diageo_cerrados',
+                    'icon' => 'fas fa-store-slash',
+                    'shift' => 'ml-4',
+                    'can'  => 'encuesta.diageo.index'
+                ],
+                [
+                    'text' => 'Revision de Calidad',
+                    'url'  => 'qualitys',
+                    'icon' => 'fas fa-cog',
+                    'shift' => 'ml-4',
+                    'can'  => 'encuesta.diageo.edit'
+                ],
+                [
+                    'text'  => 'Reemplazos',
+                    'route' => 'encuesta.reemplazo.index',
+                    'icon'  => 'fab fa-squarespace',
+                    'shift' => 'ml-4',
+                    'can'   => 'admin.diageo'
+                ],
+            ],
         ],
         [
-            'text' => 'Puntos de Venta Cerrados',
-            'url'  => '/diageo_cerrados',
-            'icon' => 'fas fa-store-slash',
-            'can'  => 'encuesta.diageo.index'
-        ],
-
-        [
-            'text' => 'Gestion Area Calidad',
-            'url'  => 'qualitys',
-            'icon' => 'fas fa-store-slash',
-            'can'  => 'encuesta.diageo.edit'
-        ],
-
-        [
-            'header' => 'Administrativo',
-             'can'    =>  'admin.diageo'
+            'text'    => 'Auditoria',
+            'icon'    => 'fas fa-tasks',
+            'icon_color' => 'info',
+            'can'    =>  'admin.diageo',
+            'submenu' => [
+                [
+                    'text'  => 'Ver Auditorias',
+                    'route' => 'auditoria.index',
+                    'icon'  => 'fas fa-binoculars',
+                    'shift' => 'ml-4',
+                    'can'   =>  'admin.diageo'
+                ],
+            ],
         ],
         [
-            'text'          => 'Roles',
-            'route'         => 'users.index',
-            'icon'          => 'fas fa-users fa-fw',
-            'can'    =>  'admin.diageo'
+            'text'    => 'Administrativo',
+            'icon'    => 'fas fa-user-shield',
+            'icon_color' => 'success',
+            'can'    =>  'admin.diageo',
+            'submenu' => [
+                [
+                    'text'  => 'Roles',
+                    'route' => 'users.index',
+                    'icon'  => 'fas fa-users fa-fw',
+                    'shift' => 'ml-4',
+                    'can'   =>  'admin.diageo'
+                ],
+                [
+                    'text'  => 'Permisos',
+                    'route' => 'role.index',
+                    'icon'  => 'fas fa-users-cog fa-fw',
+                    'shift' => 'ml-4',
+                    'can'   =>  'admin.diageo'
+                ],
+
+            ],
         ],
-
-
-        [
-            'text'          => 'Permisos',
-            'route'         => 'role.index',
-            'icon'          => 'fas fa-users-cog fa-fw',
-            'can'    =>  'admin.diageo'
-        ],
-
-        [
-            'text'          => 'Reemplazos',
-            'route'         => 'encuesta.reemplazo.index',
-            'icon'          => 'fas fa-users-cog fa-fw',
-             'can'    =>  'admin.diageo'
-        ],
-
     ],
 
     /*

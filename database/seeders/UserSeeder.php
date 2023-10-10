@@ -15,12 +15,12 @@ class UserSeeder extends Seeder
     {
         User::create(
             [
-
                 'name' => 'Fernando Alexander Carillo Leon',
                 'cedula' => 79760755,
                 'email' => 'analista.procesos@extremmarketing.com',
                 'departamento' => 'BOGOTA',
                 'municipio' => 'BOGOTA',
+                'role' => '1',
                 'password' => bcrypt('79760755')
             ]
         )->assignRole('admin');
@@ -28,12 +28,12 @@ class UserSeeder extends Seeder
 
         User::create(
             [
-
                 'name' => 'promotor de prueba',
                 'cedula' => 88888888,
                 'departamento' => 'ANTIOQUIA',
                 'municipio' => 'MEDELLIN',
                 'email' => 'promotor@extremmarketing.com',
+                'role' => '3',
                 'password' => bcrypt('123456789')
             ]
         )->assignRole('Promotor');
@@ -41,12 +41,12 @@ class UserSeeder extends Seeder
 
         User::create(
             [
-
                 'name' => 'coordinador de prueba',
                 'cedula' => 77777777,
                 'departamento' => 'BOGOTA',
                 'municipio' => 'BOGOTA',
                 'email' => 'coordinador@extremmarketing.com',
+                'role' => '2',
                 'password' => bcrypt('123456789')
             ]
         )->assignRole('Coordinador');
