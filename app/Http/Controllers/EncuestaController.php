@@ -14,11 +14,6 @@ use function PHPUnit\Framework\isEmpty;
 
 class EncuestaController extends Controller
 {
-
-
-
-
-
     /**
      * Display a listing of the resource.
      */
@@ -394,12 +389,18 @@ class EncuestaController extends Controller
             'fotoActiv',
             'codigo',
         );
+        dd($request->fotoActiv);
         // Valido si el check es igual a 1 lo que significa que se subió un nuevo archivo
         if ($request->hasfile('fotoActiv')) {
             // Guardo el archivo en la carpeta Publica Uploads y obtengo la ubicacion
-            $filepath = $request->file('fotoActiv')->store('clienteFemsa', 'public');
+            ///$filepath = $request->file('fotoActiv')->putFileAs('clienteFemsa',  $request->file('fotoActiv'). $request->id);
+            $file = $request->file('fotoActiv');
+            $name = $file->getClienteOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            //$filepath = $request->file('fotoActiv')->store('clienteFemsa'.$request->file('fotoActiv'), 'public');
         }
-        $data['fotoActiv'] = $filepath;
+        //$data['fotoActiv'] = $filepath;
+        $data['fotoActiv'] = $file. $name. $extension;
 
         $encuestas->update($data);
 
@@ -437,9 +438,11 @@ class EncuestaController extends Controller
         if (is_null($encuestas->fotoActiv)) {
             // Valido si el check es igual a 1 lo que significa que se subió un nuevo archivo
             if ($request->hasfile('fotoActiv')) {
-                // Guardo el archivo en la carpeta Publica Uploads y obtengo la ubicacion
 
-                $filepath = $request->file('fotoActiv')->store('clienteFemsa', 'public');
+                dd($request->id);
+                // Guardo el archivo en la carpeta Publica Uploads y obtengo la ubicacion
+                $filepath = $request->file('fotoActiv')->putFileAs('clienteFemsa',  $request->file('fotoActiv'). $request->id);
+                //$filepath = $request->file('fotoActiv')->store('clienteFemsa'.$request->fotoActiv, 'public');
             }
             $data['fotoActiv'] = $filepath;
         }

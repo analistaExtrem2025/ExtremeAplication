@@ -17,7 +17,7 @@ class QualityController extends Controller
         $today = Carbon::now();
         $today = Carbon::parse($today);
         $role = auth()->user()->role;
-        if ($role == 3) {
+        if ($role == 3 ||  $role == 1 ) {
             $encuestas = Encuestas::where('estadoEnvio', 'Devuelto')->orWhere('estadoEnvio', 'Pendiente Gestion Calidad')->get();
             return view('quality.index', compact('encuestas'));
         }

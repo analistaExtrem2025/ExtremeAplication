@@ -1,0 +1,2101 @@
+/*hr*/
+.divider {
+    display: flex;
+}
+
+.divider:before,
+.divider:after {
+    content: "";
+    flex: 1;
+}
+
+.line {
+    align-items: center;
+    margin: 1em -1em;
+}
+
+.line:before,
+.line:after {
+    height: 1px;
+    margin: 0 1em;
+}
+
+.razor:before,
+.razor:after {
+    box-shadow: 0 0.5px 0 rgb(2, 4, 78);
+}
+
+.double-razor:before,
+.double-razor:after {
+    height: 3px;
+    box-shadow: 0 -0.5px 0 blue, 0 0.5px 0 rgb(2, 4, 78);
+    border-width: 0;
+}
+
+.switch-toggleAc input {
+    opacity: 0;
+    height: 25px;
+    min-height: 25px;
+    position: absolute;
+    border-radius: 0.75rem;
+}
+
+.switch-toggle_cant input {
+    opacity: 0;
+    height: 14px;
+    min-height: 14px;
+    position: absolute;
+    border-radius: 0.75rem;
+}
+
+.switch-toggle_cant.switch-candy_cant {
+    margin-left: 3rem;
+    min-width: 237px;
+    width: 310px;
+    margin-right: 2rem;
+}
+
+.switch-toggle_cant input+label {
+    float: center;
+    color: #fff;
+    height: 75px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.switch-toggle.switch-candy {
+    margin-left: 3rem;
+    min-width: 237px;
+    width: 310px;
+    margin-right: 2rem;
+     border-radius: 0.75rem;
+}
+
+
+.switch-toggle input+label {
+    float: center;
+    color: #fff;
+    height: 100px;
+    font-size: 14px;
+    cursor: pointer;
+     border-radius: 0.75rem;
+}
+
+.img_cenefa {
+    display: block;
+    margin: auto;
+    width: 50%;
+    min-height: 100%;
+}
+
+.img_botellas {
+    display: block;
+    margin: auto;
+    width: 80px;
+    min-height: 30%;
+}
+
+.img_botellasx3 {
+    display: block;
+    margin: auto;
+    width: 160px;
+
+}
+
+.img_afiche {
+    display: block;
+    margin: auto;
+    width: 50%;
+    height: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.img_marco {
+
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 250px;
+    max-width: 50%;
+    min-height: 50%;
+
+}
+
+.img_rompetraficos {
+
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 250px;
+    max-width: 50%;
+    min-height: 50%;
+}
+
+.img_fachadas {
+
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 250px;
+    max-width: 50%;
+    min-height: 50%;
+}
+
+.img_hieler {
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 250px;
+    max-width: 50%;
+    min-height: 50%;
+}
+
+.img_bases_h {
+    display: block;
+    margin: auto;
+    width: 180px;
+    height: 270px;
+    max-width: 50%;
+    min-height: 50%;
+}
+
+.img_dosificadorD {
+    display: block;
+    margin: auto;
+    width: 180px;
+    height: 270px;
+    max-width: 50%;
+    min-height: 50%;
+}
+
+.img_dosificadorS {
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 270px;
+    max-width: 50%;
+    min-height: 50%;
+}
+
+.img_branding {
+    display: block;
+    margin: auto;
+    width: 180px;
+    height: 270px;
+    max-width: 50%;
+    min-height: 50%;
+}
+
+.img_vasos {
+    display: block;
+    margin: auto;
+    width: 220px;
+    height: 270px;
+    max-width: 50%;
+    min-height: 50%;
+}
+
+/*
+.switch-toggle input[value="choose"]+label {
+    pointer-events: none;
+    color: #e5ff00;
+    opacity: 0.5;
+} */
+
+
+
+.switch-toggle label {
+    margin-top: 3rem;
+}
+
+.switch-toggle_p label {
+    margin-top: 3rem;
+}
+
+
+.switch-toggle input[value="hielera_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="hielera_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="hielera_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+
+
+
+.switch-toggle input[value="hielera_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="bases_h_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="bases_h_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="bases_h_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+
+
+
+.switch-toggle input[value="bases_h_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="marco_visi_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="marco_visi_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="marco_visi_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="marco_visi_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="marco_colo_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="marco_colo_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="marco_colo_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="marco_colo_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+
+
+.switch-toggle input[value="marco_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="marco_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+
+
+.switch-toggle input[value="fachadas_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="fachadas_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+.switch-toggle input[value="fachadas_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+.switch-toggle input[value="fachadas_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="fachadas_visi_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="fachadas_visi_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+.switch-toggle input[value="fachadas_visi_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+.switch-toggle input[value="fachadas_visi_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="fachadas_colo_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="fachadas_colo_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+.switch-toggle input[value="fachadas_colo_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+.switch-toggle input[value="fachadas_colo_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="cenefa_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="cenefa_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="cenefa_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="cenefa_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="cenefa_visi_si"]:checked+label {
+    background: green;
+    color: #fff;
+
+}
+
+.switch-toggle input[value="cenefa_visi_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="cenefa_visi_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="cenefa_visi_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="cenefa_colo_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="cenefa_colo_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="cenefa_colo_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="cenefa_colo_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="afiche_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="afiche_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="afiche_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="afiche_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="afiche_visi_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="afiche_visi_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="afiche_visi_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="afiche_visi_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="afiche_colo_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="afiche_colo_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="afiche_colo_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="afiche_colo_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="afiche_combo_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="afiche_combo_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="afiche_combo_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="afiche_combo_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="rompetraficos_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="rompetraficos_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="rompetraficos_no"]:checked+label {
+    background: red;
+    color: #fff;
+
+}
+
+.switch-toggle input[value="rompetraficos_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+
+}
+
+
+.switch-toggle input[value="combox1_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+
+}
+
+.switch-toggle input[value="combox1_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="combox1_si"]:checked+label {
+    background: green;
+    color: #fff;
+
+}
+
+.switch-toggle input[value="combox1_no"]:checked+label {
+    background: red;
+    color: #fff;
+
+}
+
+
+
+.switch-toggle input[value="combox2_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+
+}
+
+.switch-toggle input[value="combox2_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="combox2_si"]:checked+label {
+    background: green;
+    color: #fff;
+
+}
+
+.switch-toggle input[value="combox2_no"]:checked+label {
+    background: red;
+    color: #fff;
+
+}
+
+.switch-toggle input[value="combox3_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+
+}
+
+.switch-toggle input[value="combox3_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="combox3_si"]:checked+label {
+    background: green;
+    color: #fff;
+
+}
+
+.switch-toggle input[value="combox3_no"]:checked+label {
+    background: red;
+    color: #fff;
+
+}
+
+.switch-toggle input[value="marco_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="marco_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+
+
+
+.switch-toggle input[value="dosificadorD_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="dosificadorD_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="dosificadorD_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="dosificadorD_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_dsD_visibles_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_dsD_visibles_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_dsD_visibles_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_dsD_visibles_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_dsD_diferentes_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_dsD_diferentes_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_dsD_diferentes_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_dsD_diferentes_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_dsD_danados_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_dsD_danados_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_dsD_danados_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_dsD_danados_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="dosificadorS_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="dosificadorS_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="dosificadorS_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="dosificadorS_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_dsS_visibles_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_dsS_visibles_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_dsS_visibles_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_dsS_visibles_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+
+.switch-toggle input[value="prod_dsS_diferentes_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_dsS_diferentes_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_dsS_diferentes_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_dsS_diferentes_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_dsS_danados_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_dsS_danados_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_dsS_danados_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_dsS_danados_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="branding_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="branding_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="branding_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="branding_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="branding_visible_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="branding_visible_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="branding_visible_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="branding_visible_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="branding_danados_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="branding_danados_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="branding_danados_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="branding_danados_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="vasos_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="vasos_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="vasos_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="vasos_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="vasos_visibles_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="vasos_visibles_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="vasos_visibles_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="vasos_visibles_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="vasos_quebrados_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="vasos_quebrados_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="vasos_quebrados_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="vasos_quebrados_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="bAndw1000_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="bAndw1000_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="bAndw1000_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="bAndw1000_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="bAndw700_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="bAndw700_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="bAndw700_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="bAndw700_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="bAndw375_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="bAndw375_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+
+.switch-toggle input[value="bAndw375_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="bAndw375_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="smirnoff375_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="smirnoff375_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="smirnoff375_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="smirnoff375_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="smirnoff700_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="smirnoff700_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="smirnoff700_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="smirnoff700_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+
+.switch-toggle input[value="jhonnie1000_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="jhonnie1000_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="jhonnie1000_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="jhonnie1000_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="jhonnie700_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="jhonnie700_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="jhonnie700_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="jhonnie700_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="jhonnie375_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="jhonnie375_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="jhonnie375_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="jhonnie375_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+
+.switch-toggle input[value="oldparr750_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="oldparr750_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="oldparr750_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="oldparr750_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+
+.switch-toggle input[value="buchannas700_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="buchannas700_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="buchannas700_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="buchannas700_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="buchannas375_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="buchannas375_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="buchannas375_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="buchannas375_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+/*estado de los productos*/
+
+.switch-toggle input[value="prod_tapados_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_tapados_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_tapados_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_tapados_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_danados_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_danados_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_danados_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_danados_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_visibles_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_visibles_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_visibles_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_visibles_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_rt_visibles_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_rt_visibles_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_rt_visibles_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_rt_visibles_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="prod_rt_properly_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_rt_properly_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_rt_properly_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_rt_properly_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_hl_visible_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_hl_visible_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_hl_visible_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_hl_visible_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_hl_danadas_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_hl_danadas_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_hl_danadas_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_hl_danadas_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_vs_quebrados_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_vs_quebrados_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_vs_quebrados_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_vs_quebrados_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_ds_visibles_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_ds_visibles_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_ds_visibles_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_ds_visibles_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_ds_diferentes_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_ds_diferentes_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_ds_diferentes_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_ds_diferentes_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_ds_danados_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_ds_danados_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_ds_danados_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_ds_danados_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="hl_con_prod_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="hl_con_prod_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="hl_con_prod_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="hl_con_prod_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+
+.switch-toggle input[value="bases_h_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="bases_h_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="bases_h_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="bases_h_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="baseshl_con_prod_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="baseshl_con_prod_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="baseshl_con_prod_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="baseshl_con_prod_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="prod_baseshl_visible_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_baseshl_visible_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_baseshl_visible_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_baseshl_visible_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_baseshl_danadas_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="prod_baseshl_danadas_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="prod_baseshl_danadas_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="prod_baseshl_danadas_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+
+
+.switch-toggle input[value="cp_con_prod_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="cp_con_prod_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="cp_con_prod_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="cp_con_prod_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="hay_aguardiente_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="hay_aguardiente_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="hay_aguardiente_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="hay_aguardiente_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="hay_ron_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="hay_ron_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="hay_ron_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="hay_ron_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="ron_byw_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="ron_byw_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="ron_byw_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="ron_byw_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="ron_jhonny_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="ron_jhonny_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="ron_jhonny_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="ron_jhonny_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+.switch-toggle input[value="aguard_smirnoff_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="aguard_smirnoff_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="aguard_smirnoff_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="aguard_smirnoff_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="gift_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="gift_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="gift_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="gift_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="tipologia_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="tipologia_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="tipologia_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="tipologia_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+.switch-toggle input[value="activo"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="inactivo"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+
+.switch-toggle input[value="segmento_si"]:checked+label {
+    background: green;
+    color: #fff;
+}
+
+.switch-toggle input[value="segmento_choose"]:checked+label {
+    background: rgb(255, 255, 255);
+}
+
+.switch-toggle input[value="segmento_choose"]:disabled+label {
+    background: rgb(255, 255, 255);
+    color: #222;
+    font-weight: normal;
+}
+
+.switch-toggle input[value="segmento_no"]:checked+label {
+    background: red;
+    color: #fff;
+}
+
+
+
+
+/* noConcre*/
+
+.noConcre {
+
+    margin-left: 20%;
+}
+
+
+/*img*/
+
+.card-img-top {
+
+    padding: 1rem;
+    width: 200px;
+    height: 200px;
+    border: 1px solid blue;
+    border-radius: 0.75rem;
+    margin-left: 3rem;
+}
+
+
+.card-img-top_tip {
+
+    padding: 1rem;
+    width: 200px;
+    height: 100px;
+    border: 1px solid rgb(97, 48, 209);
+    border-radius: 0.75rem;
+    margin-left: 3rem;
+}
+
+.card-img-mate {
+    padding: 1rem;
+    width: 150px;
+    height: 150px;
+    border: 1px solid blue;
+    border-radius: 0.75rem;
+    margin-left: 3rem;
+}
+
+/*pregntas*/
+
+.preguntas {
+
+    margin: auto;
+    text-align: center;
+}
+
+/*sectrions*/
+
+
+.container {
+    width: 100%;
+    max-height: max-content;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.container h2 {
+    position: relative;
+    width: 23rem;
+    color: hotpink;
+    margin: 20px 0;
+}
+
+.container h2::after {
+    position: absolute;
+    content: '';
+    width: 67px;
+    height: 2px;
+    right: 5px;
+    background-color: hotpink;
+    bottom: 0;
+}
+
+.accordion {
+    width: 100%;
+    padding: 0 5px;
+    border: 2px solid #6db5ff;
+    cursor: pointer;
+    display: flex;
+    margin: 10px 0;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 30px;
+
+}
+
+.accordion i {
+    color: #6db5ff;
+    transition: all .5s ease-in;
+}
+
+.accordion .fa-minus {
+    display: none;
+}
+
+.active,
+.accordion:hover {
+    background-color: #6db5ff;
+    color: white;
+    transition: all .5s ease-in;
+    border: 2px solid #dddddd;
+}
+
+.active .fa-minus {
+    display: block;
+}
+
+.active .fa-plus {
+    display: none;
+}
+
+.accordion h5 {
+    font-size: 20px;
+    margin: 0;
+    color: #001733;
+    padding-left: 5px;
+}
+
+.active i,
+.active h5,
+.accordion:hover i,
+.accordion:hover h5 {
+    color: white;
+}
+
+.panal {
+    padding: 0 15px;
+    border-left: 1px solid #6db5ff;
+    margin-left: 25px;
+    font-size: 14px;
+    text-align: justify;
+    overflow: hidden;
+    transition: all .5s ease-in;
+    max-height: 0;
+}
+
+
+
+/*nuevo toogle*/
+
+.switch-toggle input {
+    opacity: 0;
+    height: 50px;
+    max-height: 50px;
+    position: absolute;
+    border-radius: 15px;
+}
+
+.switch-toggle input+label {
+    float: left;
+    color: #fff;
+    height: 50px;
+    max-height: 50px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/**/
+
+
+blue {
+
+    color: blue;
+
+}
+
+green {
+
+    color: green;
+
+}
+
+
+red {
+    color: red;
+
+}
+
+
+.titulo {
+
+    margin-top: -5rem !important;
+}
+
+
+
+main {
+    box-shadow: 0px 1px 3px 1px #ffff;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    border: 0;
+}
+
+.input>* {
+    flex: 1;
+    border: 0;
+}
+
+main button {
+    align-self: flex-end;
+}
+
+
+.textar {
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+}
+
+span.numeros {
+    background: rgb(6, 218, 16);
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em;
+}
+
+/*PROGERESS BAR*/
+
+.progress {
+    height: 35px;
+    width: 100%;
+    border: 1px solid #428bca;
+    border-radius: 5px;
+    background-color: #e6f3fa;
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #428bca;
+    display: flex;
+    align-items: center;
+    transition: width 0.25s;
+    border-radius: 5px;
+}
+
+.progress-bar-text {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #cce7f5;
+}
+
+
+/*combo*/
+
+.comboPadre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.combo {
+
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*materiales*/
+
+.material {
+
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+}
+
+.ttulo {
+    text-align: center;
+
+}
+
+.flexbox {
+    margin-top: 1rem;
+    align-items: center;
+    height: 50%;
+    justify-content: center;
+    width: 100%;
+    background: #0f09ae;
+    color: #f9f6f6;
+    align-items: center;
+}
+
+/*main*/
+
+
+
+#cCarousel {
+    position: relative;
+    max-width: 900px;
+    margin: auto;
+}
+
+#cCarousel .arrow {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    width: 45px;
+    height: 45px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    z-index: 1;
+    font-size: 26px;
+    color: white;
+    background: #00000072;
+    cursor: pointer;
+}
+
+#cCarousel #prev {
+    left: 0px;
+}
+
+#cCarousel #next {
+    right: 0px;
+}
+
+#carousel-vp {
+    width: 770px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+}
+
+@media (max-width: 770px) {
+    #carousel-vp {
+        width: 510px;
+    }
+}
+
+@media (max-width: 510px) {
+    #carousel-vp {
+        width: 250px;
+    }
+}
+
+#cCarousel #cCarousel-inner {
+    display: flex;
+    position: absolute;
+    transition: 0.3s ease-in-out;
+    gap: 10px;
+    left: 0px;
+}
+
+.cCarousel-item {
+    width: 250px;
+    height: 365px;
+    border: 2px solid white;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.cCarousel-item img {
+    width: 100%;
+    object-fit: cover;
+    min-height: 90%;
+    color: white;
+}
+
+.cCarousel-item .infos {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: white;
+    color: black;
+}
+
+.cCarousel-item .infos button {
+    background: #222;
+    padding: 10px 30px;
+    border-radius: 15px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+span.gbp {
+    float: left;
+    text-align: left;
+}
+
+span.gbp::before {
+    float: left;
+    content: "\00a3"; /* £ */
+    padding: 3px 4px 3px 3px;
+}
+
+span.gbp input {
+     width: 280px !important;
+}

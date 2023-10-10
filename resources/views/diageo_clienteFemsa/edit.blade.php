@@ -12,6 +12,8 @@
         {!! Form::model($encuestas, ['route' => ['encuesta.diageo.update', $encuestas->id], 'method' => 'put', 'enctype'=>'multipart/form-data', 'files'  => 'true']) !!}
         <div>
 
+            <input type="hidden" name="id" value="{{$encuetas->id}}">
+
             <input type="hidden" name="star" value="{{$encuestas->star}}">
             <input type="hidden" name="promotor" value="{{$encuestas->promotor}}">
             <input type="hidden" name="gestionActual" value="{{$encuestas->gestionActual}}">
