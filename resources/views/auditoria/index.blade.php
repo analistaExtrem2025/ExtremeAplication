@@ -1,11 +1,11 @@
 @extends('adminlte::page')
-@section('title', 'Encuestas')
+@section('title', 'Auditorias')
 @section('css')
     <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 @stop
 @section('content_header')
-    <h1>Auditoria</h1>
-    {{--  <a href="{{ route('auditoria.create') }}"><button class="float-right btn btn-primary">Crear Nueva Auditoria</button></a>  --}}
+    <h1>Listado de auditorias asignadas</h1>
+
 @stop
 @section('content')
 
@@ -14,11 +14,11 @@
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>Razon Social</th>
-                    <th>Direccion</th>
+                    <th>Razón Social</th>
+                    <th>Dirección</th>
                     <th>Barrio</th>
                     <th>Segmento</th>
-                    <th>Tipologia</th>
+                    <th>Tipología</th>
                     <th width="105px">Acciones</th>
                 </tr>
             </thead>
