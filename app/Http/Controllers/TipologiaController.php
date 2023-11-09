@@ -31,6 +31,8 @@ class TipologiaController extends Controller
             'Tienda de consumo' => 'Tienda de consumo',
             'Licobares' => 'Licobares',
             'Juegos típicos' => 'Juegos típicos',
+            'Otro' => 'Otro',
+
         ];
         $puntos_auditoria = Tipologia::findOrFail($id);
         $datos = PuntosAuditoria::select('tipologia')->where('id', $puntos_auditoria->precarga_id)->get()->pluck('tipologia');
@@ -85,6 +87,7 @@ class TipologiaController extends Controller
                 [
                     'state_tipologia' => $request->state_tipologia,
                     'tipologia' => $request->tipologia,
+                    'OtraTipologia' => $request->OtraTipologia,
                     'fototipologia' => 'auditorias_pics/tipologia' . $nombreTipologia,
                 ]
             );

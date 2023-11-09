@@ -4,8 +4,7 @@
     <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 @stop
 @section('content_header')
-    <h1>Auditoria</h1>
-    {{--  <a href="{{ route('auditoria.create') }}"><button class="float-right btn btn-primary">Crear Nueva Auditoria</button></a>  --}}
+    <h1>MODULO DE CALIDAD DE AUDITORIAS</h1>
 @stop
 @section('content')
 
@@ -14,11 +13,13 @@
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>Razon Social</th>
-                    <th>Direccion</th>
+                    <th>Raz&oacute;n Social</th>
+                    <th>Direcci&oacute;n</th>
                     <th>Barrio</th>
                     <th>Segmento</th>
-                    <th>Tipologia</th>
+                    <th>Tipolog&iacute;a</th>
+                    <th>Creaci&oacute;n</th>
+
                     <th width="105px">Acciones</th>
                 </tr>
             </thead>
@@ -29,13 +30,14 @@
                         <td>{{ $encu->razonSocial }}</td>
                         <td>{{ $encu->direccion }}</td>
                         <td>{{ $encu->barrio }}</td>
-                        <td>{{ $encu->segmento }}</td>
+                        <td>{{ $encu->segmentacion }}</td>
                         <td>{{ $encu->tipologia }}</td>
+                        <td>{{ $encu->created_at }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="BasicExample">
                                 <a href="{{ url('/Galeria/' . $encu->id) }}" class="btn btn-success btn-sm"><i
                                         class="fas fa-edit"></i></a>
-                                        <a href="{{url('myPDF' , $encu->id)}}"><button class="btn btn-c">descargar pdf</button></a>
+                                        <!--<a href="{{url('myPDF' , $encu->id)}}"><button class="btn btn-c">descargar pdf</button></a>-->
                                 {{--  &nbsp;&nbsp;
                                 {!! Form::open(['route' => ['encuesta.diageo.destroy', $encu->id], 'method' => 'DELETE']) !!}
                                 <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
@@ -65,3 +67,5 @@
         });
     </script>
 @stop
+
+

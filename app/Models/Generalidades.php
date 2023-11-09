@@ -2,19 +2,21 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tipologia extends Model
+class Generalidades extends Model
 {
+    use HasFactory;
+
     protected $table = "auditorias";
+
 
     protected $fillable = [
         'id',
         'precarga_id',
-        'state_tipologia',
-        'OtraTipologia',
-        'tipologia',
-        'fototipologia'
+        'observacionesDetallista',
+
     ];
 
     public $timestamps = false;
@@ -23,5 +25,4 @@ class Tipologia extends Model
     {
         return $this->hasMany(PuntosAuditoria::class, 'id');
     }
-
 }

@@ -31,5 +31,9 @@ class PuntosAuditoria extends Model
         'nombreContacto',
         'apellidoContacto',
         'telContact',
+        'asignadoA',
+        'estatusGestion',
+        'fechaAsignado',
+        'fechaFinalizado'
     ];
 }

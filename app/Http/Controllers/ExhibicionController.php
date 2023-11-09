@@ -64,11 +64,11 @@ class ExhibicionController extends Controller
         $auditoria = Auditoria::where('precarga_id', $request->precarga_id)->first();
         $materiales = Exhibicion::findOrFail($id);
         if ($request->hasFile('seleccionron_byw')) {
-            $imagenron_byw= $request->file('seleccionron_byw');
-            $nombreron_byw= "_" . $request->precarga_id . '.' . 'png';
-            $destinoron_byw= public_path('auditorias_pics/ron_byw');
+            $imagenron_byw = $request->file('seleccionron_byw');
+            $nombreron_byw = "_" . $request->precarga_id . '.' . 'png';
+            $destinoron_byw = public_path('auditorias_pics/ron_byw');
             $request->seleccionron_byw->move($destinoron_byw, $nombreron_byw);
-            $redron_byw= Image::make($destinoron_byw. '/' . $nombreron_byw);
+            $redron_byw = Image::make($destinoron_byw . '/' . $nombreron_byw);
             $redron_byw->resize(
                 380,
                 null,
@@ -77,11 +77,11 @@ class ExhibicionController extends Controller
                 }
             );
             $redron_byw->text(
-                'Ron vs B&W' . " ".
-                    $auditoria->star. " ".
-                    $auditoria->direccion. " ".
-                    $auditoria->municipio. " ".
-                    $auditoria->lat. " ".
+                'Ron vs B&W' . " " .
+                    $auditoria->star . " " .
+                    $auditoria->direccion . " " .
+                    $auditoria->municipio . " " .
+                    $auditoria->lat . " " .
                     $auditoria->lon,
                 0,
                 10,
@@ -95,7 +95,7 @@ class ExhibicionController extends Controller
                     $font->countLines(4);
                 }
             );
-            $redron_byw->save($destinoron_byw. $nombreron_byw);
+            $redron_byw->save($destinoron_byw . $nombreron_byw);
             $auditoria->seleccionron_byw = 'auditorias_pics/ron_byw' .  $nombreron_byw;
             $auditoria->save();
         } else {
@@ -107,11 +107,11 @@ class ExhibicionController extends Controller
 
         if ($request->hasFile('seleccionron_jhonny')) {
 
-            $imagenron_jhonny= $request->file('seleccionron_jhonny');
-            $nombreron_jhonny= "_" . $request->precarga_id . '.' . 'png';
-            $destinoron_jhonny= public_path('auditorias_pics/ron_jhonny');
+            $imagenron_jhonny = $request->file('seleccionron_jhonny');
+            $nombreron_jhonny = "_" . $request->precarga_id . '.' . 'png';
+            $destinoron_jhonny = public_path('auditorias_pics/ron_jhonny');
             $request->seleccionron_jhonny->move($destinoron_jhonny, $nombreron_jhonny);
-            $redron_jhonny= Image::make($destinoron_jhonny. '/' . $nombreron_jhonny);
+            $redron_jhonny = Image::make($destinoron_jhonny . '/' . $nombreron_jhonny);
             $redron_jhonny->resize(
                 380,
                 null,
@@ -120,11 +120,11 @@ class ExhibicionController extends Controller
                 }
             );
             $redron_jhonny->text(
-                'Ron vs Jhonnie' . " ".
-                    $auditoria->star. " ".
-                    $auditoria->direccion. " ".
-                    $auditoria->municipio. " ".
-                    $auditoria->lat. " ".
+                'Ron vs Jhonnie' . " " .
+                    $auditoria->star . " " .
+                    $auditoria->direccion . " " .
+                    $auditoria->municipio . " " .
+                    $auditoria->lat . " " .
                     $auditoria->lon,
                 0,
                 10,
@@ -138,16 +138,28 @@ class ExhibicionController extends Controller
                     $font->countLines(4);
                 }
             );
-            $redron_jhonny->save($destinoron_jhonny. $nombreron_jhonny);
+
+            $redron_jhonny->save($destinoron_jhonny . $nombreron_jhonny);
+            $auditoria->seleccionron_jhonny = 'auditorias_pics/ron_jhonny' .  $nombreron_jhonny;
+            $auditoria->save();
+        } else {
+            $auditoria->seleccionron_jhonny = 'public\img\no_diponible.png';
+            $auditoria->save();
         }
+
+
+
+
+
+
 
         if ($request->hasFile('seleccionaguard_smirnoff')) {
 
-            $imagenaguard_smirnoff= $request->file('seleccionaguard_smirnoff');
-            $nombreaguard_smirnoff= "_" . $request->precarga_id . '.' . 'png';
-            $destinoaguard_smirnoff= public_path('auditorias_pics/aguard_smirnoff');
+            $imagenaguard_smirnoff = $request->file('seleccionaguard_smirnoff');
+            $nombreaguard_smirnoff = "_" . $request->precarga_id . '.' . 'png';
+            $destinoaguard_smirnoff = public_path('auditorias_pics/aguard_smirnoff');
             $request->seleccionaguard_smirnoff->move($destinoaguard_smirnoff, $nombreaguard_smirnoff);
-            $redaguard_smirnoff= Image::make($destinoaguard_smirnoff. '/' . $nombreaguard_smirnoff);
+            $redaguard_smirnoff = Image::make($destinoaguard_smirnoff . '/' . $nombreaguard_smirnoff);
             $redaguard_smirnoff->resize(
                 380,
                 null,
@@ -156,11 +168,11 @@ class ExhibicionController extends Controller
                 }
             );
             $redaguard_smirnoff->text(
-                'Aguardiente vs Smirnoff' . " ".
-                    $auditoria->star. " ".
-                    $auditoria->direccion. " ".
-                    $auditoria->municipio. " ".
-                    $auditoria->lat. " ".
+                'Aguardiente vs Smirnoff' . " " .
+                    $auditoria->star . " " .
+                    $auditoria->direccion . " " .
+                    $auditoria->municipio . " " .
+                    $auditoria->lat . " " .
                     $auditoria->lon,
                 0,
                 10,
@@ -174,7 +186,7 @@ class ExhibicionController extends Controller
                     $font->countLines(4);
                 }
             );
-            $redaguard_smirnoff->save($destinoaguard_smirnoff. $nombreaguard_smirnoff);
+            $redaguard_smirnoff->save($destinoaguard_smirnoff . $nombreaguard_smirnoff);
             $auditoria->seleccionaguard_smirnoff = 'auditorias_pics/aguard_smirnoff' .  $nombreaguard_smirnoff;
             $auditoria->save();
         } else {
@@ -183,14 +195,13 @@ class ExhibicionController extends Controller
         }
 
 
-   //dd($request->all());
-        if ( $request->ron_jhonny != null  ) {
+        //dd($request->all());
+        if ($request->ron_jhonny != null) {
             $materiales->update(
                 [
                     'ron_byw' => $request->ron_byw,
                     'ron_jhonny' => $request->ron_jhonny,
-                    'aguard_smirnoff' => $request->aguard_smirnoff
-,
+                    'aguard_smirnoff' => $request->aguard_smirnoff,
                 ]
             );
         } else {

@@ -42,6 +42,7 @@ return new class extends Migration
                 $table->integer('caja_cerveza')->nullable();
                 $table->integer('caja_aguardiente')->nullable();
                 $table->integer('caja_ron')->nullable();
+                $table->integer('caja_whiskey')->nullable();
                 $table->string('cenefa', 10)->nullable();
                 $table->string('cenefa_visi', 15)->nullable();
                 $table->string('cenefa_colo', 15)->nullable();
@@ -110,6 +111,12 @@ return new class extends Migration
                 $table->string('smirnoff375', 14)->nullable();
                 $table->integer('caras_smirnoff375')->nullable();
                 $table->string('precio_smirnoff375', 20)->nullable();
+                $table->string('smirnoff_ns700', 14)->nullable();
+                $table->integer('caras_smirnoff_ns700')->nullable();
+                $table->string('precio_smirnoff_ns700', 20)->nullable();
+                $table->string('smirnoff_ns375', 14)->nullable();
+                $table->integer('caras_smirnoff_ns375')->nullable();
+                $table->string('precio_smirnoff_ns375', 20)->nullable();
                 $table->string('jhonnie1000', 14)->nullable();
                 $table->integer('caras_jhonnie1000')->nullable();
                 $table->string('precio_jhonnie1000', 20)->nullable();
@@ -129,6 +136,9 @@ return new class extends Migration
                 $table->integer('caras_buchannas375')->nullable();
                 $table->string('precio_buchannas375', 20)->nullable();
                 $table->binary('seleccionLinealDiageo')->nullable();
+                $table->string('cal_marc_visible', 50)->nullable();
+                $table->string('cal_marc_danados', 50)->nullable();
+                $table->string('cal_marc_et_danados', 50)->nullable();
                 $table->string('hay_ron', 26)->nullable();
                 $table->string('comp_ron1', 26)->nullable();
                 $table->string('caras_comp_ron')->nullable();
@@ -152,6 +162,10 @@ return new class extends Migration
                 $table->string('gift', 7)->nullable();
                 $table->integer('cant_gift')->nullable();
                 $table->binary('selecciongift')->nullable();
+                $table->longtext('observacionesDetallista')->nullable();
+                $table->string('revisionCalidad', 600)->nullable();
+                $table->date('fechaCalidad')->nullable();
+                $table->string('criticidad', 200)->nullable();
                 $table->timestamps();
             }
         );

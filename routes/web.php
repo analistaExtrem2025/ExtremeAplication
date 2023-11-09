@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\AuditoriaController;
+use App\Http\Controllers\CalidadAuditoriaController;
+// use App\Http\Controllers\DashboardAuditoriasController;
 use App\Http\Controllers\DiageoActivadosController;
 use App\Http\Controllers\DiageoCerradosController;
 use App\Http\Controllers\DiageoClienteFemsaController;
@@ -11,7 +13,7 @@ use App\Http\Controllers\DiageoNoActivadosController;
 use App\Http\Controllers\DisponibilidadController;
 use App\Http\Controllers\EncuestaController;
 use App\Http\Controllers\ExhibicionController;
-use App\Http\Controllers\GaleriaController;
+use App\Http\Controllers\GeneralidadesController;
 use App\Http\Controllers\GiftsController;
 use App\Http\Controllers\MaterialesController;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +22,7 @@ use App\Http\Controllers\ReemplazoController;
 use App\Http\Controllers\SegmentoController;
 use App\Http\Controllers\TapadosController;
 use App\Http\Controllers\TipologiaController;
-use App\Http\Controllers\PDFController;
+// use App\Http\Controllers\PDFController;
 
 
 /*
@@ -80,9 +82,14 @@ Route::resource('disponibilidad', DisponibilidadController::class);
 Route::resource('tapados', TapadosController::class);
 Route::resource('exhibicion', ExhibicionController::class);
 Route::resource('gifts', GiftsController::class);
+Route::resource('generalidades', GeneralidadesController::class);
 
-Route::resource('Galeria', GaleriaController::class);
-Route::get('myPDF/{id}', [App\Http\Controllers\PDFController::class, 'pdf']);
+// Route::resource('dashboard', DashboardAuditoriasController::class);
+
+
+Route::resource('Galeria', CalidadAuditoriaController::class);
+
+// Route::get('myPDF/{id}', [App\Http\Controllers\PDFController::class, 'pdf']);
 
 // Route::get('auditoriaPDF/{id}/download', [App\Http\Controllers\PDFController::class, 'download'])->name('download');
 

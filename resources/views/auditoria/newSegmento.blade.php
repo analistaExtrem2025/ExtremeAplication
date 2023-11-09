@@ -33,6 +33,9 @@
                         {!! Form::select('segmento', $segmento, null, [
                             'class' => 'form-control',
                             'placeholder' => 'seleccione un segmento diferente a ' . $datos[0],
+                            'id' => 'segmento',
+                            'required',
+                            'disabled',
                         ]) !!}
                     </div>
                 </div>
@@ -50,35 +53,46 @@
                     </div>
                     <br><br>
                 </div>
-                <div class="col" style="text-align: center">
-                    <label class="col-sm-9 flexbox">Cuantas cajas vende en el mes de cervezas</label>
-                    <input class="col-sm-9" name="caja_cerveza" id="caja_cerveza" value="" type="number" autocomplete="off" required>
-                    <br><br><label class="col-sm-9 flexbox">Cuantas cajas vende en el mes de aguardientes</label>
-                    <input class="col-sm-9" type="number" name="caja_aguardiente" id="caja_aguardiente" autocomplete="off" value="" required>
-                    <br><br><label class="col-sm-9 flexbox">Cuantas cajas vende en el mes de rones</label>
-                    <input class="col-sm-9" type="number" id="caja_ron" name="caja_ron" value="" autocomplete="off" required>
+                <div id="divBoxes" style="display:none">
+                    <div class="col" style="text-align: center">
+                        <label class="col-sm-9 flexbox">Cuantas cajas vende en el mes de cervezas</label>
+                        <input class="col-sm-9 p-2 boxes" name="caja_cerveza" id="caja_cerveza" value="" type="number"
+                            autocomplete="off" required>
+                        <br><br><label class="col-sm-9 flexbox">Cuantas cajas vende en el mes de aguardientes</label>
+                        <input class="col-sm-9 p-2 boxes" type="number" name="caja_aguardiente" id="caja_aguardiente"
+                            autocomplete="off" value="" required>
+                        <br><br><label class="col-sm-9 flexbox">Cuantas cajas vende en el mes de rones</label>
+                        <input class="col-sm-9 p-2 boxes" type="number" id="caja_ron" name="caja_ron" value=""
+                            autocomplete="off" required>
+                        <br><br><label class="col-sm-9 flexbox">Cuantas cajas vende en el mes de whiskey</label>
+                        <input class="col-sm-9 p-2 mb-4 boxes" type="number" id="caja_whiskey" name="caja_whiskey" value=""
+                            autocomplete="off" required>
+                            <br>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <div class="row" style="text-align: center">
-        <div class="col">
-            <blue> <span>Tome una foto panoamica de dentro del establecimiento</span></blue>
-            <br>
-            <br>
-            <green> <span>Fotografia de evidencia de la segmentaci&oacute;n</span></green>
-            <br>
-            <br>
-            <input type="file" id="seleccionsegmento" name="fotosegmento" accept="image/*">
-            <br><br>
-            <img class="card-img-top" id="imagensegmento">
-            <script src="script.js"></script>
+    <div id="divImgSegmento" style="display: none">
+        <div class="row" style="text-align: center">
+            <div class="col">
+                <blue> <span>Tome una foto panoamica de dentro del establecimiento</span></blue>
+                <br>
+                <br>
+                <green> <span>Fotografia de evidencia de la segmentaci&oacute;n</span></green>
+                <br>
+                <br>
+                <input type="file" id="seleccionsegmento" name="fotosegmento" accept="image/*" required>
+                <br><br>
+                <img class="card-img-top" id="imagensegmento">
+            </div>
         </div>
     </div>
     </p>
-    {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton']) !!}
+    <div id="divSubmit" style="display: none">
+        {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton']) !!}
+    </div>
     <br><br>
     {!! Form::close() !!}
 @stop
@@ -88,12 +102,21 @@
             $("input[type=radio]").click(function(event) {
                 var valor = $(event.target).val();
                 if (valor == "segmento_no") {
-                    $("#divSegmento").hide();
+                    $("#divBoxes").show();
+                    $("#divImgSegmento").show();
+                    $("#divSegmento").show();
+                    $("#divSubmit").show();
                     $("#segmentoPic").show();
                     $("#divOldSegmento").show();
+                    $("#segmento").prop("disabled", false);
                 } else if (valor == "segmento_si") {
+                    $("#divBoxes").show();
+                    $("#divImgSegmento").show();
                     $("#divSegmento").show();
+                    $("#divSubmit").show();
+                    $("#segmentoPic").show();
                     $("#divOldSegmento").hide();
+                    $("#segmento").prop("disabled", true);
                 }
             });
         });

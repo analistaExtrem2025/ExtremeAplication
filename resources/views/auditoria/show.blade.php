@@ -7,6 +7,15 @@
 @section('content')
     <button class="btn btn-info" onclick="getLocation()" id="boton_begin">Comenzar</button>
     <p id="comenzar"></p>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @include('auditoria.form')
 @stop
 @section('js')

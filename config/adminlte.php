@@ -304,6 +304,8 @@ return [
             'topnav_right' => true,
         ],
 
+
+
         [
             'text'    => 'Marcha Blanca',
             'icon'    => 'fas fa-walking',
@@ -315,28 +317,28 @@ return [
                     'url'  => '/encuestas',
                     'icon' => 'fas fa-table fa-fw',
                     'shift' => 'ml-4',
-                    'can'  => 'encuesta.diageo.index'
+                    //'can'  => 'encuesta.diageo.index'
                 ],
                 [
                     'text' => 'Punto  Venta Cerrados',
                     'url'  => '/diageo_cerrados',
                     'icon' => 'fas fa-store-slash',
                     'shift' => 'ml-4',
-                    'can'  => 'encuesta.diageo.index'
+                   // 'can'  => 'encuesta.diageo.index'
                 ],
                 [
                     'text' => 'Revision de Calidad',
                     'url'  => 'qualitys',
                     'icon' => 'fas fa-cog',
                     'shift' => 'ml-4',
-                    'can'  => 'encuesta.diageo.edit'
+                   // 'can'  => 'encuesta.diageo.edit'
                 ],
                 [
                     'text'  => 'Reemplazos',
                     'route' => 'encuesta.reemplazo.index',
                     'icon'  => 'fab fa-squarespace',
                     'shift' => 'ml-4',
-                    'can'   => 'admin.diageo'
+                    //'can'   => 'admin.diageo'
                 ],
             ],
         ],
@@ -353,6 +355,20 @@ return [
                     'shift' => 'ml-4',
                     'can'   =>  'admin.diageo'
                 ],
+                [
+                    'text'  => 'Calidad',
+                    'route' => 'Galeria.index',
+                    'icon'  => 'fas fa-photo-video',
+                    'shift' => 'ml-4',
+                    'can'   =>  'admin.diageo'
+                ],
+                // [
+                //     'text'  => 'Dashboard Auditorias',
+                //     'route' => 'dashboard.index',
+                //     'icon'  => 'fas fa-chart-pie',
+                //     'shift' => 'ml-4',
+                //     //'can'   =>  'admin.diageo'
+                // ],
             ],
         ],
         [
@@ -366,11 +382,11 @@ return [
                     'route' => 'users.index',
                     'icon'  => 'fas fa-users fa-fw',
                     'shift' => 'ml-4',
-                    'can'   =>  'admin.diageo'
+                   'can'   =>  'admin.diageo'
                 ],
                 [
                     'text'  => 'Permisos',
-                    'route' => 'role.index',
+                    'route' => 'roles.index',
                     'icon'  => 'fas fa-users-cog fa-fw',
                     'shift' => 'ml-4',
                     'can'   =>  'admin.diageo'

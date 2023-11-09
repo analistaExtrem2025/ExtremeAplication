@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Validator;
 
 
 
@@ -18,8 +19,12 @@ class AuditoriaController extends Controller
      */
     public function index()
     {
-        $puntos_auditoria = PuntosAuditoria::where('AsignadoA', Auth::user()->name)->where('estatusGestion', '!=', 'Diligenciado')->get();
-
+        $date = Carbon::today();
+        $date = $date->toDateString();
+        $puntos_auditoria = PuntosAuditoria::where('asignadoA', Auth::user()->name)
+            ->where('estatusGestion', 'Asignado')
+            ->where('fechaAsignado', $date)
+            ->get();
         return view('auditoria.index', compact('puntos_auditoria'));
     }
 
@@ -37,6 +42,7 @@ class AuditoriaController extends Controller
             'Tienda de consumo' => 'Tienda de consumo',
             'Licobares' => 'Licobares',
             'Juegos típicos' => 'Juegos típicos',
+            'Otro' => 'Otro',
         ];
 
         $segmento = [
@@ -118,11 +124,12 @@ class AuditoriaController extends Controller
      */
     public function store(Request $request)
     {
+
         $datosReporte = request()->except('_token');
         if ($request->hasFile('fotoActiv')) {
             $imagen = $request->file('fotoActiv');
             $nombre = "_" . $request->precarga_id . '.' . 'png';
-            $destino = public_path('auditorias_pics/fachadas');
+            $destino = public_path('auditorias_pics/activacion');
             $request->fotoActiv->move($destino, $nombre);
             $red = Image::make($destino . '/' . $nombre);
             $red->resize(
@@ -133,12 +140,13 @@ class AuditoriaController extends Controller
                 }
             );
             $red->text(
+                $request->precarga_id . " " .
                 $request->activacion . " " .
-                    $request->star . " " .
-                    $request->direccion . " " .
-                    $request->municipio . " " .
-                    $request->lat . " " .
-                    $request->lon,
+                $request->star . " " .
+                $request->direccion . " " .
+                $request->municipio . " " .
+                $request->lat . " " .
+                $request->lon,
                 0,
                 10,
                 function ($font) {
