@@ -89,13 +89,13 @@ class DisponibilidadController extends Controller
     public function update(Request $request, $id)
     {
 
-     //dd($request->all());
+    // dd($request->all());
         $auditoria = Auditoria::where('precarga_id', $request->precarga_id)->first();
 
         if ($request->hasFile('seleccionLinealDiageo')) {
 
             $imagenLinealDiageo = $request->file('seleccionLinealDiageo');
-            $nombreLinealDiageo = "_" . $request->precarga_id . '.' . 'png';
+            $nombreLinealDiageo = "LinealDg_" . $request->precarga_id . '.' . 'png';
             $destinoLinealDiageo = public_path('auditorias_pics/LinealDiageo');
             $request->seleccionLinealDiageo->move($destinoLinealDiageo, $nombreLinealDiageo);
             $redLinealDiageo = Image::make($destinoLinealDiageo . '/' . $nombreLinealDiageo);
@@ -216,6 +216,8 @@ class DisponibilidadController extends Controller
             $auditoria->save();
         }
 
+        //dd($request->all());
+
         $disponibilidad = Disponibilidad::findOrFail($id);
         $disponibilidad->update(
             [
@@ -234,6 +236,12 @@ class DisponibilidadController extends Controller
                 'smirnoff375' => $request->smirnoff375,
                 'caras_smirnoff375' => $request->caras_smirnoff375,
                 'precio_smirnoff375' => $request->precio_smirnoff375,
+                'smirnoff_ns700' => $request->smirnoff_ns700,
+                'caras_smirnoff_ns700' => $request->caras_smirnoff_ns700,
+                'precio_smirnoff_ns700' => $request->precio_smirnoff_ns700,
+                'smirnoff_ns375' => $request->smirnoff_ns375,
+                'caras_smirnoff_ns375' => $request->caras_smirnoff_ns375,
+                'precio_smirnoff_ns375' => $request->precio_smirnoff_ns375,
                 'jhonnie1000' => $request->jhonnie1000,
                 'caras_jhonnie1000' => $request->caras_jhonnie1000,
                 'precio_jhonnie1000' => $request->precio_jhonnie1000,
@@ -252,6 +260,9 @@ class DisponibilidadController extends Controller
                 'buchannas375' => $request->buchannas375,
                 'caras_buchannas375' => $request->caras_buchannas375,
                 'precio_buchannas375' => $request->precio_buchannas375,
+                'cal_marc_visible' => $request->cal_marc_visible,
+                'cal_marc_danados' => $request->cal_marc_danados,
+                'cal_marc_et_danados' => $request->cal_marc_et_danados,
                 'hay_ron' => $request->hay_ron,
                 'hay_aguardiente' => $request->hay_aguardiente,
                 'comp_ron1' => $request->comp_ron1,

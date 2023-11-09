@@ -19,7 +19,7 @@
 #simple_gallery ul li {
     display: block;
     float: left;
-    width: calc(33.33% - 20px);
+    width: calc(32.33% - 35px);
     margin: 0;
     padding: 10px;
 }
@@ -97,14 +97,147 @@ h1,
     margin-right: 1rem;
     left: -15%;
     z-index: 1;
-    background: #000000;
+    width: 2rem;
+    height: 2rem;
+    background: black;
     color: rgb(81, 255, 0);
     border-radius: 0.75em;
     -webkit-border-radius: 0.75em;
     -moz-border-radius: 0.75em;
     -ms-border-radius: 0.75em;
     -o-border-radius: 0.75em;
+
 }
+
+.boto i {
+    margin-right: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+#imageNoDisponible {
+    display: block;
+    width: 20%;
+    margin: auto;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+}
+
+
+#image,
+#imageSegmento,
+#imageTipologia,
+#imageCenefa,
+#imageMarco,
+#imageRompetrafico,
+#imageFaxada,
+#imageBranding,
+#imageVasos,
+#imageRones,
+#imageAguardiente,
+#imageRonBlack,
+#imageJhonnie,
+#imageSmirnoff,
+#imageGift,
+#imageNotGift
+{
+    display: block;
+    width: 60%;
+    margin: 10% 25%;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+}
+
+#imageAfiche,
+#imageHielera,
+#imageBase_h,
+#imageDosificadorD,
+#imageDosificadorS,
+#imageLinealDiageo {
+    display: block;
+    width: 60%;
+    margin: 25% 25%;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+}
+
+
+#msgFachada,
+#msgTipologia,
+#msgSegmento,
+#msgCantidades,
+#msgCenefaVisi,
+#msgCenefaColo,
+#msgAficheVisi,
+#msgAficheColo,
+#msgAficheCombo,
+#msgMarcoVisi,
+#msgMarcoColo,
+#msgRompeVisi,
+#msgRompeColo,
+#msgFaxadaVisi,
+#msgAFaxadaEstado,
+#msgHieleraProd,
+#msgHieleraVisi,
+#msgHieleraEstado,
+#msgBsHieProd,
+#msgBsHieVisi,
+#msgBsHieEstado,
+#msgDsDVisi,
+#msgDsDProd,
+#msgDsDEstado,
+#msgDsSVisi,
+#msgDsSProd,
+#msgDsSEstado,
+#msgBrandingVisi,
+#msgBrandingEstado,
+#msgVasosVisi,
+#msgVasosEstado,
+#msgCalMarcVisi,
+#msgCalMarcEstado,
+#msgCalMarcEtiqueta,
+#msgRonBlack,
+#msgJhonnie,
+#msgSmirnoff,
+#msgGift {
+    margin-left: -2.3rem;
+    color: green;
+    font-weight: 600;
+    width: 280px;
+    margin-bottom: 0.5rem;
+    text-align: justify;
+}
+
+
+.controles {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    background: greenyellow;
+    color: #000000;
+    border-radius: 0.50rem;
+    -webkit-border-radius: 0.50rem;
+    -moz-border-radius: 0.50rem;
+    -ms-border-radius: 0.50rem;
+    -o-border-radius: 0.50rem;
+}
+
+.controles i {
+
+    align-items: center;
+    align-self: center;
+    align-content: center;
+}
+
+
 
 .SpanInf {
     color: blue;
@@ -121,6 +254,25 @@ h1,
     width: 80px !important;
     min-height: 30%;
 }
+
+.img_botellasNs {
+    display: block;
+    height: 230px;
+    margin: auto;
+    width: 80px !important;
+    min-height: 25%;
+}
+
+.img_botellasPq {
+    display: block;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    height: 230px;
+    margin: auto;
+    width: 80px !important;
+    min-height: 25%;
+}
+
 
 
 /*swing img*/
@@ -261,6 +413,7 @@ h1,
         color: #000000;
     }
 }
+
 .refe {
 
 
@@ -269,15 +422,2482 @@ h1,
 }
 
 
-.fotoExito li{
+.fotoExito li {
     min-height: 564px !important;
 }
 
 
-.parrafo{
+.parrafoJustificado {
 
     text-align: justify;
     text-justify: inter-word;
-    width: 29% !important;
+    width: 100% !important;
+    background: white;
+    font-style: oblique;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+    padding: 1em;
+}
 
+blue {
+
+    color: blue;
+    font-style: normal;
+    font-weight: bold;
+}
+
+red {
+
+    color: rgb(255, 0, 0);
+    font-style: normal;
+    font-weight: bold;
+}
+
+
+.noClass {
+
+    width: 0px;
+    background: transparent;
+    color: transparent;
+    border: transparent;
+
+}
+
+
+.criticidad{
+
+    width: 100%;
+    background: transparent;
+    color: red;
+    border: transparent;
+
+}
+
+
+
+
+.btn-group {
+
+    z-index: 9999;
+}
+
+/*botones */
+
+
+nat ul {
+    font-size: 0;
+    padding: 0;
+    margin: 1rem;
+}
+
+nat ul li {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 17px;
+    text-align: center;
+    width: 25%;
+
+}
+
+/* nav ul {
+    font-size: 0;
+    padding: 0;
+    margin: 1rem;
+}
+
+nav ul li {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 17px;
+    text-align: center;
+    width: 25%;
+
+} */
+
+/* nav ul li a {
+    background: #808080;
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px 20px;
+    text-decoration: none;
+} */
+
+/* nav ul li a:hover {
+    background: #028b9b;
+} */
+
+.bt_li {
+
+    margin-left: -16px !important;
+
+}
+
+.bt-menu {
+    /*display: none;*/
+    position: absolute;
+    background-color: none;
+    z-index: 999;
+    /*Subiendo el z-index del contenedor resuelves ese problema*/
+    margin: auto;
+    width: 300px;
+    height: 60px;
+    opacity: 0.96;
+
+}
+
+.botOn {
+    margin-inline-end: auto;
+    width: 3rem;
+    height: 3rem;
+    background-color: #028b9b;
+    color: #fff;
+    border-radius: 0.75em;
+    -webkit-border-radius: 0.75em;
+    -moz-border-radius: 0.75em;
+    -ms-border-radius: 0.75em;
+    -o-border-radius: 0.75em;
+    box-shadow: 10px 5px 5px #85929E;
+
+}
+
+.botOn:hover {
+    width: 4rem;
+    height: 4rem;
+    background-color: #959ebb;
+    color: #000000;
+}
+
+.center {
+
+    text-align: center;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.card-box {
+    background: #d1ddd3 !important;
+    border-radius: 0.75rem;
+    height: 350px;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+    padding: 4rem 1rem 0 1rem;
+    box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+    -webkit-box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+    -moz-box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+}
+
+.card-box .bt-menu {
+
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+}
+
+
+.card-box-xm {
+    background: #d1ddd3 !important;
+    height: 500px;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+    padding: 1rem 1rem 0 1rem;
+    box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+    -webkit-box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+    -moz-box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+}
+
+.card-box-xm .bt-menu {
+
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+}
+
+
+
+.card-box-xl {
+    background: #d1ddd3 !important;
+    height: 600px;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+    padding: 1rem 1rem 0 1rem;
+    box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+    -webkit-box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+    -moz-box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+}
+
+.card-box-xl .bt-menu {
+
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+}
+
+
+.card-box-xs .bt-menu {
+
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+}
+
+
+.card-box-xs {
+    background: #d1ddd3 !important;
+    height: 400px;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+    padding: 1rem 1rem 0 1rem;
+    box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+    -webkit-box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+    -moz-box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+}
+
+
+
+.card-box-xxl {
+    background: #d1ddd3 !important;
+    height: 750px;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+    padding: 1rem 1rem 0 1rem;
+    box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+    -webkit-box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+    -moz-box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+}
+
+.card-box-xxl .bt-menu {
+
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+}
+
+/*toogle*/
+
+* {
+    box-sizing: border-box;
+}
+
+*::before,
+*::after {
+    content: '';
+    position: absolute;
+}
+
+
+
+input {
+    height: 40px;
+    left: 0;
+
+    /* position: absolute; */
+    top: 0;
+    width: 400px;
+
+}
+
+.toggle-wrapper {
+    flex: 1 1 calc(100% / 3);
+    height: 11vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+
+
+}
+
+@media (max-width: 960px) {
+    .toggle-wrapper {
+        flex: 1 1 calc(100% / 2);
+    }
+}
+
+@media (max-width: 700px) {
+    .toggle-wrapper {
+        flex: 1 1 100%;
+    }
+}
+
+.toggle-wrapper:nth-child(odd) {
+    background:#FDEBD0;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+    box-shadow: 10px 5px 5px #AEB6BF  ;
+}
+
+.toggle-wrapper:nth-child(even) {
+    background:#D4E6F1;
+    border-radius: 0.75rem;
+    box-shadow: 10px 5px 5px #AEB6BF  ;
+}
+
+.toggle-wrapper:nth-child(3) {
+    background: #D4E6F1;
+    border-radius: 0.75rem;
+    box-shadow: 10px 5px 5px #AEB6BF;
+}
+
+.toggle-wrapper:nth-child(4) {
+    background:#E8DAEF ;
+    border-radius: 0.75rem;
+    box-shadow: 10px 5px 5px #AEB6BF  ;
+}
+
+.toggle-wrapper:nth-child(5) {
+    background: #D1F2EB ;
+    border-radius: 0.75rem;
+    box-shadow: 10px 5px 5px #AEB6BF  ;
+}
+
+.toggle-wrapper:nth-child(6) {
+    background: #c487de;
+    border-radius: 0.75rem;
+    box-shadow: 10px 5px 5px #AEB6BF  ;
+}
+
+.toggle-wrapper:nth-child(7) {
+    background: #D5F5E3;
+    border-radius: 0.75rem;
+    box-shadow: 10px 5px 5px #AEB6BF  ;
+}
+
+
+
+.toggle-wrapper:nth-child(8) {
+    background: #decf87;
+    border-radius: 0.75rem;
+}
+
+.toggle-wrapper:nth-child(8) .toggle {
+    transform: translate(-40px, 40px);
+}
+
+.name {
+    width: 80%;
+    position: absolute;
+    font: 500 10px 'Rubik', sans-serif;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    bottom: 15px;
+    right: 15px;
+    text-align: right;
+    z-index: 1;
+    color: #4A235A;
+    font-weight: bold;
+}
+
+.name1 {
+    width: 80%;
+    position: absolute;
+    font: 500 10px 'Rubik', sans-serif;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    bottom: 15px;
+    left: 15px;
+    text-align: left;
+    z-index: 1;
+    color: #4A235A;
+    font-weight: bold;
+
+}
+
+.tableBox{
+    background: white !important;
+    border-radius: 0.75rem !important;
+    -webkit-border-radius: 0.75rem !important;
+    -moz-border-radius: 0.75rem !important;
+    -ms-border-radius: 0.75rem !important;
+    -o-border-radius: 0.75rem !important;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 10px 5px 5px #AEB6BF;
+    text-shadow: 0 1px 1px rgba(0, 0, 0);
+}
+
+.tableCaja{
+    background: aquamarine;
+    box-shadow: 10px 5px 5px #AEB6BF  ;
+    text-shadow: 0 1px 1px rgba(0, 0, 0);
+    font-size: 11px;
+
+}
+
+.datosCaja{
+    background: rgb(255, 255, 255);
+    text-shadow: 0 1px 1px rgba(0, 0, 0);
+
+}
+.detalle {
+    display: block;
+    width: 100%;
+    height: calc(8.25rem + 25px);
+    padding: 0.375rem 0.75rem;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1;
+    color: black;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: 2px solid #ced4da;
+    border-radius: 0.25rem;
+    box-shadow: inset 0 0 0 transparent;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+}
+
+.comentario {
+    display: block;
+    width: 100%;
+    height: calc(8.25rem + 25px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 2px solid #ced4da;
+    border-radius: 0.25rem;
+    box-shadow: inset 0 0 0 transparent;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+}
+
+
+.toggle {
+    position: relative;
+    display: inline-block;
+    z-index: 999;
+
+}
+
+label.toggle-item {
+    width: 7em;
+    background: #2e394d;
+    height: 3em;
+    display: inline-block;
+    border-radius: 50px;
+    margin: 40px;
+    position: relative;
+    transition: all .3s ease;
+    transform-origin: 20% center;
+    cursor: pointer;
+    box-shadow: 10px 5px 5px #808B96;
+}
+
+label.toggle-item:before {
+    display: block;
+    transition: all .2s ease;
+    width: 2.3em;
+    height: 2.3em;
+    top: .25em;
+    left: .25em;
+    border-radius: 2em;
+    border: 2px solid #88cf8f;
+    transition: .3s ease;
+}
+
+
+.checkcross label.toggle-item:before {
+    content: none;
+}
+
+.checkcross .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+
+}
+
+.checkcross .check:before,
+.checkcross .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+
+}
+
+.checkcross .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+
+}
+
+.checkcross .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+
+
+.checkcross2 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross2 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross2 .check:before,
+.checkcross2 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross2 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross2 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross2:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross2:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross2:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+
+
+.checkcross3 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross3 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross3 .check:before,
+.checkcross3 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross3 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross3 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross3:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross3:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross3:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*4*/
+
+.checkcross4 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross4 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross4 .check:before,
+.checkcross4 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross4 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross4 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross4:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross4:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross4:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+/*5*/
+
+.checkcross5 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross5 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross5 .check:before,
+.checkcross5 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross5 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross5 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross5:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross5:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross5:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*6*/
+
+.checkcross6 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross6 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross6 .check:before,
+.checkcross6 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross6 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross6 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross6:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross6:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross6:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+
+/*7*/
+
+.checkcross7 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross7 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross7 .check:before,
+.checkcross7 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross7 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross7 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross7:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross7:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross7:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*8*/
+
+.checkcross8 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross8 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross8 .check:before,
+.checkcross8 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross8 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross8 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross8:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross8:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross8:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+
+/*9*/
+
+.checkcross9 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross9 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross9 .check:before,
+.checkcross9 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross9 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross9 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross9:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross9:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross9:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*10*/
+
+.checkcross10 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross10 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross10 .check:before,
+.checkcross10 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross10 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross10 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross10:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross10:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross10:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+/*11*/
+
+.checkcross11 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross11 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross11 .check:before,
+.checkcross11 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross11 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross11 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross11:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross11:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross11:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+/*12*/
+
+.checkcross12 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross12 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross12 .check:before,
+.checkcross12 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross12 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross12 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross12:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross12:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross12:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+/*13*/
+
+.checkcross13 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross13 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross13 .check:before,
+.checkcross13 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross13 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross13 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross13:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross13:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross13:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+
+/*14*/
+
+.checkcross14 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross14 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross14 .check:before,
+.checkcross14 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross14 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross14 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross14:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross14:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross14:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*15*/
+
+.checkcross15 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross15 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross15 .check:before,
+.checkcross15 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross15 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross15 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross15:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross15:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross15:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*16*/
+
+.checkcross16 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross16 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross16 .check:before,
+.checkcross16 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross16 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross16 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross16:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross16:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross16:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*17*/
+
+.checkcross17 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross17 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross17 .check:before,
+.checkcross17 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross17 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross17 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross17:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross17:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross17:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*18*/
+
+.checkcross18 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross18 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross18 .check:before,
+.checkcross18 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross18 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross18 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross18:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross18:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross18:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*19*/
+
+.checkcross19 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross19 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross19 .check:before,
+.checkcross19 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross19 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross19 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross19:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross19:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross19:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*20*/
+
+.checkcross20 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross20 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross20 .check:before,
+.checkcross20 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross20 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross20 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross20:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross20:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross20:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+
+/*21*/
+
+.checkcross21 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross21 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross21 .check:before,
+.checkcross21 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross21 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross21 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross21:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross21:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross21:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+/*22*/
+
+.checkcross22 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross22 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross22 .check:before,
+.checkcross22 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross22 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross22 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross22:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross22:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross22:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*23*/
+
+.checkcross23 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross23 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross23 .check:before,
+.checkcross23 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross23 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross23 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross23:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross23:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross23:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*24*/
+
+.checkcross24 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross24 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross24 .check:before,
+.checkcross24 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross24 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross24 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross24:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross24:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross24:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*25*/
+
+.checkcross25 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross25 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross25 .check:before,
+.checkcross25 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross25 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross25 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross25:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross25:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross25:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+
+/*26*/
+
+.checkcross26 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross26 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross26 .check:before,
+.checkcross26 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross26 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross26 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross26:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross26:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross26:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+
+/*27*/
+
+.checkcross27 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross27 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross27 .check:before,
+.checkcross27 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross27 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross27 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross27:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross27:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross27:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+/*28*/
+
+.checkcross28 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross28 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross28 .check:before,
+.checkcross28 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross28 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross28 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross28:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross28:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross28:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+/*29*/
+
+.checkcross29 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross29 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross29 .check:before,
+.checkcross29 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross29 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross29 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross29:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross29:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross29:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+/*30*/
+
+.checkcross30 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross30 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross30 .check:before,
+.checkcross30 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross30 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross30 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross30:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross30:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross30:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*31*/
+
+.checkcross31 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross31 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross31 .check:before,
+.checkcross31 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross31 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross31 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross31:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross31:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross31:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*32*/
+
+.checkcross32 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross32 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross32 .check:before,
+.checkcross32 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross32 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross32 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross32:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross32:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross32:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*33*/
+
+.checkcross33 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross33 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross33 .check:before,
+.checkcross33 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross33 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross33 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross33:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross33:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross33:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+/*34*/
+
+.checkcross34 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross34 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross34 .check:before,
+.checkcross34 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross34 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross34 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross34:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross34:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross34:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+/*35*/
+
+.checkcross35 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross35 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross35 .check:before,
+.checkcross35 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross35 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross35 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross35:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross35:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross35:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+/*36*/
+
+.checkcross36 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross36 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross36 .check:before,
+.checkcross36 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross36 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross36 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross36:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross36:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross36:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+
+
+/*37*/
+
+.checkcross37 label.toggle-item:before {
+    content: none;
+}
+
+.checkcross37 .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcross37 .check:before,
+.checkcross37 .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcross37 .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcross37 .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcross37:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcross37:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcross37:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
+}
+
+/*checkcrossBox*/
+
+.checkcrossBox label.toggle-item:before {
+    content: none;
+}
+
+.checkcrossBox .check {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    background: #8BC34A;
+    transition: .4s ease;
+    top: 4.5px;
+    left: 4.5px;
+}
+
+.checkcrossBox .check:before,
+.checkcrossBox .check:after {
+    height: 4px;
+    border-radius: 10px;
+    background: #fff;
+    transition: .4s ease;
+}
+
+.checkcrossBox .check:before {
+    width: 25px;
+    transform: rotate(-45deg) translate(-6px, 20px);
+}
+
+.checkcrossBox .check:after {
+    width: 10px;
+    transform: rotate(45deg) translate(20px, 11px);
+}
+
+#checkcrossBox:checked+label .check {
+    left: 68px;
+    transform: rotate(360deg);
+    background: #c34a4a;
+}
+
+#checkcrossBox:checked+label .check:before {
+    width: 27px;
+    transform: rotate(-45deg) translate(-8px, 18px);
+}
+
+#checkcrossBox:checked+label .check:after {
+    width: 27px;
+    transform: rotate(45deg) translate(18px, 8px);
 }

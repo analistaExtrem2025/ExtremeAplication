@@ -118,6 +118,7 @@ class SegmentoController extends Controller
                     'caja_cerveza' => $request->caja_cerveza,
                     'caja_aguardiente' => $request->caja_aguardiente,
                     'caja_ron' => $request->caja_ron,
+                    'caja_whiskey' => $request->caja_whiskey,
                     'fotosegmento' => 'auditorias_pics/segmento'. $nombreSegmento,
                 ]
             );
@@ -129,6 +130,7 @@ class SegmentoController extends Controller
                     'caja_cerveza' => $request->caja_cerveza,
                     'caja_aguardiente' => $request->caja_aguardiente,
                     'caja_ron' => $request->caja_ron,
+                    'caja_whiskey' => $request->caja_whiskey,
                     'fotosegmento' => 'auditorias_pics/segmento'. $nombreSegmento,
                 ]
             );

@@ -1,11 +1,11 @@
 @extends('adminlte::page')
-@section('title', 'Encuestas')
+@section('title', 'Auditorias')
 @section('css')
     <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 @stop
 @section('content_header')
-    <h1>Auditoria</h1>
-    {{--  <a href="{{ route('auditoria.create') }}"><button class="float-right btn btn-primary">Crear Nueva Auditoria</button></a>  --}}
+    <h1>Listado de auditorias asignadas</h1>
+
 @stop
 @section('content')
 
@@ -29,16 +29,12 @@
                         <td>{{ $encu->razonSocial }}</td>
                         <td>{{ $encu->direccion }}</td>
                         <td>{{ $encu->barrio }}</td>
-                        <td>{{ $encu->segmento }}</td>
+                        <td>{{ $encu->segmentacion }}</td>
                         <td>{{ $encu->tipologia }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="BasicExample">
-                                <a href="{{ url('/auditoria/' . $encu->id) }}" class="btn btn-success btn-sm"><i
-                                        class="fas fa-edit"></i></a>
-                                {{--  &nbsp;&nbsp;
-                                {!! Form::open(['route' => ['encuesta.diageo.destroy', $encu->id], 'method' => 'DELETE']) !!}
-                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                                {!! Form::close() !!}  --}}
+                                <a href="{{ url('/auditoria/' . $encu->id) }}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
+
                             </div>
                         </td>
                     </tr>

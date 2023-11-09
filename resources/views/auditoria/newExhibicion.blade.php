@@ -18,39 +18,37 @@
     ]) !!}
 
     <input type="hidden" name="precarga_id" value="{{ $puntos_auditoria->precarga_id }}">
-
     <p>
-    <div class="col-12 material">
+    <div class="col-12">
         <div class="card">
-            <div class="ttulo">
+            <div class="ttulo" style="text-align: center">
                 <green><span>Confirme si Black & White exhibido junto rones</span></green>
             </div>
-            <div class="col">
-                <div class="col">
-                    <img class="img_afiche" src="{{ asset('/storage/ron_b&w.png') }}" />
-                    <div class="switch-toggle switch-3 switch-candy" style="height: 50%; width:80%">
-                        <input id="ron_byw_si" name="ron_byw" type="radio" value="ron_byw_si" />
-                        <label for="ron_byw_si">SI</label>
-                        <input id="ron_byw_choose" name="ron_byw" type="radio" value="ron_byw_choose" checked="checked"  disabled/>
-                        <label for="ron_byw_choose">Ron junto a B&W</label>
-                        <input id="ron_byw_no" name="ron_byw" type="radio" value="ron_byw_no" />
-                        <label for="ron_byw_no">NO</label>
-                        <a></a>
-                    </div>
-                </div>
-                <div class="row" style="text-align: center">
-                    <div class="col">
-                        <br><br>
-                        <hr>
-                        <div class="col" id="divron_byw" style="display: block">
-                            <input type="file" id="seleccionron_byw" name="seleccionron_byw" accept="image/*">
-                            <img class="card-img-mate" id="imagenron_byw">
-                            <script src="script.js"></script>
-                            <br><br>
-                        </div>
-                    </div>
-                </div>
+<div class="row">
+    <div class="row">
+        <img class="img_afiche" src="{{ asset('/storage/ron_b&w.png') }}" />
+        <div class="col">
+            <div class="switch-toggle switch-3 switch-candy">
+                <input id="ron_byw_si" name="ron_byw" type="radio" value="ron_byw_si" />
+                <label for="ron_byw_si">SI</label>
+                <input id="ron_byw_choose" name="ron_byw" type="radio" value="ron_byw_choose" checked="checked"  disabled/>
+                <label for="ron_byw_choose">Ron junto a B&W</label>
+                <input id="ron_byw_no" name="ron_byw" type="radio" value="ron_byw_no" />
+                <label for="ron_byw_no">NO</label>
+                <a></a>
             </div>
+        </div>
+
+        <div class="col" id="divron_byw" style="display: block">
+            <input type="file" id="seleccionron_byw" name="seleccionron_byw" accept="image/*">
+            <img class="card-img-mate" id="imagenron_byw">
+            <br><br>
+        </div>
+
+
+</div>
+
+
             @if ($usuario == 'MEDELLIN')
                 <div class="col-12 material">
                     <div class="card">

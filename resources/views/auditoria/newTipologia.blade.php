@@ -22,74 +22,117 @@
         <div class="card">
             <div class="col">
                 <div class="col">
-                    <div id="divSegmento">
+                    <div id="divTipologia">
                         {!! Form::label('Tipologia Actual') !!}
                         &nbsp;
                         <p>{{ $datos[0] }}</p>
                     </div>
                 </div>
 
+                <div id="divOldtipologia" style="display: none">
+                    <div class="col">
+                        {!! Form::label('Seleccione la tipología correcta') !!}
+                        {!! Form::select('tipologia', $tipologia, null, [
+                            'class' => 'form-control mb-4',
+                            'placeholder' => 'seleccione una tipologia diferente a ' . $datos[0],
+                            'id' => 'tipologia',
+                            'onchange' => 'editor()',
+                            'required',
+                            'disabled',
+                        ]) !!}
+                    </div>
+
+                    <div class="input" id="divOtroCual" style="display: none">
+                        {!! Form::label('¿Cual?') !!}
+                        {!! Form::text('OtraTipologia', null, [
+                            'class' => 'form-control textar',
+                            'autocomplete' => 'off',
+                            'id' => 'cual',
+                            'maxlength' => 50,
+                            'required',
+                            'disabled',
+                        ]) !!}
+                    </div>
+                </div>
                 <div class="col">
                     <br><br>
                     <div class="switch-toggle switch-3 switch-candy" style="height: 50%; width:80%">
-                        <input id="tipologia_si" name="state_tipologia" type="radio" value="tipologia_si" required />
+                        <input id="tipologia_si" name="state_tipologia" type="radio" value="tipologia_si"
+                            required="required" />
                         <label for="tipologia_si">SI</label>
-                        <input id="tipologia_choose" name="state_tipologia" type="radio" value="tipologia_choose" checked disabled />
-                        <label for="tipologia_choose" class="disabled">¿Es la misma tipología?</label>
-                        <input id="tipologia_no" name="state_tipologia" type="radio" value="tipologia_no" required />
+                        <input id="tipologia_choose" name="state_tipologia" type="radio" value="tipologia_choose"
+                            checked="checked" disabled />
+                        <label for="tipologia_choose" disabled class="disabled">¿Es la misma tipología?</label>
+                        <input id="tipologia_no" name="state_tipologia" type="radio" value="tipologia_no" />
                         <label for="tipologia_no">NO</label>
                         <a></a>
                     </div>
                     <br><br>
                 </div>
 
-                <div class="col">
-                    <div id="divtipologia" style="display: none">
-                        {!! Form::label('Seleccione la tipología correcta') !!}
-                        {!! Form::select('tipologia', $tipologia, null, [
-                            'class' => 'form-control',
-                            'placeholder' => 'seleccione una tipologia diferente a ' . $datos[0],
-                        ]) !!}
-                    </div>
-                </div>
+                <br>
+
             </div>
         </div>
     </div>
-
-
-    <div class="row" style="text-align: center">
-        <div class="col">
-            <blue> <span>La foto debe ser tomada dentro del establecimiento</span></blue>
-            <br>
-            <br>
-            <green> <span>Fotografia de evidencia de la tipologia</span></green>
-            <br>
-            <br>
-            <input type="file" id="selecciontipologia" name="fototipologia" accept="image/*" required>
-            <br><br>
-            <img class="card-img-top" id="imagentipologia">
-            <script src="script.js"></script>
+    <div id="divImgTipologia" style="display: none">
+        <div class="row" style="text-align: center">
+            <div class="col">
+                <blue> <span>La foto debe ser tomada dentro del establecimiento</span></blue>
+                <br>
+                <br>
+                <green> <span>Fotografia de evidencia de la tipologia</span></green>
+                <br>
+                <br>
+                <input type="file" id="selecciontipologia" name="fototipologia" accept="image/*" required>
+                <br><br>
+                <img class="card-img-top" id="imagentipologia">
+            </div>
         </div>
     </div>
     </p>
-    {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton']) !!}
+    <div id="divSubmit" style="display: none">
+        {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton']) !!}
+    </div>
     <br><br>
     {!! Form::close() !!}
 @stop
 @section('js')
-    <script>
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
         $(document).ready(function() {
-            $("input[type=radio]").click(function(event) {
-                var valor1 = $(event.target).val();
-                if (valor1 == "tipologia_no") {
+
+            $("input[name=state_tipologia]").click(function() {
+                if ($('input:radio[name=state_tipologia]:checked').val() == 'tipologia_no') {
+                    $("#divImgTipologia").show();
+                    $("#divSubmit").show();
                     $("#divtipologia").show();
-                    $("#divOldTipologia").hide();
-                } else if (valor1 == "tipologia_si") {
+                    $("#divOldtipologia").show();
+                    $('#tipologia').prop("disabled", false);
+                } else {
                     $("#divtipologia").hide();
-                    $("#divOldTipologia").show();
+                    $("#divImgTipologia").show();
+                    $("#divSubmit").show();
+                    $("#divOldtipologia").hide();
+                    $('#tipologia').prop("disabled", true);
                 }
             });
         });
+    </script>
+
+
+    <script>
+        function editor() {
+            var opcion = $('#tipologia').val();
+            if (opcion == 'Otro') {
+                $('#divOtroCual').show();
+                $('#cual').prop("disabled", false);
+            } else {
+                $('#divOtroCual').hide();
+                $('#cual').prop("disabled", true);
+            }
+        }
     </script>
     <script>
         const $selecciontipologia = document.querySelector("#selecciontipologia"),

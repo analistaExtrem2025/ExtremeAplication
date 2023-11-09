@@ -61,9 +61,6 @@ class GiftsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $now = Carbon::now();
-
-        $precarga = PuntosAuditoria::where('id', $request->precarga_id);
 
         $auditoria = Auditoria::where('precarga_id', $request->precarga_id)->first();
         if ($request->hasFile('selecciongift')) {
@@ -106,13 +103,6 @@ class GiftsController extends Controller
             $auditoria->selecciongift = '\public\img\no_gift.png';
             $auditoria->save();
         }
-        $precarga->update(
-            [
-                'estatusGestion' => 'Diligenciado',
-                'fechaFinalizado' =>  $now,
-            ]
-        );
-
         $disponibilidad = Gifts::findOrFail($id);
 
         if ($request->selecciongift != null) {
@@ -131,7 +121,7 @@ class GiftsController extends Controller
                 ]
             );
         }
-        return redirect('auditoria');
+        return redirect('generalidades');
     }
 
     /**
