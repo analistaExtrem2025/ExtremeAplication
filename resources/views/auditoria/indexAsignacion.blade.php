@@ -17,8 +17,7 @@
                 <tr>
                     <th width="10px">id</th>
                     <th width="10px">Direccion</th>
-                    <th width="10px">Departamento</th>
-                    <th width="10px">Municipio</th>
+                    <th width="10px">Depa y Mun</th>
                     <th width="10px">Barrio</th>
                     <th width="10px">Asignado a</th>
                     <th width="10px">Estatus de gestión</th>
@@ -32,8 +31,7 @@
                     <tr>
                         <td>{{ $p_a->id }}</td>
                         <td>{{ $p_a->direccion }}</td>
-                        <td>{{ $p_a->departamento }}</td>
-                        <td>{{ $p_a->municipio }}</td>
+                        <td>{{ $p_a->departamento }} {{ $p_a->municipio }}</td>
                         <td>{{ $p_a->barrio }}</td>
                         <td>{{ $p_a->asignadoA }}</td>
                         <td>{{ $p_a->estatusGestion }}</td>

@@ -35,8 +35,8 @@
                         <td>{{ $encu->tipologia }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="BasicExample">
-                                <a href="{{ url('/auditoria/' . $encu->id) }}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
-
+                                <a href="{{ url('/auditoria/' . $encu->id) }}" class="btn btn-success btn-sm"><i
+                                        class="fas fa-edit"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -61,4 +61,5 @@
             $('#encuestas_table').DataTable();
         });
     </script>
+
 @stop
