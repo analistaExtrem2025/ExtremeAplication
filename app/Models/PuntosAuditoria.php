@@ -9,6 +9,8 @@ class PuntosAuditoria extends Model
 {
     use HasFactory;
     protected $table = 'puntos_auditoria';
+
+    protected $guarded = [];
     protected $fillable = [
         'id',
         'id_femsa',

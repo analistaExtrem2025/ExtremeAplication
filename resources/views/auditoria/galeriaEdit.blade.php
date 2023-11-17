@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="<?php echo asset('css/auditoria.css'); ?>" type="text/css">
 @stop
 @section('content')
-    {!! Form::open(['route' => 'Galeria.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+    {!! Form::model($reporte, [
+        'route' => ['Galeria.update', $reporte->precarga_id],
+        'method' => 'PUT',
+        'enctype' => 'multipart/form-data',
+    ]) !!}
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -145,6 +149,16 @@
                             <div class="name1">Es {{ $reporte->segmento }}</div>
                         </div>
                         <br>
+                        <div style="display: none" id="EditSegmento">
+                            <hr>
+                                <select  name="segmento[]" id="segmento" class="form-control selectpicker selector "
+                                data-style="btn-primary" title="Seleccionar segmento"  required disabled>
+                                <option disabled  value="old{'segmento'}" checked>Seleccione una opción </option>
+                                @foreach ( $segmento as $seg )
+                                    <option  value="{{ $seg }}">{{ $seg }}</option>
+                                    @endforeach
+                                </select>
+                        </div>
                         <hr>
                         <div class="toggle-wrapper">
                             <div class="toggle checkcrossBox">
@@ -157,6 +171,19 @@
                             <div class="name1">numero de <br>cajas <br>Coinciden</div>
                         </div>
                         <br>
+                        <hr>
+                        <div style="display: none" id="EditCaja">
+                            <hr>
+                            <h6 class="cantidadesLabel">Ajuste las cantidades necesarias</h6>
+                            <input type="text" name="caja_cerveza" class="cantidades"
+                                value="{{ old('caja_cerveza', $reporte->caja_cerveza) }}">
+                            <input type="text" name="caja_aguardiente" class="cantidades"
+                                value="{{ old('caja_aguardiente', $reporte->caja_aguardiente) }}">
+                            <input type="text" name="caja_ron" class="cantidades"
+                                value="{{ old('caja_ron', $reporte->caja_ron) }}">
+                            <input type="text" name="caja_whiskey" class="cantidades"
+                                value="{{ old('caja_whiskey', $reporte->caja_whiskey) }}">
+                        </div>
                         <hr>
                         <h5 class="center">CANTIDADES:</h5>
                         <div class="tableBox">
@@ -200,11 +227,16 @@
                             <input class="noClass" type="text" id="inpSegmento" name="segmento" required>
                             <input class="noClass" type="text" id="inpCantidades" name="cantidadCajas" required>
                         </nat>
+
                     </div>
+
+
+
                     <div class="col-8">
                         <img id="imageSegmento"
                             src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/segmento_' . $reporte->precarga_id . '.png'))) }}" />
                     </div>
+
                 </div>
             </ul>
             {{--  <!-- Tipologia -->  --}}
@@ -223,6 +255,17 @@
                             </div>
                             <div class="name"> Tipoloigia<br> no <br>coincide</div>
                             <div class="name1">Tipoloigia <br>coincide</div>
+                        </div>
+                        <br>
+                        <div style="display: none" id="EditTipologia">
+                            <hr>
+                                <select  name="tipologia[]" id="tipologia" class="form-control selectpicker selector"
+                                data-style="btn-primary" title="Seleccionar tipologia"  required disabled>
+                                <option disabled  value="old{'tipologia'}" checked>Seleccione una opción </option>
+                                @foreach ( $tipologia as $tip )
+                                    <option  value="{{ $tip }}">{{ $tip }}</option>
+                                    @endforeach
+                                </select>
                         </div>
 
                         <nat class="bt-menu">
@@ -289,11 +332,21 @@
                                             <div class="check"></div>
                                         </label>
                                     </div>
-                                    <div class="name">No<br> es visible</div>
-                                    <div class="name1">Es <br>visible</div>
+                                    <div class="name">Audito<br>mal la<br>visibiliad</div>
+                                    <div class="name1">Audito<br>bien la<br>visibiliad</div>
                                 </div>
-
-
+                            <br>
+                                <div style="display: none" id="EditCenefaVisi">
+                                    <hr>
+                                        <select  name="cenefa_visi[]" id="cenefa_visi" class="form-control selectpicker selector"
+                                        data-style="btn-primary" title="Seleccionar visibilidad cenefa"  required disabled>
+                                        <option disabled  value="old{'cenefa_visi'}" checked>Seleccione una opción </option>
+                                        @foreach ( $cenefa_visi as $cenVis )
+                                            <option  value="{{ $cenVis }}">{{ $cenVis }}</option>
+                                            @endforeach
+                                        </select>
+                                </div>
+                                <br>
                                 <br>
                                 <div class="toggle-wrapper">
                                     <div class="toggle checkcross5">
@@ -302,12 +355,22 @@
                                             <div class="check"></div>
                                         </label>
                                     </div>
-                                    <div class="name">Mal <br>colocada</div>
-                                    <div class="name1">Bien <br>colocada</div>
+                                    <div class="name">Audito<br>mal la<br>colocación</div>
+                                    <div class="name1">Audito<br>bien la<br>colocación</div>
                                 </div>
-
-
-
+                                <br>
+                                <div style="display: none" id="EditCenefaColo">
+                                    <hr>
+                                        <select  name="cenefa_colo[]" id="cenefa_colo" class="form-control selectpicker selector"
+                                        data-style="btn-primary" title="Seleccionar colocación cenefa"  required disabled>
+                                        <option disabled  value="old{'cenefa_colo'}" checked>Seleccione una opción </option>
+                                        @foreach ( $cenefa_colo as $cenCol )
+                                            <option  value="{{ $cenCol }}">{{ $cenCol }}</option>
+                                            @endforeach
+                                        </select>
+                                </div>
+                                <br>
+                                <br>
                             </div>
                             {{--  <div id="msgCenefa"><red>Calidad dice:</red></div>  --}}
                             <nat class="bt-menu">
@@ -407,8 +470,19 @@
                             <div class="check"></div>
                         </label>
                     </div>
-                    <div class="name">No<br> es visible</div>
-                    <div class="name1">Es <br>visible</div>
+                    <div class="name">Audito<br>mal la<br>visibiliad</div>
+                    <div class="name1">Audito<br>bien la<br>visibiliad</div>
+                </div>
+                <br>
+                <div style="display: none" id="EditAficheVisi">
+                    <hr>
+                        <select  name="afiche_visi[]" id="afiche_visi" class="form-control selectpicker selector"
+                        data-style="btn-primary" title="Seleccionar visibiliad afiche"  required disabled>
+                        <option disabled  value="old{'afiche_visi'}" checked>Seleccione una opción </option>
+                        @foreach ( $AficheVisi as $afivisi )
+                            <option  value="{{ $afivisi }}">{{ $afivisi }}</option>
+                            @endforeach
+                        </select>
                 </div>
 
 
@@ -420,10 +494,20 @@
                             <div class="check"></div>
                         </label>
                     </div>
-                    <div class="name">Mal <br>colocada</div>
-                    <div class="name1">Bien <br>colocada</div>
+                    <div class="name">Audito<br>mal la<br>colocación</div>
+                    <div class="name1">Audito<br>bien la<br>colocación</div>
                 </div>
-
+                <br>
+                <div style="display: none" id="EditAficheColo">
+                    <hr>
+                        <select  name="afiche_colo[]" id="afiche_colo" class="form-control selectpicker selector"
+                        data-style="btn-primary" title="Seleccionar colocación afiche"  required disabled>
+                        <option disabled  value="old{'afiche_colo'}" checked>Seleccione una opción </option>
+                        @foreach ( $AficheColo as $afiColo )
+                            <option  value="{{ $afiColo }}">{{ $afiColo }}</option>
+                            @endforeach
+                        </select>
+                </div>
 
                 <br>
                 <div class="toggle-wrapper">
@@ -433,8 +517,19 @@
                             <div class="check"></div>
                         </label>
                     </div>
-                    <div class="name">Mal<br> Combotizado</div>
-                    <div class="name1">Bien <br> Combotizado</div>
+                    <div class="name">Audito<br>mal la<br>combotización</div>
+                    <div class="name1">Audito<br>bien la<br>combotización</div>
+                </div>
+                <br>
+                <div style="display: none" id="EditAficheCombo">
+                    <hr>
+                        <select  name="afiche_combo[]" id="afiche_combo" class="form-control selectpicker selector"
+                        data-style="btn-primary" title="Seleccionar combotizacion afiche"  required disabled>
+                        <option disabled  value="old{'afiche_combo'}" checked>Seleccione una opción </option>
+                        @foreach ( $AficheCombo as $afiCombo )
+                            <option  value="{{ $afiCombo }}">{{ $afiCombo }}</option>
+                            @endforeach
+                        </select>
                 </div>
 
 
@@ -1401,7 +1496,7 @@
             <div class="row row-cols-3">
                 <div class="col">
                     <div class="card">
-                        <img src="{{ asset('/storage/b&w.png') }}" class="img_botellas swing" />
+                        <img src="{{ asset('/storage/b&w.png') }}" class="img_botellasNs swing" />
                         <div class="card-body">
                             <h5 class="double-shadow">Black & White</h5>
                             <p class="card-text">
@@ -1455,7 +1550,7 @@
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img src="{{ asset('/storage/smirnoff.png') }}" class="img_botellas swing" />
+                        <img src="{{ asset('/storage/smirnoff.png') }}" class="img_botellasNs swing" />
                         <div class="card-body">
                             <h5 class="double-shadow">Smirnoff x1</h5>
                             <p class="card-text">
@@ -1506,7 +1601,6 @@
                         <div class="card-body">
                             <h5 class="double-shadow">Smirnoff x1 sin az&uacute;car</h5>
                             <p class="card-text">
-
                             <table class="table table-hover">
                                 <thead class="table-success">
                                     <tr>
@@ -1549,7 +1643,7 @@
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img src="{{ asset('/storage/jhonie_walker.png') }}" class="img_botellas swing" />
+                        <img src="{{ asset('/storage/jhonie_walker.png') }}" class="img_botellasNs swing" />
                         {{--  <img src="{{ Storage::url('/storage/jhonie_walker.png') }}" class="img_botellas swing"
                             alt="Los Angeles Skyscrapers" />  --}}
                         <div class="card-body">
@@ -1653,7 +1747,6 @@
                         <div class="card-body">
                             <h5 class="double-shadow">Buchanna&acute;s</h5>
                             <p class="card-text">
-
                             <table class="table table-hover">
                                 <thead class="table-success">
                                     <tr>
@@ -1692,7 +1785,6 @@
                                             <td></td>
                                         </tr>
                                     @endif
-
                                 </tbody>
                             </table>
                             </p>
@@ -1700,7 +1792,6 @@
                     </div>
                 </div>
             </div>
-
         </ul>
     </div>
     <hr>
@@ -1710,7 +1801,6 @@
     <hr>
     {{--  <!-- CALIDAD DE LA MARCA -->  --}}
     <ul>
-
         <div class="row">
             <div class="col card-box-xxl">
                 <h5 class="center">CALIDAD DE LA MARCA</h5>
@@ -1746,8 +1836,6 @@
                         <div class="name">No<br> es visible</div>
                         <div class="name1">Es <br>visible</div>
                     </div>
-
-
                     <br>
                     <div class="toggle-wrapper">
                         <div class="toggle checkcross32">
@@ -1759,8 +1847,6 @@
                         <div class="name">sin<br>productos<br>marca<br>Diageo</div>
                         <div class="name1">con<br>productos<br>marca<br>Diageo</div>
                     </div>
-
-
                     <br>
                     <div class="toggle-wrapper">
                         <div class="toggle checkcross33">
@@ -1772,8 +1858,6 @@
                         <div class="name">Mal <br>estado</div>
                         <div class="name1">Buen <br>estado</div>
                     </div>
-
-
                 </div>
                 <nat class="bt-menu">
                     <ul>
@@ -1800,7 +1884,6 @@
                     <input class="noClass" type="text" name="calMarcEtiqueta" id="inpCalMarcEtiqueta" required>
                 </nat>
             </div>
-
             @if ($reporte->seleccionLinealDiageo = !null)
                 <div class="col-8">
                     <img id="imageLinealDiageo"
@@ -1814,7 +1897,6 @@
     </ul>
     @endif
     <hr>
-
     <ul>
         <div class="row">
             <div class="col card-box-xs">
@@ -1842,8 +1924,12 @@
                 </nat>
             </div>
             <div class="col-8">
-                <img id="imageRones"
-                    src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Ron_' . $reporte->precarga_id . '.png'))) }}" />
+                @if (isset($data['seleccionLinealR']))
+                    <img id="imageRones"
+                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Ron_' . $reporte->precarga_id . '.png'))) }}" />
+                @else
+                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+                @endif
             </div>
         </div>
     </ul>
@@ -1852,7 +1938,7 @@
         <div class="row">
             <div class="col card-box-xs">
                 <h5 class="center">AGUARDIENTE DE LA COMPETENCIA</h5>
-                <p class= "parrafoJustificado">
+                <p class="parrafoJustificado">
                     <span>
                         <blue>Auditor dice:</blue>
                     </span>
@@ -1874,8 +1960,12 @@
                 </nat>
             </div>
             <div class="col-8">
-                <img id="imageAguardiente"
-                    src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Aguardiente_' . $reporte->precarga_id . '.png'))) }}" />
+                @if (isset($data['seleccionLinealR']))
+                    <img id="imageAguardiente"
+                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Aguardiente_' . $reporte->precarga_id . '.png'))) }}" />
+                @else
+                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+                @endif
             </div>
         </div>
     </ul>
@@ -1900,7 +1990,6 @@
                         los rones de la competencia
                     @endif
                 </p>
-
                 <div class="toggle-wrapper">
                     <div class="toggle checkcross34">
                         <input id="checkcross34" type="checkbox" style="display: none">
@@ -1951,7 +2040,6 @@
                         a los rones de la competencia.
                     @endif
                 </p>
-
                 <div class="toggle-wrapper">
                     <div class="toggle checkcross35">
                         <input id="checkcross35" type="checkbox" style="display: none">
@@ -2006,7 +2094,6 @@
                         aguardientes de la competencia
                     @endif
                 </p>
-
                 <div class="toggle-wrapper">
                     <div class="toggle checkcross36">
                         <input id="checkcross36" type="checkbox" style="display: none">
@@ -2037,7 +2124,6 @@
             <div class="col-8">
                 <img id="imageSmirnoff"
                     src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/aguard_smirnoff_' . $reporte->precarga_id . '.png'))) }}" />
-
             </div>
         </div>
     </ul>
@@ -2046,8 +2132,6 @@
         <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">GIFT</h1>
     </div>
     <hr>
-
-
     <ul>
         <div class="row">
             <div class="col card-box-xs">
@@ -2063,7 +2147,6 @@
                         no se entrego ning&uacute;n gift.no se entrego ning&uacute;n gift.
                     @endif
                 </p>
-
                 <div class="toggle-wrapper">
                     <div class="toggle checkcross37">
                         <input id="checkcross37" type="checkbox" style="display: none" onchange>
@@ -2101,11 +2184,8 @@
             </div>
         </div>
     </ul>
-
     @endif
-
     <hr>
-
     <ul>
         <div class="row">
             <div class="col card-box">
@@ -2118,7 +2198,6 @@
         </div>
     </ul>
     <hr>
-
     <div>
         <span>
             <input type="hidden" style="width: 65px;" value="0" id="criticidadSegmento">
@@ -2164,32 +2243,24 @@
     <hr>
     <ul>
         <button class="btn btn-info" type="button" onclick="Suma()">Valide el numero de errores</button>
-
         <span>Se encontraron :</span><input type="text" style="width: 65px;" id="ResultadoSuma"
             name="ResultadoSuma" onKeyUp="calcular(this);" placeholder=""><span> errores</span>
-
         <input type="text" class="criticidad" id="spanFachada" disabled>
-
-
         <div id="DivCriticidadA" style="display: none">
             <input type="text" class="form-control" id = "criticidad1" name="criticidad"
                 value="error critico de fondo" disabled>
         </div>
-
         <div id="DivCriticidadB" style="display: none">
             <input type="text" class="form-control" id = "criticidad2" name="criticidad"
                 value="error critico de forma" disabled>
         </div>
-
         <div id="DivCriticidadC" style="display: none">
             <input type="text" class="form-control" id = "criticidad3" name="criticidad"
-                value="errores criticos de fondo y forma" disabled> </div>
-
+                value="errores criticos de fondo y forma" disabled>
+        </div>
         <div id="DivCriticidadD" style="display: none">
-            <input type="text" class="form-control" id = "criticidad4" name="criticidad"
-                    value="sin errores" > </div>
-
-
+            <input type="text" class="form-control" id = "criticidad4" name="criticidad" value="sin errores">
+        </div>
     </ul>
     <hr>
     <ul>
@@ -2205,15 +2276,10 @@
             </div>
         </div>
     </ul>
-
-
-
     <hr>
     <button type="submit" class="btn btn-primary">Guardar</button>
     <br><br>
     <hr>
-
-
     {!! Form::close() !!}
 @stop
 
@@ -2268,7 +2334,7 @@
             var resultado =
                 parseInt(suma) + parseInt(suma2) + parseInt(suma3) + parseInt(suma4) + parseInt(suma5) + parseInt(suma6) +
                 parseInt(suma7) + parseInt(suma8) + parseInt(suma9) + parseInt(suma10) + parseInt(suma11) + parseInt(
-                suma12) +
+                    suma12) +
                 parseInt(suma13) + parseInt(suma14) + parseInt(suma15) + parseInt(suma16) + parseInt(suma17) + parseInt(
                     suma18) +
                 parseInt(suma19) + parseInt(suma20) + parseInt(suma21) + parseInt(suma22) + parseInt(suma23) + parseInt(
@@ -2279,10 +2345,7 @@
                     suma36) +
                 parseInt(suma37) + parseInt(suma38);
             document.getElementById("ResultadoSuma").value = resultado;
-
-
-
-            if (resultado == suma36  && resultado == 1) {
+            if (resultado == suma36 && resultado == 1) {
                 DivCriticidadA.style.display = "block";
                 $("#criticidad1").prop('disabled', false);
                 $("#criticidad2").prop('disabled', true);
@@ -2291,19 +2354,16 @@
                 DivCriticidadB.style.display = "none";
                 DivCriticidadC.style.display = "none";
                 DivCriticidadD.style.display = "none";
-
             } else if (resultado >= 1 && suma36 == 0) {
                 DivCriticidadB.style.display = "block";
                 $("#criticidad2").prop('disabled', false);
                 $("#criticidad1").prop('disabled', true);
                 $("#criticidad3").prop('disabled', true);
                 $("#criticidad4").prop('disabled', true);
-               DivCriticidadA.style.display = "none";
-               DivCriticidadC.style.display = "none";
-               DivCriticidadD.style.display = "none";
-
-
-            } else if( resultado >= 2 && suma36 == 1) {
+                DivCriticidadA.style.display = "none";
+                DivCriticidadC.style.display = "none";
+                DivCriticidadD.style.display = "none";
+            } else if (resultado >= 2 && suma36 == 1) {
                 DivCriticidadC.style.display = "block";
                 $("#criticidad3").prop('disabled', false);
                 $("#criticidad1").prop('disabled', true);
@@ -2318,25 +2378,17 @@
                 $("#criticidad1").prop('disabled', true);
                 $("#criticidad2").prop('disabled', true);
                 $("#criticidad3").prop('disabled', true);
-               DivCriticidadA.style.display = "none";
-               DivCriticidadB.style.display = "none";
-               DivCriticidadC.style.display = "none";
-
-
+                DivCriticidadA.style.display = "none";
+                DivCriticidadB.style.display = "none";
+                DivCriticidadC.style.display = "none";
             }
-
-
-
         }
     </script>
-
-
     <script>
         $('textarea').keyup(function() {
             $('#characterCount').text($(this).val().length + "/300")
         })
     </script>
-
     <script>
         var miCheckbox = document.getElementById('checkcross');
         var msgFachada = document.getElementById('msgFachada');
@@ -2372,6 +2424,9 @@
         var msgSegmento = document.getElementById('msgSegmento');
         var inpSegmento = document.getElementById('inpSegmento');
         var inpCriticidadSegmento = document.getElementById('criticidadSegmento');
+        var divSegmento = document.getElementById('EditSegmento');
+
+
 
         if (miCheckbox2 != null) {
             miCheckbox2.addEventListener('click', function() {
@@ -2380,11 +2435,17 @@
                     if (miCheckbox2.checked = "true") {
                         inpSegmento.value = "se audito mal el segmento";
                         inpCriticidadSegmento.value = 1;
+                        divSegmento.style.display = "block";
+                        $('#segmento').prop("disabled", false);
                     }
+
+
                 } else {
                     msgSegmento.innerText = 'Según la validación, el segmento corresponde';
                     inpSegmento.value = "se audito bien el segmento";
                     inpCriticidadSegmento.value = 0;
+                    divSegmento.style.display = "none";
+                    $('#segmento').prop("disabled", true);
                 }
             });
         }
@@ -2394,6 +2455,7 @@
         var miCheckboxBox = document.getElementById('checkcrossBox');
         var msgCantidades = document.getElementById('msgCantidades');
         var inpCantidades = document.getElementById('inpCantidades');
+        var divCajas = document.getElementById('EditCaja');
         var inpCriticidadCantidades = document.getElementById('criticidadCantidades');
         if (miCheckboxBox != null) {
             miCheckboxBox.addEventListener('click', function() {
@@ -2404,12 +2466,15 @@
                         inpCantidades.value =
                             "se audito mal la cantidad de cajas reportadas";
                         inpCriticidadCantidades.value = 1;
+                        divCajas.style.display = "block";
                     }
                 } else {
                     msgCantidades.innerText =
                         'las cantidades reportadas de cajas, coinciden con lo auditado';
                     inpCantidades.value = "se audito bien la cantidad de cajas reportadas";
                     inpCriticidadCantidades.value = 0;
+                    divCajas.style.display = "none";
+
                 }
             });
         }
@@ -2421,6 +2486,7 @@
         var msgTipologia = document.getElementById('msgTipologia');
         var inpTipologia = document.getElementById('inpTipologia');
         var inpCriticidadTipologia = document.getElementById('criticidadTipologia');
+        var divTipologia = document.getElementById('EditTipologia');
         if (miCheckbox3 != null) {
             miCheckbox3.addEventListener('click', function() {
                 if (miCheckbox3.checked) {
@@ -2428,11 +2494,15 @@
                     if (miCheckbox3.checked = "true") {
                         inpTipologia.value = "se audito mal la tipologia";
                         inpCriticidadTipologia.value = 1;
+                        divTipologia.style.display = "block";
+                        $('#tipologia').prop("disabled", false);
                     }
                 } else {
                     msgTipologia.innerText = 'Según la validación, la tipologia corresponde';
                     inpTipologia.value = "se audito bien la tipologia";
                     inpCriticidadTipologia.value = 0;
+                    divTipologia.style.display = "none";
+                    $('#tipologia').prop("disabled", true);
                 }
             });
         }
@@ -2442,6 +2512,7 @@
         var msgCenefaVisi = document.getElementById('msgCenefaVisi');
         var inpCenefaVisi = document.getElementById('inpCenefaVisi');
         var inpCriticidadCenefaVisi = document.getElementById('criticidadCenefaVisi');
+        var EditCenefaVisi = document.getElementById('EditCenefaVisi');
         if (miCheckbox4 != null) {
             miCheckbox4.addEventListener('click', function() {
                 if (miCheckbox4.checked) {
@@ -2449,11 +2520,15 @@
                     if (miCheckbox4.checked = "true") {
                         inpCenefaVisi.value = "se audito mal la visibilidad de la cenafa";
                         inpCriticidadCenefaVisi.value = 1;
+                        EditCenefaVisi.style.display = "block";
+                        $('#cenefa_visi').prop("disabled", false);
                     }
                 } else {
                     msgCenefaVisi.innerText = 'Según la validación, la cenefa es visible';
                     inpCenefaVisi.value = "se audito bien la visibilidad de la cenefa";
                     inpCriticidadCenefaVisi.value = 0;
+                    EditCenefaVisi.style.display = "none";
+                    $('#cenefa_visi').prop("disabled", true);
                 }
             });
         }
@@ -2463,7 +2538,8 @@
         var miCheckbox5 = document.getElementById('checkcross5');
         var msgCenefaColo = document.getElementById('msgCenefaColo');
         var inpCenefaColo = document.getElementById('inpCenefaColo');
-        var inpCriticidadCenefaColo = document.getElementById('criticidadCenefaColo ');
+        var inpCriticidadCenefaColo = document.getElementById('criticidadCenefaColo');
+        var EditCenefaColo = document.getElementById('EditCenefaColo');
         if (miCheckbox5 != null) {
             miCheckbox5.addEventListener('click', function() {
                 if (miCheckbox5.checked) {
@@ -2471,11 +2547,15 @@
                     if (miCheckbox5.checked = "true") {
                         inpCenefaColo.value = "se audito mal la colocación de la cenefa";
                         inpCriticidadCenefaColo.value = 1;
+                        EditCenefaColo.style.display = "block";
+                        $('#cenefa_colo').prop("disabled", false);
                     }
                 } else {
                     msgCenefaColo.innerText = 'La cenefa esta bien colocada';
                     inpCenefaColo.value = "se audito bien la colocación de la cenefa";
                     inpCriticidadCenefaColo.value = 0;
+                    EditCenefaColo.style.display = "none";
+                    $('#cenefa_colo').prop("disabled", true);
                 }
             });
         }
@@ -2487,6 +2567,7 @@
         var msgAficheVisi = document.getElementById('msgAficheVisi');
         var inpAficheVisi = document.getElementById('inpAficheVisi');
         var criticidadAfiche_visi = document.getElementById('criticidadAfiche_visi');
+        var EditAficheVisi = document.getElementById('EditAficheVisi');
 
         if (miCheckbox6 != null) {
             miCheckbox6.addEventListener('click', function() {
@@ -2495,22 +2576,26 @@
                     if (miCheckbox6.checked = "true") {
                         inpAficheVisi.value = "se audito mal la visibilidad del afiche";
                         criticidadAfiche_visi.value = 1;
+                        EditAficheVisi.style.display = "block";
+                        $('#afiche_visi').prop("disabled", false);
                     }
                 } else {
                     msgAficheVisi.innerText = 'Según la validación, el afiche es visible';
                     inpAficheVisi.value = "se audito bien la visibilidad del afiche";
                     criticidadAfiche_visi.value = 0;
+                    EditAficheVisi.style.display = "none";
+                    $('#afiche_visi').prop("disabled", true);
                 }
             });
         }
     </script>
-
-
     <script>
         var miCheckbox7 = document.getElementById('checkcross7');
         var msgAficheColo = document.getElementById('msgAficheColo');
         var inpAficheColo = document.getElementById('inpAficheColo');
         var criticidadAfiche_colo = document.getElementById('criticidadAfiche_colo');
+        var EditAficheColo = document.getElementById('EditAficheColo');
+
         if (miCheckbox7 != null) {
             miCheckbox7.addEventListener('click', function() {
                 if (miCheckbox7.checked) {
@@ -2518,16 +2603,20 @@
                     if (miCheckbox7.checked = "true") {
                         inpAficheColo.value = "se audito mal la colocación del afiche";
                         criticidadAfiche_colo.value = 1;
+                        EditAficheColo.style.display = "block";
+                        $('#afiche_colo').prop("disabled", false);
                     }
                 } else {
                     msgAficheColo.innerText = 'El afiche esta bien colocado';
                     inpAficheColo.value = "se audito bien la colocación del afiche";
                     criticidadAfiche_colo.value = 0;
+                    EditAficheColo.style.display = "none";
+                    $('#afiche_colo').prop("disabled", true);
+
                 }
             });
         }
     </script>
-
     <script>
         var miCheckbox8 = document.getElementById('checkcross8');
         var msgAficheCombo = document.getElementById('msgAficheCombo');

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+
 use Illuminate\Http\Request;
-use App\Models\Encuestas;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\AuditoriasExport;
+use App\Exports\PuntosExport;
+use App\Models\Auditoria;
 
 class HomeController extends Controller
 {
@@ -18,6 +21,9 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+
+
+
     /**
      * Show the application dashboard.
      *
@@ -26,6 +32,19 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
-        return view('home');
+        $auditoria = Auditoria::all();
+        return view('home', compact('auditoria'));
+    }
+
+    public function exportExcel()
+    {
+
+        return Excel::download(new AuditoriasExport, 'auditorias-list.xlsx');
+    }
+
+    public function exportPuntosExcel()
+    {
+
+        return Excel::download(new PuntosExport, 'puntos-list.xlsx');
     }
 }

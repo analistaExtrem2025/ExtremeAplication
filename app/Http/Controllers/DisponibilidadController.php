@@ -89,8 +89,10 @@ class DisponibilidadController extends Controller
     public function update(Request $request, $id)
     {
 
-    // dd($request->all());
+     //dd($request->all());
         $auditoria = Auditoria::where('precarga_id', $request->precarga_id)->first();
+        $nombreRon = "_" . $request->precarga_id . '.' . 'png';
+        $nombreAguardiente = "_" . $request->precarga_id . '.' . 'png';
 
         if ($request->hasFile('seleccionLinealDiageo')) {
 
@@ -128,13 +130,14 @@ class DisponibilidadController extends Controller
             $redLinealDiageo->save($destinoLinealDiageo. $nombreLinealDiageo);
             $auditoria->seleccionLinealDiageo = 'auditorias_pics/LinealDiageo' .  $nombreLinealDiageo;
             $auditoria->save();
+
+
         } else {
             $auditoria->seleccionLinealDiageo = 'public\img\no_diponible.png';
             $auditoria->save();
         }
 
         if ($request->hasFile('seleccionLinealR')) {
-
             $imagenRon = $request->file('seleccionLinealR');
             $nombreRon = "_" . $request->precarga_id . '.' . 'png';
             $destinoRon = public_path('auditorias_pics/Ron');
@@ -176,7 +179,6 @@ class DisponibilidadController extends Controller
 
 
         if ($request->hasFile('seleccionLinealA')) {
-
             $imagenAguardiente = $request->file('seleccionLinealA');
             $nombreAguardiente = "_" . $request->precarga_id . '.' . 'png';
             $destinoAguardiente = public_path('auditorias_pics/Aguardiente');
@@ -275,6 +277,9 @@ class DisponibilidadController extends Controller
                 'precio_comp_aguardiente1' => $request->precio_comp_aguardiente1,
                 'comp_aguard2' => $request->comp_aguard2,
                 'precio_comp_aguardiente2' => $request->precio_comp_aguardiente2,
+                'seleccionLinealDiageo' => 'auditorias_pics/LinealDiageo' .  $nombreLinealDiageo,
+                'seleccionLinealR' => 'auditorias_pics/Ron'.  $nombreRon,
+                'seleccionLinealA' =>'auditorias_pics/Aguardiente' .  $nombreAguardiente,
 
             ]
         );

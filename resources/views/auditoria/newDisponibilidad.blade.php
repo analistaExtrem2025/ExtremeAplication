@@ -8,1410 +8,1485 @@
     <link href="{{ asset('css/auditoria.css') }}" rel="stylesheet">
 @stop
 @section('content')
-    <h5><span class="numeros">4</span>DISPONIBILIDAD DE MARCAS</h5>
+
     {!! Form::model($puntos_auditoria, [
         'route' => ['disponibilidad.update', $puntos_auditoria->id],
         'method' => 'put',
         'enctype' => 'multipart/form-data',
         'files' => 'true',
     ]) !!}
+    <h5><span class="numeros">4</span>DISPONIBILIDAD DE MARCAS</h5>
+
+
     <input type="hidden" name="precarga_id" value="{{ $puntos_auditoria->precarga_id }}">
+
+
     <p>
-    <div class="col-12">
-        <div class="card">
-            <div class="ttulo" style="text-align: center">
-                <green><span>Indique la existencia de Black & White</span></green>
-            </div>
-            <div class="row">
-                <div class="row">
-                    <img class="img_botellas swing" src="{{ asset('/storage/b&w.png') }}" />
-                    <div class="col">
-                        <div id="bw1000" style="display: block">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="switch-toggle switch-3 switch-candy">
-                                        <input id="bAndw1000_si" name="bAndw1000" type="radio" value="bAndw1000_si"
-                                            required />
-                                        <label for="bAndw1000_si">SI</label>
-                                        <input id="bAndw1000_choose" name="bAndw1000" type="radio"
-                                            value="bAndw1000_choose" checked="checked" disabled />
-                                        <label for="bAndw1000_choose">Black & White 1000 ml</label>
-                                        <input id="bAndw1000_no" name="bAndw1000" type="radio" value="bAndw1000_no"
-                                            />
-                                        <label for="bAndw1000_no">NO</label>
-                                        <a></a>
-                                    </div><br><br>
-                                    <div id="divbaw1000" style="display: none" class="mt-2">
-                                        &nbsp;&nbsp;<label for="caras_bAndw1000">Caras en el lineal</label>&nbsp;&nbsp;
-                                        <input type="text" name="caras_bAndw1000" id="caras_bAndw1000"
-                                            style="width: 50px; height: 35px; border-radius:0.3rem;" autocomplete="off"
-                                            maxlength="2" required disabled >
-                                        &nbsp;&nbsp;<label for="precio_bAndw1000">Precio &dollar; </label>&nbsp;&nbsp;
-                                        <input type="text" name="precio_bAndw1000" id="precio_bAndw1000"
-                                            style="width: 85px; height: 35px; border-radius: 0.3rem;" maxlength="6"
-                                            minlength="5" autocomplete="off" onkeypress="see01()" required disabled
-                                            >
-                                        <span id="texto"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="bw700" style="display: none">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="switch-toggle switch-3 switch-candy">
-                                        <input id="bAndw700_si" name="bAndw700" type="radio" value="bAndw700_si" required
-                                            disabled  />
-                                        <label for="bAndw700_si">SI</label>
-                                        <input id="bAndw700_choose" name="bAndw700" type="radio" value="bAndw700_choose"
-                                            checked="checked" disabled />
-                                        <label for="bAndw700_choose">Black & White 700 ml</label>
-                                        <input id="bAndw700_no" name="bAndw700" type="radio" value="bAndw700_no"
-                                             />
-                                        <label for="bAndw700_no">NO</label>
-                                        <a></a>
-                                    </div><br><br>
-                                    <div id="divbaw700" style="display: none" class="mt-2">
-                                        &nbsp;&nbsp;<label for="caras_bAndw700">Caras en el lineal</label>&nbsp;&nbsp;
-                                        <input type="text" name="caras_bAndw700" id="caras_bAndw700" maxlength="2"
-                                            style="width: 50px; height: 35px; border-radius:0.3rem;" autocomplete="off"
-                                            required disabled >
-                                        &nbsp;&nbsp;<label for="precio_bAndw700">Precio &dollar; </label>&nbsp;&nbsp;
-                                        <input type="text" name="precio_bAndw700" id="precio_bAndw700"
-                                            style="width: 85px; height: 35px; border-radius: 0.3rem;" maxlength="6"
-                                            minlength="5" autocomplete="off" onkeypress="see02()" required disabled
-                                            >
-                                        <span id="texto02"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="bw375" style="display: none">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="switch-toggle switch-3 switch-candy">
-                                        <input id="bAndw375_si" name="bAndw375" type="radio" value="bAndw375_si"
-                                            required disabled />
-                                        <label for="bAndw375_si">SI</label>
-                                        <input id="bAndw375_choose" name="bAndw375" type="radio"
-                                            value="bAndw375_choose" checked="checked" disabled />
-                                        <label for="bAndw375_choose">Black & White 375 ml</label>
-                                        <input id="bAndw375_no" name="bAndw375" type="radio" value="bAndw375_no" />
-                                        <label for="bAndw375_no">NO</label>
-                                        <a></a>
-                                    </div><br><br>
-                                    <div id="divbaw375" style="display: none" class="mt-2">
-                                        &nbsp;&nbsp;<label for="caras_bAndw375">Caras en el lineal</label>&nbsp;&nbsp;
-                                        <input type="text" name="caras_bAndw375" id="caras_bAndw375" maxlength="2"
-                                            style="width: 50px; height: 35px; border-radius:0.3rem;" autocomplete="off"
-                                            required disabled>
-                                        &nbsp;&nbsp;<label for="precio_bAndw375">Precio &dollar;</label>&nbsp;&nbsp;
-                                        <input type="text" name="precio_bAndw375" id="precio_bAndw375"
-                                            style="width: 85px; height: 35px; border-radius: 0.3rem;" maxlength="6"
-                                            minlength="5" autocomplete="off" onkeypress="see03()" required disabled>
-                                        <span id="texto03"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <ul>
+        <div class="row">
+            <div class="col-sm-2 card-box">
+                <div class="card-bottles">
+                    <legend>&iquest; Hay <b>Black & White</b>?</legend>
+                    <div class="form-check">
+                        <img class="img_botellas swing" src="{{ asset('/storage/b&w.png') }}" />
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12" id="smirDiv" style="display: none">
-        <div class="card">
-            <div class="ttulo" style="text-align: center; display: none" id="title_sm">
-                <green><span>Indique la existencia de Smirnoff</span></green>
-            </div>
-            <br>
-            <div class="row">
-                <div class="row">
-                    <img class="img_botellas swing" alt="vasos" src="{{ asset('/storage/smirnoff.png') }}" />
-                    <div class="col">
-                        <div class="form-group">
-                            <div class="row">
-                                <div id="sm700" style="display: none">
-                                    <div class="switch-toggle switch-3 switch-candy">
-                                        <input id="smirnoff700_si" name="smirnoff700" type="radio"
-                                            value="smirnoff700_si" required disabled />
-                                        <label for="smirnoff700_si">SI</label>
-                                        <input id="smirnoff700_choose" name="smirnoff700" type="radio"
-                                            value="smirnoff700_choose"checked="checked" disabled />
-                                        <label for="smirnoff700_choose">Smirnoff 700 ml</label>
-                                        <input id="smirnoff700_no" name="smirnoff700" type="radio"
-                                            value="smirnoff700_no" />
-                                        <label for="smirnoff700_no">NO</label>
-                                        <a></a>
-                                    </div>
-                                </div>
-
-                                <div id="divSmirnoff700" style="display: none" class="mt-2">
-                                    &nbsp;&nbsp;<label for="caras_smirnoff700">Caras en el lineal</label>&nbsp;&nbsp;
-                                    <input type="text" name="caras_smirnoff700" id="caras_smirnoff700" maxlength="2"
-                                        style="width: 50px; height: 35px; border-radius:0.3rem;" autocomplete="off"
-                                        required disabled>
-                                    &nbsp;&nbsp;<label for="precio_smirnoff700">Precio &dollar;</label>&nbsp;&nbsp;
-                                    <input type="text" name="precio_smirnoff700" id="precio_smirnoff700"
-                                        style="width: 85px; height: 35px; border-radius: 0.3rem;" maxlength="6"
-                                        minlength="5" autocomplete="off" onkeypress="see04()" required disabled>
-                                    <span id="texto04"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div id="sm375" style="display: none">
-                                    <div class="switch-toggle switch-3 switch-candy">
-                                        <input id="smirnoff375_si" name="smirnoff375" type="radio"
-                                            value="smirnoff375_si" />
-                                        <label for="smirnoff375_si">SI</label>
-                                        <input id="smirnoff375_choose" name="smirnoff375" type="radio"
-                                            value="smirnoff375_choose"checked="checked" disabled />
-                                        <label for="smirnoff375_choose">Smirnoff 375 ml</label>
-                                        <input id="smirnoff375_no" name="smirnoff375" type="radio"
-                                            value="smirnoff375_no" />
-                                        <label for="smirnoff375_no">NO</label>
-                                        <a></a>
-                                    </div>
-                                </div>
-
-                                <div id="divSmirnoff375" style="display: none" class="mt-2">
-                                    &nbsp;&nbsp;<label for="caras_smirnoff375">Caras en el lineal</label>&nbsp;&nbsp;
-                                    <input type="text" name="caras_smirnoff375" maxlength="2" id="caras_smirnoff375"
-                                        style="width: 50px; height: 35px; border-radius:0.3rem;" autocomplete="off"
-                                        required disabled>
-                                    &nbsp;&nbsp;<label for="precio_smirnoff375">Precio &dollar;</label>&nbsp;&nbsp;
-                                    <input type="text" name="precio_smirnoff375" id="precio_smirnoff375"
-                                        style="width: 85px; height: 35px; border-radius: 0.3rem;" maxlength="6"
-                                        minlength="5" autocomplete="off" onkeypress="see05()" required disabled>
-                                    <span id="texto05"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12" id="smirDiv1" style="display: none">
-        <div class="card">
-            <div class="ttulo" style="text-align: center; display: none" id="title_smns">
-                <green><span>Indique la existencia de Smirnoff x1 sin az&uacute;car</span></green>
-            </div>
-            <br>
-            <div class="row">
-                <div class="row">
-                    <img class="img_botellas swing" alt="smirnoff_sin_azucar"
-                        src="{{ asset('/storage/smirnoff_sin_azucar.png') }}" />
-                    <div class="col">
-                        <div class="form-group">
-                            <div class="row">
-                                <div id="sm_ns700" style="display: none">
-                                    <div class="switch-toggle switch-3 switch-candy">
-                                        <input id="smirnoff_ns700_si" name="smirnoff_ns700" type="radio"
-                                            value="smirnoff_ns700_si" required disabled />
-                                        <label for="smirnoff_ns700_si">SI</label>
-                                        <input id="smirnoff_ns700_choose" name="smirnoff_ns700" type="radio"
-                                            value="smirnoff_ns700_choose"checked="checked" disabled />
-                                        <label for="smirnoff_ns700_choose">Smirnoff sin az&uacute;car 700 ml</label>
-                                        <input id="smirnoff_ns700_no" name="smirnoff_ns700" type="radio"
-                                            value="smirnoff_ns700_no" />
-                                        <label for="smirnoff_ns700_no">NO</label>
-                                        <a></a>
-                                    </div>
-                                </div>
-                                <div id="divSmirnoff_ns700" style="display: none" class="mt-2">
-                                    &nbsp;&nbsp;<label for="caras_smirnoff_ns700">Caras en el lineal</label>&nbsp;&nbsp;
-                                    <input type="text" name="caras_smirnoff_ns700" id="caras_smirnoff_ns700"
-                                        maxlength="2" style="width: 50px; height: 35px; border-radius:0.3rem;"
-                                        autocomplete="off" required disabled>
-                                    &nbsp;&nbsp;<label for="precio_smirnoff_ns700">Precio &dollar;</label>&nbsp;&nbsp;
-                                    <input type="text" name="precio_smirnoff_ns700" id="precio_smirnoff_ns700"
-                                        style="width: 85px; height: 35px; border-radius: 0.3rem;" maxlength="6"
-                                        minlength="5" autocomplete="off" onkeypress="see06()" required disabled>
-                                    <span id="textons"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div id="sm_ns375" style="display: none">
-                                    <div class="switch-toggle switch-3 switch-candy">
-                                        <input id="smirnoff_ns375_si" name="smirnoff_ns375" type="radio"
-                                            value="smirnoff_ns375_si" disabled required />
-                                        <label for="smirnoff_ns375_si">SI</label>
-                                        <input id="smirnoff_ns375_choose" name="smirnoff_ns375" type="radio"
-                                            value="smirnoff_ns375_choose"checked="checked" disabled />
-                                        <label for="smirnoff_ns375_choose">Smirnoff sin az&uacute;car 375 ml</label>
-                                        <input id="smirnoff_ns375_no" name="smirnoff_ns375" type="radio"
-                                            value="smirnoff_ns375_no" />
-                                        <label for="smirnoff_ns375_no">NO</label>
-                                        <a></a>
-                                    </div>
-                                </div>
-                                <div id="divSmirnoff_ns375" style="display: none" class="mt-2">
-                                    &nbsp;&nbsp;<label for="caras_smirnoff_ns375">Caras en el lineal</label>&nbsp;&nbsp;
-                                    <input type="text" name="caras_smirnoff_ns375" id="caras_smirnoff_ns375"
-                                        maxlength="2" style="width: 50px; height: 35px; border-radius:0.3rem;"
-                                        autocomplete="off" required disabled>
-                                    &nbsp;&nbsp;<label for="precio_smirnoff_ns375">Precio &dollar;</label>&nbsp;&nbsp;
-                                    <input type="text" name="precio_smirnoff_ns375" id="precio_smirnoff_ns375"
-                                        style="width: 85px; height: 35px; border-radius: 0.3rem;" maxlength="6"
-                                        minlength="5" autocomplete="off" required disabled onkeypress="see07()">
-                                    <span id="texto375ns"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @if ($usuario == 'MEDELLIN')
-        <div class="col-12" id="smirDiv2" style="display: none">
-            <div class="card">
-                <div class="ttulo" style="text-align: center; display: none" id="title_jw">
-                    <green><span>Indique la existencia de Johnnie Walker</span></green>
-                </div>
-                <div class="row">
-                    <div class="row">
-                        <img class="img_botellas swing" alt="vasos" src="{{ asset('/storage/jhonie_walker.png') }}" />
-                        <div class="col">
-                            <div class="form-group">
-                                <div class="row">
-
-                                    <div id="jw_1000" style="display: none">
-                                        <div class="switch-toggle switch-3 switch-candy">
-                                            <input id="jhonnie1000_si" name="jhonnie1000" type="radio"
-                                                value="jhonnie1000_si" disabled required />
-                                            <label for="jhonnie1000_si">SI</label>
-                                            <input id="jhonnie1000_choose" name="jhonnie1000" type="radio"
-                                                value="jhonnie1000_choose"checked="checked" disabled />
-                                            <label for="jhonnie1000_choose">Johnnie Walker Red 1000 ml</label>
-                                            <input id="jhonnie1000_no" name="jhonnie1000" type="radio"
-                                                value="jhonnie1000_no" />
-                                            <label for="jhonnie1000_no">NO</label>
-                                            <a></a>
-                                        </div>
-                                    </div>
-                                    <div id="divjhonnie1000" style="display: none" class="mt-2">
-                                        &nbsp;&nbsp;<label for="caras_jhonnie1000">Caras en el
-                                            lineal</label>&nbsp;&nbsp;
-                                        <input type="text" name="caras_jhonnie1000" id="caras_jhonnie1000"
-                                            maxlength="2" style="width: 50px; height: 35px; border-radius:0.3rem;"
-                                            autocomplete="off" disabled required>
-                                        &nbsp;&nbsp;<label for="precio_jhonnie1000">Precio &dollar;</label>&nbsp;&nbsp;
-                                        <input type="text" name="precio_jhonnie1000" id="precio_jhonnie1000"
-                                            style="width: 85px; height: 35px; border-radius: 0.3rem;" maxlength="6"
-                                            minlength="5" autocomplete="off" onkeypress="see08()" disabled required>
-                                        <span id="texto06"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div id="js_700" style="display: none">
-                                        <div class="switch-toggle switch-3 switch-candy">
-                                            <input id="jhonnie700_si" name="jhonnie700" type="radio"
-                                                value="jhonnie700_si" disabled required />
-                                            <label for="jhonnie700_si">SI</label>
-                                            <input id="jhonnie700_choose" name="jhonnie700" type="radio"
-                                                value="jhonnie700_choose"checked="checked" disabled />
-                                            <label for="jhonnie700_choose">Johnnie Walker Red 700 ml</label>
-                                            <input id="jhonnie700_no" name="jhonnie700" type="radio"
-                                                value="jhonnie700_no" />
-                                            <label for="jhonnie700_no">NO</label>
-                                            <a></a>
-                                        </div>
-                                    </div>
-                                    <div id="divjhonnie700" style="display: none" class="mt-2">
-                                        &nbsp;&nbsp;<label for="caras_jhonnie700">Caras en el
-                                            lineal</label>&nbsp;&nbsp;
-                                        <input type="text" name="caras_jhonnie700" id="caras_jhonnie700"
-                                            maxlength="2" style="width: 50px; height: 35px; border-radius:0.3rem;"
-                                            autocomplete="off" required disabled>
-                                        &nbsp;&nbsp;<label for="precio_jhonnie700">Precio &dollar;</label>&nbsp;&nbsp;
-                                        <input type="text" name="precio_jhonnie700" id="precio_jhonnie700"
-                                            style="width: 85px; height: 35px; border-radius: 0.3rem;" maxlength="6"
-                                            minlength="5" autocomplete="off" required disabled onkeypress="see09()">
-                                        <span id="texto07"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div id="js_375" style="display: none">
-                                        <div class="switch-toggle switch-3 switch-candy">
-                                            <input id="jhonnie375_si" name="jhonnie375" type="radio"
-                                                value="jhonnie375_si" required disabled />
-                                            <label for="jhonnie375_si">SI</label>
-                                            <input id="jhonnie375_choose" name="jhonnie375" type="radio"
-                                                value="jhonnie375_choose"checked="checked" disabled />
-                                            <label for="jhonnie375_choose">Johnnie Walker Red 375 ml</label>
-                                            <input id="jhonnie375_no" name="jhonnie375" type="radio"
-                                                value="jhonnie375_no" />
-                                            <label for="jhonnie375_no">NO</label>
-                                            <a></a>
-                                        </div>
-                                    </div>
-                                    <div id="divjhonnie375" style="display: none" class="mt-2">
-                                        &nbsp;&nbsp;<label for="caras_jhonnie375">Caras en el
-                                            lineal</label>&nbsp;&nbsp;
-                                        <input type="text" name="caras_jhonnie375" id="caras_jhonnie375"
-                                            maxlength="2" style="width: 50px; height: 35px; border-radius:0.3rem;"
-                                            autocomplete="off" required disabled>
-                                        &nbsp;&nbsp;<label for="precio_jhonnie375">Precio &dollar;</label>&nbsp;&nbsp;
-                                        <input type="text" name="precio_jhonnie375" id="precio_jhonnie375"
-                                            style="width: 85px; height: 35px; border-radius: 0.3rem;" maxlength="6"
-                                            minlength="5" autocomplete="off" required disabled onkeypress="see10()">
-                                        <span id="texto08"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
-    <div class="col-12" id="smirDiv3" style="display: none">
-        <div class="card">
-            <div class="ttulo" style="text-align: center; display: none" id="title_op">
-                <green><span>Indique la existencia de Old Parr</span></green>
-            </div>
-            <div class="row">
-                <div class="row">
-                    <img class="img_botellas swing" alt="vasos" src="{{ asset('/storage/oldparr.png') }}" />
-                    <div class="col">
-                        <div class="form-group">
-                            <div class="row">
-                                <div id="ol750" style="display: none">
-                                    <div class="switch-toggle switch-3 switch-candy">
-                                        <input id="oldparr750_si" name="oldparr750" type="radio" value="oldparr750_si"
-                                            required disabled />
-                                        <label for="oldparr750_si">SI</label>
-                                        <input id="oldparr750_choose" name="oldparr750" type="radio"
-                                            value="oldparr750_choose"checked="checked" disabled />
-                                        <label for="oldparr750_choose">oldparr 750 ml</label>
-                                        <input id="oldparr750_no" name="oldparr750" type="radio"
-                                            value="oldparr750_no" />
-                                        <label for="oldparr750_no">NO</label>
-                                        <a></a>
-                                    </div>
-                                </div>
-                                <div id="divOldparr750" style="display: none" class="mt-2">
-                                    &nbsp;&nbsp;<label for="caras_oldparr750">Caras en el lineal</label>&nbsp;&nbsp;
-                                    <input type="text" name="caras_oldparr750" id="caras_oldparr750" maxlength="2"
-                                        style="width: 50px; height: 35px; border-radius:0.3rem;" autocomplete="off"
-                                        required disabled>
-                                    &nbsp;&nbsp;<label for="precio_oldparr750">Precio &dollar;</label>&nbsp;&nbsp;
-                                    <input type="text" name="precio_oldparr750" id="precio_oldparr750"
-                                        style="width: 85px; height: 35px; border-radius: 0.3rem;" maxlength="6"
-                                        minlength="5" autocomplete="off" required disabled onkeypress="see11()">
-                                    <span id="texto09"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12" id="smirDiv4" style="display: none">
-        <div class="card">
-            <div class="ttulo" style="text-align: center; display: none" id="title_bc">
-                <green><span>Indique la existencia de Buchanna&lsquo;s</span></green>
-            </div>
-            <div class="row">
-                <div class="row">
-                    <img class="img_botellas swing" alt="vasos" src="{{ asset('/storage/buchannas.png') }}" />
-                    <div class="col">
-                        <div class="form-group">
-                            <div class="row">
-                                <div id="bc700" style="display: none">
-                                    <div class="switch-toggle switch-3 switch-candy">
-                                        <input id="buchannas700_si" name="buchannas700" type="radio"
-                                            value="buchannas700_si" required disabled />
-                                        <label for="buchannas700_si">SI</label>
-                                        <input id="buchannas700_choose" name="buchannas700" type="radio"
-                                            value="buchannas700_choose"checked="checked" disabled />
-                                        <label for="buchannas700_choose">buchannas 700 ml</label>
-                                        <input id="buchannas700_no" name="buchannas700" type="radio"
-                                            value="buchannas700_no" />
-                                        <label for="buchannas700_no">NO</label>
-                                        <a></a>
-                                    </div>
-                                </div>
-                                <div id="divBuchannas700" style="display: none" class="mt-2">
-                                    &nbsp;&nbsp;<label for="caras_buchannas700">Caras en el
-                                        lineal</label>&nbsp;&nbsp;
-                                    <input type="text" name="caras_buchannas700" id="caras_buchannas700"
-                                        maxlength="2" style="width: 50px; height: 35px; border-radius:0.3rem;"
-                                        autocomplete="off" required disabled>
-                                    &nbsp;&nbsp;<label for="precio_buchannas700">Precio &dollar;</label>&nbsp;&nbsp;
-                                    <input type="text" name="precio_buchannas700" id="precio_buchannas700"
-                                        style="width: 85px; height: 35px; border-radius: 0.3rem;" maxlength="6"
-                                        minlength="5" autocomplete="off" required disabled onkeypress="see12()">
-                                    <span id="texto10"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div id="bc_375" style="display: none">
-                                    <div class="switch-toggle switch-3 switch-candy">
-                                        <input id="buchannas375_si" name="buchannas375" type="radio"
-                                            value="buchannas375_si" required disabled />
-                                        <label for="buchannas375_si">SI</label>
-                                        <input id="buchannas375_choose" name="buchannas375" type="radio"
-                                            value="buchannas375_choose"checked="checked" disabled />
-                                        <label for="buchannas375_choose">buchannas 375 ml</label>
-                                        <input id="buchannas375_no" name="buchannas375" type="radio"
-                                            value="buchannas375_no" />
-                                        <label for="buchannas375_no">NO</label>
-                                        <a></a>
-                                    </div>
-                                </div>
-                                <div id="divBuchannas375" style="display: none" class="mt-2">
-                                    &nbsp;&nbsp;<label for="caras_buchannas375">Caras en el
-                                        lineal</label>&nbsp;&nbsp;
-                                    <input type="text" name="caras_buchannas375" id="caras_buchannas375"
-                                        maxlength="2" style="width: 50px; height: 35px; border-radius:0.3rem;"
-                                        autocomplete="off" required disabled>
-                                    &nbsp;&nbsp;<label for="precio_buchannas375">Precio &dollar;</label>&nbsp;&nbsp;
-                                    <input type="text" name="precio_buchannas375" id="precio_buchannas375"
-                                        style="width: 85px; height: 35px; border-radius: 0.3rem;" maxlength="6"
-                                        minlength="5" autocomplete="off" required disabled onkeypress="see13()">
-                                    <span id="texto11"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr>
-    <div class="col-12 material" style="display: none" id="calimarc">
-        <div class="card">
-            <div class="ttulo" style="display: none" id="title_cmv">
-                <h5><strong>CALIDAD DE MARCAS</strong></h5>
-                <green><span>Valide la calidad de las marcas obligatorias del segmento</span></green>
-            </div>
-            <div class="col">
-                <div class="col" id="divCal_marc_v" style="display: none">
-                    <br>
-                    <div class="switch-toggle switch-3 switch-candy" style="height: 50%; width:80%">
-                        <input id="cal_marc_visible_si" name="cal_marc_visible" type="radio"
-                            value="cal_marc_visible_si" disabled required />
-                        <label for="cal_marc_visible_si">SI</label>
-                        <input id="cal_marc_visible_choose" name="cal_marc_visible" type="radio"
-                            value="cal_marc_visible_choose" checked="checked" disabled />
-                        <label for="cal_marc_visible_choose">&iquest;Est&aacute;n visibles al consumidor? (no Est&aacute;n
-                            tapados con otros productos)
+                    <fieldset>
+                        <label>
+                            <input type="radio" onchange="showContent()" id="BlackywhiteSi" name="Blackywhite"
+                                value="BlackywhiteSi">
+                            <span>Si</span>
                         </label>
-                        <input id="cal_marc_visible_no" name="cal_marc_visible" type="radio"
-                            value="cal_marc_visible_no" />
-                        <label for="cal_marc_visible_no">NO</label>
-                        <a></a>
+                        <input type="text" class="noClass" id="InputBlackywhite" required>
+                        <label>
+                            <input type="radio" onchange="showContent()" id="BlackywhiteNo" name="Blackywhite"
+                                value="BlackywhiteNo">
+                            <span>No</span>
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="col" style="display: none" id="divBlackywhite">
+                <div class="row">
+                    <legend class="titulo_interno">confirme la presentaci&oacute;n hallada</legend>
+                    <div class="card-box-small">
+                        <fieldset>
+                            <legend class="double-shadow"><b> 1000 ml</b></legend>
+                            <label>
+                                <input type="radio" id="bAndw1000_si" name="bAndw1000" value="bAndw1000_si" />
+                                <span>Si</span>
+                            </label>
+                            <input type="text" class="noClass" id="InputbAndw1000" required>
+                            <label>
+                                <input type="radio" id="bAndw1000_no" name="bAndw1000" value="bAndw1000_no" />
+                                <span>No</span>
+                            </label>
+                            <div style="display: block">
+                                <div class="form-group">
+                                    <label for="caras_bAndw1000">Caras en el lineal</label>
+                                    <input type="text" class="form-control" name="caras_bAndw1000" id="caras_bAndw1000"
+                                        style="border-radius:0.3rem;" autocomplete="off" maxlength="2">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="precio_bAndw1000">Precio &dollar;</label>
+                                    <input type="text" class="form-control" name="precio_bAndw1000" id="precio_bAndw1000"
+                                        style="border-radius:0.3rem;" autocomplete="off" maxlength="6" minlength="5">
+                                </div>
+                                <span id="texto01" style="background: white; color: black;"></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="card-box-small">
+                        <fieldset>
+                            <legend class="double-shadow"><b> 700 ml</b></legend>
+                            <label>
+                                <input type="radio" id="bAndw700_si" name="bAndw700" value="bAndw700_si" />
+                                <span>Si</span>
+                            </label>
+                            <input type="text" class="noClass" id="InputbAndw700" required>
+                            <label>
+                                <input type="radio" id="bAndw700_no" name="bAndw700" value="bAndw700_no" />
+                                <span>No</span>
+                            </label>
+                            <div style="display: block">
+                                <div class="form-group">
+                                    <label for="caras_bAndw700">Caras en el lineal</label>
+                                    <input type="text" class="form-control" name="caras_bAndw700" id="caras_bAndw700"
+                                        style="border-radius:0.3rem;" autocomplete="off" maxlength="2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio_bAndw700">Precio &dollar;</label>
+                                    <input type="text" class="form-control" name="precio_bAndw700" id="precio_bAndw700"
+                                        style="border-radius:0.3rem;" autocomplete="off" maxlength="6" minlength="5">
+                                </div>
+                                <span id="texto02" style="background: white; color: black;"></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="card-box-small">
+                        <fieldset>
+                            <legend class="double-shadow"><b> 375 ml</b></legend>
+                            <label>
+                                <input type="radio" id="bAndw375_si" name="bAndw375" value="bAndw375_si" />
+                                <span>Si</span>
+                            </label>
+                            <input type="text" class="noClass" id="InputbAndw375">
+                            <label>
+                                <input type="radio" id="bAndw375_no" name="bAndw375" value="bAndw375_no" />
+                                <span>No</span>
+                            </label>
+                            <div style="display: block">
+                                <div class="form-group">
+                                    <label for="caras_bAndw375">Caras en el lineal</label>
+                                    <input type="text" class="form-control" name="caras_bAndw375" id="caras_bAndw375"
+                                        style="border-radius:0.3rem;" autocomplete="off" maxlength="2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio_bAndw375">Precio &dollar;</label>
+                                    <input type="text" class="form-control" name="precio_bAndw375"
+                                        id="precio_bAndw375" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="6" minlength="5">
+                                </div>
+                                <span id="texto03" style="background: white; color: black;"></span>
+                            </div>
+                        </fieldset>
                     </div>
                 </div>
-                <br><br>
-                <br><br>
-                <div class="col" id="divCal_marc_d" style="display: none">
-                    <div class="switch-toggle switch-3 switch-candy" style="height: 50%; width:80%">
-                        <input id="cal_marc_danados_si" name="cal_marc_danados" type="radio"
-                            value="cal_marc_danados_si" required disabled />
-                        <label for="cal_marc_danados_si">SI</label>
-                        <input id="cal_marc_danados_choose" name="cal_marc_danados" type="radio"
-                            value="cal_marc_danados_choose" checked="checked" disabled />
-                        <label for="cal_marc_danados_choose">&iquest;Tienen las etiquetas en buen estado? ( no Est&aacute;n
-                            rayadas, levantadas, buen tono de color)</label>
-                        <input id="cal_marc_danados_no" name="cal_marc_danados" type="radio"
-                            value="cal_marc_danados_no" />
-                        <label for="cal_marc_danados_no">NO</label>
-                        <a></a>
-                    </div>
-                </div>
-                <br><br>
-                <br><br>
-                <div class="col" id="divCal_marc_etd" style="display: none">
-                    <div class="switch-toggle switch-3 switch-candy" style="height: 50%; width:80%">
-                        <input id="cal_marc_et_danados_si" name="cal_marc_et_danados" type="radio"
-                            value="cal_marc_et_danados_si" required disabled />
-                        <label for="cal_marc_et_danados_si">SI</label>
-                        <input id="cal_marc_et_danados_choose" name="cal_marc_et_danados" type="radio"
-                            value="cal_marc_et_danados_choose" checked="checked" disabled />
-                        <label for="cal_marc_et_danados_choose">&iquest;Est&aacute;n las etiquetas visibles al
-                            consumidor</label>
-                        <input id="cal_marc_et_danados_no" name="cal_marc_et_danados" type="radio"
-                            value="cal_marc_et_danados_no" />
-                        <label for="cal_marc_et_danados_no">NO</label>
-                        <a></a>
-                    </div>
-                </div>
-                <br><br>
             </div>
         </div>
-    </div>
+    </ul>
+
     <hr>
-    <div class="col-12" id="divImgCal" style="display: none; text-align: center;">
-        <div class="card">
-            <div class="ttulo">
-                <green><span>Tome foto del lineal donde Est&aacute;n los productos Diageo</span></green>
-            </div>
-            <div class="col">
-                <br>
-                <input type="file" id="seleccionLinealDiageo" name="seleccionLinealDiageo" accept="image/*" required
-                    disabled onclick="seeRones()">
-                <br><br>
-                <img class="card-img-top" id="imagenLinealDiageo">
-                <br><br>
-                <br><br>
-            </div>
-        </div>
-    </div>
-    <hr>
-    <div id="divRonesTitulo" style="display: none">
-        <h2 style="text-align: center;">Competencia</h2>
-        <div class="col">
-            <br><br>
-            <div class="ttulo">
-                <green><span>Indique si hay presencia de Rones de la competencia en el lineal</span></green>
-            </div>
-            <br><br>
-            <div class="col">
-                <br>
-                <div class="switch-toggle switch-3 switch-candy" style="height: 50%; width:80%">
-                    <input id="hay_ron_si" name="hay_ron" type="radio" value="hay_ron_si" required disabled />
-                    <label for="hay_ron_si">SI</label>
-                    <input id="hay_ron_choose" name="hay_ron" type="radio" value="hay_ron_choose" checked="checked"
-                        disabled />
-                    <label for="hay_ron_choose">&iquest;hay presencia de rones de la competencia?</label>
-                    <input id="hay_ron_no" name="hay_ron" type="radio" value="hay_ron_no" disabled />
-                    <label for="hay_ron_no">NO</label>
-                    <a></a>
+    <ul>
+        <div class="row">
+            <div class="col-sm-2 card-box">
+                <div class="card-bottles">
+                    <legend>&iquest; Hay <b>Smirnoff X1</b>?</legend>
+                    <div class="form-check">
+                        <img class="img_botellas swing" alt="Imagesmirnoff" src="{{ asset('/storage/smirnoff.png') }}" />
+                    </div>
+                    <fieldset>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent2()" id="SmirnoffSi" name="Smirnoff"
+                                value="SmirnoffSi">
+                            <span>Si</span>
+                        </label>
+                        <input type="text" class="noClass" id="InputSmirnoff" required>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent2()" id="SmirnoffNo" name="Smirnoff"
+                                value="SmirnoffNo">
+                            <span>No</span>
+                        </label>
+                    </fieldset>
                 </div>
-                <br><br>
+            </div>
+            <div class="col" style="display: none" id="divSmirnoff">
+                <div class="row">
+                    <legend class="titulo_interno">confirme la presentaci&oacute;n hallada</legend>
+                    <div class="card-box-small">
+                        <fieldset>
+                            <legend class="double-shadow"><b> 700 ml</b></legend>
+                            <label>
+                                <input type="radio" id="smirnoff700_si" name="smirnoff700" value="smirnoff700_si">
+                                <span>Si</span>
+                            </label>
+                            <input type="text" class="noClass" id="InputSmirnoff700" required>
+                            <label>
+                                <input type="radio" id="smirnoff700_no" name="smirnoff700" value="smirnoff700_no" />
+                                <span>No</span>
+                            </label>
+                            <div style="display: block">
+                                <div class="form-group">
+                                    <label for="caras_smirnoff700">Caras en el lineal</label>
+                                    <input type="text" class="form-control" name="caras_smirnoff700"
+                                        id="caras_smirnoff700" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="2" required disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio_smirnoff700">Precio &dollar;</label>
+                                    <input type="text" class="form-control" name="precio_smirnoff700"
+                                        id="precio_smirnoff700" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="6" minlength="5" required disabled>
+                                </div>
+                                <span id="texto04" style="background: white; color: black;"></span>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="card-box-small">
+                        <fieldset>
+                            <legend class="double-shadow"><b> 375 ml</b></legend>
+                            <label>
+                                <input type="radio" id="smirnoff375_si" name="smirnoff375" value="smirnoff375_si" />
+                                <span>Si</span>
+                            </label>
+                            <input type="text" class="noClass" id="InputSmirnoff375" required>
+                            <label>
+                                <input type="radio" id="smirnoff375_no" name="smirnoff375" value="smirnoff375_no" />
+                                <span>No</span>
+                            </label>
+                            <div style="display: block">
+                                <div class="form-group">
+                                    <label for="caras_smirnoff375">Caras en el lineal</label>
+                                    <input type="text" class="form-control" name="caras_smirnoff375"
+                                        id="caras_smirnoff375" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="2" required disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio_smirnoff375">Precio &dollar;</label>
+                                    <input type="text" class="form-control" name="precio_smirnoff375"
+                                        id="precio_smirnoff375" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="6" minlength="5" required disabled>
+                                </div>
+                                <span id="texto05" style="background: white; color: black;"></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <br>
-    <div style="display: none" id="divRones">
-        <div style="display: none" id="divRones" class="d-flex justify-content-center">
-            <blue>
-                <span>Registre la información de rones de la competencia, indague con cliente cual es la primer y segunda
-                    marca
-                    mas vendida en pdv y registre precio de sku de 750 ml</span>
-            </blue>
+    </ul>
+    <hr>
+
+    <ul>
+        <div class="row">
+            <div class="col-sm-2 card-box">
+                <div class="card-bottles">
+                    <legend>&iquest; Hay <b>Smirnoff X1 <br> sin az&uacute;car</b> ?</legend>
+                    <div class="form-check">
+                        <img class="img_botellas swing" alt="smirnoff_sin_azucar"
+                            src="{{ asset('/storage/smirnoff_sin_azucar.png') }}" />
+                    </div>
+                    <fieldset>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent3()" id="SmirnoffNsSi"
+                                name="SmirnoffNs" value="SmirnoffNsSi">
+                            <span>Si</span>
+                        </label>
+                        <input type="text" class="noClass" id="InputSmirnoffNs" required>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent3()" id="SmirnoffNsNo"
+                                name="SmirnoffNs" value="SmirnoffNsNo">
+                            <span>No</span>
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="col" style="display: none" id="divSmirnoffNs">
+                <div class="row">
+                    <legend class="titulo_interno">confirme la presentaci&oacute;n hallada</legend>
+                    <div class="card-box-small">
+                        <fieldset>
+                            <legend class="double-shadow"><b> 700 ml</b></legend>
+                            <label>
+                                <input type="radio" id="smirnoff_ns700_si" name="smirnoff_ns700"
+                                    value="smirnoff_ns700_si">
+                                <span>Si</span>
+                            </label>
+                            <input type="text" class="noClass" id="InputSmirnoffNs700" required>
+                            <label>
+                                <input type="radio" id="smirnoff_ns700_no" name="smirnoff_ns700"
+                                    value="smirnoff_ns700_no" />
+                                <span>No</span>
+                            </label>
+                            <div style="display: block">
+                                <div class="form-group">
+                                    <label for="caras_smirnoff_ns700">Caras en el lineal</label>
+                                    <input type="text" class="form-control" name="caras_smirnoff_ns700"
+                                        id="caras_smirnoff_ns700" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="2" required disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio_smirnoff_ns700">Precio &dollar;</label>
+                                    <input type="text" class="form-control" name="precio_smirnoff_ns700"
+                                        id="precio_smirnoff_ns700" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="6" minlength="5" required disabled>
+                                </div>
+                                <span id="texto06" style="background: white; color: black;"></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="card-box-small">
+                        <fieldset>
+                            <legend class="double-shadow"><b> 375 ml</b></legend>
+                            <label>
+                                <input type="radio" id="smirnoff_ns375_si" name="smirnoff_ns375"
+                                    value="smirnoff_ns375_si">
+                                <span>Si</span>
+                            </label>
+                            <input type="text" class="noClass" id="InputSmirnoffNs375" required>
+                            <label>
+                                <input type="radio" id="smirnoff_ns375_no" name="smirnoff_ns375"
+                                    value="smirnoff_ns375_no" />
+                                <span>No</span>
+                            </label>
+                            <div style="display: block">
+                                <div class="form-group">
+                                    <label for="caras_smirnoff_ns375">Caras en el lineal</label>
+                                    <input type="text" class="form-control" name="caras_smirnoff_ns375"
+                                        id="caras_smirnoff_ns375" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="2" required disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio_smirnoff_ns375">Precio &dollar;</label>
+                                    <input type="text" class="form-control" name="precio_smirnoff_ns375"
+                                        id="precio_smirnoff_ns375" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="6" minlength="5" required disabled>
+                                </div>
+                                <span id="texto07" style="background: white; color: black;"></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
         </div>
-        <br>
-        <div class="col-12">
+    </ul>
+
+    <hr>
+    <ul>
+        <div class="row">
+            <div class="col-sm-2 card-box">
+                <div class="card-bottles">
+                    <legend>&iquest; Hay <b>Johnnie Walker</b>?</legend>
+                    <div class="form-check">
+                        <img class="img_botellas swing" alt="vasos" src="{{ asset('/storage/jhonie_walker.png') }}" />
+                    </div>
+                    <fieldset>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent4()" id="JhonnieSi" name="Jhonnie"
+                                value="JhonnieSi">
+                            <span>Si</span>
+                        </label>
+                        <input type="text" class="noClass" id="InputJhonnie" required>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent4()" id="JhonnieNo" name="Jhonnie"
+                                value="JhonnieNo" />
+                            <span>No</span>
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="col" style="display: none" id="divJhonnie">
+                <div class="row">
+                    <legend class="titulo_interno">confirme la presentaci&oacute;n hallada</legend>
+                    <div class="card-box-small">
+                        <fieldset>
+                            <legend class="double-shadow"><b> 1000 ml</b></legend>
+                            <label>
+                                <input type="radio" id="jhonnie1000_si" name="jhonnie1000" value="jhonnie1000_si">
+                                <span>Si</span>
+                            </label>
+                            <input type="text" class="noClass" id="InputJhonnie1000" required>
+                            <label>
+                                <input type="radio" id="jhonnie1000_no" name="jhonnie1000" value="jhonnie1000_no" />
+                                <span>No</span>
+                            </label>
+                            <div style="display: block">
+                                <div class="form-group">
+                                    <label for="caras_jhonnie1000">Caras en el lineal</label>
+                                    <input type="text" class="form-control" name="caras_jhonnie1000"
+                                        id="caras_jhonnie1000" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="2" required disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio_jhonnie1000">Precio &dollar;</label>
+                                    <input type="text" class="form-control" name="precio_jhonnie1000"
+                                        id="precio_jhonnie1000" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="6" minlength="5" required disabled>
+                                </div>
+                                <span id="texto08" style="background: white; color: black;"></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="card-box-small">
+                        <fieldset>
+                            <legend class="double-shadow"><b> 700 ml</b></legend>
+                            <label>
+                                <input type="radio" id="jhonnie700_si" name="jhonnie700" value="jhonnie700_si">
+                                <span>Si</span>
+                            </label>
+                            <input type="text" class="noClass" id="InputJhonnie700" required>
+                            <label>
+                                <input type="radio" id="jhonnie700_no" name="jhonnie700" value="jhonnie700_no" />
+                                <span>No</span>
+                            </label>
+                            <div style="display: block">
+                                <div class="form-group">
+                                    <label for="caras_jhonnie700">Caras en el lineal</label>
+                                    <input type="text" class="form-control" name="caras_jhonnie700"
+                                        id="caras_jhonnie700" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="2" required disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio_jhonnie700">Precio &dollar;</label>
+                                    <input type="text" class="form-control" name="precio_jhonnie700"
+                                        id="precio_jhonnie700" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="6" minlength="5" required disabled>
+                                </div>
+                                <span id="texto09" style="background: white; color: black;"></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="card-box-small">
+                        <fieldset>
+                            <legend class="double-shadow"><b> 375 ml</b></legend>
+                            <label>
+                                <input type="radio" id="jhonnie375_si" name="jhonnie375" value="jhonnie375_si">
+                                <span>Si</span>
+                            </label>
+                            <input type="text" class="noClass" id="InputJhonnie375" required>
+                            <label>
+                                <input type="radio" id="jhonnie375_no" name="jhonnie375" value="jhonnie375_no" />
+                                <span>No</span>
+                            </label>
+                            <div style="display: block">
+                                <div class="form-group">
+                                    <label for="caras_jhonnie375">Caras en el lineal</label>
+                                    <input type="text" class="form-control" name="caras_jhonnie375"
+                                        id="caras_jhonnie375" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="2" required disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio_jhonnie375">Precio &dollar;</label>
+                                    <input type="text" class="form-control" name="precio_jhonnie375"
+                                        id="precio_jhonnie375" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="6" minlength="5" required disabled>
+                                </div>
+                                <span id="texto10" style="background: white; color: black;"></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ul>
+
+    <hr>
+    <ul>
+        <div class="row">
+            <div class="col-sm-2 card-box">
+                <div class="card-bottles">
+                    <legend>&iquest; Hay <b>Old Parr</b>?</legend>
+                    <div class="form-check">
+                        <img class="img_botellas swing" alt="Old Parr" src="{{ asset('/storage/oldparr.png') }}" />
+                    </div>
+                    <fieldset>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent5()" id="OldParrSi" name="OldParr"
+                                value="OldParrSi">
+                            <span>Si</span>
+                        </label>
+                        <input type="text" class="noClass" id="InputOldParr" required>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent5()" id="OldParrNo" name="OldParr"
+                                value="OldParrNo" />
+                            <span>No</span>
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="col" style="display: none" id="divOldParr">
+                <div class="row">
+                    <legend class="titulo_interno">confirme la presentaci&oacute;n hallada</legend>
+                    <div class="card-box-small">
+                        <fieldset>
+                            <legend class="double-shadow"><b> 750 ml</b></legend>
+                            <label>
+                                <input type="radio" id="oldparr750_si" name="oldparr750" value="oldparr750_si">
+                                <span>Si</span>
+                            </label>
+                            <input type="text" class="noClass" id="InputOldParr750" required>
+                            <label>
+                                <input type="radio" id="oldparr750_no" name="oldparr750" value="oldparr750_no" />
+                                <span>No</span>
+                            </label>
+                            <div style="display: block">
+                                <div class="form-group">
+                                    <label for="caras_oldparr750">Caras en el lineal</label>
+                                    <input type="text" class="form-control" name="caras_oldparr750"
+                                        id="caras_oldparr750" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="2" required disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio_oldparr750">Precio &dollar;</label>
+                                    <input type="text" class="form-control" name="precio_oldparr750"
+                                        id="precio_oldparr750" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="6" minlength="5" required disabled>
+                                </div>
+                                <span id="texto11" style="background: white; color: black;"></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ul>
+
+
+    <hr>
+    <ul>
+        <div class="row">
+            <div class="col-sm-2 card-box">
+                <div class="card-bottles">
+                    <legend>&iquest; Hay <b>Buchannan&acute;s</b>?</legend>
+                    <div class="form-check">
+                        <img class="img_botellas swing" alt="vasos" src="{{ asset('/storage/buchannas.png') }}" />
+                    </div>
+                    <fieldset>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent6()" id="BuchannasSi" name="Buchannas"
+                                value="BuchannasSi">
+                            <span>Si</span>
+                        </label>
+                        <input type="text" class="noClass" id="InputBuchannas" required>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent6()" id="BuchannasNo" name="Buchannas"
+                                value="BuchannasNo">
+                            <span>No</span>
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="col" style="display: none" id="divBuchannas">
+                <div class="row">
+                    <legend class="titulo_interno">confirme la presentaci&oacute;n hallada</legend>
+                    <div class="card-box-small">
+                        <fieldset>
+                            <legend class="double-shadow"><b> 700 ml</b></legend>
+                            <label>
+                                <input type="radio" id="buchannas700_si" name="buchannas700" value="buchannas700_si">
+                                <span>Si</span>
+                            </label>
+                            <input type="text" class="noClass" id="InputBuchannas700" required>
+                            <label>
+                                <input type="radio" id="buchannas700_no" name="buchannas700"
+                                    value="buchannas700_no" />
+                                <span>No</span>
+                            </label>
+                            <div style="display: block">
+                                <div class="form-group">
+                                    <label for="caras_buchannas700">Caras en el lineal</label>
+                                    <input type="text" class="form-control" name="caras_buchannas700"
+                                        id="caras_buchannas700" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="2" required disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio_buchannas700">Precio &dollar;</label>
+                                    <input type="text" class="form-control" name="precio_buchannas700"
+                                        id="precio_buchannas700" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="6" minlength="5" required disabled>
+                                </div>
+                                <span id="texto12" style="background: white; color: black;"></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="card-box-small">
+                        <fieldset>
+                            <legend class="double-shadow"><b> 375 ml</b></legend>
+                            <label>
+                                <input type="radio" id="buchannas375_si" name="buchannas375" value="buchannas375_si">
+                                <span>Si</span>
+                            </label>
+                            <input type="text" class="noClass" id="InputBuchannas375" required>
+                            <label>
+                                <input type="radio" id="buchannas375_no" name="buchannas375"
+                                    value="buchannas375_no" />
+                                <span>No</span>
+                            </label>
+                            <div style="display: block">
+                                <div class="form-group">
+                                    <label for="caras_buchannas375">Caras en el lineal</label>
+                                    <input type="text" class="form-control" name="caras_buchannas375"
+                                        id="caras_buchannas375" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="2" required disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio_buchannas375">Precio &dollar;</label>
+                                    <input type="text" class="form-control" name="precio_oldparr750"
+                                        id="precio_buchannas375" style="border-radius:0.3rem;" autocomplete="off"
+                                        maxlength="6" minlength="5" required disabled>
+                                </div>
+                                <span id="texto13" style="background: white; color: black;"></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ul>
+
+    <hr>
+    <ul>
+        <h5>CALIDAD DE LAS MARCAS</h5>
+        <div class="row">
+            <div class="col-sm-4 card-box-marcas">
+                <div class="card-bottles-marcas">
+                    <legend class="marcasT">&iquest;Est&aacute;n visibles al consumidor? (no est&aacute;n
+                        tapados con otros productos)</legend>
+                    <fieldset class="radiosT">
+                        <label>
+                            <input type="radio" id="cal_marc_visible_si" onchange="javascript:showContent9()"
+                                name="cal_marc_visible" value="cal_marc_visible_si">
+                            <span>Si</span>
+                        </label>
+                        <input type="text" class="noClass" id="Inputcal_marc_visible" required>
+                        <label>
+                            <input type="radio" id="cal_marc_visible_no" onchange="javascript:showContent9()"
+                                name="cal_marc_visible" value="cal_marc_visible_no" />
+                            <span>No</span>
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="col-sm-4 card-box-marcas">
+
+                <legend class="marcasT">&iquest;Tienen las etiquetas en buen estado? ( no Est&aacute;n
+                    rayadas, levantadas, buen tono de color)</legend>
+                <fieldset class="radiosT">
+                    <label>
+                        <input type="radio" id="cal_marc_danados_si" name="cal_marc_danados"
+                            onchange="javascript:showContent10()" value="cal_marc_danados_si">
+                        <span>Si</span>
+                    </label>
+                    <input type="text" class="noClass" id="Inputcal_marc_danados" required>
+                    <label>
+                        <input type="radio" id="cal_marc_danados_no" name="cal_marc_danados"
+                            onchange="javascript:showContent10()" value="cal_marc_danados_no" />
+                        <span>No</span>
+                    </label>
+                </fieldset>
+            </div>
+            <div class="col-sm-4 card-box-marcas">
+                <div class="card-bottles-marcas">
+                    <legend class="marcasT">&iquest;Est&aacute;n las etiquetas visibles al
+                        consumidor</legend>
+                    <fieldset class="radiosT">
+                        <label>
+                            <input type="radio" id="cal_marc_et_danados_si" name="cal_marc_et_danados"
+                                value="cal_marc_et_danados_si" onchange="javascript:showContent11()">
+                            <span>Si</span>
+                        </label>
+                        <input type="text" class="noClass" id="Inputcal_marc_et_danados" required>
+                        <label>
+                            <input type="radio" id="cal_marc_et_danados_no" name="cal_marc_et_danados"
+                                value="cal_marc_et_danados_no" onchange="javascript:showContent11()" />
+                            <span>No</span>
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </ul>
+    <hr>
+    <ul>
+        <div class="col-12 card-box" id="divImgCal" style="text-align: center;">
             <div class="card">
                 <div class="ttulo">
-                    <green><span>Seleccione la marca de la competencia en ron y la informacion adicional</span></green>
+                    <green><span>Tome foto del lineal donde Est&aacute;n los productos Diageo</span></green>
                 </div>
                 <div class="col">
-                    <img class="img_botellasx3 swing" src="{{ asset('/storage/ronx3.png') }}"
-                        style="text-align: center" />
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="ttulo">
-                            <green><span>Marca de ron 1</span></green>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        {!! Form::select('comp_ron1', $competenciaRon, null, [
-                            'class' => 'form-control',
-                            'placeholder' => 'Seleccione marca',
-                            'id' => 'comp_ron1',
-                            'required',
-                            'disabled',
-                        ]) !!}
-                    </div>
-                    <div class="col-md-3">
-                        <div class="ttulo">
-                            <green><span>Precio 750 ml &dollar;</span></green>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" name="precio_comp_ron1" id="precio_comp_ron1" class="form-control"
-                            style="border-radius: 0.3rem;" maxlength="6" minlength="5" autocomplete="off" required
-                            disabled>
-                        <span id="texto12"></span>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="ttulo">
-                            <green><span>Marca de ron 2</span></green>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        {!! Form::select('comp_ron2', $competenciaRon, null, [
-                            'class' => 'form-control',
-                            'placeholder' => 'Seleccione marca',
-                            'id' => 'comp_ron2',
-                            'required',
-                            'disabled',
-                        ]) !!}
-                    </div>
-                    <div class="col-md-3">
-                        <div class="ttulo">
-                            <green><span>Precio 750 ml &dollar;</span></green>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" name="precio_comp_ron2" id="precio_comp_ron2" class="form-control"
-                            style="border-radius: 0.3rem;" maxlength="6" minlength="5" autocomplete="off" required
-                            disabled>
-                        <span id="texto13"></span>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="ttulo">
-                            <green><span>Caras en el lineal de rones</span></green>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <input name="caras_comp_ron" id="caras_comp_ron" type="text" class="form-control"
-                            maxlength="2" required disabled>
-                    </div>
-                </div>
-                <br><br>
-                <div class="d-flex justify-content-center">
-                    <div class="ttulo">
-                        <green><span>Foto del lineal de ron</span></green>
-                    </div>
                     <br>
-                    <input type="file" id="seleccionLinealR" name="seleccionLinealR" accept="image/*" required
-                        disabled onclick="see15()">
+                    <input type="file" id="seleccionLinealDiageo" name="seleccionLinealDiageo" accept="image/*"
+                        required>
                     <br><br>
-                    <img class="card-img-top" id="imagenLinearlR">
+                    <img class="card-img-top" id="imagenLinealDiageo">
+                    <br><br>
                 </div>
-                <br><br>
-
             </div>
         </div>
-
-    </div>
-    <br>
-    <div id="aguardientesDiv" style="display: none">
-        <div class="col">
-            <br><br>
-            <div class="ttulo">
-                <green><span>Indique si hay presencia de Aguardientes de la competencia en el lineal</span></green>
-            </div>
-            <br><br>
-            <div class="col">
-                <br>
-                <div class="switch-toggle switch-3 switch-candy" style="height: 50%; width:80%">
-                    <input id="hay_aguardiente_si" name="hay_aguardiente" type="radio" value="hay_aguardiente_si"
-                        required disabled />
-                    <label for="hay_aguardiente_si">SI</label>
-                    <input id="hay_aguardiente_choose" name="hay_aguardiente" type="radio"
-                        value="hay_aguardiente_choose" checked="checked" disabled />
-                    <label for="hay_aguardiente_choose">&iquest;hay presencia de aguardientes de la
-                        competencia?</label>
-                    <input id="hay_aguardiente_no" name="hay_aguardiente" type="radio"
-                        value="hay_aguardiente_no" />
-                    <label for="hay_aguardiente_no">NO</label>
-                    <a></a>
+    </ul>
+    <hr>
+    <hr>
+    <ul>
+        <div class="row">
+            <img class="img_botellasx3 swing" src="{{ asset('/storage/ronx3.png') }}" style="text-align: center" />
+            <div class="col-sm-6 card-box-double" id="card_double">
+                <div class="card-comp">
+                    <legend>&iquest; Hay <b>Rones</b> de la competencia?</legend>
+                    <fieldset>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent7()" id="RonesCompSi" name="RonesComp"
+                                value="RonesCompSi">
+                            <span>Si</span>
+                        </label>
+                        <input type="text" class="noClass" id="InputRonesComp" required>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent7()" id="RonesCompNo" name="RonesComp"
+                                value="RonesCompNo" />
+                            <span>No</span>
+                        </label>
+                    </fieldset>
                 </div>
-                <br><br>
-            </div>
-        </div>
-    </div>
-    <div style="display: none" id="divAguardiente">
-        <div class="d-flex justify-content-center">
-            <blue>
-                <span>Registre la información de aguardientes de la competencia, indague con cliente cual es la
-                    primer y
-                    segunda marca
-                    mas vendida en pdv y registre precio de sku de 750 ml</span>
-            </blue>
-        </div>
-        <br>
-        <div class="col-12">
-            <div class="card">
-                <div class="ttulo">
-                    <green><span>Seleccione la marca de la competencia en aguardiente y la informaci&oacute;n
-                            adicional</span></green>
-                </div>
-                <div class="col">
-                    <img class="img_botellasx3 swing" src="{{ asset('/storage/aguardientes.png') }}"
-                        style="text-align: center" />
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="ttulo">
-                            <green><span>Marca de aguardiente 1</span></green>
-                        </div>
-                    </div>
+                <div id="DivSComRones" style="display: none">
+                    {{ Form::label('comp_ron1', 'Primera marca más vendida') }}
+                    <select name="comp_ron1" id="comp_ron1" class="form-control" required disabled>
+                        <option selected value="">--</option>
+                        @foreach ($competenciaRon as $Ron)
+                            <option value="{{ $Ron }}">{{ $Ron }} </option>
+                        @endforeach
+                    </select>
+                    {{ Form::label('precio_comp_ron1', 'Precio $$ 750 ml') }}
+                    <input type="text" name="precio_comp_ron1" id="precio_comp_ron1" class="form-control"
+                        style="border-radius: 0.3rem;" maxlength="6" minlength="5" autocomplete="off" required>
+                    <hr>
+                    <span id="texto14"></span>
+                    <hr>
+                    @include('errors.errors', ['field' => 'precio_comp_ron1'])
+                    {{ Form::label('comp_ron2', 'Segunda marca más vendida') }}
 
-                    <div class="col-md-3">
-                        {!! Form::select('comp_aguard1', $competenciaAguardiente, null, [
-                            'class' => 'form-control',
-                            'placeholder' => 'Seleccione marca',
-                            'id' => 'comp_aguard1',
-                            'required',
-                            'disabled',
-                        ]) !!}
-                    </div>
-                    <div class="col-md-3">
-                        <div class="ttulo">
-                            <green><span>Precio 750 ml &dollar;</span></green>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-
-                        <input type="text" name="precio_comp_aguardiente1" id="precio_comp_aguardiente1"
-                            class="form-control" style="border-radius: 0.3rem;" maxlength="6" minlength="5"
-                            autocomplete="off">
-                        <span id="texto14"></span>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="ttulo">
-                            <green><span>Marca de aguardiente 2</span></green>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        {!! Form::select('comp_aguard2', $competenciaAguardiente, null, [
-                            'class' => 'form-control',
-                            'placeholder' => 'Seleccione marca',
-                            'id' => 'comp_aguard2',
-                            'required',
-                            'disabled',
-                        ]) !!}
-                    </div>
-                    <div class="col-md-3">
-                        <div class="ttulo">
-                            <green><span>Precio 750 ml &dollar;</span></green>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" name="precio_comp_aguardiente2" id="precio_comp_aguardiente2"
-                            class="form-control" style="border-radius: 0.3rem;" maxlength="6" minlength="5"
-                            autocomplete="off">
-                        <span id="texto15"></span>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="ttulo">
-                            <green><span>Caras en el lineal de aguardientes</span></green>
-                        </div>
-
-                    </div>
-                    <div class="col-md-3">
-                        <input name="caras_comp_aguardiente" id="caras_comp_aguardiente" type="text"
-                            class="form-control" maxlength="2">
-                    </div>
-                </div>
-                <br><br>
-                <div class="d-flex justify-content-center">
-                    <div class="ttulo">
-                        <green><span>Foto del lineal de aguardiente</span></green>
-                    </div>
+                    <select name="comp_ron2" id="comp_ron2" class="form-control" required disabled>
+                        <option selected value="">--</option>
+                        @foreach ($competenciaRon as $Ron)
+                            <option value="{{ $Ron }}">{{ $Ron }} </option>
+                        @endforeach
+                    </select>
+                    {{ Form::label('precio_comp_ron2', 'Precio $$ 750 ml') }}
+                    <input type="text" name="precio_comp_ron2" id="precio_comp_ron2" class="form-control"
+                        style="border-radius: 0.3rem;" maxlength="6" minlength="5" autocomplete="off" required>
+                    <hr>
+                    <span id="texto15"></span>
+                    <hr>
+                    @include('errors.errors', ['field' => 'precio_comp_ron2'])
+                    {{ Form::label('caras_comp_ron', 'Cantidad de caras en el lineal de rones') }}
+                    <input type="number" class="form-control" placeholder="" name="caras_comp_ron" id="caras_comp_ron"
+                        aria-label="caras_comp_ron" required>
+                    @include('errors.errors', ['field' => 'caras_comp_ron'])
                     <br>
-                    <input type="file" id="seleccionLinealA" name="seleccionLinealA" accept="image/*"
-                        onclick="see16()" required disabled>
-                    <br><br>
-                    <img class="card-img-top" id="imagenLinearlA">
+                    <div class="d-flex justify-content-center">
+                        <div class="ttulo">
+                            <green><span>Foto del lineal de ron</span></green>
+                        </div>
+                        <br>
+                        <input type="file" id="seleccionLinealR" name="seleccionLinealR" accept="image/*" required
+                            disabled>
+                        <br><br>
+                        <img class="card-img-top" id="imagenLinearlR">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </ul>
 
-    </div>
+    <hr>
+    <ul>
+        <div class="row">
+            <img class="img_botellasx3 swing" src="{{ asset('/storage/aguardientes.png') }}"
+                style="text-align: center" />
+            <div class="col-sm-6 card-box-double" id="card_double2">
+                <div class="card-comp">
+                    <legend>&iquest; Hay <b>Aguardientes</b> de la competencia?</legend>
+                    <fieldset>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent8()" id="AguarCompSi" name="AguarComp"
+                                value="AguarCompSi">
+                            <span>Si</span>
+                        </label>
+                        <input type="text" class="noClass" id="InputAguarComp" required>
+                        <label>
+                            <input type="radio" onchange="javascript:showContent8()" id="AguarCompNo" name="AguarComp"
+                                value="AguarCompNo">
+                            <span>No</span>
+                        </label>
+                    </fieldset>
+                </div>
+                <div id="DivSComAguard" style="display: none">
+                    {{ Form::label('comp_aguard1', 'Primera marca más vendida') }}
+                    <select name="comp_aguard1" id="comp_aguard1" class="form-control" required disabled>
+                        <option selected value="">--</option>
+                        @foreach ($competenciaAguardiente as $Agua)
+                            <option value="{{ $Agua }}">{{ $Agua }} </option>
+                        @endforeach
+                    </select>
+                    {{ Form::label('precio_comp_aguardiente1', 'Precio $$ 750 ml') }}
+                    <input type="text" name="precio_comp_aguardiente1" id="precio_comp_aguardiente1"
+                        class="form-control" style="border-radius: 0.3rem;" maxlength="6" minlength="5"
+                        autocomplete="off" required>
+                    <hr>
+                    <span id="texto16"></span>
+                    <hr>
+                    @include('errors.errors', ['field' => 'costo_unitario'])
+                    {{ Form::label('comp_aguard2', 'Segunda marca más vendida') }}
 
-    <br>
-    <div id="divSubmit" style="display: none">
-        {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton']) !!}
-        <br><br>
-    </div>
+                    <select name="comp_aguard2" id="comp_aguard2" class="form-control" required disabled>
+                        <option selected value="">--</option>
+                        @foreach ($competenciaAguardiente as $Agua)
+                            <option value="{{ $Agua }}">{{ $Agua }} </option>
+                        @endforeach
+                    </select>
+                    {{ Form::label('precio_comp_aguardiente2', 'Precio $$ 750 ml') }}
+                    <input type="text" name="precio_comp_aguardiente2" id="precio_comp_aguardiente2"
+                        class="form-control" style="border-radius: 0.3rem;" maxlength="6" minlength="5"
+                        autocomplete="off" required>
+                    <hr>
+                    <span id="texto17"></span>
+                    <hr>
+                    @include('errors.errors', ['field' => 'precio_comp_aguardiente2'])
+                    {{ Form::label('caras_comp_aguardiente', 'Caras en el lineal de aguardientes') }}
+                    <input type="number" class="form-control" placeholder="" name="caras_comp_aguardiente"
+                        id="caras_comp_aguardiente" aria-label="caras_comp_aguardiente" required>
+                    @include('errors.errors', ['field' => 'caras_comp_aguardiente'])
+                    <br>
+                    <div class="d-flex justify-content-center">
+                        <div class="ttulo">
+                            <green><span>Foto del lineal de ron</span></green>
+                        </div>
+                        <br>
+                        <input type="file" id="seleccionLinealA" name="seleccionLinealA" accept="image/*" required disabled>
+                        <br><br>
+                        <img class="card-img-top" id="imagenLinearlA">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ul>
 
-    </p>
+    {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton', 'style' => 'z-index:99999']) !!}
     {!! Form::close() !!}
+    </p>
+
 @stop
 
 @section('js')
     <script>
-        const $seleccionLinealDiageo = document.querySelector("#seleccionLinealDiageo"),
-            $imagenLinealDiageo = document.querySelector("#imagenLinealDiageo");
+        function showContent() {
+            element = document.getElementById("divBlackywhite");
+            check = document.getElementById("BlackywhiteSi");
+            checkno = document.getElementById("BlackywhiteNo");
+            ByW1000si = document.getElementById("bAndw1000_si");
+            ByW1000no = document.getElementById("bAndw1000_no");
+            ByW700si = document.getElementById("bAndw700_si");
+            ByW700no = document.getElementById("bAndw700_no");
+            ByW375si = document.getElementById("bAndw375_si");
+            ByW375no = document.getElementById("bAndw375_no");
+            texto01 = document.getElementById("texto01");
+            texto02 = document.getElementById("texto02");
+            texto03 = document.getElementById("texto03");
 
-        $seleccionLinealDiageo.addEventListener("change", () => {
-            const archivos = $seleccionLinealDiageo.files;
-            if (!archivos || !archivos.length) {
-                $imagenLinearlR.src = "";
-                return;
+            if (check.checked) {
+                element.style.display = 'block';
+                $("#InputBlackywhite").val("1");
+                element.prop('disabled', false);
+                $("#caras_bAndw1000").prop('disabled', false);
+                $("#precio_bAndw1000").prop('disabled', false);
+                $("#caras_bAndw700").prop('disabled', false);
+                $("#precio_bAndw700").prop('disabled', false);
+                $("#caras_bAndw375").prop('disabled', false);
+                $("#precio_bAndw375").prop('disabled', false);
+
+            } else if (checkno.checked) {
+
+                element.style.display = 'none';
+                $("#InputBlackywhite").val("0");
+                $("#InputbAndw1000").val("0");
+                $("#InputbAndw700").val("0");
+                $("#InputbAndw375").val("0");
+                $("#caras_bAndw1000").val("0");
+                $("#precio_bAndw1000").val("0");
+                $("#caras_bAndw700").val("0");
+                $("#precio_bAndw700").val("0");
+                $("#caras_bAndw375").val("0");
+                $("#precio_bAndw375").val("0");
+                $("#caras_bAndw1000").prop('disabled', true);
+                $("#precio_bAndw1000").prop('disabled', true);
+                $("#caras_bAndw700").prop('disabled', true);
+                $("#precio_bAndw700").prop('disabled', true);
+                $("#caras_bAndw375").prop('disabled', true);
+                $("#precio_bAndw375").prop('disabled', true);
+                element.prop('disabled', true);
+                ByW1000si.checked = false;
+                ByW1000no.checked = false;
+                ByW700si.checked = false;
+                ByW700no.checked = false;
+                ByW375si.checked = false;
+                ByW375no.checked = false;
+                ByW1000si.prop('disabled', true);
+                ByW1000no.prop('disabled', true);
+                ByW700si.prop('disabled', true);
+                ByW700no.prop('disabled', true);
+                ByW375si.prop('disabled', true);
+                ByW375no.prop('disabled', true);
+                texto01.style.display = 'none';
+                texto02.style.display = 'none';
+                texto03.style.display = 'none';
             }
-            const primerArchivo = archivos[0];
-            const objectURL = URL.createObjectURL(primerArchivo);
-            $imagenLinealDiageo.src = objectURL;
-        });
-    </script>
-
-
-
-
-    <script>
-        const $seleccionLinealR = document.querySelector("#seleccionLinealR"),
-            $imagenLinearlR = document.querySelector("#imagenLinearlR");
-
-        $seleccionLinealR.addEventListener("change", () => {
-            const archivos = $seleccionLinealR.files;
-            if (!archivos || !archivos.length) {
-                $imagenLinearlR.src = "";
-                return;
-            }
-            const primerArchivo = archivos[0];
-            const objectURL = URL.createObjectURL(primerArchivo);
-            $imagenLinearlR.src = objectURL;
-        });
-    </script>
-
-    <script>
-        const $seleccionLinealA = document.querySelector("#seleccionLinealA"),
-            $imagenLinearlA = document.querySelector("#imagenLinearlA");
-
-        $seleccionLinealA.addEventListener("change", () => {
-            const archivos = $seleccionLinealA.files;
-            if (!archivos || !archivos.length) {
-                $imagenLinearlA.src = "";
-                return;
-            }
-            const primerArchivo = archivos[0];
-            const objectURL = URL.createObjectURL(primerArchivo);
-            $imagenLinearlA.src = objectURL;
-        });
+        }
     </script>
     <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
+                texto01 = document.getElementById("texto01");
                 var valor = $(event.target).val();
                 if (valor == "bAndw1000_si") {
-                    $("#divbaw1000").show();
                     $("#caras_bAndw1000").prop('disabled', false);
                     $("#precio_bAndw1000").prop('disabled', false);
+                    $("#caras_bAndw1000").val("");
+                    $("#precio_bAndw1000").val("");
                     $("#caras_bAndw1000").focus();
+                    $("#InputbAndw1000").val("1");
+                    texto01.style.display = 'block';
                 } else if (valor == "bAndw1000_no") {
-                    $("#divbaw1000").hide();
-                    $("#bw700").show();
-                    $("#bAndw700_si").prop('disabled', false);
-                    $("#bAndw700_no").prop('disabled', false);
+                    $("#caras_bAndw1000").val("");
+                    $("#precio_bAndw1000").val("");
                     $("#caras_bAndw1000").prop('disabled', true);
                     $("#precio_bAndw1000").prop('disabled', true);
+                    texto01.style.display = 'none';
+                    $("#InputbAndw1000").val("0");
                 }
             });
         });
     </script>
     <script>
-        function see01() {
-            $("#bw700").show();
-            $("#bAndw700_si").prop('disabled', false);
-            $("#bAndw700_no").prop('disabled', false);
-        }
-    </script>
-
-    <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
+                texto02 = document.getElementById("texto02");
                 var valor = $(event.target).val();
                 if (valor == "bAndw700_si") {
-                    $("#divbaw700").show();
                     $("#caras_bAndw700").prop('disabled', false);
                     $("#precio_bAndw700").prop('disabled', false);
+                    $("#caras_bAndw700").val("");
+                    $("#precio_bAndw700").val("");
                     $("#caras_bAndw700").focus();
+                    $("#InputbAndw700").val("1");
+                    texto02.style.display = 'block';
                 } else if (valor == "bAndw700_no") {
-                    $("#divbaw700").hide();
-                    $("#bw375").show();
-                    $("#bAndw375_si").prop('disabled', false);
-                    $("#bAndw375_no").prop('disabled', false);
+                    $("#caras_bAndw700").val("");
+                    $("#precio_bAndw700").val("");
                     $("#caras_bAndw700").prop('disabled', true);
                     $("#precio_bAndw700").prop('disabled', true);
+                    texto02.style.display = 'none';
+                    $("#InputbAndw700").val("0");
                 }
             });
         });
     </script>
-    <script>
-        function see02() {
-            $("#bw375").show();
-            $("#bAndw375_si").prop('disabled', false);
-            $("#bAndw375_no").prop('disabled', false);
-        }
-    </script>
-
-
     <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
+                texto03 = document.getElementById("texto03");
                 var valor = $(event.target).val();
                 if (valor == "bAndw375_si") {
-                    $("#divbaw375").show();
                     $("#caras_bAndw375").prop('disabled', false);
                     $("#precio_bAndw375").prop('disabled', false);
+                    $("#caras_bAndw375").val("");
+                    $("#precio_bAndw375").val("");
                     $("#caras_bAndw375").focus();
+                    texto03.style.display = 'block';
+                    $("#InputbAndw375").val("1");
                 } else if (valor == "bAndw375_no") {
-                    $("#divbaw375").hide();
+                    $("#caras_bAndw375").val("");
+                    $("#precio_bAndw375").val("");
                     $("#caras_bAndw375").prop('disabled', true);
                     $("#precio_bAndw375").prop('disabled', true);
-                    $("#sm700").show();
-                    $("#title_sm").show()
-                    $("#smirnoff700_si").prop('disabled', false);
-                    $("#smirnoff700_no").prop('disabled', false);
-                    $("#smirDiv").show();
+                    texto03.style.display = 'none';
+                    $("#InputbAndw375").val("0");
                 }
             });
         });
     </script>
     <script>
-        function see03() {
-            $("#sm700").show();
-            $("#title_sm").show()
-            $("#smirnoff700_si").prop('disabled', false);
-            $("#smirnoff700_no").prop('disabled', false);
-            $("#smirDiv").show();
+        function showContent2() {
+            element2 = document.getElementById("divSmirnoff");
+            check2 = document.getElementById("SmirnoffSi");
+            check2no = document.getElementById("SmirnoffNo");
+            Smir700si = document.getElementById("smirnoff700_si");
+            Smir700no = document.getElementById("smirnoff700_no");
+            Smir375si = document.getElementById("smirnoff375_si");
+            Smir375no = document.getElementById("smirnoff375_no");
+            texto04 = document.getElementById("texto04");
+            texto05 = document.getElementById("texto05");
+            if (check2.checked) {
+                element2.style.display = 'block';
+                $("#InputSmirnoff").val("1");
+            } else if (check2no.checked) {
+                element2.style.display = 'none';
+                $("#caras_smirnoff700").val("");
+                $("#precio_smirnoff700").val("");
+                $("#caras_smirnoff375").val("");
+                $("#precio_smirnoff375").val("");
+                $("#caras_smirnoff700").prop('disabled', true);
+                $("#precio_smirnoff700").prop('disabled', true);
+                $("#caras_smirnoff375").prop('disabled', true);
+                $("#precio_smirnoff375").prop('disabled', true);
+                Smir700si.checked = false;
+                Smir700no.checked = false;
+                Smir375si.checked = false;
+                Smir375no.checked = false;
+                texto04.style.display = 'none';
+                texto05.style.display = 'none';
+                $("#InputSmirnoff").val("0");
+                $("#InputSmirnoff700").val("0");
+                $("#InputSmirnoff375").val("0");
+            }
         }
     </script>
-
     <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
                 var valor = $(event.target).val();
                 if (valor == "smirnoff700_si") {
-                    $("#divSmirnoff700").show();
                     $("#caras_smirnoff700").prop('disabled', false);
                     $("#precio_smirnoff700").prop('disabled', false);
+                    $("#caras_smirnoff700").val("");
+                    $("#precio_smirnoff700").val("");
                     $("#caras_smirnoff700").focus();
-                    $("#sm375").show();
-                    $("#smirnoff375_si").prop('disabled', false);
-                    $("#smirnoff375_no").prop('disabled', false);
+                    $("#InputSmirnoff700").val("1");
+                    texto04.style.display = 'block';
                 } else if (valor == "smirnoff700_no") {
-                    $("#divSmirnoff700").hide();
-                    $("#sm375").show();
+                    $("#caras_smirnoff700").val("");
+                    $("#precio_smirnoff700").val("");
                     $("#caras_smirnoff700").prop('disabled', true);
                     $("#precio_smirnoff700").prop('disabled', true);
-                    $("#smirDiv1").show();
+                    texto04.style.display = 'none';
+                    $("#InputSmirnoff700").val("0");
                 }
             });
         });
     </script>
-    <script>
-        function see04() {
-            $("#sm375").show();
-            $("#smirnoff375_si").prop('disabled', false);
-            $("#smirnoff375_no").prop('disabled', false);
-            $("#smirDiv1").show();
-        }
-    </script>
-
-
-
     <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
                 var valor = $(event.target).val();
                 if (valor == "smirnoff375_si") {
-                    $("#divSmirnoff375").show();
                     $("#caras_smirnoff375").prop('disabled', false);
                     $("#precio_smirnoff375").prop('disabled', false);
+                    $("#caras_smirnoff375").val("");
+                    $("#precio_smirnoff375").val("");
                     $("#caras_smirnoff375").focus();
+                    $("#InputSmirnoff375").val("1");
+                    texto05.style.display = 'block';
                 } else if (valor == "smirnoff375_no") {
-                    $("#divSmirnoff375").hide();
+                    $("#caras_smirnoff375").val("");
+                    $("#precio_smirnoff375").val("");
                     $("#caras_smirnoff375").prop('disabled', true);
                     $("#precio_smirnoff375").prop('disabled', true);
-                    $("#sm_ns700").show();
-                    $("#title_smns").show();
-                    $("#smirDiv1").show();
-                    $("#smirnoff_ns700_si").prop('disabled', false);
-                    $("#smirnoff_ns700_no").prop('disabled', false);
+                    texto05.style.display = 'none';
+                    $("#InputSmirnoff375").val("0");
                 }
             });
         });
     </script>
-
     <script>
-        function see05() {
-            $("#sm_ns700").show();
-            $("#title_smns").show();
-            $("#smirDiv1").show();
-            $("#smirnoff_ns700_si").prop('disabled', false);
-            $("#smirnoff_ns700_no").prop('disabled', false);
+        function showContent3() {
+            element3 = document.getElementById("divSmirnoffNs");
+            check3 = document.getElementById("SmirnoffNsSi");
+            check3no = document.getElementById("SmirnoffNsNo");
+            Smir700NSsi = document.getElementById("smirnoff_ns700_si");
+            Smir700NSno = document.getElementById("smirnoff_ns700_no");
+            Smir375NSsi = document.getElementById("smirnoff_ns375_si");
+            Smir375NSno = document.getElementById("smirnoff_ns375_no");
+            texto06 = document.getElementById("texto06");
+            texto07 = document.getElementById("texto07");
+            if (check3.checked) {
+                element3.style.display = 'block';
+                $("#InputSmirnoffNs").val("1");
+            } else if (check3no.checked) {
+                element3.style.display = 'none';
+                $("#caras_smirnoff_ns700").val("");
+                $("#precio_smirnoff_ns700").val("");
+                $("#caras_smirnoff_ns375").val("");
+                $("#precio_smirnoff_ns375").val("");
+                $("#caras_smirnoff_ns700").prop('disabled', true);
+                $("#precio_smirnoff_ns700").prop('disabled', true);
+                $("#caras_smirnoff_ns375").prop('disabled', true);
+                $("#precio_smirnoff_ns375").prop('disabled', true);
+                Smir700NSsi.checked = false;
+                Smir700NSno.checked = false;
+                Smir375NSsi.checked = false;
+                Smir375NSno.checked = false;
+                texto06.style.display = 'none';
+                texto07.style.display = 'none';
+                $("#InputSmirnoffNs").val("0");
+                $("#InputSmirnoffNs700").val("0");
+                $("#InputSmirnoffNs375").val("0");
+            }
         }
     </script>
-
     <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
                 var valor = $(event.target).val();
                 if (valor == "smirnoff_ns700_si") {
-                    $("#divSmirnoff_ns700").show();
                     $("#caras_smirnoff_ns700").prop('disabled', false);
                     $("#precio_smirnoff_ns700").prop('disabled', false);
+                    $("#caras_smirnoff_ns700").val("");
+                    $("#precio_smirnoff_ns700").val("");
                     $("#caras_smirnoff_ns700").focus();
+                    texto06.style.display = 'block';
+                    $("#InputSmirnoffNs700").val("1");
                 } else if (valor == "smirnoff_ns700_no") {
-                    $("#divSmirnoff_ns700").hide();
+                    $("#caras_smirnoff_ns700").val("");
+                    $("#precio_smirnoff_ns700").val("");
                     $("#caras_smirnoff_ns700").prop('disabled', true);
                     $("#precio_smirnoff_ns700").prop('disabled', true);
-                    $("#sm_ns375").show();
-                    $("#smirnoff_ns375_si").prop('disabled', false);
-                    $("#smirnoff_ns375_no").prop('disabled', false);
-                    $("#smirDiv2").show();
-                    $("#smirDiv3").show();
+                    texto06.style.display = 'none';
+                    $("#InputSmirnoffNs700").val("0");
                 }
             });
         });
     </script>
-    <script>
-        function see06() {
-            $("#sm_ns375").show();
-            $("#smirnoff_ns375_si").prop('disabled', false);
-            $("#smirnoff_ns375_no").prop('disabled', false);
-            $("#smirDiv2").show();
-            $("#smirDiv3").show();
-        }
-    </script>
-
-
     <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
                 var valor = $(event.target).val();
                 if (valor == "smirnoff_ns375_si") {
-                    $("#divSmirnoff_ns375").show();
                     $("#caras_smirnoff_ns375").prop('disabled', false);
                     $("#precio_smirnoff_ns375").prop('disabled', false);
+                    $("#caras_smirnoff_ns375").val("");
+                    $("#precio_smirnoff_ns375").val("");
                     $("#caras_smirnoff_ns375").focus();
+                    $("#InputSmirnoffNs375").val("1");
+                    texto07.style.display = 'block';
                 } else if (valor == "smirnoff_ns375_no") {
-                    $("#divSmirnoff_ns375").hide();
+                    $("#caras_smirnoff_ns375").val(" ");
+                    $("#precio_smirnoff_ns375").val(" ");
                     $("#caras_smirnoff_ns375").prop('disabled', true);
                     $("#precio_smirnoff_ns375").prop('disabled', true);
-                    $("#jw_1000").show();
-                    $("#title_jw").show()
-                    $("#jhonnie1000_si").prop('disabled', false);
-                    $("#jhonnie1000_no").prop('disabled', false);
-                    $("#ol750").show();
-                    $("#title_op").show()
-                    $("#oldparr750_si").prop('disabled', false);
-                    $("#oldparr750_no").prop('disabled', false);
+                    texto07.style.display = 'none';
+                    $("#InputSmirnoffNs375").val("0");
                 }
             });
         });
     </script>
-
     <script>
-        function see07() {
-            $("#jw_1000").show();
-            $("#title_jw").show()
-            $("#jhonnie1000_si").prop('disabled', false);
-            $("#jhonnie1000_no").prop('disabled', false);
-            $("#ol750").show();
-            $("#title_op").show()
-            $("#oldparr750_si").prop('disabled', false);
-            $("#oldparr750_no").prop('disabled', false);
+        function showContent4() {
+            element4 = document.getElementById("divJhonnie");
+            check4 = document.getElementById("JhonnieSi");
+            check4no = document.getElementById("JhonnieNo");
+            Johnnie1000si = document.getElementById("jhonnie1000_si");
+            Johnnie1000no = document.getElementById("jhonnie1000_no");
+            Johnnie700si = document.getElementById("jhonnie700_si");
+            Johnnie700no = document.getElementById("jhonnie700_no");
+            Johnnie375si = document.getElementById("jhonnie375_si");
+            Johnnie375no = document.getElementById("jhonnie375_no");
+            texto08 = document.getElementById("texto08");
+            texto09 = document.getElementById("texto09");
+            texto10 = document.getElementById("texto10");
+            if (check4.checked) {
+                element4.style.display = 'block';
+                $("#InputJhonnie").val("1");
+            } else if (check4no.checked) {
+                element4.style.display = 'none';
+                $("#caras_jhonnie1000").val("");
+                $("#precio_jhonnie1000").val("");
+                $("#caras_jhonnie700").val("");
+                $("#precio_jhonnie700").val("");
+                $("#caras_jhonnie375").val("");
+                $("#precio_jhonnie375").val("");
+                $("#caras_jhonnie1000").prop('disabled', true);
+                $("#precio_jhonnie1000").prop('disabled', true);
+                $("#caras_jhonnie700").prop('disabled', true);
+                $("#precio_jhonnie700").prop('disabled', true);
+                $("#caras_jhonnie375").prop('disabled', true);
+                $("#precio_jhonnie375").prop('disabled', true);
+                Johnnie1000si.checked = false;
+                Johnnie1000no.checked = false;
+                Johnnie700si.checked = false;
+                Johnnie700no.checked = false;
+                Johnnie375si.checked = false;
+                Johnnie375no.checked = false;
+                texto08.style.display = 'none';
+                texto09.style.display = 'none';
+                texto10.style.display = 'none';
+                $("#InputJhonnie").val("0");
+                $("#InputJhonnie1000").val("0");
+                $("#InputJhonnie700").val("0");
+                $("#InputJhonnie375").val("0");
+            }
         }
     </script>
     <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
+                texto08 = document.getElementById("texto08");
                 var valor = $(event.target).val();
                 if (valor == "jhonnie1000_si") {
-                    $("#divjhonnie1000").show();
                     $("#caras_jhonnie1000").prop('disabled', false);
                     $("#precio_jhonnie1000").prop('disabled', false);
+                    $("#caras_jhonnie1000").val("");
+                    $("#precio_jhonnie1000").val("");
                     $("#caras_jhonnie1000").focus();
+                    texto08.style.display = 'block';
+                    $("#InputJhonnie1000").val("1");
                 } else if (valor == "jhonnie1000_no") {
-                    $("#divjhonnie1000").hide();
+                    $("#caras_jhonnie1000").val("0");
+                    $("#precio_jhonnie1000").val("0");
                     $("#caras_jhonnie1000").prop('disabled', true);
                     $("#precio_jhonnie1000").prop('disabled', true);
-                    $("#js_700").show();
-                    $("#jhonnie700_si").prop('disabled', false);
-                    $("#jhonnie700_no").prop('disabled', false);
+                    texto08.style.display = 'none';
+                    $("#InputJhonnie1000").val("0");
                 }
             });
         });
     </script>
     <script>
-        function see08() {
-            $("#js_700").show();
-            $("#jhonnie700_si").prop('disabled', false);
-            $("#jhonnie700_no").prop('disabled', false);
-        }
-    </script>
-    <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
+                texto09 = document.getElementById("texto09");
                 var valor = $(event.target).val();
                 if (valor == "jhonnie700_si") {
-                    $("#divjhonnie700").show();
                     $("#caras_jhonnie700").prop('disabled', false);
                     $("#precio_jhonnie700").prop('disabled', false);
+                    $("#caras_jhonnie700").val("");
+                    $("#precio_jhonnie700").val("");
                     $("#caras_jhonnie700").focus();
+                    $("#InputJhonnie700").val("1");
+                    texto09.style.display = 'block';
                 } else if (valor == "jhonnie700_no") {
-                    $("#divjhonnie700").hide();
+                    $("#caras_jhonnie700").val("0");
+                    $("#precio_jhonnie700").val("0");
                     $("#caras_jhonnie700").prop('disabled', true);
                     $("#precio_jhonnie700").prop('disabled', true);
-                    $("#js_375").show();
-                    $("#jhonnie375_si").prop('disabled', false);
-                    $("#jhonnie375_no").prop('disabled', false);
+                    texto09.style.display = 'none';
+                    $("#InputJhonnie700").val("0");
                 }
             });
         });
     </script>
     <script>
-        function see09() {
-            $("#js_375").show();
-            $("#jhonnie375_si").prop('disabled', false);
-            $("#jhonnie375_no").prop('disabled', false);
-        }
-    </script>
-    <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
+                texto10 = document.getElementById("texto10");
                 var valor = $(event.target).val();
                 if (valor == "jhonnie375_si") {
-                    $("#divjhonnie375").show();
                     $("#caras_jhonnie375").prop('disabled', false);
                     $("#precio_jhonnie375").prop('disabled', false);
+                    $("#caras_jhonnie375").val("");
+                    $("#precio_jhonnie375").val("");
                     $("#caras_jhonnie375").focus();
+                    $("#InputJhonnie375").val("1")
+                    texto10.style.display = 'block';
                 } else if (valor == "jhonnie375_no") {
-                    $("#divjhonnie375").hide();
+                    $("#caras_jhonnie375").val("0");
+                    $("#precio_jhonnie375").val("0");
                     $("#caras_jhonnie375").prop('disabled', true);
                     $("#precio_jhonnie375").prop('disabled', true);
-                    $("#ol750").show();
-                    $("#title_op").show()
-                    $("#oldparr750_si").prop('disabled', false);
-                    $("#oldparr750_no").prop('disabled', false);
+                    texto10.style.display = 'none';
+                    $("#InputJhonnie375").val("0");
                 }
             });
         });
     </script>
     <script>
-        function see10() {
-            $("#ol750").show();
-            $("#title_op").show()
-            $("#oldparr750_si").prop('disabled', false);
-            $("#oldparr750_no").prop('disabled', false);
+        function showContent5() {
+            element5 = document.getElementById("divOldParr");
+            check5 = document.getElementById("OldParrSi");
+            check5no = document.getElementById("OldParrNo");
+            OldParr750si = document.getElementById("oldparr750_si");
+            OldParr750no = document.getElementById("oldparr750_no");
+            texto11 = document.getElementById("texto11");
+            if (check5.checked) {
+                element5.style.display = 'block';
+                $("#InputOldParr").val("1");
+            } else if (check5no.checked) {
+                element5.style.display = 'none';
+                $("#caras_oldparr750").val(" ");
+                $("#precio_oldparr750").val(" ");
+                $("#caras_oldparr750").prop('disabled', true);
+                $("#precio_oldparr750").prop('disabled', true);
+                OldParr750si.checked = false;
+                OldParr750no.checked = false;
+                texto11.style.display = 'none';
+                $("#InputOldParr").val("0");
+                $("#InputOldParr750 ").val("0");
+            }
         }
     </script>
     <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
+                texto11 = document.getElementById("texto11");
                 var valor = $(event.target).val();
                 if (valor == "oldparr750_si") {
-                    $("#divOldparr750").show();
                     $("#caras_oldparr750").prop('disabled', false);
                     $("#precio_oldparr750").prop('disabled', false);
+                    $("#caras_oldparr750").val(" ");
+                    $("#precio_oldparr750").val(" ");
                     $("#caras_oldparr750").focus();
+                    texto11.style.display = 'block';
+                    $("#InputOldParr750 ").val("1");
                 } else if (valor == "oldparr750_no") {
-                    $("#divOldparr750").hide();
+                    $("#caras_oldparr750").val(" ");
+                    $("#precio_oldparr750").val(" ");
                     $("#caras_oldparr750").prop('disabled', true);
                     $("#precio_oldparr750").prop('disabled', true);
-                    $("#bc700").show();
-                    $("#title_bc").show()
-                    $("#buchannas700_si").prop('disabled', false);
-                    $("#buchannas700_no").prop('disabled', false);
-                    $("#smirDiv4").show();
+                    texto11.style.display = 'none';
+                    $("#InputOldParr750 ").val("0");
                 }
             });
         });
     </script>
     <script>
-        function see11() {
-            $("#bc700").show();
-            $("#smirDiv4").show();
-            $("#title_bc").show()
-            $("#buchannas700_si").prop('disabled', false);
-            $("#buchannas700_no").prop('disabled', false);
+        function showContent6() {
+            element6 = document.getElementById("divBuchannas");
+            check6 = document.getElementById("BuchannasSi");
+            check6no = document.getElementById("BuchannasNo");
+            buchannas700si = document.getElementById("buchannas700_si");
+            buchannas700no = document.getElementById("buchannas700_no");
+            buchannas375si = document.getElementById("buchannas375_si");
+            buchannas375no = document.getElementById("buchannas375_no");
+            texto12 = document.getElementById("texto12");
+            texto13 = document.getElementById("texto13");
+            if (check6.checked) {
+                element6.style.display = 'block';
+                $("#InputBuchannas ").val("1");
+            } else if (check6no.checked) {
+                element6.style.display = 'none';
+                $("#caras_buchannas700").val(" ");
+                $("#precio_buchannas700").val(" ");
+                $("#caras_buchannas375").val(" ");
+                $("#precio_buchannas375").val(" ");
+                $("#caras_buchannas700").prop('disabled', true);
+                $("#precio_buchannas700").prop('disabled', true);
+                $("#caras_buchannas375").prop('disabled', true);
+                $("#precio_buchannas375").prop('disabled', true);
+                buchannas700si.checked = false;
+                buchannas700no.checked = false;
+                buchannas375si.checked = false;
+                buchannas375no.checked = false;
+                texto12.style.display = 'none';
+                texto13.style.display = 'none';
+                $("#InputBuchannas ").val("0");
+                $("#InputBuchannas700 ").val("0");
+                $("#InputBuchannas375 ").val("0");
+            }
         }
     </script>
     <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
+                texto12 = document.getElementById("texto12");
                 var valor = $(event.target).val();
                 if (valor == "buchannas700_si") {
-                    $("#divBuchannas700").show();
                     $("#caras_buchannas700").prop('disabled', false);
                     $("#precio_buchannas700").prop('disabled', false);
+                    $("#caras_buchannas700").val(" ");
+                    $("#precio_buchannas700").val(" ");
                     $("#caras_buchannas700").focus();
+                    texto12.style.display = 'block';
+                    $("#InputBuchannas700 ").val("1");
                 } else if (valor == "buchannas700_no") {
-                    $("#divBuchannas700").hide();
-                    $("#divBuchannas700").hide();
-
+                    $("#caras_buchannas700").val(" ");
+                    $("#precio_buchannas700").val(" ");
                     $("#caras_buchannas700").prop('disabled', true);
                     $("#precio_buchannas700").prop('disabled', true);
-                    $("#bc_375").show();
-                    $("#buchannas375_si").prop('disabled', false);
-                    $("#buchannas375_no").prop('disabled', false);
+                    texto12.style.display = 'none';
+                    $("#InputBuchannas700 ").val("0");
                 }
             });
         });
     </script>
     <script>
-        function see12() {
-            $("#bc_375").show();
-            $("#buchannas375_si").prop('disabled', false);
-            $("#buchannas375_no").prop('disabled', false);
-        }
-    </script>
-
-
-    <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
+                texto13 = document.getElementById("texto13");
                 var valor = $(event.target).val();
                 if (valor == "buchannas375_si") {
-                    $("#divBuchannas375").show();
                     $("#caras_buchannas375").prop('disabled', false);
                     $("#precio_buchannas375").prop('disabled', false);
+                    $("#caras_buchannas375").val(" ");
+                    $("#precio_buchannas375").val(" ");
                     $("#caras_buchannas375").focus();
+                    texto13.style.display = 'block';
+                    $("#InputBuchannas375 ").val("1");
                 } else if (valor == "buchannas375_no") {
-                    $("#divBuchannas375").hide();
+                    $("#caras_buchannas375").val(" ");
+                    $("#precio_buchannas375").val(" ");
                     $("#caras_buchannas375").prop('disabled', true);
                     $("#precio_buchannas375").prop('disabled', true);
-                    $("#divCal_marc_v").show();
-                    $("#title_cmv").show()
-                    $("#cal_marc_visible_si").prop('disabled', false);
-                    $("#cal_marc_visible_no").prop('disabled', false);
-                    $("#calimarc").show();
-
-
+                    texto13.style.display = 'none';
+                    $("#InputBuchannas375 ").val("0");
                 }
             });
         });
     </script>
 
     <script>
-        function see13() {
+        function showContent7() {
+            element7 = document.getElementById("DivSComRones");
+            card_double = document.getElementById("card_double");
+            check7 = document.getElementById("RonesCompSi");
+            check7no = document.getElementById("RonesCompNo");
+            if (check7.checked) {
+                element7.style.display = 'block';
+                card_double.style.height = "1000px";
+                card_double.style.width = "400px";
+                $("#comp_ron1").prop('disabled', false);
+                $("#comp_ron2").prop('disabled', false);
+                $("#precio_comp_ron1").prop('disabled', false);
+                $("#precio_comp_ron2").prop('disabled', false);
+                $("#caras_comp_ron").prop('disabled', false);
+                $("#seleccionLinealR").prop('disabled', false);
+                $("#InputRonesComp").val("1");
 
 
-            $("#divCal_marc_v").show();
-            $("#title_cmv").show();
-            $("#calimarc").show();
-            $("#cal_marc_visible_si").prop('disabled', false);
-            $("#cal_marc_visible_no").prop('disabled', false);
+
+            } else if (check7no.checked) {
+                element7.style.display = 'none';
+                card_double.style.height = "200px";
+                $("#comp_ron1").prop('disabled', true);
+                $("#comp_ron2").prop('disabled', true);
+                $("#precio_comp_ron1").prop('disabled', true);
+                $("#precio_comp_ron2").prop('disabled', true);
+                $("#caras_comp_ron").prop('disabled', true);
+                $("#seleccionLinealR").prop('disabled', true);
+                $("#InputRonesComp").val("0");
+                $("#comp_ron1").val("n/a");
+                $("#comp_ron2").val("n/a");
+
+
+            }
         }
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $("input[type=radio]").click(function(event) {
-                var valor = $(event.target).val();
-                if (valor == "cal_marc_visible_si") {
-                    $("#divCal_marc_d").show();
-                    $("#cal_marc_danados_si").prop('disabled', false);
-                    $("#cal_marc_danados_no").prop('disabled', false);
-                } else if (valor == "cal_marc_visible_no") {
-                    $("#divCal_marc_d").show();
-                    $("#cal_marc_danados_si").prop('disabled', false);
-                    $("#cal_marc_danados_no").prop('disabled', false);
-                }
-            });
-        });
-    </script>
-
 
     <script>
-        $(document).ready(function() {
-            $("input[type=radio]").click(function(event) {
-                var valor = $(event.target).val();
-                if (valor == "cal_marc_danados_si") {
-                    $("#divCal_marc_etd").show();
-                    $("#cal_marc_et_danados_si").prop('disabled', false);
-                    $("#cal_marc_et_danados_no").prop('disabled', false);
-                } else if (valor == "cal_marc_danados_no") {
-                    $("#divCal_marc_etd").show();
-                    $("#cal_marc_et_danados_si").prop('disabled', false);
-                    $("#cal_marc_et_danados_no").prop('disabled', false);
-                }
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("input[type=radio]").click(function(event) {
-                var valor = $(event.target).val();
-                if (valor == "cal_marc_et_danados_si") {
-                    $("#seleccionLinealDiageo").prop('disabled', false);
-                    $("#hay_ron_no").prop('disabled', false);
-                    $("#hay_ron_si").prop('disabled', false);
-                    $("#precio_comp_ron1").prop('disabled', false);
-                    $("#precio_comp_ron2").prop('disabled', false);
-                    $("#caras_comp_ron").prop('disabled', false);
-                    $("#divImgCal").show();
-                } else if (valor == "cal_marc_et_danados_no") {
-                    $("#seleccionLinealDiageo").prop('disabled', false);
-                    $("#hay_ron_no").prop('disabled', false);
-                    $("#hay_ron_si").prop('disabled', false);
-                    $("#divImgCal").show();
-                }
-            });
-        });
-    </script>
-    <script>
-        function seeRones() {
-            var y = document.getElementById("divRonesTitulo");
-            y.style.display = 'block';
-            $("#hay_ron_si").prop('disabled', false);
-            $("#hay_ron_no").prop('disabled', false);
+        function showContent8() {
+            element8 = document.getElementById("DivSComAguard");
+            card_double = document.getElementById("card_double2");
+            check8 = document.getElementById("AguarCompSi");
+            check8no = document.getElementById("AguarCompNo");
+            if (check8.checked) {
+                element8.style.display = 'block';
+                card_double.style.height = "1000px";
+                card_double.style.width = "400px";
+                $("#comp_aguard1").prop('disabled', false);
+                $("#comp_aguard2").prop('disabled', false);
+                $("#precio_comp_aguardiente1").prop('disabled', false);
+                $("#precio_comp_aguardiente2").prop('disabled', false);
+                $("#caras_comp_aguardiente").prop('disabled', false);
+                $("#seleccionLinealA").prop('disabled', false);
+                $("#InputAguarComp").val("1");
+
+
+            } else if (check8no.checked) {
+                element8.style.display = 'none';
+                card_double.style.height = "200px";
+                $("#comp_aguard1").prop('disabled', true);
+                $("#comp_aguard2").prop('disabled', true);
+                $("#precio_comp_aguardiente1").prop('disabled', true);
+                $("#precio_comp_aguardiente2").prop('disabled', true);
+                $("#caras_comp_aguardiente").prop('disabled', true);
+                $("#seleccionLinealA").prop('disabled', true);
+                $("#InputAguarComp").val("0");
+                $("#comp_aguard1").val("n/a");
+                $("#comp_aguard2").val("n/a");
+            }
         }
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $("input[type=radio]").click(function(event) {
-                var valor = $(event.target).val();
-                if (valor == "hay_ron_si") {
-                    $("#divRones").show();
-                    $("#comp_ron1").prop('disabled', false);
-                    $("#comp_ron2").prop('disabled', false);
-                    $("#seleccionLinealR").prop('disabled', false);
-                    $("#precio_comp_ron1").prop('disabled', false);
-                    $("#caras_comp_ron").prop('disabled', false);
-                    $("#precio_comp_ron2").prop('disabled', false);
 
-                } else if (valor == "hay_ron_no") {
-                    $("#divRones").hide();
-                    $("#comp_ron1").prop('disabled', true);
-                    $("#comp_ron2").prop('disabled', true);
-                    $("#seleccionLinealR").prop('disabled', true);
-                    $("#precio_comp_ron1").prop('disabled', true);
-                    $("#caras_comp_ron").prop('disabled', true);
-                    $("#precio_comp_ron2").prop('disabled', true);
-                    $("#aguardientesDiv").show();
-                    $("#hay_aguardiente_si").prop('disabled', false);
-                    $("#hay_aguardiente_no").prop('disabled', false);
-                }
-            });
-        });
-    </script>
     <script>
-        function see15() {
-            $("#aguardientesDiv").show();
-            $("#hay_aguardiente_si").prop('disabled', false);
-            $("#hay_aguardiente_no").prop('disabled', false);
+        function showContent9() {
+            check9 = document.getElementById("cal_marc_visible_si");
+            check9no = document.getElementById("cal_marc_visible_no");
+            if (check9.checked) {
+                $("#Inputcal_marc_visible").val("1");
+            } else if (check9no.checked) {
+                $("#Inputcal_marc_visible").val("0");
+            }
         }
     </script>
     <script>
-        $(document).ready(function() {
-            $("input[type=radio]").click(function(event) {
-                var valor = $(event.target).val();
-                if (valor == "hay_aguardiente_si") {
-                    $("#divAguardiente").show();
-                    $("#comp_aguard1").prop('disabled', false);
-                    $("#comp_aguard2").prop('disabled', false);
-                    $("#seleccionLinealA").prop('disabled', false);
-                } else if (valor == "hay_aguardiente_no") {
-                    $("#divImgCal").show();
-                    $("#comp_aguard1").prop('disabled', false);
-                    $("#comp_aguard2").prop('disabled', false);
-                    $("#seleccionLinealA").prop('disabled', true);
-                }
-            });
-        });
+        function showContent10() {
+            check10 = document.getElementById("cal_marc_danados_si");
+            check10no = document.getElementById("cal_marc_danados_no");
+            if (check10.checked) {
+                $("#Inputcal_marc_danados").val("1");
+            } else if (check10no.checked) {
+                $("#Inputcal_marc_danados ").val("0");
+            }
+        }
     </script>
     <script>
-        function see16() {
-            $("#divSubmit").show();
+        function showContent11() {
+            check11 = document.getElementById("cal_marc_et_danados_si");
+            check11no = document.getElementById("cal_marc_et_danados_no");
+            if (check11.checked) {
+                $("#Inputcal_marc_et_danados").val("1");
+            } else if (check11no.checked) {
+                $("#Inputcal_marc_et_danados ").val("0");
+            }
         }
     </script>
 
@@ -1509,7 +1584,7 @@
     </script>
     <script>
         document.getElementById("precio_bAndw1000").addEventListener("keyup", function(e) {
-            document.getElementById("texto").innerHTML = NumeroALetras(this.value);
+            document.getElementById("texto01").innerHTML = NumeroALetras(this.value);
         });
 
 
@@ -2288,201 +2363,6 @@
         } //NumeroALetras()
     </script>
     <script>
-        document.getElementById("precio_smirnoff_ns700").addEventListener("keyup", function(e) {
-            document.getElementById("textons").innerHTML = NumeroALetras(this.value);
-        });
-
-
-        function Unidades(num) {
-
-            switch (num) {
-                case 1:
-                    return "UN";
-                case 2:
-                    return "DOS";
-                case 3:
-                    return "TRES";
-                case 4:
-                    return "CUATRO";
-                case 5:
-                    return "CINCO";
-                case 6:
-                    return "SEIS";
-                case 7:
-                    return "SIETE";
-                case 8:
-                    return "OCHO";
-                case 9:
-                    return "NUEVE";
-            }
-
-            return "";
-        }
-
-        function Decenas(num) {
-
-            decena = Math.floor(num / 10);
-            unidad = num - (decena * 10);
-
-            switch (decena) {
-                case 1:
-                    switch (unidad) {
-                        case 0:
-                            return "DIEZ";
-                        case 1:
-                            return "ONCE";
-                        case 2:
-                            return "DOCE";
-                        case 3:
-                            return "TRECE";
-                        case 4:
-                            return "CATORCE";
-                        case 5:
-                            return "QUINCE";
-                        default:
-                            return "DIECI" + Unidades(unidad);
-                    }
-                case 2:
-                    switch (unidad) {
-                        case 0:
-                            return "VEINTE";
-                        default:
-                            return "VEINTI" + Unidades(unidad);
-                    }
-                case 3:
-                    return DecenasY("TREINTA", unidad);
-                case 4:
-                    return DecenasY("CUARENTA", unidad);
-                case 5:
-                    return DecenasY("CINCUENTA", unidad);
-                case 6:
-                    return DecenasY("SESENTA", unidad);
-                case 7:
-                    return DecenasY("SETENTA", unidad);
-                case 8:
-                    return DecenasY("OCHENTA", unidad);
-                case 9:
-                    return DecenasY("NOVENTA", unidad);
-                case 0:
-                    return Unidades(unidad);
-            }
-        } //Unidades()
-
-        function DecenasY(strSin, numUnidades) {
-            if (numUnidades > 0)
-                return strSin + " Y " + Unidades(numUnidades)
-
-            return strSin;
-        } //DecenasY()
-
-        function Centenas(num) {
-
-            centenas = Math.floor(num / 100);
-            decenas = num - (centenas * 100);
-
-            switch (centenas) {
-                case 1:
-                    if (decenas > 0)
-                        return "CIENTO " + Decenas(decenas);
-                    return "CIEN";
-                case 2:
-                    return "DOSCIENTOS " + Decenas(decenas);
-                case 3:
-                    return "TRESCIENTOS " + Decenas(decenas);
-                case 4:
-                    return "CUATROCIENTOS " + Decenas(decenas);
-                case 5:
-                    return "QUINIENTOS " + Decenas(decenas);
-                case 6:
-                    return "SEISCIENTOS " + Decenas(decenas);
-                case 7:
-                    return "SETECIENTOS " + Decenas(decenas);
-                case 8:
-                    return "OCHOCIENTOS " + Decenas(decenas);
-                case 9:
-                    return "NOVECIENTOS " + Decenas(decenas);
-            }
-
-            return Decenas(decenas);
-        } //Centenas()
-
-        function Seccion(num, divisor, strSingular, strPlural) {
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            letras = "";
-
-            if (cientos > 0)
-                if (cientos > 1)
-                    letras = Centenas(cientos) + " " + strPlural;
-                else
-                    letras = strSingular;
-
-            if (resto > 0)
-                letras += "";
-
-            return letras;
-        } //Seccion()
-
-        function Miles(num) {
-            divisor = 1000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMiles = Seccion(num, divisor, "MIL", "MIL");
-            strCentenas = Centenas(resto);
-
-            if (strMiles == "")
-                return strCentenas;
-
-            return strMiles + " " + strCentenas;
-
-            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
-        } //Miles()
-
-        function Millones(num) {
-            divisor = 1000000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
-            strMiles = Miles(resto);
-
-            if (strMillones == "")
-                return strMiles;
-
-            return strMillones + " " + strMiles;
-
-            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
-        } //Millones()
-
-        function NumeroALetras(num, centavos) {
-            var data = {
-                numero: num,
-                enteros: Math.floor(num),
-                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
-                letrasCentavos: "",
-            };
-            if (centavos == undefined || centavos == false) {
-                data.letrasMonedaPlural = "PESOS";
-                data.letrasMonedaSingular = "PESO";
-            } else {
-                data.letrasMonedaPlural = "CENTAVOS";
-                data.letrasMonedaSingular = "CENTAVO";
-            }
-
-            if (data.centavos > 0)
-                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
-
-            if (data.enteros == 0)
-                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-            if (data.enteros == 1)
-                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
-            else
-                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-        } //NumeroALetras()
-    </script>
-    <script>
         document.getElementById("precio_smirnoff375").addEventListener("keyup", function(e) {
             document.getElementById("texto05").innerHTML = NumeroALetras(this.value);
         });
@@ -2678,397 +2558,202 @@
         } //NumeroALetras()
     </script>
     <script>
+        document.getElementById("precio_smirnoff_ns700").addEventListener("keyup", function(e) {
+            document.getElementById("texto06").innerHTML = NumeroALetras(this.value);
+        });
+
+
+        function Unidades(num) {
+
+            switch (num) {
+                case 1:
+                    return "UN";
+                case 2:
+                    return "DOS";
+                case 3:
+                    return "TRES";
+                case 4:
+                    return "CUATRO";
+                case 5:
+                    return "CINCO";
+                case 6:
+                    return "SEIS";
+                case 7:
+                    return "SIETE";
+                case 8:
+                    return "OCHO";
+                case 9:
+                    return "NUEVE";
+            }
+
+            return "";
+        }
+
+        function Decenas(num) {
+
+            decena = Math.floor(num / 10);
+            unidad = num - (decena * 10);
+
+            switch (decena) {
+                case 1:
+                    switch (unidad) {
+                        case 0:
+                            return "DIEZ";
+                        case 1:
+                            return "ONCE";
+                        case 2:
+                            return "DOCE";
+                        case 3:
+                            return "TRECE";
+                        case 4:
+                            return "CATORCE";
+                        case 5:
+                            return "QUINCE";
+                        default:
+                            return "DIECI" + Unidades(unidad);
+                    }
+                case 2:
+                    switch (unidad) {
+                        case 0:
+                            return "VEINTE";
+                        default:
+                            return "VEINTI" + Unidades(unidad);
+                    }
+                case 3:
+                    return DecenasY("TREINTA", unidad);
+                case 4:
+                    return DecenasY("CUARENTA", unidad);
+                case 5:
+                    return DecenasY("CINCUENTA", unidad);
+                case 6:
+                    return DecenasY("SESENTA", unidad);
+                case 7:
+                    return DecenasY("SETENTA", unidad);
+                case 8:
+                    return DecenasY("OCHENTA", unidad);
+                case 9:
+                    return DecenasY("NOVENTA", unidad);
+                case 0:
+                    return Unidades(unidad);
+            }
+        } //Unidades()
+
+        function DecenasY(strSin, numUnidades) {
+            if (numUnidades > 0)
+                return strSin + " Y " + Unidades(numUnidades)
+
+            return strSin;
+        } //DecenasY()
+
+        function Centenas(num) {
+
+            centenas = Math.floor(num / 100);
+            decenas = num - (centenas * 100);
+
+            switch (centenas) {
+                case 1:
+                    if (decenas > 0)
+                        return "CIENTO " + Decenas(decenas);
+                    return "CIEN";
+                case 2:
+                    return "DOSCIENTOS " + Decenas(decenas);
+                case 3:
+                    return "TRESCIENTOS " + Decenas(decenas);
+                case 4:
+                    return "CUATROCIENTOS " + Decenas(decenas);
+                case 5:
+                    return "QUINIENTOS " + Decenas(decenas);
+                case 6:
+                    return "SEISCIENTOS " + Decenas(decenas);
+                case 7:
+                    return "SETECIENTOS " + Decenas(decenas);
+                case 8:
+                    return "OCHOCIENTOS " + Decenas(decenas);
+                case 9:
+                    return "NOVECIENTOS " + Decenas(decenas);
+            }
+
+            return Decenas(decenas);
+        } //Centenas()
+
+        function Seccion(num, divisor, strSingular, strPlural) {
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            letras = "";
+
+            if (cientos > 0)
+                if (cientos > 1)
+                    letras = Centenas(cientos) + " " + strPlural;
+                else
+                    letras = strSingular;
+
+            if (resto > 0)
+                letras += "";
+
+            return letras;
+        } //Seccion()
+
+        function Miles(num) {
+            divisor = 1000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMiles = Seccion(num, divisor, "MIL", "MIL");
+            strCentenas = Centenas(resto);
+
+            if (strMiles == "")
+                return strCentenas;
+
+            return strMiles + " " + strCentenas;
+
+            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
+        } //Miles()
+
+        function Millones(num) {
+            divisor = 1000000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
+            strMiles = Miles(resto);
+
+            if (strMillones == "")
+                return strMiles;
+
+            return strMillones + " " + strMiles;
+
+            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
+        } //Millones()
+
+        function NumeroALetras(num, centavos) {
+            var data = {
+                numero: num,
+                enteros: Math.floor(num),
+                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+                letrasCentavos: "",
+            };
+            if (centavos == undefined || centavos == false) {
+                data.letrasMonedaPlural = "PESOS";
+                data.letrasMonedaSingular = "PESO";
+            } else {
+                data.letrasMonedaPlural = "CENTAVOS";
+                data.letrasMonedaSingular = "CENTAVO";
+            }
+
+            if (data.centavos > 0)
+                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
+
+            if (data.enteros == 0)
+                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+            if (data.enteros == 1)
+                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
+            else
+                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+        } //NumeroALetras()
+    </script>
+    <script>
         document.getElementById("precio_smirnoff_ns375").addEventListener("keyup", function(e) {
-            document.getElementById("texto375ns").innerHTML = NumeroALetras(this.value);
-        });
-
-
-        function Unidades(num) {
-
-            switch (num) {
-                case 1:
-                    return "UN";
-                case 2:
-                    return "DOS";
-                case 3:
-                    return "TRES";
-                case 4:
-                    return "CUATRO";
-                case 5:
-                    return "CINCO";
-                case 6:
-                    return "SEIS";
-                case 7:
-                    return "SIETE";
-                case 8:
-                    return "OCHO";
-                case 9:
-                    return "NUEVE";
-            }
-
-            return "";
-        }
-
-        function Decenas(num) {
-
-            decena = Math.floor(num / 10);
-            unidad = num - (decena * 10);
-
-            switch (decena) {
-                case 1:
-                    switch (unidad) {
-                        case 0:
-                            return "DIEZ";
-                        case 1:
-                            return "ONCE";
-                        case 2:
-                            return "DOCE";
-                        case 3:
-                            return "TRECE";
-                        case 4:
-                            return "CATORCE";
-                        case 5:
-                            return "QUINCE";
-                        default:
-                            return "DIECI" + Unidades(unidad);
-                    }
-                case 2:
-                    switch (unidad) {
-                        case 0:
-                            return "VEINTE";
-                        default:
-                            return "VEINTI" + Unidades(unidad);
-                    }
-                case 3:
-                    return DecenasY("TREINTA", unidad);
-                case 4:
-                    return DecenasY("CUARENTA", unidad);
-                case 5:
-                    return DecenasY("CINCUENTA", unidad);
-                case 6:
-                    return DecenasY("SESENTA", unidad);
-                case 7:
-                    return DecenasY("SETENTA", unidad);
-                case 8:
-                    return DecenasY("OCHENTA", unidad);
-                case 9:
-                    return DecenasY("NOVENTA", unidad);
-                case 0:
-                    return Unidades(unidad);
-            }
-        } //Unidades()
-
-        function DecenasY(strSin, numUnidades) {
-            if (numUnidades > 0)
-                return strSin + " Y " + Unidades(numUnidades)
-
-            return strSin;
-        } //DecenasY()
-
-        function Centenas(num) {
-
-            centenas = Math.floor(num / 100);
-            decenas = num - (centenas * 100);
-
-            switch (centenas) {
-                case 1:
-                    if (decenas > 0)
-                        return "CIENTO " + Decenas(decenas);
-                    return "CIEN";
-                case 2:
-                    return "DOSCIENTOS " + Decenas(decenas);
-                case 3:
-                    return "TRESCIENTOS " + Decenas(decenas);
-                case 4:
-                    return "CUATROCIENTOS " + Decenas(decenas);
-                case 5:
-                    return "QUINIENTOS " + Decenas(decenas);
-                case 6:
-                    return "SEISCIENTOS " + Decenas(decenas);
-                case 7:
-                    return "SETECIENTOS " + Decenas(decenas);
-                case 8:
-                    return "OCHOCIENTOS " + Decenas(decenas);
-                case 9:
-                    return "NOVECIENTOS " + Decenas(decenas);
-            }
-
-            return Decenas(decenas);
-        } //Centenas()
-
-        function Seccion(num, divisor, strSingular, strPlural) {
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            letras = "";
-
-            if (cientos > 0)
-                if (cientos > 1)
-                    letras = Centenas(cientos) + " " + strPlural;
-                else
-                    letras = strSingular;
-
-            if (resto > 0)
-                letras += "";
-
-            return letras;
-        } //Seccion()
-
-        function Miles(num) {
-            divisor = 1000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMiles = Seccion(num, divisor, "MIL", "MIL");
-            strCentenas = Centenas(resto);
-
-            if (strMiles == "")
-                return strCentenas;
-
-            return strMiles + " " + strCentenas;
-
-            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
-        } //Miles()
-
-        function Millones(num) {
-            divisor = 1000000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
-            strMiles = Miles(resto);
-
-            if (strMillones == "")
-                return strMiles;
-
-            return strMillones + " " + strMiles;
-
-            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
-        } //Millones()
-
-        function NumeroALetras(num, centavos) {
-            var data = {
-                numero: num,
-                enteros: Math.floor(num),
-                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
-                letrasCentavos: "",
-            };
-            if (centavos == undefined || centavos == false) {
-                data.letrasMonedaPlural = "PESOS";
-                data.letrasMonedaSingular = "PESO";
-            } else {
-                data.letrasMonedaPlural = "CENTAVOS";
-                data.letrasMonedaSingular = "CENTAVO";
-            }
-
-            if (data.centavos > 0)
-                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
-
-            if (data.enteros == 0)
-                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-            if (data.enteros == 1)
-                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
-            else
-                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-        } //NumeroALetras()
-    </script>
-    <script>
-        document.getElementById("precio_jhonnie1000").addEventListener("keyup", function(e) {
-            document.getElementById("texto06").innerHTML = NumeroALetras(this.value);
-        });
-
-
-        function Unidades(num) {
-
-            switch (num) {
-                case 1:
-                    return "UN";
-                case 2:
-                    return "DOS";
-                case 3:
-                    return "TRES";
-                case 4:
-                    return "CUATRO";
-                case 5:
-                    return "CINCO";
-                case 6:
-                    return "SEIS";
-                case 7:
-                    return "SIETE";
-                case 8:
-                    return "OCHO";
-                case 9:
-                    return "NUEVE";
-            }
-
-            return "";
-        }
-
-        function Decenas(num) {
-
-            decena = Math.floor(num / 10);
-            unidad = num - (decena * 10);
-
-            switch (decena) {
-                case 1:
-                    switch (unidad) {
-                        case 0:
-                            return "DIEZ";
-                        case 1:
-                            return "ONCE";
-                        case 2:
-                            return "DOCE";
-                        case 3:
-                            return "TRECE";
-                        case 4:
-                            return "CATORCE";
-                        case 5:
-                            return "QUINCE";
-                        default:
-                            return "DIECI" + Unidades(unidad);
-                    }
-                case 2:
-                    switch (unidad) {
-                        case 0:
-                            return "VEINTE";
-                        default:
-                            return "VEINTI" + Unidades(unidad);
-                    }
-                case 3:
-                    return DecenasY("TREINTA", unidad);
-                case 4:
-                    return DecenasY("CUARENTA", unidad);
-                case 5:
-                    return DecenasY("CINCUENTA", unidad);
-                case 6:
-                    return DecenasY("SESENTA", unidad);
-                case 7:
-                    return DecenasY("SETENTA", unidad);
-                case 8:
-                    return DecenasY("OCHENTA", unidad);
-                case 9:
-                    return DecenasY("NOVENTA", unidad);
-                case 0:
-                    return Unidades(unidad);
-            }
-        } //Unidades()
-
-        function DecenasY(strSin, numUnidades) {
-            if (numUnidades > 0)
-                return strSin + " Y " + Unidades(numUnidades)
-
-            return strSin;
-        } //DecenasY()
-
-        function Centenas(num) {
-
-            centenas = Math.floor(num / 100);
-            decenas = num - (centenas * 100);
-
-            switch (centenas) {
-                case 1:
-                    if (decenas > 0)
-                        return "CIENTO " + Decenas(decenas);
-                    return "CIEN";
-                case 2:
-                    return "DOSCIENTOS " + Decenas(decenas);
-                case 3:
-                    return "TRESCIENTOS " + Decenas(decenas);
-                case 4:
-                    return "CUATROCIENTOS " + Decenas(decenas);
-                case 5:
-                    return "QUINIENTOS " + Decenas(decenas);
-                case 6:
-                    return "SEISCIENTOS " + Decenas(decenas);
-                case 7:
-                    return "SETECIENTOS " + Decenas(decenas);
-                case 8:
-                    return "OCHOCIENTOS " + Decenas(decenas);
-                case 9:
-                    return "NOVECIENTOS " + Decenas(decenas);
-            }
-
-            return Decenas(decenas);
-        } //Centenas()
-
-        function Seccion(num, divisor, strSingular, strPlural) {
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            letras = "";
-
-            if (cientos > 0)
-                if (cientos > 1)
-                    letras = Centenas(cientos) + " " + strPlural;
-                else
-                    letras = strSingular;
-
-            if (resto > 0)
-                letras += "";
-
-            return letras;
-        } //Seccion()
-
-        function Miles(num) {
-            divisor = 1000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMiles = Seccion(num, divisor, "MIL", "MIL");
-            strCentenas = Centenas(resto);
-
-            if (strMiles == "")
-                return strCentenas;
-
-            return strMiles + " " + strCentenas;
-
-            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
-        } //Miles()
-
-        function Millones(num) {
-            divisor = 1000000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
-            strMiles = Miles(resto);
-
-            if (strMillones == "")
-                return strMiles;
-
-            return strMillones + " " + strMiles;
-
-            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
-        } //Millones()
-
-        function NumeroALetras(num, centavos) {
-            var data = {
-                numero: num,
-                enteros: Math.floor(num),
-                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
-                letrasCentavos: "",
-            };
-            if (centavos == undefined || centavos == false) {
-                data.letrasMonedaPlural = "PESOS";
-                data.letrasMonedaSingular = "PESO";
-            } else {
-                data.letrasMonedaPlural = "CENTAVOS";
-                data.letrasMonedaSingular = "CENTAVO";
-            }
-
-            if (data.centavos > 0)
-                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
-
-            if (data.enteros == 0)
-                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-            if (data.enteros == 1)
-                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
-            else
-                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-        } //NumeroALetras()
-    </script>
-    <script>
-        document.getElementById("precio_jhonnie700").addEventListener("keyup", function(e) {
             document.getElementById("texto07").innerHTML = NumeroALetras(this.value);
         });
 
@@ -3264,7 +2949,7 @@
     </script>
     <script>
         document.getElementById("precio_jhonnie1000").addEventListener("keyup", function(e) {
-            document.getElementById("texto06").innerHTML = NumeroALetras(this.value);
+            document.getElementById("texto08").innerHTML = NumeroALetras(this.value);
         });
 
 
@@ -3459,201 +3144,6 @@
     </script>
     <script>
         document.getElementById("precio_jhonnie700").addEventListener("keyup", function(e) {
-            document.getElementById("texto07").innerHTML = NumeroALetras(this.value);
-        });
-
-
-        function Unidades(num) {
-
-            switch (num) {
-                case 1:
-                    return "UN";
-                case 2:
-                    return "DOS";
-                case 3:
-                    return "TRES";
-                case 4:
-                    return "CUATRO";
-                case 5:
-                    return "CINCO";
-                case 6:
-                    return "SEIS";
-                case 7:
-                    return "SIETE";
-                case 8:
-                    return "OCHO";
-                case 9:
-                    return "NUEVE";
-            }
-
-            return "";
-        }
-
-        function Decenas(num) {
-
-            decena = Math.floor(num / 10);
-            unidad = num - (decena * 10);
-
-            switch (decena) {
-                case 1:
-                    switch (unidad) {
-                        case 0:
-                            return "DIEZ";
-                        case 1:
-                            return "ONCE";
-                        case 2:
-                            return "DOCE";
-                        case 3:
-                            return "TRECE";
-                        case 4:
-                            return "CATORCE";
-                        case 5:
-                            return "QUINCE";
-                        default:
-                            return "DIECI" + Unidades(unidad);
-                    }
-                case 2:
-                    switch (unidad) {
-                        case 0:
-                            return "VEINTE";
-                        default:
-                            return "VEINTI" + Unidades(unidad);
-                    }
-                case 3:
-                    return DecenasY("TREINTA", unidad);
-                case 4:
-                    return DecenasY("CUARENTA", unidad);
-                case 5:
-                    return DecenasY("CINCUENTA", unidad);
-                case 6:
-                    return DecenasY("SESENTA", unidad);
-                case 7:
-                    return DecenasY("SETENTA", unidad);
-                case 8:
-                    return DecenasY("OCHENTA", unidad);
-                case 9:
-                    return DecenasY("NOVENTA", unidad);
-                case 0:
-                    return Unidades(unidad);
-            }
-        } //Unidades()
-
-        function DecenasY(strSin, numUnidades) {
-            if (numUnidades > 0)
-                return strSin + " Y " + Unidades(numUnidades)
-
-            return strSin;
-        } //DecenasY()
-
-        function Centenas(num) {
-
-            centenas = Math.floor(num / 100);
-            decenas = num - (centenas * 100);
-
-            switch (centenas) {
-                case 1:
-                    if (decenas > 0)
-                        return "CIENTO " + Decenas(decenas);
-                    return "CIEN";
-                case 2:
-                    return "DOSCIENTOS " + Decenas(decenas);
-                case 3:
-                    return "TRESCIENTOS " + Decenas(decenas);
-                case 4:
-                    return "CUATROCIENTOS " + Decenas(decenas);
-                case 5:
-                    return "QUINIENTOS " + Decenas(decenas);
-                case 6:
-                    return "SEISCIENTOS " + Decenas(decenas);
-                case 7:
-                    return "SETECIENTOS " + Decenas(decenas);
-                case 8:
-                    return "OCHOCIENTOS " + Decenas(decenas);
-                case 9:
-                    return "NOVECIENTOS " + Decenas(decenas);
-            }
-
-            return Decenas(decenas);
-        } //Centenas()
-
-        function Seccion(num, divisor, strSingular, strPlural) {
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            letras = "";
-
-            if (cientos > 0)
-                if (cientos > 1)
-                    letras = Centenas(cientos) + " " + strPlural;
-                else
-                    letras = strSingular;
-
-            if (resto > 0)
-                letras += "";
-
-            return letras;
-        } //Seccion()
-
-        function Miles(num) {
-            divisor = 1000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMiles = Seccion(num, divisor, "MIL", "MIL");
-            strCentenas = Centenas(resto);
-
-            if (strMiles == "")
-                return strCentenas;
-
-            return strMiles + " " + strCentenas;
-
-            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
-        } //Miles()
-
-        function Millones(num) {
-            divisor = 1000000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
-            strMiles = Miles(resto);
-
-            if (strMillones == "")
-                return strMiles;
-
-            return strMillones + " " + strMiles;
-
-            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
-        } //Millones()
-
-        function NumeroALetras(num, centavos) {
-            var data = {
-                numero: num,
-                enteros: Math.floor(num),
-                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
-                letrasCentavos: "",
-            };
-            if (centavos == undefined || centavos == false) {
-                data.letrasMonedaPlural = "PESOS";
-                data.letrasMonedaSingular = "PESO";
-            } else {
-                data.letrasMonedaPlural = "CENTAVOS";
-                data.letrasMonedaSingular = "CENTAVO";
-            }
-
-            if (data.centavos > 0)
-                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
-
-            if (data.enteros == 0)
-                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-            if (data.enteros == 1)
-                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
-            else
-                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-        } //NumeroALetras()
-    </script>
-    <script>
-        document.getElementById("precio_oldparr750").addEventListener("keyup", function(e) {
             document.getElementById("texto09").innerHTML = NumeroALetras(this.value);
         });
 
@@ -3849,396 +3339,6 @@
     </script>
     <script>
         document.getElementById("precio_jhonnie375").addEventListener("keyup", function(e) {
-            document.getElementById("texto08").innerHTML = NumeroALetras(this.value);
-        });
-
-
-        function Unidades(num) {
-
-            switch (num) {
-                case 1:
-                    return "UN";
-                case 2:
-                    return "DOS";
-                case 3:
-                    return "TRES";
-                case 4:
-                    return "CUATRO";
-                case 5:
-                    return "CINCO";
-                case 6:
-                    return "SEIS";
-                case 7:
-                    return "SIETE";
-                case 8:
-                    return "OCHO";
-                case 9:
-                    return "NUEVE";
-            }
-
-            return "";
-        }
-
-        function Decenas(num) {
-
-            decena = Math.floor(num / 10);
-            unidad = num - (decena * 10);
-
-            switch (decena) {
-                case 1:
-                    switch (unidad) {
-                        case 0:
-                            return "DIEZ";
-                        case 1:
-                            return "ONCE";
-                        case 2:
-                            return "DOCE";
-                        case 3:
-                            return "TRECE";
-                        case 4:
-                            return "CATORCE";
-                        case 5:
-                            return "QUINCE";
-                        default:
-                            return "DIECI" + Unidades(unidad);
-                    }
-                case 2:
-                    switch (unidad) {
-                        case 0:
-                            return "VEINTE";
-                        default:
-                            return "VEINTI" + Unidades(unidad);
-                    }
-                case 3:
-                    return DecenasY("TREINTA", unidad);
-                case 4:
-                    return DecenasY("CUARENTA", unidad);
-                case 5:
-                    return DecenasY("CINCUENTA", unidad);
-                case 6:
-                    return DecenasY("SESENTA", unidad);
-                case 7:
-                    return DecenasY("SETENTA", unidad);
-                case 8:
-                    return DecenasY("OCHENTA", unidad);
-                case 9:
-                    return DecenasY("NOVENTA", unidad);
-                case 0:
-                    return Unidades(unidad);
-            }
-        } //Unidades()
-
-        function DecenasY(strSin, numUnidades) {
-            if (numUnidades > 0)
-                return strSin + " Y " + Unidades(numUnidades)
-
-            return strSin;
-        } //DecenasY()
-
-        function Centenas(num) {
-
-            centenas = Math.floor(num / 100);
-            decenas = num - (centenas * 100);
-
-            switch (centenas) {
-                case 1:
-                    if (decenas > 0)
-                        return "CIENTO " + Decenas(decenas);
-                    return "CIEN";
-                case 2:
-                    return "DOSCIENTOS " + Decenas(decenas);
-                case 3:
-                    return "TRESCIENTOS " + Decenas(decenas);
-                case 4:
-                    return "CUATROCIENTOS " + Decenas(decenas);
-                case 5:
-                    return "QUINIENTOS " + Decenas(decenas);
-                case 6:
-                    return "SEISCIENTOS " + Decenas(decenas);
-                case 7:
-                    return "SETECIENTOS " + Decenas(decenas);
-                case 8:
-                    return "OCHOCIENTOS " + Decenas(decenas);
-                case 9:
-                    return "NOVECIENTOS " + Decenas(decenas);
-            }
-
-            return Decenas(decenas);
-        } //Centenas()
-
-        function Seccion(num, divisor, strSingular, strPlural) {
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            letras = "";
-
-            if (cientos > 0)
-                if (cientos > 1)
-                    letras = Centenas(cientos) + " " + strPlural;
-                else
-                    letras = strSingular;
-
-            if (resto > 0)
-                letras += "";
-
-            return letras;
-        } //Seccion()
-
-        function Miles(num) {
-            divisor = 1000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMiles = Seccion(num, divisor, "MIL", "MIL");
-            strCentenas = Centenas(resto);
-
-            if (strMiles == "")
-                return strCentenas;
-
-            return strMiles + " " + strCentenas;
-
-            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
-        } //Miles()
-
-        function Millones(num) {
-            divisor = 1000000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
-            strMiles = Miles(resto);
-
-            if (strMillones == "")
-                return strMiles;
-
-            return strMillones + " " + strMiles;
-
-            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
-        } //Millones()
-
-        function NumeroALetras(num, centavos) {
-            var data = {
-                numero: num,
-                enteros: Math.floor(num),
-                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
-                letrasCentavos: "",
-            };
-            if (centavos == undefined || centavos == false) {
-                data.letrasMonedaPlural = "PESOS";
-                data.letrasMonedaSingular = "PESO";
-            } else {
-                data.letrasMonedaPlural = "CENTAVOS";
-                data.letrasMonedaSingular = "CENTAVO";
-            }
-
-            if (data.centavos > 0)
-                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
-
-            if (data.enteros == 0)
-                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-            if (data.enteros == 1)
-                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
-            else
-                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-        } //NumeroALetras()
-    </script>
-    <script>
-        document.getElementById("precio_oldparr750").addEventListener("keyup", function(e) {
-            document.getElementById("texto09").innerHTML = NumeroALetras(this.value);
-        });
-
-
-        function Unidades(num) {
-
-            switch (num) {
-                case 1:
-                    return "UN";
-                case 2:
-                    return "DOS";
-                case 3:
-                    return "TRES";
-                case 4:
-                    return "CUATRO";
-                case 5:
-                    return "CINCO";
-                case 6:
-                    return "SEIS";
-                case 7:
-                    return "SIETE";
-                case 8:
-                    return "OCHO";
-                case 9:
-                    return "NUEVE";
-            }
-
-            return "";
-        }
-
-        function Decenas(num) {
-
-            decena = Math.floor(num / 10);
-            unidad = num - (decena * 10);
-
-            switch (decena) {
-                case 1:
-                    switch (unidad) {
-                        case 0:
-                            return "DIEZ";
-                        case 1:
-                            return "ONCE";
-                        case 2:
-                            return "DOCE";
-                        case 3:
-                            return "TRECE";
-                        case 4:
-                            return "CATORCE";
-                        case 5:
-                            return "QUINCE";
-                        default:
-                            return "DIECI" + Unidades(unidad);
-                    }
-                case 2:
-                    switch (unidad) {
-                        case 0:
-                            return "VEINTE";
-                        default:
-                            return "VEINTI" + Unidades(unidad);
-                    }
-                case 3:
-                    return DecenasY("TREINTA", unidad);
-                case 4:
-                    return DecenasY("CUARENTA", unidad);
-                case 5:
-                    return DecenasY("CINCUENTA", unidad);
-                case 6:
-                    return DecenasY("SESENTA", unidad);
-                case 7:
-                    return DecenasY("SETENTA", unidad);
-                case 8:
-                    return DecenasY("OCHENTA", unidad);
-                case 9:
-                    return DecenasY("NOVENTA", unidad);
-                case 0:
-                    return Unidades(unidad);
-            }
-        } //Unidades()
-
-        function DecenasY(strSin, numUnidades) {
-            if (numUnidades > 0)
-                return strSin + " Y " + Unidades(numUnidades)
-
-            return strSin;
-        } //DecenasY()
-
-        function Centenas(num) {
-
-            centenas = Math.floor(num / 100);
-            decenas = num - (centenas * 100);
-
-            switch (centenas) {
-                case 1:
-                    if (decenas > 0)
-                        return "CIENTO " + Decenas(decenas);
-                    return "CIEN";
-                case 2:
-                    return "DOSCIENTOS " + Decenas(decenas);
-                case 3:
-                    return "TRESCIENTOS " + Decenas(decenas);
-                case 4:
-                    return "CUATROCIENTOS " + Decenas(decenas);
-                case 5:
-                    return "QUINIENTOS " + Decenas(decenas);
-                case 6:
-                    return "SEISCIENTOS " + Decenas(decenas);
-                case 7:
-                    return "SETECIENTOS " + Decenas(decenas);
-                case 8:
-                    return "OCHOCIENTOS " + Decenas(decenas);
-                case 9:
-                    return "NOVECIENTOS " + Decenas(decenas);
-            }
-
-            return Decenas(decenas);
-        } //Centenas()
-
-        function Seccion(num, divisor, strSingular, strPlural) {
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            letras = "";
-
-            if (cientos > 0)
-                if (cientos > 1)
-                    letras = Centenas(cientos) + " " + strPlural;
-                else
-                    letras = strSingular;
-
-            if (resto > 0)
-                letras += "";
-
-            return letras;
-        } //Seccion()
-
-        function Miles(num) {
-            divisor = 1000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMiles = Seccion(num, divisor, "MIL", "MIL");
-            strCentenas = Centenas(resto);
-
-            if (strMiles == "")
-                return strCentenas;
-
-            return strMiles + " " + strCentenas;
-
-            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
-        } //Miles()
-
-        function Millones(num) {
-            divisor = 1000000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
-            strMiles = Miles(resto);
-
-            if (strMillones == "")
-                return strMiles;
-
-            return strMillones + " " + strMiles;
-
-            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
-        } //Millones()
-
-        function NumeroALetras(num, centavos) {
-            var data = {
-                numero: num,
-                enteros: Math.floor(num),
-                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
-                letrasCentavos: "",
-            };
-            if (centavos == undefined || centavos == false) {
-                data.letrasMonedaPlural = "PESOS";
-                data.letrasMonedaSingular = "PESO";
-            } else {
-                data.letrasMonedaPlural = "CENTAVOS";
-                data.letrasMonedaSingular = "CENTAVO";
-            }
-
-            if (data.centavos > 0)
-                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
-
-            if (data.enteros == 0)
-                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-            if (data.enteros == 1)
-                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
-            else
-                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-        } //NumeroALetras()
-    </script>
-    <script>
-        document.getElementById("precio_buchannas700").addEventListener("keyup", function(e) {
             document.getElementById("texto10").innerHTML = NumeroALetras(this.value);
         });
 
@@ -4433,592 +3533,7 @@
         } //NumeroALetras()
     </script>
     <script>
-        document.getElementById("precio_comp_ron1").addEventListener("keyup", function(e) {
-            document.getElementById("texto12").innerHTML = NumeroALetras(this.value);
-        });
-
-
-        function Unidades(num) {
-
-            switch (num) {
-                case 1:
-                    return "UN";
-                case 2:
-                    return "DOS";
-                case 3:
-                    return "TRES";
-                case 4:
-                    return "CUATRO";
-                case 5:
-                    return "CINCO";
-                case 6:
-                    return "SEIS";
-                case 7:
-                    return "SIETE";
-                case 8:
-                    return "OCHO";
-                case 9:
-                    return "NUEVE";
-            }
-
-            return "";
-        }
-
-        function Decenas(num) {
-
-            decena = Math.floor(num / 10);
-            unidad = num - (decena * 10);
-
-            switch (decena) {
-                case 1:
-                    switch (unidad) {
-                        case 0:
-                            return "DIEZ";
-                        case 1:
-                            return "ONCE";
-                        case 2:
-                            return "DOCE";
-                        case 3:
-                            return "TRECE";
-                        case 4:
-                            return "CATORCE";
-                        case 5:
-                            return "QUINCE";
-                        default:
-                            return "DIECI" + Unidades(unidad);
-                    }
-                case 2:
-                    switch (unidad) {
-                        case 0:
-                            return "VEINTE";
-                        default:
-                            return "VEINTI" + Unidades(unidad);
-                    }
-                case 3:
-                    return DecenasY("TREINTA", unidad);
-                case 4:
-                    return DecenasY("CUARENTA", unidad);
-                case 5:
-                    return DecenasY("CINCUENTA", unidad);
-                case 6:
-                    return DecenasY("SESENTA", unidad);
-                case 7:
-                    return DecenasY("SETENTA", unidad);
-                case 8:
-                    return DecenasY("OCHENTA", unidad);
-                case 9:
-                    return DecenasY("NOVENTA", unidad);
-                case 0:
-                    return Unidades(unidad);
-            }
-        } //Unidades()
-
-        function DecenasY(strSin, numUnidades) {
-            if (numUnidades > 0)
-                return strSin + " Y " + Unidades(numUnidades)
-
-            return strSin;
-        } //DecenasY()
-
-        function Centenas(num) {
-
-            centenas = Math.floor(num / 100);
-            decenas = num - (centenas * 100);
-
-            switch (centenas) {
-                case 1:
-                    if (decenas > 0)
-                        return "CIENTO " + Decenas(decenas);
-                    return "CIEN";
-                case 2:
-                    return "DOSCIENTOS " + Decenas(decenas);
-                case 3:
-                    return "TRESCIENTOS " + Decenas(decenas);
-                case 4:
-                    return "CUATROCIENTOS " + Decenas(decenas);
-                case 5:
-                    return "QUINIENTOS " + Decenas(decenas);
-                case 6:
-                    return "SEISCIENTOS " + Decenas(decenas);
-                case 7:
-                    return "SETECIENTOS " + Decenas(decenas);
-                case 8:
-                    return "OCHOCIENTOS " + Decenas(decenas);
-                case 9:
-                    return "NOVECIENTOS " + Decenas(decenas);
-            }
-
-            return Decenas(decenas);
-        } //Centenas()
-
-        function Seccion(num, divisor, strSingular, strPlural) {
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            letras = "";
-
-            if (cientos > 0)
-                if (cientos > 1)
-                    letras = Centenas(cientos) + " " + strPlural;
-                else
-                    letras = strSingular;
-
-            if (resto > 0)
-                letras += "";
-
-            return letras;
-        } //Seccion()
-
-        function Miles(num) {
-            divisor = 1000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMiles = Seccion(num, divisor, "MIL", "MIL");
-            strCentenas = Centenas(resto);
-
-            if (strMiles == "")
-                return strCentenas;
-
-            return strMiles + " " + strCentenas;
-
-            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
-        } //Miles()
-
-        function Millones(num) {
-            divisor = 1000000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
-            strMiles = Miles(resto);
-
-            if (strMillones == "")
-                return strMiles;
-
-            return strMillones + " " + strMiles;
-
-            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
-        } //Millones()
-
-        function NumeroALetras(num, centavos) {
-            var data = {
-                numero: num,
-                enteros: Math.floor(num),
-                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
-                letrasCentavos: "",
-            };
-            if (centavos == undefined || centavos == false) {
-                data.letrasMonedaPlural = "PESOS";
-                data.letrasMonedaSingular = "PESO";
-            } else {
-                data.letrasMonedaPlural = "CENTAVOS";
-                data.letrasMonedaSingular = "CENTAVO";
-            }
-
-            if (data.centavos > 0)
-                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
-
-            if (data.enteros == 0)
-                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-            if (data.enteros == 1)
-                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
-            else
-                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-        } //NumeroALetras()
-    </script>
-    <script>
-        document.getElementById("precio_comp_aguardiente2").addEventListener("keyup", function(e) {
-            document.getElementById("texto15").innerHTML = NumeroALetras(this.value);
-        });
-
-
-        function Unidades(num) {
-
-            switch (num) {
-                case 1:
-                    return "UN";
-                case 2:
-                    return "DOS";
-                case 3:
-                    return "TRES";
-                case 4:
-                    return "CUATRO";
-                case 5:
-                    return "CINCO";
-                case 6:
-                    return "SEIS";
-                case 7:
-                    return "SIETE";
-                case 8:
-                    return "OCHO";
-                case 9:
-                    return "NUEVE";
-            }
-
-            return "";
-        }
-
-        function Decenas(num) {
-
-            decena = Math.floor(num / 10);
-            unidad = num - (decena * 10);
-
-            switch (decena) {
-                case 1:
-                    switch (unidad) {
-                        case 0:
-                            return "DIEZ";
-                        case 1:
-                            return "ONCE";
-                        case 2:
-                            return "DOCE";
-                        case 3:
-                            return "TRECE";
-                        case 4:
-                            return "CATORCE";
-                        case 5:
-                            return "QUINCE";
-                        default:
-                            return "DIECI" + Unidades(unidad);
-                    }
-                case 2:
-                    switch (unidad) {
-                        case 0:
-                            return "VEINTE";
-                        default:
-                            return "VEINTI" + Unidades(unidad);
-                    }
-                case 3:
-                    return DecenasY("TREINTA", unidad);
-                case 4:
-                    return DecenasY("CUARENTA", unidad);
-                case 5:
-                    return DecenasY("CINCUENTA", unidad);
-                case 6:
-                    return DecenasY("SESENTA", unidad);
-                case 7:
-                    return DecenasY("SETENTA", unidad);
-                case 8:
-                    return DecenasY("OCHENTA", unidad);
-                case 9:
-                    return DecenasY("NOVENTA", unidad);
-                case 0:
-                    return Unidades(unidad);
-            }
-        } //Unidades()
-
-        function DecenasY(strSin, numUnidades) {
-            if (numUnidades > 0)
-                return strSin + " Y " + Unidades(numUnidades)
-
-            return strSin;
-        } //DecenasY()
-
-        function Centenas(num) {
-
-            centenas = Math.floor(num / 100);
-            decenas = num - (centenas * 100);
-
-            switch (centenas) {
-                case 1:
-                    if (decenas > 0)
-                        return "CIENTO " + Decenas(decenas);
-                    return "CIEN";
-                case 2:
-                    return "DOSCIENTOS " + Decenas(decenas);
-                case 3:
-                    return "TRESCIENTOS " + Decenas(decenas);
-                case 4:
-                    return "CUATROCIENTOS " + Decenas(decenas);
-                case 5:
-                    return "QUINIENTOS " + Decenas(decenas);
-                case 6:
-                    return "SEISCIENTOS " + Decenas(decenas);
-                case 7:
-                    return "SETECIENTOS " + Decenas(decenas);
-                case 8:
-                    return "OCHOCIENTOS " + Decenas(decenas);
-                case 9:
-                    return "NOVECIENTOS " + Decenas(decenas);
-            }
-
-            return Decenas(decenas);
-        } //Centenas()
-
-        function Seccion(num, divisor, strSingular, strPlural) {
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            letras = "";
-
-            if (cientos > 0)
-                if (cientos > 1)
-                    letras = Centenas(cientos) + " " + strPlural;
-                else
-                    letras = strSingular;
-
-            if (resto > 0)
-                letras += "";
-
-            return letras;
-        } //Seccion()
-
-        function Miles(num) {
-            divisor = 1000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMiles = Seccion(num, divisor, "MIL", "MIL");
-            strCentenas = Centenas(resto);
-
-            if (strMiles == "")
-                return strCentenas;
-
-            return strMiles + " " + strCentenas;
-
-            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
-        } //Miles()
-
-        function Millones(num) {
-            divisor = 1000000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
-            strMiles = Miles(resto);
-
-            if (strMillones == "")
-                return strMiles;
-
-            return strMillones + " " + strMiles;
-
-            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
-        } //Millones()
-
-        function NumeroALetras(num, centavos) {
-            var data = {
-                numero: num,
-                enteros: Math.floor(num),
-                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
-                letrasCentavos: "",
-            };
-            if (centavos == undefined || centavos == false) {
-                data.letrasMonedaPlural = "PESOS";
-                data.letrasMonedaSingular = "PESO";
-            } else {
-                data.letrasMonedaPlural = "CENTAVOS";
-                data.letrasMonedaSingular = "CENTAVO";
-            }
-
-            if (data.centavos > 0)
-                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
-
-            if (data.enteros == 0)
-                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-            if (data.enteros == 1)
-                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
-            else
-                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-        } //NumeroALetras()
-    </script>
-    <script>
-        document.getElementById("precio_comp_ron2").addEventListener("keyup", function(e) {
-            document.getElementById("texto13").innerHTML = NumeroALetras(this.value);
-        });
-
-
-        function Unidades(num) {
-
-            switch (num) {
-                case 1:
-                    return "UN";
-                case 2:
-                    return "DOS";
-                case 3:
-                    return "TRES";
-                case 4:
-                    return "CUATRO";
-                case 5:
-                    return "CINCO";
-                case 6:
-                    return "SEIS";
-                case 7:
-                    return "SIETE";
-                case 8:
-                    return "OCHO";
-                case 9:
-                    return "NUEVE";
-            }
-
-            return "";
-        }
-
-        function Decenas(num) {
-
-            decena = Math.floor(num / 10);
-            unidad = num - (decena * 10);
-
-            switch (decena) {
-                case 1:
-                    switch (unidad) {
-                        case 0:
-                            return "DIEZ";
-                        case 1:
-                            return "ONCE";
-                        case 2:
-                            return "DOCE";
-                        case 3:
-                            return "TRECE";
-                        case 4:
-                            return "CATORCE";
-                        case 5:
-                            return "QUINCE";
-                        default:
-                            return "DIECI" + Unidades(unidad);
-                    }
-                case 2:
-                    switch (unidad) {
-                        case 0:
-                            return "VEINTE";
-                        default:
-                            return "VEINTI" + Unidades(unidad);
-                    }
-                case 3:
-                    return DecenasY("TREINTA", unidad);
-                case 4:
-                    return DecenasY("CUARENTA", unidad);
-                case 5:
-                    return DecenasY("CINCUENTA", unidad);
-                case 6:
-                    return DecenasY("SESENTA", unidad);
-                case 7:
-                    return DecenasY("SETENTA", unidad);
-                case 8:
-                    return DecenasY("OCHENTA", unidad);
-                case 9:
-                    return DecenasY("NOVENTA", unidad);
-                case 0:
-                    return Unidades(unidad);
-            }
-        } //Unidades()
-
-        function DecenasY(strSin, numUnidades) {
-            if (numUnidades > 0)
-                return strSin + " Y " + Unidades(numUnidades)
-
-            return strSin;
-        } //DecenasY()
-
-        function Centenas(num) {
-
-            centenas = Math.floor(num / 100);
-            decenas = num - (centenas * 100);
-
-            switch (centenas) {
-                case 1:
-                    if (decenas > 0)
-                        return "CIENTO " + Decenas(decenas);
-                    return "CIEN";
-                case 2:
-                    return "DOSCIENTOS " + Decenas(decenas);
-                case 3:
-                    return "TRESCIENTOS " + Decenas(decenas);
-                case 4:
-                    return "CUATROCIENTOS " + Decenas(decenas);
-                case 5:
-                    return "QUINIENTOS " + Decenas(decenas);
-                case 6:
-                    return "SEISCIENTOS " + Decenas(decenas);
-                case 7:
-                    return "SETECIENTOS " + Decenas(decenas);
-                case 8:
-                    return "OCHOCIENTOS " + Decenas(decenas);
-                case 9:
-                    return "NOVECIENTOS " + Decenas(decenas);
-            }
-
-            return Decenas(decenas);
-        } //Centenas()
-
-        function Seccion(num, divisor, strSingular, strPlural) {
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            letras = "";
-
-            if (cientos > 0)
-                if (cientos > 1)
-                    letras = Centenas(cientos) + " " + strPlural;
-                else
-                    letras = strSingular;
-
-            if (resto > 0)
-                letras += "";
-
-            return letras;
-        } //Seccion()
-
-        function Miles(num) {
-            divisor = 1000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMiles = Seccion(num, divisor, "MIL", "MIL");
-            strCentenas = Centenas(resto);
-
-            if (strMiles == "")
-                return strCentenas;
-
-            return strMiles + " " + strCentenas;
-
-            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
-        } //Miles()
-
-        function Millones(num) {
-            divisor = 1000000;
-            cientos = Math.floor(num / divisor)
-            resto = num - (cientos * divisor)
-
-            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
-            strMiles = Miles(resto);
-
-            if (strMillones == "")
-                return strMiles;
-
-            return strMillones + " " + strMiles;
-
-            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
-        } //Millones()
-
-        function NumeroALetras(num, centavos) {
-            var data = {
-                numero: num,
-                enteros: Math.floor(num),
-                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
-                letrasCentavos: "",
-            };
-            if (centavos == undefined || centavos == false) {
-                data.letrasMonedaPlural = "PESOS";
-                data.letrasMonedaSingular = "PESO";
-            } else {
-                data.letrasMonedaPlural = "CENTAVOS";
-                data.letrasMonedaSingular = "CENTAVO";
-            }
-
-            if (data.centavos > 0)
-                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
-
-            if (data.enteros == 0)
-                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-            if (data.enteros == 1)
-                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
-            else
-                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
-        } //NumeroALetras()
-    </script>
-    <script>
-        document.getElementById("precio_buchannas375").addEventListener("keyup", function(e) {
+        document.getElementById("precio_oldparr750").addEventListener("keyup", function(e) {
             document.getElementById("texto11").innerHTML = NumeroALetras(this.value);
         });
 
@@ -5213,7 +3728,415 @@
         } //NumeroALetras()
     </script>
     <script>
-        document.getElementById("precio_comp_aguardiente1").addEventListener("keyup", function(e) {
+        document.getElementById("precio_buchannas700").addEventListener("keyup", function(e) {
+            document.getElementById("texto12").innerHTML = NumeroALetras(this.value);
+        });
+
+
+        function Unidades(num) {
+
+            switch (num) {
+                case 1:
+                    return "UN";
+                case 2:
+                    return "DOS";
+                case 3:
+                    return "TRES";
+                case 4:
+                    return "CUATRO";
+                case 5:
+                    return "CINCO";
+                case 6:
+                    return "SEIS";
+                case 7:
+                    return "SIETE";
+                case 8:
+                    return "OCHO";
+                case 9:
+                    return "NUEVE";
+            }
+
+            return "";
+        }
+
+        function Decenas(num) {
+
+            decena = Math.floor(num / 10);
+            unidad = num - (decena * 10);
+
+            switch (decena) {
+                case 1:
+                    switch (unidad) {
+                        case 0:
+                            return "DIEZ";
+                        case 1:
+                            return "ONCE";
+                        case 2:
+                            return "DOCE";
+                        case 3:
+                            return "TRECE";
+                        case 4:
+                            return "CATORCE";
+                        case 5:
+                            return "QUINCE";
+                        default:
+                            return "DIECI" + Unidades(unidad);
+                    }
+                case 2:
+                    switch (unidad) {
+                        case 0:
+                            return "VEINTE";
+                        default:
+                            return "VEINTI" + Unidades(unidad);
+                    }
+                case 3:
+                    return DecenasY("TREINTA", unidad);
+                case 4:
+                    return DecenasY("CUARENTA", unidad);
+                case 5:
+                    return DecenasY("CINCUENTA", unidad);
+                case 6:
+                    return DecenasY("SESENTA", unidad);
+                case 7:
+                    return DecenasY("SETENTA", unidad);
+                case 8:
+                    return DecenasY("OCHENTA", unidad);
+                case 9:
+                    return DecenasY("NOVENTA", unidad);
+                case 0:
+                    return Unidades(unidad);
+            }
+        } //Unidades()
+
+        function DecenasY(strSin, numUnidades) {
+            if (numUnidades > 0)
+                return strSin + " Y " + Unidades(numUnidades)
+
+            return strSin;
+        } //DecenasY()
+
+        function Centenas(num) {
+
+            centenas = Math.floor(num / 100);
+            decenas = num - (centenas * 100);
+
+            switch (centenas) {
+                case 1:
+                    if (decenas > 0)
+                        return "CIENTO " + Decenas(decenas);
+                    return "CIEN";
+                case 2:
+                    return "DOSCIENTOS " + Decenas(decenas);
+                case 3:
+                    return "TRESCIENTOS " + Decenas(decenas);
+                case 4:
+                    return "CUATROCIENTOS " + Decenas(decenas);
+                case 5:
+                    return "QUINIENTOS " + Decenas(decenas);
+                case 6:
+                    return "SEISCIENTOS " + Decenas(decenas);
+                case 7:
+                    return "SETECIENTOS " + Decenas(decenas);
+                case 8:
+                    return "OCHOCIENTOS " + Decenas(decenas);
+                case 9:
+                    return "NOVECIENTOS " + Decenas(decenas);
+            }
+
+            return Decenas(decenas);
+        } //Centenas()
+
+        function Seccion(num, divisor, strSingular, strPlural) {
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            letras = "";
+
+            if (cientos > 0)
+                if (cientos > 1)
+                    letras = Centenas(cientos) + " " + strPlural;
+                else
+                    letras = strSingular;
+
+            if (resto > 0)
+                letras += "";
+
+            return letras;
+        } //Seccion()
+
+        function Miles(num) {
+            divisor = 1000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMiles = Seccion(num, divisor, "MIL", "MIL");
+            strCentenas = Centenas(resto);
+
+            if (strMiles == "")
+                return strCentenas;
+
+            return strMiles + " " + strCentenas;
+
+            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
+        } //Miles()
+
+        function Millones(num) {
+            divisor = 1000000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
+            strMiles = Miles(resto);
+
+            if (strMillones == "")
+                return strMiles;
+
+            return strMillones + " " + strMiles;
+
+            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
+        } //Millones()
+
+        function NumeroALetras(num, centavos) {
+            var data = {
+                numero: num,
+                enteros: Math.floor(num),
+                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+                letrasCentavos: "",
+            };
+            if (centavos == undefined || centavos == false) {
+                data.letrasMonedaPlural = "PESOS";
+                data.letrasMonedaSingular = "PESO";
+            } else {
+                data.letrasMonedaPlural = "CENTAVOS";
+                data.letrasMonedaSingular = "CENTAVO";
+            }
+
+            if (data.centavos > 0)
+                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
+
+            if (data.enteros == 0)
+                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+            if (data.enteros == 1)
+                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
+            else
+                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+        } //NumeroALetras()
+    </script>
+    <script>
+        document.getElementById("precio_buchannas375").addEventListener("keyup", function(e) {
+            document.getElementById("texto13").innerHTML = NumeroALetras(this.value);
+        });
+
+
+        function Unidades(num) {
+
+            switch (num) {
+                case 1:
+                    return "UN";
+                case 2:
+                    return "DOS";
+                case 3:
+                    return "TRES";
+                case 4:
+                    return "CUATRO";
+                case 5:
+                    return "CINCO";
+                case 6:
+                    return "SEIS";
+                case 7:
+                    return "SIETE";
+                case 8:
+                    return "OCHO";
+                case 9:
+                    return "NUEVE";
+            }
+
+            return "";
+        }
+
+        function Decenas(num) {
+
+            decena = Math.floor(num / 10);
+            unidad = num - (decena * 10);
+
+            switch (decena) {
+                case 1:
+                    switch (unidad) {
+                        case 0:
+                            return "DIEZ";
+                        case 1:
+                            return "ONCE";
+                        case 2:
+                            return "DOCE";
+                        case 3:
+                            return "TRECE";
+                        case 4:
+                            return "CATORCE";
+                        case 5:
+                            return "QUINCE";
+                        default:
+                            return "DIECI" + Unidades(unidad);
+                    }
+                case 2:
+                    switch (unidad) {
+                        case 0:
+                            return "VEINTE";
+                        default:
+                            return "VEINTI" + Unidades(unidad);
+                    }
+                case 3:
+                    return DecenasY("TREINTA", unidad);
+                case 4:
+                    return DecenasY("CUARENTA", unidad);
+                case 5:
+                    return DecenasY("CINCUENTA", unidad);
+                case 6:
+                    return DecenasY("SESENTA", unidad);
+                case 7:
+                    return DecenasY("SETENTA", unidad);
+                case 8:
+                    return DecenasY("OCHENTA", unidad);
+                case 9:
+                    return DecenasY("NOVENTA", unidad);
+                case 0:
+                    return Unidades(unidad);
+            }
+        } //Unidades()
+
+        function DecenasY(strSin, numUnidades) {
+            if (numUnidades > 0)
+                return strSin + " Y " + Unidades(numUnidades)
+
+            return strSin;
+        } //DecenasY()
+
+        function Centenas(num) {
+
+            centenas = Math.floor(num / 100);
+            decenas = num - (centenas * 100);
+
+            switch (centenas) {
+                case 1:
+                    if (decenas > 0)
+                        return "CIENTO " + Decenas(decenas);
+                    return "CIEN";
+                case 2:
+                    return "DOSCIENTOS " + Decenas(decenas);
+                case 3:
+                    return "TRESCIENTOS " + Decenas(decenas);
+                case 4:
+                    return "CUATROCIENTOS " + Decenas(decenas);
+                case 5:
+                    return "QUINIENTOS " + Decenas(decenas);
+                case 6:
+                    return "SEISCIENTOS " + Decenas(decenas);
+                case 7:
+                    return "SETECIENTOS " + Decenas(decenas);
+                case 8:
+                    return "OCHOCIENTOS " + Decenas(decenas);
+                case 9:
+                    return "NOVECIENTOS " + Decenas(decenas);
+            }
+
+            return Decenas(decenas);
+        } //Centenas()
+
+        function Seccion(num, divisor, strSingular, strPlural) {
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            letras = "";
+
+            if (cientos > 0)
+                if (cientos > 1)
+                    letras = Centenas(cientos) + " " + strPlural;
+                else
+                    letras = strSingular;
+
+            if (resto > 0)
+                letras += "";
+
+            return letras;
+        } //Seccion()
+
+        function Miles(num) {
+            divisor = 1000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMiles = Seccion(num, divisor, "MIL", "MIL");
+            strCentenas = Centenas(resto);
+
+            if (strMiles == "")
+                return strCentenas;
+
+            return strMiles + " " + strCentenas;
+
+            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
+        } //Miles()
+
+        function Millones(num) {
+            divisor = 1000000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
+            strMiles = Miles(resto);
+
+            if (strMillones == "")
+                return strMiles;
+
+            return strMillones + " " + strMiles;
+
+            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
+        } //Millones()
+
+        function NumeroALetras(num, centavos) {
+            var data = {
+                numero: num,
+                enteros: Math.floor(num),
+                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+                letrasCentavos: "",
+            };
+            if (centavos == undefined || centavos == false) {
+                data.letrasMonedaPlural = "PESOS";
+                data.letrasMonedaSingular = "PESO";
+            } else {
+                data.letrasMonedaPlural = "CENTAVOS";
+                data.letrasMonedaSingular = "CENTAVO";
+            }
+
+            if (data.centavos > 0)
+                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
+
+            if (data.enteros == 0)
+                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+            if (data.enteros == 1)
+                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
+            else
+                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+        } //NumeroALetras()
+    </script>
+
+    <script>
+        const $seleccionLinealDiageo = document.querySelector("#seleccionLinealDiageo"),
+            $imagenLinealDiageo = document.querySelector("#imagenLinealDiageo");
+
+        $seleccionLinealDiageo.addEventListener("change", () => {
+            const archivos = $seleccionLinealDiageo.files;
+            if (!archivos || !archivos.length) {
+                $imagenLinearlR.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenLinealDiageo.src = objectURL;
+        });
+    </script>
+
+
+    <script>
+        document.getElementById("precio_comp_ron1").addEventListener("keyup", function(e) {
             document.getElementById("texto14").innerHTML = NumeroALetras(this.value);
         });
 
@@ -5406,5 +4329,624 @@
             else
                 return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
         } //NumeroALetras()
+    </script>
+
+    <script>
+        document.getElementById("precio_comp_ron2").addEventListener("keyup", function(e) {
+            document.getElementById("texto15").innerHTML = NumeroALetras(this.value);
+        });
+
+
+        function Unidades(num) {
+
+            switch (num) {
+                case 1:
+                    return "UN";
+                case 2:
+                    return "DOS";
+                case 3:
+                    return "TRES";
+                case 4:
+                    return "CUATRO";
+                case 5:
+                    return "CINCO";
+                case 6:
+                    return "SEIS";
+                case 7:
+                    return "SIETE";
+                case 8:
+                    return "OCHO";
+                case 9:
+                    return "NUEVE";
+            }
+
+            return "";
+        }
+
+        function Decenas(num) {
+
+            decena = Math.floor(num / 10);
+            unidad = num - (decena * 10);
+
+            switch (decena) {
+                case 1:
+                    switch (unidad) {
+                        case 0:
+                            return "DIEZ";
+                        case 1:
+                            return "ONCE";
+                        case 2:
+                            return "DOCE";
+                        case 3:
+                            return "TRECE";
+                        case 4:
+                            return "CATORCE";
+                        case 5:
+                            return "QUINCE";
+                        default:
+                            return "DIECI" + Unidades(unidad);
+                    }
+                case 2:
+                    switch (unidad) {
+                        case 0:
+                            return "VEINTE";
+                        default:
+                            return "VEINTI" + Unidades(unidad);
+                    }
+                case 3:
+                    return DecenasY("TREINTA", unidad);
+                case 4:
+                    return DecenasY("CUARENTA", unidad);
+                case 5:
+                    return DecenasY("CINCUENTA", unidad);
+                case 6:
+                    return DecenasY("SESENTA", unidad);
+                case 7:
+                    return DecenasY("SETENTA", unidad);
+                case 8:
+                    return DecenasY("OCHENTA", unidad);
+                case 9:
+                    return DecenasY("NOVENTA", unidad);
+                case 0:
+                    return Unidades(unidad);
+            }
+        } //Unidades()
+
+        function DecenasY(strSin, numUnidades) {
+            if (numUnidades > 0)
+                return strSin + " Y " + Unidades(numUnidades)
+
+            return strSin;
+        } //DecenasY()
+
+        function Centenas(num) {
+
+            centenas = Math.floor(num / 100);
+            decenas = num - (centenas * 100);
+
+            switch (centenas) {
+                case 1:
+                    if (decenas > 0)
+                        return "CIENTO " + Decenas(decenas);
+                    return "CIEN";
+                case 2:
+                    return "DOSCIENTOS " + Decenas(decenas);
+                case 3:
+                    return "TRESCIENTOS " + Decenas(decenas);
+                case 4:
+                    return "CUATROCIENTOS " + Decenas(decenas);
+                case 5:
+                    return "QUINIENTOS " + Decenas(decenas);
+                case 6:
+                    return "SEISCIENTOS " + Decenas(decenas);
+                case 7:
+                    return "SETECIENTOS " + Decenas(decenas);
+                case 8:
+                    return "OCHOCIENTOS " + Decenas(decenas);
+                case 9:
+                    return "NOVECIENTOS " + Decenas(decenas);
+            }
+
+            return Decenas(decenas);
+        } //Centenas()
+
+        function Seccion(num, divisor, strSingular, strPlural) {
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            letras = "";
+
+            if (cientos > 0)
+                if (cientos > 1)
+                    letras = Centenas(cientos) + " " + strPlural;
+                else
+                    letras = strSingular;
+
+            if (resto > 0)
+                letras += "";
+
+            return letras;
+        } //Seccion()
+
+        function Miles(num) {
+            divisor = 1000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMiles = Seccion(num, divisor, "MIL", "MIL");
+            strCentenas = Centenas(resto);
+
+            if (strMiles == "")
+                return strCentenas;
+
+            return strMiles + " " + strCentenas;
+
+            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
+        } //Miles()
+
+        function Millones(num) {
+            divisor = 1000000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
+            strMiles = Miles(resto);
+
+            if (strMillones == "")
+                return strMiles;
+
+            return strMillones + " " + strMiles;
+
+            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
+        } //Millones()
+
+        function NumeroALetras(num, centavos) {
+            var data = {
+                numero: num,
+                enteros: Math.floor(num),
+                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+                letrasCentavos: "",
+            };
+            if (centavos == undefined || centavos == false) {
+                data.letrasMonedaPlural = "PESOS";
+                data.letrasMonedaSingular = "PESO";
+            } else {
+                data.letrasMonedaPlural = "CENTAVOS";
+                data.letrasMonedaSingular = "CENTAVO";
+            }
+
+            if (data.centavos > 0)
+                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
+
+            if (data.enteros == 0)
+                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+            if (data.enteros == 1)
+                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
+            else
+                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+        } //NumeroALetras()
+    </script>
+    <script>
+        document.getElementById("precio_comp_aguardiente1").addEventListener("keyup", function(e) {
+            document.getElementById("texto16").innerHTML = NumeroALetras(this.value);
+        });
+
+
+        function Unidades(num) {
+
+            switch (num) {
+                case 1:
+                    return "UN";
+                case 2:
+                    return "DOS";
+                case 3:
+                    return "TRES";
+                case 4:
+                    return "CUATRO";
+                case 5:
+                    return "CINCO";
+                case 6:
+                    return "SEIS";
+                case 7:
+                    return "SIETE";
+                case 8:
+                    return "OCHO";
+                case 9:
+                    return "NUEVE";
+            }
+
+            return "";
+        }
+
+        function Decenas(num) {
+
+            decena = Math.floor(num / 10);
+            unidad = num - (decena * 10);
+
+            switch (decena) {
+                case 1:
+                    switch (unidad) {
+                        case 0:
+                            return "DIEZ";
+                        case 1:
+                            return "ONCE";
+                        case 2:
+                            return "DOCE";
+                        case 3:
+                            return "TRECE";
+                        case 4:
+                            return "CATORCE";
+                        case 5:
+                            return "QUINCE";
+                        default:
+                            return "DIECI" + Unidades(unidad);
+                    }
+                case 2:
+                    switch (unidad) {
+                        case 0:
+                            return "VEINTE";
+                        default:
+                            return "VEINTI" + Unidades(unidad);
+                    }
+                case 3:
+                    return DecenasY("TREINTA", unidad);
+                case 4:
+                    return DecenasY("CUARENTA", unidad);
+                case 5:
+                    return DecenasY("CINCUENTA", unidad);
+                case 6:
+                    return DecenasY("SESENTA", unidad);
+                case 7:
+                    return DecenasY("SETENTA", unidad);
+                case 8:
+                    return DecenasY("OCHENTA", unidad);
+                case 9:
+                    return DecenasY("NOVENTA", unidad);
+                case 0:
+                    return Unidades(unidad);
+            }
+        } //Unidades()
+
+        function DecenasY(strSin, numUnidades) {
+            if (numUnidades > 0)
+                return strSin + " Y " + Unidades(numUnidades)
+
+            return strSin;
+        } //DecenasY()
+
+        function Centenas(num) {
+
+            centenas = Math.floor(num / 100);
+            decenas = num - (centenas * 100);
+
+            switch (centenas) {
+                case 1:
+                    if (decenas > 0)
+                        return "CIENTO " + Decenas(decenas);
+                    return "CIEN";
+                case 2:
+                    return "DOSCIENTOS " + Decenas(decenas);
+                case 3:
+                    return "TRESCIENTOS " + Decenas(decenas);
+                case 4:
+                    return "CUATROCIENTOS " + Decenas(decenas);
+                case 5:
+                    return "QUINIENTOS " + Decenas(decenas);
+                case 6:
+                    return "SEISCIENTOS " + Decenas(decenas);
+                case 7:
+                    return "SETECIENTOS " + Decenas(decenas);
+                case 8:
+                    return "OCHOCIENTOS " + Decenas(decenas);
+                case 9:
+                    return "NOVECIENTOS " + Decenas(decenas);
+            }
+
+            return Decenas(decenas);
+        } //Centenas()
+
+        function Seccion(num, divisor, strSingular, strPlural) {
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            letras = "";
+
+            if (cientos > 0)
+                if (cientos > 1)
+                    letras = Centenas(cientos) + " " + strPlural;
+                else
+                    letras = strSingular;
+
+            if (resto > 0)
+                letras += "";
+
+            return letras;
+        } //Seccion()
+
+        function Miles(num) {
+            divisor = 1000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMiles = Seccion(num, divisor, "MIL", "MIL");
+            strCentenas = Centenas(resto);
+
+            if (strMiles == "")
+                return strCentenas;
+
+            return strMiles + " " + strCentenas;
+
+            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
+        } //Miles()
+
+        function Millones(num) {
+            divisor = 1000000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
+            strMiles = Miles(resto);
+
+            if (strMillones == "")
+                return strMiles;
+
+            return strMillones + " " + strMiles;
+
+            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
+        } //Millones()
+
+        function NumeroALetras(num, centavos) {
+            var data = {
+                numero: num,
+                enteros: Math.floor(num),
+                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+                letrasCentavos: "",
+            };
+            if (centavos == undefined || centavos == false) {
+                data.letrasMonedaPlural = "PESOS";
+                data.letrasMonedaSingular = "PESO";
+            } else {
+                data.letrasMonedaPlural = "CENTAVOS";
+                data.letrasMonedaSingular = "CENTAVO";
+            }
+
+            if (data.centavos > 0)
+                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
+
+            if (data.enteros == 0)
+                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+            if (data.enteros == 1)
+                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
+            else
+                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+        } //NumeroALetras()
+    </script>
+
+
+    <script>
+        document.getElementById("precio_comp_aguardiente2").addEventListener("keyup", function(e) {
+            document.getElementById("texto17").innerHTML = NumeroALetras(this.value);
+        });
+
+
+        function Unidades(num) {
+
+            switch (num) {
+                case 1:
+                    return "UN";
+                case 2:
+                    return "DOS";
+                case 3:
+                    return "TRES";
+                case 4:
+                    return "CUATRO";
+                case 5:
+                    return "CINCO";
+                case 6:
+                    return "SEIS";
+                case 7:
+                    return "SIETE";
+                case 8:
+                    return "OCHO";
+                case 9:
+                    return "NUEVE";
+            }
+
+            return "";
+        }
+
+        function Decenas(num) {
+
+            decena = Math.floor(num / 10);
+            unidad = num - (decena * 10);
+
+            switch (decena) {
+                case 1:
+                    switch (unidad) {
+                        case 0:
+                            return "DIEZ";
+                        case 1:
+                            return "ONCE";
+                        case 2:
+                            return "DOCE";
+                        case 3:
+                            return "TRECE";
+                        case 4:
+                            return "CATORCE";
+                        case 5:
+                            return "QUINCE";
+                        default:
+                            return "DIECI" + Unidades(unidad);
+                    }
+                case 2:
+                    switch (unidad) {
+                        case 0:
+                            return "VEINTE";
+                        default:
+                            return "VEINTI" + Unidades(unidad);
+                    }
+                case 3:
+                    return DecenasY("TREINTA", unidad);
+                case 4:
+                    return DecenasY("CUARENTA", unidad);
+                case 5:
+                    return DecenasY("CINCUENTA", unidad);
+                case 6:
+                    return DecenasY("SESENTA", unidad);
+                case 7:
+                    return DecenasY("SETENTA", unidad);
+                case 8:
+                    return DecenasY("OCHENTA", unidad);
+                case 9:
+                    return DecenasY("NOVENTA", unidad);
+                case 0:
+                    return Unidades(unidad);
+            }
+        } //Unidades()
+
+        function DecenasY(strSin, numUnidades) {
+            if (numUnidades > 0)
+                return strSin + " Y " + Unidades(numUnidades)
+
+            return strSin;
+        } //DecenasY()
+
+        function Centenas(num) {
+
+            centenas = Math.floor(num / 100);
+            decenas = num - (centenas * 100);
+
+            switch (centenas) {
+                case 1:
+                    if (decenas > 0)
+                        return "CIENTO " + Decenas(decenas);
+                    return "CIEN";
+                case 2:
+                    return "DOSCIENTOS " + Decenas(decenas);
+                case 3:
+                    return "TRESCIENTOS " + Decenas(decenas);
+                case 4:
+                    return "CUATROCIENTOS " + Decenas(decenas);
+                case 5:
+                    return "QUINIENTOS " + Decenas(decenas);
+                case 6:
+                    return "SEISCIENTOS " + Decenas(decenas);
+                case 7:
+                    return "SETECIENTOS " + Decenas(decenas);
+                case 8:
+                    return "OCHOCIENTOS " + Decenas(decenas);
+                case 9:
+                    return "NOVECIENTOS " + Decenas(decenas);
+            }
+
+            return Decenas(decenas);
+        } //Centenas()
+
+        function Seccion(num, divisor, strSingular, strPlural) {
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            letras = "";
+
+            if (cientos > 0)
+                if (cientos > 1)
+                    letras = Centenas(cientos) + " " + strPlural;
+                else
+                    letras = strSingular;
+
+            if (resto > 0)
+                letras += "";
+
+            return letras;
+        } //Seccion()
+
+        function Miles(num) {
+            divisor = 1000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMiles = Seccion(num, divisor, "MIL", "MIL");
+            strCentenas = Centenas(resto);
+
+            if (strMiles == "")
+                return strCentenas;
+
+            return strMiles + " " + strCentenas;
+
+            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
+        } //Miles()
+
+        function Millones(num) {
+            divisor = 1000000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
+            strMiles = Miles(resto);
+
+            if (strMillones == "")
+                return strMiles;
+
+            return strMillones + " " + strMiles;
+
+            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
+        } //Millones()
+
+        function NumeroALetras(num, centavos) {
+            var data = {
+                numero: num,
+                enteros: Math.floor(num),
+                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+                letrasCentavos: "",
+            };
+            if (centavos == undefined || centavos == false) {
+                data.letrasMonedaPlural = "PESOS";
+                data.letrasMonedaSingular = "PESO";
+            } else {
+                data.letrasMonedaPlural = "CENTAVOS";
+                data.letrasMonedaSingular = "CENTAVO";
+            }
+
+            if (data.centavos > 0)
+                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
+
+            if (data.enteros == 0)
+                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+            if (data.enteros == 1)
+                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
+            else
+                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+        } //NumeroALetras()
+    </script>
+
+    <script>
+        const $seleccionLinealR = document.querySelector("#seleccionLinealR"),
+            $imagenLinearlR = document.querySelector("#imagenLinearlR");
+
+        $seleccionLinealR.addEventListener("change", () => {
+            const archivos = $seleccionLinealR.files;
+            if (!archivos || !archivos.length) {
+                $imagenLinearlR.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenLinearlR.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionLinealA = document.querySelector("#seleccionLinealA"),
+            $imagenLinearlA = document.querySelector("#imagenLinearlA");
+
+        $seleccionLinealA.addEventListener("change", () => {
+            const archivos = $seleccionLinealA.files;
+            if (!archivos || !archivos.length) {
+                $imagenLinearlA.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenLinearlA.src = objectURL;
+        });
     </script>
 @stop
