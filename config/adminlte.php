@@ -346,21 +346,28 @@ return [
             'text'    => 'Auditoria',
             'icon'    => 'fas fa-tasks',
             'icon_color' => 'info',
-            'can'    =>  'admin.diageo',
+            'can'  => 'encuesta.diageo.index',
             'submenu' => [
                 [
                     'text'  => 'Ver Auditorias',
                     'route' => 'auditoria.index',
                     'icon'  => 'fas fa-binoculars',
                     'shift' => 'ml-4',
-                    'can'   =>  'admin.diageo'
+                    'can'  => 'encuesta.diageo.index',
                 ],
                 [
                     'text'  => 'Calidad',
                     'route' => 'Galeria.index',
                     'icon'  => 'fas fa-photo-video',
                     'shift' => 'ml-4',
-                    'can'   =>  'admin.diageo'
+                    'can'  => 'encuesta.diageo.edit',
+                ],
+                [
+                    'text'  => 'Asignacion',
+                    'route' => 'asignaciones.index',
+                    'icon'  => 'fas fa-shoe-prints',
+                    'shift' => 'ml-4',
+                    'can'  => 'encuesta.diageo.edit',
                 ],
                 // [
                 //     'text'  => 'Dashboard Auditorias',

@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\AsignacionesController;
 use App\Http\Controllers\AuditoriaController;
 use App\Http\Controllers\CalidadAuditoriaController;
-// use App\Http\Controllers\DashboardAuditoriasController;
+use App\Http\Controllers\DashboardAuditoriasController;
 use App\Http\Controllers\DiageoActivadosController;
 use App\Http\Controllers\DiageoCerradosController;
 use App\Http\Controllers\DiageoClienteFemsaController;
@@ -22,7 +23,8 @@ use App\Http\Controllers\ReemplazoController;
 use App\Http\Controllers\SegmentoController;
 use App\Http\Controllers\TapadosController;
 use App\Http\Controllers\TipologiaController;
-// use App\Http\Controllers\PDFController;
+use App\Http\Controllers\PDFController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -54,6 +56,26 @@ Route::get(
 )->name('home');
 
 
+Route::get(
+    '/auditorias-list-excel',
+    [
+        App\Http\Controllers\HomeController::class,
+        'exportExcel'
+    ]
+)->name('auditorias.excel');
+
+Route::get(
+    '/puntos-list-excel',
+    [
+        App\Http\Controllers\HomeController::class,
+        'exportPuntosExcel'
+    ]
+)->name('puntos.excel');
+
+
+
+
+
 Route::resource('users', UserController::class)->only(['index', 'edit', 'update']);
 Route::post('cerrados', [EncuestaController::class, 'cerrados'])
     ->name('cerrados');
@@ -72,7 +94,7 @@ Route::resource('diageo_noactivados', DiageoNoActivadosController::class);
 Route::resource('reemplazo', ReemplazoController::class)
     ->names('encuesta.reemplazo');
 Route::resource('diageo_clienteFemsa', DiageoClienteFemsaController::class);
-Route::resource('roles', RoleController::class)->names('role');
+Route::resource('roles', RoleController::class)->names('roles');
 
 Route::resource('auditoria', AuditoriaController::class);
 Route::resource('tipologia', TipologiaController::class);
@@ -84,10 +106,16 @@ Route::resource('exhibicion', ExhibicionController::class);
 Route::resource('gifts', GiftsController::class);
 Route::resource('generalidades', GeneralidadesController::class);
 
-// Route::resource('dashboard', DashboardAuditoriasController::class);
+//Route::resource('dashboard', DashboardAuditoriasController::class);
 
 
 Route::resource('Galeria', CalidadAuditoriaController::class);
+Route::resource('asignaciones', AsignacionesController::class);
+
+
+
+
+// Route::get('exportar', 'AuditoriaController@export')->name('export');
 
 // Route::get('myPDF/{id}', [App\Http\Controllers\PDFController::class, 'pdf']);
 
@@ -102,4 +130,3 @@ Route::resource('Galeria', CalidadAuditoriaController::class);
 // )->name('appointments.pdf');
 
 // Route::get('generate-pdf', [AppointmentController::class, 'generatePDF']);
-

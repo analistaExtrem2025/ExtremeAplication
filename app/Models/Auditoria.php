@@ -14,11 +14,12 @@ class Auditoria extends Model
     protected $fillable = [
         'id',
         'precarga_id',
+        'nombreNegocio',
+        'razonSocial',
         'latitude',
         'longitude',
         'star',
         'promotor',
-        'razonSocial',
         'nit',
         'direccion',
         'telefono',

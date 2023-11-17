@@ -30,7 +30,7 @@
                             <label for="cedula" class="col-md-4 col-form-label text-md-end">{{ __('Cedula') }}</label>
 
                             <div class="col-md-6">
-                                <input id="cedula" type="number" maxlength="10" minlength="7" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{ old('cedula') }}" required autocomplete="cedula" autofocus>
+                                <input id="cedula" type="number" maxlength="10" minlength="7" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{ old('cedula') }}" required autocomplete="no" autofocus>
 
                                 @error('cedula')
                                     <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="no">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -60,9 +60,9 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Departamento') }}</label>
 
                             <div class="col-md-6">
-                                <input id="departamento" type="text" class="form-control @error('departamento') is-invalid @enderror" name="departamento" value="{{ old('departamento') }}" required autocomplete="email">
+                                <input id="departamento" type="text" class="form-control @error('departamento') is-invalid @enderror" name="departamento" value="{{ old('departamento') }}" required autocomplete="no">
 
-                                @error('email')
+                                @error('departamento')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -74,14 +74,31 @@
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Municipio') }}</label>
                             <div class="col-md-6">
-                                <input id="municipio" type="text" class="form-control @error('municipio') is-invalid @enderror" name="municipio" value="{{ old('municipio') }}" required autocomplete="email">
-                                @error('email')
+                                <input id="municipio" type="text" class="form-control @error('municipio') is-invalid @enderror" name="municipio" value="{{ old('municipio') }}" required autocomplete="no">
+                                @error('municipio')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
+                            <div class="col-md-6">
+                                <select name="role" id="role" class="form-control  @error('role') is-invalid @enderror" required>
+                                    <option selected value="">--</option>
+                                    <option value="2">Cordinador</option>
+                                    <option value="3">Promotor</option>
+                                </select>
+                                @error('role')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>

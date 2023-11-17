@@ -1,10 +1,10 @@
 @extends('adminlte::page')
-@section('title', 'Auditorias')
+@section('title', 'Asignacion auditorias')
 @section('css')
     <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 @stop
 @section('content_header')
-    <h1>Listado de auditorias asignadas</h1>
+    <h1>Listado de auditorias para asignar o editar asignación</h1>
 
 
 
@@ -15,27 +15,33 @@
         <table class="table table-bordered data-table" id="encuestas_table">
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>Razón Social</th>
-                    <th>Dirección</th>
-                    <th>Barrio</th>
-                    <th>Segmento</th>
-                    <th>Tipología</th>
+                    <th width="10px">id</th>
+                    <th width="10px">Direccion</th>
+                    <th width="10px">Departamento</th>
+                    <th width="10px">Municipio</th>
+                    <th width="10px">Barrio</th>
+                    <th width="10px">Asignado a</th>
+                    <th width="10px">Estatus de gestión</th>
+                    <th width="10px">Fecha de asignacion</th>
+                    <th width="10px">Fecha de finzalización</th>
                     <th width="105px">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($puntos_auditoria as $encu)
+                @foreach ($puntos_auditoria as $p_a)
                     <tr>
-                        <td>{{ $encu->id }}</td>
-                        <td>{{ $encu->razonSocial }}</td>
-                        <td>{{ $encu->direccion }}</td>
-                        <td>{{ $encu->barrio }}</td>
-                        <td>{{ $encu->segmentacion }}</td>
-                        <td>{{ $encu->tipologia }}</td>
+                        <td>{{ $p_a->id }}</td>
+                        <td>{{ $p_a->direccion }}</td>
+                        <td>{{ $p_a->departamento }}</td>
+                        <td>{{ $p_a->municipio }}</td>
+                        <td>{{ $p_a->barrio }}</td>
+                        <td>{{ $p_a->asignadoA }}</td>
+                        <td>{{ $p_a->estatusGestion }}</td>
+                        <td>{{ $p_a->fechaAsignado }}</td>
+                        <td>{{ $p_a->fechaFinalizado }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="BasicExample">
-                                <a href="{{ url('/auditoria/' . $encu->id) }}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
+                                <a href="{{ url('/asignaciones/' . $p_a->id) }}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
 
                             </div>
                         </td>

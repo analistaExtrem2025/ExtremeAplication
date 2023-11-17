@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Auditoria;
 use App\Models\PuntosAuditoria;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Validator;
-
+use Validator;
 
 
 class AuditoriaController extends Controller
@@ -21,10 +22,13 @@ class AuditoriaController extends Controller
     {
         $date = Carbon::today();
         $date = $date->toDateString();
-        $puntos_auditoria = PuntosAuditoria::where('asignadoA', Auth::user()->name)
-            ->where('estatusGestion', 'Asignado')
-            ->where('fechaAsignado', $date)
-            ->get();
+
+        $puntos_auditoria = PuntosAuditoria::all();
+
+        // $puntos_auditoria = PuntosAuditoria::where('asignadoA', Auth::user()->name)
+        //     ->where('estatusGestion', 'Asignado')
+        //     ->where('fechaAsignado', $date)
+        //     ->get();
         return view('auditoria.index', compact('puntos_auditoria'));
     }
 
@@ -33,7 +37,7 @@ class AuditoriaController extends Controller
      */
     public function create()
     {
-        $now = Carbon::now();
+        $now = SupportCarbon::now();
 
         $si_no = ['si' => 'si', 'no' => 'no'];
 
@@ -124,88 +128,101 @@ class AuditoriaController extends Controller
      */
     public function store(Request $request)
     {
-
-        $datosReporte = request()->except('_token');
-        if ($request->hasFile('fotoActiv')) {
-            $imagen = $request->file('fotoActiv');
-            $nombre = "_" . $request->precarga_id . '.' . 'png';
-            $destino = public_path('auditorias_pics/activacion');
-            $request->fotoActiv->move($destino, $nombre);
-            $red = Image::make($destino . '/' . $nombre);
-            $red->resize(
-                380,
-                null,
-                function ($constraint) {
-                    $constraint->aspectRatio();
-                }
-            );
-            $red->text(
-                $request->precarga_id . " " .
-                $request->activacion . " " .
-                $request->star . " " .
-                $request->direccion . " " .
-                $request->municipio . " " .
-                $request->lat . " " .
-                $request->lon,
-                0,
-                10,
-                function ($font) {
-                    $font->file(1);
-                    $font->color('#00ff40');
-                    $font->size(65);
-                    $font->align('left');
-                    $font->valign('top');
-                    $font->angle(45);
-                    $font->countLines(4);
-                }
-            );
-            $red->save($destino . $nombre);
-        }
-        if ($request->activacion == 'activo') {
-            $activacion = new Auditoria();
-            $activacion->star = $request->star;
-            $activacion->latitude = $request->lat;
-            $activacion->longitude = $request->lon;
-            $activacion->razonSocial = $request->razonSocial;
-            $activacion->promotor =  Auth::user()->name;
-            $activacion->nit = $request->nit;
-            $activacion->direccion = $request->direccion;
-            $activacion->precarga_id = $request->precarga_id;
-            $activacion->telefono = $request->telefono;
-            $activacion->departamento = $request->departamento;
-            $activacion->municipio = $request->municipio;
-            $activacion->barrio = $request->barrio;
-            $activacion->activacion = $request->activacion;
-            $activacion->fotoActiv = 'auditorias_pics/fachadas' .  $nombre;
-            $activacion->save();
-            return redirect('tipologia');
-        } else if ($request->activacion == 'inactivo') {
-            $activacion = new Auditoria();
-            $activacion->star = $request->star;
-            $activacion->latitude = $request->lat;
-            $activacion->longitude = $request->lon;
-            $activacion->razonSocial = $request->razonSocial;
-            $activacion->promotor =  Auth::user()->name;
-            $activacion->nit = $request->nit;
-            $activacion->direccion = $request->direccion;
-            $activacion->precarga_id = $request->precarga_id;
-            $activacion->telefono = $request->telefono;
-            $activacion->departamento = $request->departamento;
-            $activacion->municipio = $request->municipio;
-            $activacion->barrio = $request->barrio;
-            $activacion->activacion = $request->activacion;
-            $activacion->noConcreciones = $request->noConcreciones;
-            $activacion->cual = $request->cual;
-            $activacion->observaciones = $request->observaciones;
-            $activacion->fotoActiv = 'auditorias_pics/fachadas' .  $nombre;
-            $activacion->save();
-            $now = Carbon::now();
-            $id =  $request->precarga_id;
-            $no_concretado = PuntosAuditoria::findOrFail($id);
-            $no_concretado->estatusGestion = 'gestionado - no concretado';
-            $no_concretado->fechaFinalizado = $now;
-            $no_concretado->save();
-            return redirect('auditoria');
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'precarga_id' => 'unique:auditorias',
+            ],
+            $messages =
+                [
+                    'unique' => 'Este registro ya se registro con anterioridad',
+                ]
+        );
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        } else {
+            $datosReporte = request()->except('_token');
+            if ($request->hasFile('fotoActiv')) {
+                $imagen = $request->file('fotoActiv');
+                $nombre = "_" . $request->precarga_id . '.' . 'png';
+                $destino = public_path('auditorias_pics/activacion');
+                $request->fotoActiv->move($destino, $nombre);
+                $red = Image::make($destino . '/' . $nombre);
+                $red->resize(
+                    380,
+                    null,
+                    function ($constraint) {
+                        $constraint->aspectRatio();
+                    }
+                );
+                $red->text(
+                    $request->precarga_id . " " .
+                        $request->activacion . " " .
+                        $request->star . " " .
+                        $request->direccion . " " .
+                        $request->municipio . " " .
+                        $request->lat . " " .
+                        $request->lon,
+                    0,
+                    10,
+                    function ($font) {
+                        $font->file(1);
+                        $font->color('#00ff40');
+                        $font->size(65);
+                        $font->align('left');
+                        $font->valign('top');
+                        $font->angle(45);
+                        $font->countLines(4);
+                    }
+                );
+                $red->save($destino . $nombre);
+            }
+            if ($request->activacion == 'activo') {
+                $activacion = new Auditoria();
+                $activacion->star = $request->star;
+                $activacion->latitude = $request->lat;
+                $activacion->longitude = $request->lon;
+                $activacion->razonSocial = $request->razonSocial;
+                $activacion->promotor =  Auth::user()->name;
+                $activacion->nit = $request->nit;
+                $activacion->direccion = $request->direccion;
+                $activacion->precarga_id = $request->precarga_id;
+                $activacion->telefono = $request->telefono;
+                $activacion->departamento = $request->departamento;
+                $activacion->municipio = $request->municipio;
+                $activacion->barrio = $request->barrio;
+                $activacion->activacion = $request->activacion;
+                $activacion->fotoActiv = 'auditorias_pics/fachadas' .  $nombre;
+                $activacion->save();
+                return redirect('tipologia');
+            } else if ($request->activacion == 'inactivo') {
+                $activacion = new Auditoria();
+                $activacion->star = $request->star;
+                $activacion->latitude = $request->lat;
+                $activacion->longitude = $request->lon;
+                $activacion->razonSocial = $request->razonSocial;
+                $activacion->promotor =  Auth::user()->name;
+                $activacion->nit = $request->nit;
+                $activacion->direccion = $request->direccion;
+                $activacion->precarga_id = $request->precarga_id;
+                $activacion->telefono = $request->telefono;
+                $activacion->departamento = $request->departamento;
+                $activacion->municipio = $request->municipio;
+                $activacion->barrio = $request->barrio;
+                $activacion->activacion = $request->activacion;
+                $activacion->noConcreciones = $request->noConcreciones;
+                $activacion->cual = $request->cual;
+                $activacion->observaciones = $request->observaciones;
+                $activacion->fotoActiv = 'auditorias_pics/fachadas' .  $nombre;
+                $activacion->save();
+                $now = Carbon::now();
+                $id =  $request->precarga_id;
+                $no_concretado = PuntosAuditoria::findOrFail($id);
+                $no_concretado->estatusGestion = 'gestionado - no concretado';
+                $no_concretado->fechaFinalizado = $now;
+                $no_concretado->save();
+                return redirect('auditoria');
+            }
         }
     }
 
@@ -286,20 +303,28 @@ class AuditoriaController extends Controller
         $puntos_auditoria = PuntosAuditoria::findOrFail($id);
         $usuario = Auth::user()->municipio;
 
-        return view('auditoria.show', compact(
-            'puntos_auditoria',
-            'si_no',
-            'tipologia',
-            'noConcreciones',
-            'segmento',
-            'now',
-            'diageoMarca',
-            'marcasDisponibles',
-            'competenciaRon',
-            'competenciaAguardiente',
-            'usuario'
-        ));
+        return view(
+            'auditoria.show',
+            compact(
+                'puntos_auditoria',
+                'si_no',
+                'tipologia',
+                'noConcreciones',
+                'segmento',
+                'now',
+                'diageoMarca',
+                'marcasDisponibles',
+                'competenciaRon',
+                'competenciaAguardiente',
+                'usuario'
+            )
+        );
     }
+
+
+    // public function export(){
+    //     return Excel::download(new UsersExport, 'users.xlsx');
+    // }
 
     /**
      * Show the form for editing the specified resource.

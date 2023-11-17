@@ -7,8 +7,8 @@
 @stop
 @section('content')
 <div class="progress">
-    <div class="progress-bar" style="width:88%;">
-        <span class="progress-bar-text">88% Diligenciado</span>
+    <div class="progress-bar" style="width:72%;">
+        <span class="progress-bar-text">72% Diligenciado</span>
     </div>
 </div>
     <div class="container">

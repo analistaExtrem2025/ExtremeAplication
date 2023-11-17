@@ -16,7 +16,7 @@ class CalidadAuditoriaController extends Controller
     public function index()
     {
         $auditoria = Auditoria::Where('star', '>=', '2023-01-01 00:00:00')
-            ->where('revisadoPor', Auth::user()->name)
+            //->where('revisadoPor', Auth::user()->name)
             ->where('criticidad', null)
             ->get();
 
@@ -88,9 +88,6 @@ class CalidadAuditoriaController extends Controller
                 'observacionesCalidad' => ['nullable']
             ],
         );
-
-
-
 
         $comentario = [
             "activacion" => $request->activacion,
@@ -166,9 +163,59 @@ class CalidadAuditoriaController extends Controller
     public function show($id)
     {
         $reporte = Auditoria::findOrFail($id);
-        $calificacion = [1 => "si", 0 => 'no'];
+        $tipologia = [
+            'Bar estándar' => 'Bar estándar',
+            'Tienda de consumo' => 'Tienda de consumo',
+            'Licobares' => 'Licobares',
+            'Juegos típicos' => 'Juegos típicos',
+            'Otro' => 'Otro',
+        ];
+
+        $segmento = [
+
+            "Gold" => "Gold",
+            "Silver" => "Silver",
+            "Bronce" => "Bronce",
+        ];
+
+        $cenefa_visi = [
+           'cenefa_visi_si' => 'cenefa visible si',
+           'cenefa_visi_no' => 'cenefa visible no',
+        ];
+
+        $cenefa_colo = [
+            'cenefa_colo_si' => 'cenefa colocada si',
+            'cenefa_colo_no' => 'cenefa colocada no',
+         ];
+
+
+         $AficheVisi = [
+            'afiche_visi_si' => 'afiche visible si',
+            'afiche_visi_no' => 'afiche visible no',
+         ];
+         $AficheColo = [
+            'afiche_colo_si' => 'afiche colocación si',
+            'afiche_colo_no' => 'afiche colocación no',
+         ];
+         $AficheCombo = [
+            'afiche_combo_si' => 'afiche combotizado si',
+            'afiche_combo_no' => 'afiche combotizado no',
+         ];
+
+
+         $calificacion = [1 => "si", 0 => 'no'];
         //dd($reporte);
-        return view('auditoria.galeriaEdit', compact('reporte', 'calificacion'));
+        return view('auditoria.galeriaEdit', compact(
+            'reporte',
+            'calificacion',
+            'tipologia',
+            'segmento',
+            'cenefa_visi',
+            'cenefa_colo',
+            'AficheVisi',
+            'AficheColo',
+            'AficheCombo',
+        ));
     }
 
     /**

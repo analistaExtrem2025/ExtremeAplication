@@ -2901,3 +2901,25 @@ label.toggle-item:before {
     width: 27px;
     transform: rotate(45deg) translate(18px, 8px);
 }
+
+.cantidades{
+    width: 55px;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+    text-align: center;
+
+
+
+
+}
+.cantidadesLabel{
+
+    margin: auto;
+    padding:1rem;
+
+
+
+}
