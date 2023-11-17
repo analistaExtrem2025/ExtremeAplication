@@ -113,16 +113,18 @@
                             <hr>
                             <div class="w-100"></div>
                             <div class="col">
-                                <select name="asignadoA" id="asignadoA" class="form-control selectpicker selector"
-                                    data-style="btn-primary" title="Seleccionar" required>
+                                <select name="asignadoA" id="asignadoA1" class="form-control selectpicker selector"
+                                    data-style="btn-primary" title="Seleccionar" required disabled>
                                     <option disabled selected value="--" required>Seleccione un promotor </option>
                                     @foreach ($usuarios as $user)
                                         <option value="{{ $user->name }}">{{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col"><input class="form-control" type="date" name="fechaAsignado"></div>
-                            <input type="text" value="Asignado">
+                            <div class="col">
+                                <input class="form-control" type="date" id="fechaAsignado1" name="fechaAsignado" disabled>
+                            </div>
+                            <input type="hidden" value="Asignado" id="estatusGestion1" id="estatusGestion1" name="estatusGestion" disabled>
                         </div>
                     </div>
                 </div>
@@ -150,18 +152,20 @@
                             <hr>
                             <div class="w-100"></div>
                             <div class="col">
-                                <select name="asignadoA" id="asignadoA" class="form-control selectpicker selector"
-                                    data-style="btn-primary" title="Seleccionar" required>
+                                <select name="asignadoA" id="asignadoA2" class="form-control selectpicker selector"
+                                    data-style="btn-primary" title="Seleccionar" required disabled>
                                     <option disabled selected value="--">Seleccione un promotor </option>
                                     @foreach ($usuarios as $user)
                                         <option value="{{ $user->name }}">{{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col"><input class="form-control" type="date" name="fechaAsignado" id="fechaAsignado"></b></div>
+                            <div class="col">
+                                <input class="form-control" type="date" name="fechaAsignado" id="fechaAsignado2" disabled>
+                            </div>
                             <div class="col">
                                 <div class="col">
-                                    <input type="text" class="form-control" value="Asignado" readonly>
+                                    <input type="text" class="form-control" value="Asignado" name="estatusGestion" id="estatusGestion2" disabled>
                                 </div>
                             </div>
                         </div>
@@ -174,7 +178,7 @@
             <div id="borrarRuta" style="display: none">
                 <div class="row">
                     <div class="col card-box">
-                        <select name="estatusGestion" id="estatusGestion" required class="form-control">
+                        <select name="estatusGestion" id="estatusGestion3"  class="form-control" required disabled>
                         <option value=" "selected disabled> Indica la razón de la eliminacíon </option>
                         <option value=" ">Se debe gestionar de nuevo</option>
                         <option value="sin cobertura">Punto sin cobertura</option>
@@ -182,11 +186,11 @@
                         <option value=" ">Sin promotor en la zona</option>
                         </select>
                     </div>
+                    <input type="hidden" name="asignadoA" id="asignadoA3" disabled value="">
+                    <input type="hidden" name="fechaAsignado" id="fechaAsignado3" disabled value="">
+                    <input type="hidden" name="fechaFinalizado" id="fechaFinalizado" disabled value="">
+
                 </div>
-                <input type="hidden" name="asignadoA" value="null">
-                <input type="hidden" name="fechaAsignado" value="0000-00-00">
-
-
             </div>
         </ul>
         <hr>
@@ -198,20 +202,56 @@
 @section('js')
     <script>
         $(document).ready(function() {
+
+            element1 = document.getElementById("nuevaRuta");
+            element2 = document.getElementById("editRuta");
+            element3 = document.getElementById("borrarRuta");
             $("input[type=radio]").click(function(event) {
                 var valor = $(event.target).val();
                 if (valor == "nueva") {
-                    $("#nuevaRuta").show();
-                    $("#editRuta").hide();
-                    $("#borrarRuta").hide();
+                    element1.style.display = 'block';
+                    $("#asignadoA1").prop('disabled', false);
+                    $("#fechaAsignado1").prop('disabled', false);
+                    $("#estatusGestion1").prop('disabled', false);
+                    element2.style.display = 'none';
+                    $("#asignadoA2").prop('disabled', true);
+                    $("#fechaAsignado2").prop('disabled', true);
+                    $("#estatusGestion2").prop('disabled', true);
+                    element3.style.display = 'none';
+                    $("#asignadoA3").prop('disabled', true);
+                    $("#estatusGestion3").prop('disabled', true);
+
+
                 } else if (valor == "edita") {
-                    $("#nuevaRuta").hide();
-                    $("#editRuta").show();
-                    $("#borrarRuta").hide();
+                    element1.style.display = 'none';
+                    $("#asignadoA1").prop('disabled', true);
+                    $("#fechaAsignado1").prop('disabled', true);
+                    $("#estatusGestion1").prop('disabled', true);
+                    element2.style.display = 'block';
+                    $("#asignadoA2").prop('disabled', false);
+                    $("#fechaAsignado2").prop('disabled', false);
+                    $("#estatusGestion2").prop('disabled', false);
+                    element3.style.display = 'none';
+                    $("#asignadoA3").prop('disabled', true);
+                    $("#estatusGestion3").prop('disabled', true);
                 } else if (valor == "elimina") {
-                    $("#nuevaRuta").hide();
-                    $("#editRuta").hide();
-                    $("#borrarRuta").show();
+                    element1.style.display = 'none';
+                    $("#asignadoA1").prop('disabled', true);
+                    $("#fechaAsignado1").prop('disabled', true);
+                    $("#estatusGestion1").prop('disabled', true);
+                    element2.style.display = 'none';
+                    $("#asignadoA2").prop('disabled', true);
+                    $("#fechaAsignado2").prop('disabled', true);
+                    $("#estatusGestion2").prop('disabled', true);
+                    element3.style.display = 'block';
+                    $("#asignadoA3").prop('disabled', false);
+                    $("#asignadoA3").val('');
+                    $("#estatusGestion3").prop('disabled', false);
+                    $("#fechaAsignado3").prop('disabled', false);
+                    $("#fechaFinalizado").prop('disabled', false);
+                    $("#fechaFinalizado").val('0000-00-00');
+                    $("#fechaAsignado3").val('0000-00-00');
+
                 }
             });
         });

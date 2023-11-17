@@ -44,16 +44,22 @@ class AsignacionesController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $puntos_auditoria = PuntosAuditoria::findOrFail($id);
         if ($request->sele == 'nueva' || $request->sele == 'edita') {
             $datos = request()->except('sele', '_token', '_method');
+            $merge = [
+                'fechaAsignado' => $request->fechaAsignado,
+                'fechaFinalizado' => " ",
+                'asignadoA' => $request->asignadoA,
+            ];
+
             $puntos_auditoria->update($datos);
         } else if ($request->sele == 'elimina') {
             $merge = [
-                'fechaAsignado' => null,
-                'fechaFinalizado' => null,
                 'asignadoA' => null,
             ];
+            //dd($request->all());
             $datos = request()->merge($merge)->except(['_token', '_method', 'sele',]);
             $puntos_auditoria->update($datos);
         }

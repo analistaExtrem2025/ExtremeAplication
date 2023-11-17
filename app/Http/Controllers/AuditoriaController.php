@@ -345,8 +345,10 @@ class AuditoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Auditoria $auditoria)
+    public function destroy($id)
     {
-        //
+        Auditoria::destroy($id);
+        return redirect()->route('auditoria.index')
+            ->with('status_success', 'registro eliminado exitosamente');
     }
 }
