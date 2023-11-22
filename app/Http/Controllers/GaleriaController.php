@@ -60,9 +60,9 @@ class GaleriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Galeria $galeria)
+    public function update(Request $request, $id)
     {
-        //
+        $calidadAuditoria = Auditoria::where('precarga_id', $request->precarga_id)->first();
     }
 
     /**

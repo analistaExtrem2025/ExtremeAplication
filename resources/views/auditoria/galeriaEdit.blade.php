@@ -151,13 +151,13 @@
                         <br>
                         <div style="display: none" id="EditSegmento">
                             <hr>
-                                <select  name="segmento[]" id="segmento" class="form-control selectpicker selector "
-                                data-style="btn-primary" title="Seleccionar segmento"  required disabled>
-                                <option disabled  value="old{'segmento'}" checked>Seleccione una opción </option>
-                                @foreach ( $segmento as $seg )
-                                    <option  value="{{ $seg }}">{{ $seg }}</option>
-                                    @endforeach
-                                </select>
+                            <select name="segmento[]" id="segmento" class="form-control selectpicker selector "
+                                data-style="btn-primary" title="Seleccionar segmento" required disabled>
+                                <option disabled value="old{'segmento'}" checked>Seleccione una opción </option>
+                                @foreach ($segmento as $seg)
+                                    <option value="{{ $seg }}">{{ $seg }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <hr>
                         <div class="toggle-wrapper">
@@ -174,15 +174,20 @@
                         <hr>
                         <div style="display: none" id="EditCaja">
                             <hr>
-                            <h6 class="cantidadesLabel">Ajuste las cantidades necesarias</h6>
+                            <h6 class="cantidadesLabel" style=" margin: auto; padding:1rem">Ajuste las cantidades
+                                necesarias</h6>
                             <input type="text" name="caja_cerveza" class="cantidades"
-                                value="{{ old('caja_cerveza', $reporte->caja_cerveza) }}">
+                                value="{{ old('caja_cerveza', $reporte->caja_cerveza) }}"
+                                style="width: 55px;  border-radius: 0.75rem;  text-align: center;">
                             <input type="text" name="caja_aguardiente" class="cantidades"
-                                value="{{ old('caja_aguardiente', $reporte->caja_aguardiente) }}">
+                                value="{{ old('caja_aguardiente', $reporte->caja_aguardiente) }}"
+                                style="width: 55px;  border-radius: 0.75rem;  text-align: center;">
                             <input type="text" name="caja_ron" class="cantidades"
-                                value="{{ old('caja_ron', $reporte->caja_ron) }}">
+                                value="{{ old('caja_ron', $reporte->caja_ron) }}"
+                                style="width: 55px;  border-radius: 0.75rem;  text-align: center;">
                             <input type="text" name="caja_whiskey" class="cantidades"
-                                value="{{ old('caja_whiskey', $reporte->caja_whiskey) }}">
+                                value="{{ old('caja_whiskey', $reporte->caja_whiskey) }}"
+                                style="width: 55px;  border-radius: 0.75rem;  text-align: center;">
                         </div>
                         <hr>
                         <h5 class="center">CANTIDADES:</h5>
@@ -224,7 +229,7 @@
                             <div id="msgCantidades">
                                 <red>Calidad dice:</red>
                             </div>
-                            <input class="noClass" type="text" id="inpSegmento" name="segmento" required>
+                            <input class="noClass" type="text" id="inpSegmento" name="Calsegmento" required>
                             <input class="noClass" type="text" id="inpCantidades" name="cantidadCajas" required>
                         </nat>
 
@@ -259,13 +264,13 @@
                         <br>
                         <div style="display: none" id="EditTipologia">
                             <hr>
-                                <select  name="tipologia[]" id="tipologia" class="form-control selectpicker selector"
-                                data-style="btn-primary" title="Seleccionar tipologia"  required disabled>
-                                <option disabled  value="old{'tipologia'}" checked>Seleccione una opción </option>
-                                @foreach ( $tipologia as $tip )
-                                    <option  value="{{ $tip }}">{{ $tip }}</option>
-                                    @endforeach
-                                </select>
+                            <select name="tipologia[]" id="tipologia" class="form-control selectpicker selector"
+                                data-style="btn-primary" title="Seleccionar tipologia" required disabled>
+                                <option disabled value="old{'tipologia'}" checked>Seleccione una opción </option>
+                                @foreach ($tipologia as $tip)
+                                    <option value="{{ $tip }}">{{ $tip }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <nat class="bt-menu">
@@ -283,7 +288,7 @@
 
                                 <red>Calidad dice:</red>
                             </div>
-                            <input class="noClass" type="text" id="inpTipologia" name="tipologia" required>
+                            <input class="noClass" type="text" id="inpTipologia" name="Caltipologia" required>
                         </nat>
                     </div>
                     <div class="col-8">
@@ -299,14 +304,11 @@
                     MATERIALES</h1>
             </div>
             <hr>
-
             {{--  <!-- Cenefa -->  --}}
-
             @if ($reporte->cenefa == 'cenefa_si')
-
                 <ul>
                     <div class="row">
-                        <div class="col card-box-xl">
+                        <div class="col card-box-xxl">
                             <h5 class="center">CENEFA</h5>
                             <p class= "parrafoJustificado">
                                 <span>
@@ -335,16 +337,17 @@
                                     <div class="name">Audito<br>mal la<br>visibiliad</div>
                                     <div class="name1">Audito<br>bien la<br>visibiliad</div>
                                 </div>
-                            <br>
+                                <br>
                                 <div style="display: none" id="EditCenefaVisi">
                                     <hr>
-                                        <select  name="cenefa_visi[]" id="cenefa_visi" class="form-control selectpicker selector"
-                                        data-style="btn-primary" title="Seleccionar visibilidad cenefa"  required disabled>
-                                        <option disabled  value="old{'cenefa_visi'}" checked>Seleccione una opción </option>
-                                        @foreach ( $cenefa_visi as $cenVis )
-                                            <option  value="{{ $cenVis }}">{{ $cenVis }}</option>
-                                            @endforeach
-                                        </select>
+                                    <select name="cenefa_visi[]" id="cenefa_visi"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar visibilidad cenefa" required disabled>
+                                        <option disabled value="old{'cenefa_visi'}" checked>Seleccione una opción </option>
+                                        @foreach ($cenefa_visi as $cenVis)
+                                            <option value="{{ $cenVis }}">{{ $cenVis }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <br>
                                 <br>
@@ -361,13 +364,14 @@
                                 <br>
                                 <div style="display: none" id="EditCenefaColo">
                                     <hr>
-                                        <select  name="cenefa_colo[]" id="cenefa_colo" class="form-control selectpicker selector"
-                                        data-style="btn-primary" title="Seleccionar colocación cenefa"  required disabled>
-                                        <option disabled  value="old{'cenefa_colo'}" checked>Seleccione una opción </option>
-                                        @foreach ( $cenefa_colo as $cenCol )
-                                            <option  value="{{ $cenCol }}">{{ $cenCol }}</option>
-                                            @endforeach
-                                        </select>
+                                    <select name="cenefa_colo[]" id="cenefa_colo"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar colocación cenefa" required disabled>
+                                        <option disabled value="old{'cenefa_colo'}" checked>Seleccione una opción </option>
+                                        @foreach ($cenefa_colo as $cenCol)
+                                            <option value="{{ $cenCol }}">{{ $cenCol }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <br>
                                 <br>
@@ -385,25 +389,21 @@
                                                 class="fas fa-undo" alt="giro izquierda"></i></button></li>
                                 </ul>
                                 <div id="msgCenefaVisi">
-
                                     <red>Calidad dice:</red>
                                 </div>
                                 <div id="msgCenefaColo">
-
                                     <red>Calidad dice:</red>
                                 </div>
                                 <input type="hidden" value="{{ $reporte->cenefa }}" name="stateCenefa">
-                                <input class="noClass" type="text" id="inpCenefaVisi" name="CenefaVisi" required>
-                                <input class="noClass" type="text" id="inpCenefaColo" name="CenefaColo" required>
+                                <input class="noClass" type="text" id="inpCenefaVisi" name="CalCenefaVisi" required>
+                                <input class="noClass" type="text" id="inpCenefaColo" name="CalCenefaColo" required>
                             </nat>
                         </div>
                         <div class="col-8">
                             <img id="imageCenefa"
                                 src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Cenefa_' . $reporte->precarga_id . '.png'))) }}" />
                         </div>
-
                     </div>
-
                 </ul>
             @else
                 <ul>
@@ -411,19 +411,14 @@
                     <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                 </ul>
             @endif
-
-
             <hr>
 
 
-            {{--  <!-- Afiche -->  --}}
-
-
-
+            {{--  <!-- Afiche 2-->  --}}
             @if ($reporte->afiche == 'afiche_si')
                 <ul>
                     <div class="row">
-                        <div class="col card-box-xxl">
+                        <div class="col card-box-extraxl" id="cardAfiche">
                             <h5 class="center">AFICHE</h5>
                             <p class= "parrafoJustificado">
                                 <span>
@@ -457,1829 +452,2172 @@
                                     @else
                                         no incluye gift.
                                     @endif
+                                @else
+                                    <p class="refe">El afiche no se combotizó.
+                                @endif
                             </p>
-                        @else
-                            <p class="refe">El afiche no se combotizó.</p>
+                            <div class="col">
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross6">
+                                        <input id="checkcross6" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross6">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Audito<br>mal la<br>visibiliad</div>
+                                    <div class="name1">Audito<br>bien la<br>visibiliad</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditAficheVisi">
+                                    <hr>
+                                    <select name="afiche_visi[]" id="afiche_visi"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar visibiliad afiche" required disabled>
+                                        <option disabled value="old{'afiche_visi'}" checked>Seleccione una opción </option>
+                                        @foreach ($afiche_visi as $afivisi)
+                                            <option value="{{ $afivisi }}">{{ $afivisi }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross7">
+                                        <input id="checkcross7" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross7">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Audito<br>mal la<br>colocación</div>
+                                    <div class="name1">Audito<br>bien la<br>colocación</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditAficheColo">
+                                    <hr>
+                                    <select name="afiche_colo[]" id="afiche_colo"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar colocación afiche" required disabled>
+                                        <option disabled value="old{'afiche_colo'}" checked>Seleccione una opción </option>
+                                        @foreach ($aficheColo as $afiColo)
+                                            <option value="{{ $afiColo }}">{{ $afiColo }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                            <div class="toggle-wrapper">
+                                <div class="toggle checkcross8">
+                                    <input id="checkcross8" type="checkbox" style="display: none">
+                                    <label class="toggle-item" for="checkcross8">
+                                        <div class="check"></div>
+                                    </label>
+                                </div>
+                                <div class="name">Audito<br>mal la<br>combotización</div>
+                                <div class="name1">Audito<br>bien la<br>combotización</div>
+                            </div>
+                            <br>
+
+
+                            <nat class="bt-menu">
+                                <ul>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-in5"><i
+                                                class="fas fa-plus" alt="acercar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-out5"><i
+                                                class="fas fa-minus" alt="alejar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-right5"><i
+                                                class="fas fa-redo" alt="giro derecha"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-left5"><i
+                                                class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                                </ul>
+
+
+                                <div id="msgAficheVisi">
+                                    <red>Calidad dice:</red>
+                                </div>
+
+                                <div id="msgAficheColo">
+                                    <red>Calidad dice:</red>
+                                </div>
+
+                                <div id="msgAficheCombo">
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <ul>
+                                    <div style="display: none" id="EditAficheCombotizado" class="bt-sub-menu">
+                                        <hr>
+                                        <select name="afiche_combo[]" id="afiche_combo"
+                                            class="form-control selectpicker selector" data-style="btn-primary"
+                                            title="Seleccionar combotizacion afiche" required disabled>
+                                            <option disabled value="old{'afiche_combo'}" checked>Seleccione una opción
+                                            </option>
+                                            @foreach ($aficheCombotizado as $afiCombo)
+                                                <option value="{{ $afiCombo }}">{{ $afiCombo }}</option>
+                                            @endforeach
+                                        </select>
+                                        <hr>
+                                        <select name="marca_combo[]" id="marca_combo"
+                                            class="form-control selectpicker selector" data-style="btn-primary"
+                                            title="Seleccionar marca con la que se combotizo" required disabled>
+                                            <option disabled value="old{'marca_combo'}" checked>Seleccione una opción
+                                            </option>
+                                            @foreach ($marca_combo as $diageoM)
+                                                <option value="{{ $diageoM }}">{{ $diageoM }}</option>
+                                            @endforeach
+                                        </select>
+                                        <hr>
+                                        <select name="combox1[]" id="combox1"
+                                            class="form-control selectpicker selector" data-style="btn-primary"
+                                            title="Seleccionar combotizacion afiche" required disabled>
+                                            <option disabled value="old{'combox1'}" checked>Seleccione una opción </option>
+                                            @foreach ($Combox1 as $x1)
+                                                <option value="{{ $x1 }}">{{ $x1 }}</option>
+                                            @endforeach
+                                        </select>
+                                        <hr>
+                                        <select name="combox2[]" id="combox2"
+                                            class="form-control selectpicker selector" data-style="btn-primary"
+                                            title="Seleccionar combotizacion afiche" required disabled>
+                                            <option disabled value="old{'combox2'}" checked>Seleccione una opción </option>
+                                            @foreach ($Combox2 as $x2)
+                                                <option value="{{ $x2 }}">{{ $x2 }}</option>
+                                            @endforeach
+                                        </select>
+                                        <hr>
+                                        <select name="combox3[]" id="combox3"
+                                            class="form-control selectpicker selector" data-style="btn-primary"
+                                            title="Seleccionar combotizacion afiche" required disabled>
+                                            <option disabled value="old{'combox3'}" checked>Seleccione una opción </option>
+                                            @foreach ($Combox3 as $x3)
+                                                <option value="{{ $x3 }}">{{ $x3 }}</option>
+                                            @endforeach
+                                        </select>
+                                        <br>
+                                        <br>
+                                    </div>
+                                </ul>
+
+                                <input type="hidden" name="stateAfiche" value="{{ $reporte->afiche }}">
+                                <input type="hidden" name="aficheCombo" value="{{ $reporte->aficheCombotizado }}">
+                                <input class="noClass" type="text" id="inpAficheVisi" name="CalaficheVis" required>
+                                <input class="noClass" type="text" id="inpAficheColo" name="CalaficheColo" required>
+                                <input class="noClass" type="text" id="inpAficheCombo" name="CalaficheCombo" required>
+                            </nat>
+                        </div>
+                        <div class="col-8">
+                            <img id="imageAfiche"
+                                src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Afiche_' . $reporte->precarga_id . '.png'))) }}" />
+                        </div>
+
+                </ul>
+            @else
+                <ul>
+                    <span>No Hay Afiche</span>
+                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+                </ul>
             @endif
-            </p>
-            <div class="col">
-                <div class="toggle-wrapper">
-                    <div class="toggle checkcross6">
-                        <input id="checkcross6" type="checkbox" style="display: none">
-                        <label class="toggle-item" for="checkcross6">
-                            <div class="check"></div>
-                        </label>
-                    </div>
-                    <div class="name">Audito<br>mal la<br>visibiliad</div>
-                    <div class="name1">Audito<br>bien la<br>visibiliad</div>
-                </div>
-                <br>
-                <div style="display: none" id="EditAficheVisi">
-                    <hr>
-                        <select  name="afiche_visi[]" id="afiche_visi" class="form-control selectpicker selector"
-                        data-style="btn-primary" title="Seleccionar visibiliad afiche"  required disabled>
-                        <option disabled  value="old{'afiche_visi'}" checked>Seleccione una opción </option>
-                        @foreach ( $AficheVisi as $afivisi )
-                            <option  value="{{ $afivisi }}">{{ $afivisi }}</option>
-                            @endforeach
-                        </select>
-                </div>
-
-
-                <br>
-                <div class="toggle-wrapper">
-                    <div class="toggle checkcross7">
-                        <input id="checkcross7" type="checkbox" style="display: none">
-                        <label class="toggle-item" for="checkcross7">
-                            <div class="check"></div>
-                        </label>
-                    </div>
-                    <div class="name">Audito<br>mal la<br>colocación</div>
-                    <div class="name1">Audito<br>bien la<br>colocación</div>
-                </div>
-                <br>
-                <div style="display: none" id="EditAficheColo">
-                    <hr>
-                        <select  name="afiche_colo[]" id="afiche_colo" class="form-control selectpicker selector"
-                        data-style="btn-primary" title="Seleccionar colocación afiche"  required disabled>
-                        <option disabled  value="old{'afiche_colo'}" checked>Seleccione una opción </option>
-                        @foreach ( $AficheColo as $afiColo )
-                            <option  value="{{ $afiColo }}">{{ $afiColo }}</option>
-                            @endforeach
-                        </select>
-                </div>
-
-                <br>
-                <div class="toggle-wrapper">
-                    <div class="toggle checkcross8">
-                        <input id="checkcross8" type="checkbox" style="display: none">
-                        <label class="toggle-item" for="checkcross8">
-                            <div class="check"></div>
-                        </label>
-                    </div>
-                    <div class="name">Audito<br>mal la<br>combotización</div>
-                    <div class="name1">Audito<br>bien la<br>combotización</div>
-                </div>
-                <br>
-                <div style="display: none" id="EditAficheCombo">
-                    <hr>
-                        <select  name="afiche_combo[]" id="afiche_combo" class="form-control selectpicker selector"
-                        data-style="btn-primary" title="Seleccionar combotizacion afiche"  required disabled>
-                        <option disabled  value="old{'afiche_combo'}" checked>Seleccione una opción </option>
-                        @foreach ( $AficheCombo as $afiCombo )
-                            <option  value="{{ $afiCombo }}">{{ $afiCombo }}</option>
-                            @endforeach
-                        </select>
-                </div>
-
-
-                <br>
-                <nat class="bt-menu">
-                    <ul>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-in5"><i class="fas fa-plus"
-                                    alt="acercar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-out5"><i class="fas fa-minus"
-                                    alt="alejar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-right5"><i class="fas fa-redo"
-                                    alt="giro derecha"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-left5"><i class="fas fa-undo"
-                                    alt="giro izquierda"></i></button></li>
-                    </ul>
-                    <div id="msgAficheVisi">
-
-                        <red>Calidad dice:</red>
-                    </div>
-                    <div id="msgAficheColo">
-
-                        <red>Calidad dice:</red>
-                    </div>
-                    <div id="msgAficheCombo">
-
-                        <red>Calidad dice:</red>
-                    </div>
-                    <input type="hidden" name="stateAfiche" value="{{ $reporte->afiche }}">
-                    <input type="hidden" name="aficheCombo" value="{{ $reporte->aficheCombotizado }}">
-                    <input class="noClass" type="text" id="inpAficheVisi" name="aficheVis" required>
-                    <input class="noClass" type="text" id="inpAficheColo" name="aficheColo" required>
-                    <input class="noClass" type="text" id="inpAficheCombo" name="aficheCombo" required>
-                </nat>
-            </div>
-    </div>
-    <div class="col-8">
-        <img id="imageAfiche"
-            src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Afiche_' . $reporte->precarga_id . '.png'))) }}" />
-    </div>
-    </div>
-
-    </ul>
-@else
-    <ul>
-        <span>No Hay Afiche</span>
-        <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-    </ul>
-    @endif
-
-    <hr>
-
-    {{--  <!-- marco  -->  --}}
-
-    @if ($reporte->marco == 'marco_si')
-        <ul>
-            <div class="row">
-                <div class="col card-box-xl">
-                    <h5 class="center">MARCO</h5>
-                    <p class= "parrafoJustificado">
-                        <span>
-                            <blue>Auditor dice:</blue>
-                        </span>
-                        @if ($reporte->marco_visi == 'marco_visi_si')
-                            el marco esta visible al público
-                        @else
-                            el marco no es visible para el público
-                        @endif
-                        @if ($reporte->marco_colo == 'marco_colo_si')
-                            la colocación del marco es la correcta
-                        @else
-                            la colocación del marco no es la apropiada
-                        @endif
-                    </p>
-
-
-                    <div class="col">
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross9">
-                                <input id="checkcross9" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross9">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">No<br> es visible</div>
-                            <div class="name1">Es <br>visible</div>
-                        </div>
-
-
-                        <br>
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross10">
-                                <input id="checkcross10" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross10">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">Mal <br>colocada</div>
-                            <div class="name1">Bien <br>colocada</div>
-                        </div>
-
-
-
-                    </div>
-                    <nat class="bt-menu">
-                        <ul>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-in6"><i class="fas fa-plus"
-                                        alt="acercar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-out6"><i class="fas fa-minus"
-                                        alt="alejar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-right6"><i
-                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-left6"><i
-                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                        </ul>
-                        <div id="msgMarcoVisi">
-
-                            <red>Calidad dice:</red>
-                        </div>
-
-                        <div id="msgMarcoColo">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <input type="hidden" value="{{ $reporte->marco }}" name="stateMarco">
-                        <input class="noClass" type="text" id="inpMarcoVisi" name="marcoVisi" required>
-                        <input class="noClass" type="text" id="inpMarcoColo" name="marcoColo" required>
-                    </nat>
-                </div>
-                <div class="col-8">
-                    <img id="imageMarco"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Marco_' . $reporte->precarga_id . '.png'))) }}" />
-                </div>
-            </div>
-        </ul>
-    @else
-        <ul>
-            <span>No Hay Cenefa</span>
-            <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-        </ul>
-    @endif
-
-    <hr>
-    {{--  <!-- rompetraficos -->  --}}
-    @if ($reporte->rompetraficos == 'rompetraficos_si')
-
-        <ul>
-            <div class="row">
-                <div class="col card-box-xl">
-                    <h5 class="center">ROMPETRAFICO</h5>
-                    <p class= "parrafoJustificado">
-                        <span>
-                            <blue>Auditor dice:</blue>
-                        </span>
-                        @if ($reporte->prod_rt_visibles == 'prod_rt_visibles_si')
-                            El rompetrafico esta visible al publico,
-                        @else
-                            El rompetrafico no esta visible para el publico,
-                        @endif
-                        @if ($reporte->prod_rt_properly == 'prod_rt_properly_si')
-                            la colocaci&oacute;n es considerada la correcta.
-                        @else
-                            su colocaci&oacute;n no es la apropiada.
-                        @endif
-                    </p>
-
-
-                    <div class="col">
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross11">
-                                <input id="checkcross11" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross11">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">No<br> es visible</div>
-                            <div class="name1">Es <br>visible</div>
-                        </div>
-
-
-                        <br>
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross12">
-                                <input id="checkcross12" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross12">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">Mal <br>colocada</div>
-                            <div class="name1">Bien <br>colocada</div>
-                        </div>
-
-
-
-                    </div>
-
-                    <nat class="bt-menu">
-                        <ul>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-in7"><i class="fas fa-plus"
-                                        alt="acercar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-out7"><i class="fas fa-minus"
-                                        alt="alejar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-right7"><i
-                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-left7"><i
-                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                        </ul>
-                        <div id="msgRompeVisi">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <div id="msgRompeColo">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <input type="hidden" value="{{ $reporte->rompetraficos }}" name="stateRompetrafico">
-                        <input class="noClass" type="text" id="inpRompeVisi" name="rompeVisi" required>
-                        <input class="noClass" type="text" id="inpRompeColo" name="rompeColo" required>
-                    </nat>
-                </div>
-                <div class="col-8">
-                    <img id="imageRompetrafico"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Rompetrafico_' . $reporte->precarga_id . '.png'))) }}" />
-                </div>
-            </div>
-        </ul>
-    @else
-        <ul>
-            <span>No Hay Rompetrafico</span>
-            <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-        </ul>
-    @endif
-
-
-
-    <hr>
-    {{--  <!-- fachadas -->  --}}
-    @if ($reporte->fachadas == 'fachadas_si')
-
-        <ul>
-            <div class="row">
-                <div class="col card-box-xl">
-                    <h5 class="center">FACHADAS Y AVISOS</h5>
-                    <p class= "parrafoJustificado">
-                        <span>
-                            <blue>Auditor dice:</blue>
-                        </span>
-                        @if ($reporte->fachadas_visi == 'fachadas_visi_si')
-                            la fachada y avisos estan visibles al consumidor,
-                        @else
-                            la fachada y avisos no esta visibles al consumidor,
-                        @endif
-                        @if ($reporte->fachadas_colo == 'fachadas_colo_si')
-                            y se encuentran en buen estado.
-                        @else
-                            no estan en buen estado, estan tapadas o da&ntilde;adas.
-                        @endif
-                    </p>
-                    <div class="col">
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross13">
-                                <input id="checkcross13" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross13">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">No<br> es visible</div>
-                            <div class="name1">Es <br>visible</div>
-                        </div>
-
-
-                        <br>
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross14">
-                                <input id="checkcross14" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross14">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">Mal <br>estado</div>
-                            <div class="name1">Buen <br>estado</div>
-                        </div>
-
-
-                    </div>
-                    <nat class="bt-menu">
-                        <ul>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-in8"><i class="fas fa-plus"
-                                        alt="acercar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-out8"><i class="fas fa-minus"
-                                        alt="alejar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-right8"><i
-                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-left8"><i
-                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                        </ul>
-                        <div id="msgFaxadaVisi">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <div id="msgAFaxadaEstado">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <input type="hidden" value="{{ $reporte->fachadas }}" name="stateFachadas">
-                        <input class="noClass" type="text" id="inpFaxadaVisi" name="faxadaVisi" required>
-                        <input class="noClass" type="text" id="inpAFaxadaEstado" name="faxadaEstado" required>
-                    </nat>
-                </div>
-                <div class="col-8">
-                    <img id="imageFaxada"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Faxada_' . $reporte->precarga_id . '.png'))) }}" />
-                </div>
-            </div>
-        </ul>
-    @else
-        <ul>
-            <span>No Hay fachada ni avisos de la marca</span>
-            <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-        </ul>
-    @endif
-
-
-
-    <hr>
-    {{--  <!-- hieleras -->  --}}
-    @if ($reporte->hielera == 'hielera_si')
-
-
-
-        <ul>
-            <div class="row">
-                <div class="col card-box-xxl">
-                    <h5 class="center">HIELERAS</h5>
-                    <p class= "parrafoJustificado">
-                        <span>
-                            <blue>Auditor dice:</blue>
-                        </span>
-                        @if ($reporte->hl_con_prod == 'hl_con_prod_si')
-                            Las hieleras cuentan con productos DIAGEO,
-                        @else
-                            Las hieleras no cuentan con productos DIAGEO,
-                        @endif
-                        @if ($reporte->prod_hl_visible == 'prod_hl_visible_si')
-                            estan visibles al consumidor,
-                        @else
-                            estan tapadas por otros productos o marcas,
-                        @endif
-
-                        @if ($reporte->prod_hl_danadas == 'prod_hl_danadas_si')
-                            y se encuentran en buen estado.
-                        @else
-                            estan quebradas, ralladas, en mal estado.
-                        @endif
-                    </p>
-                    <div class="col">
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross15">
-                                <input id="checkcross15" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross15">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">Sin<br> producto<br> de la<br> marca</div>
-                            <div class="name1">Con<br> producto <br>de la <br>marca</div>
-                        </div>
-
-
-                        <br>
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross16">
-                                <input id="checkcross16" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross16">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">Estan <br>tapados</div>
-                            <div class="name1">Estan <br>destapados</div>
-                        </div>
-
-
-                        <br>
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross17">
-                                <input id="checkcross17" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross17">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">Mal <br>estado</div>
-                            <div class="name1">Buen <br>estado</div>
-                        </div>
-
-
-                    </div>
-                    <nat class="bt-menu">
-                        <ul>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-in9"><i class="fas fa-plus"
-                                        alt="acercar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-out9"><i class="fas fa-minus"
-                                        alt="alejar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-right9"><i
-                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-left9"><i
-                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                        </ul>
-                        <div id="msgHieleraProd">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <div id="msgHieleraVisi">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <div id="msgHieleraEstado">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <input type="hidden" value="{{ $reporte->hielera }}" name="stateHielera">
-                        <input class="noClass" type="text" id="inpHieleraProd" name="hieleraProd" required>
-                        <input class="noClass" type="text" id="inpHieleraVisi" name="hieleraVisi" required>
-                        <input class="noClass" type="text" id="inpHieleraEstado" name="hieleraEstado" required>
-                    </nat>
-                </div>
-                <div class="col-8">
-                    <img id="imageHielera"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Hielera_' . $reporte->precarga_id . '.png'))) }}" />
-                </div>
-            </div>
-        </ul>
-    @else
-        <ul>
-            <span>No Hay hieleras de la marca</span>
-            <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-        </ul>
-    @endif
-    <hr>
-
-    {{--  <!-- Bases de hielera -->  --}}
-    @if ($reporte->bases_h == 'bases_h_si')
-        <ul>
-
-
-            <div class="row">
-                <div class="col card-box-xxl">
-                    <h5 class="center">BASES PARA HIELERAS</h5>
-                    <p class= "parrafoJustificado">
-                        <span>
-                            <blue>Auditor dice:</blue>
-                        </span>
-                        @if ($reporte->baseshl_con_prod == 'baseshl_con_prod_si')
-                            Las bases de las hieleras cuentan con productos DIAGEO,
-                        @else
-                            Las bases de las hieleras no cuentan con productos DIAGEO,
-                        @endif
-                        @if ($reporte->prod_baseshl_visible == 'prod_baseshl_visible_si')
-                            estan visibles al consumidor,
-                        @else
-                            estan tapadas por otros productos o marcas,
-                        @endif
-
-                        @if ($reporte->prod_baseshl_danadas == 'prod_baseshl_danadas_si')
-                            y se encuentran en buen estado.
-                        @else
-                            estan quebradas, ralladas, en mal estado.
-                        @endif
-                    </p>
-                    <div class="col">
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross18">
-                                <input id="checkcross18" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross18">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">Base<br>sin<br> producto<br>Diageo</div>
-                            <div class="name1">Base<br>con<br>producto<br>Diageo</div>
-                        </div>
-
-
-                        <br>
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross19">
-                                <input id="checkcross19" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross19">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">No es <br>visible</div>
-                            <div class="name1">Es <br>visible</div>
-                        </div>
-
-
-                        <br>
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross20">
-                                <input id="checkcross20" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross20">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">Mal<br>estado</div>
-                            <div class="name1">Buen<br>estado</div>
-                        </div>
-
-
-                    </div>
-                    <nat class="bt-menu">
-                        <ul>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-in10"><i class="fas fa-plus"
-                                        alt="acercar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-out10"><i
-                                        class="fas fa-minus" alt="alejar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-right10"><i
-                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-left10"><i
-                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                        </ul>
-                        <div id="msgBsHieProd">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <div id="msgBsHieVisi">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <div id="msgBsHieEstado">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <input type="hidden" value="{{ $reporte->bases_h }}" name="stateBaseHielera">
-                        <input class="noClass" type="text" id="inpBsHieProd" name="basesHieProd" required>
-                        <input class="noClass" type="text" id="inpBsHieVisi" name="basesHieVisi" required>
-                        <input class="noClass" type="text" id="inpBsHieEstado" name="basesHieEstado" required>
-                    </nat>
-                </div>
-                <div class="col-8">
-                    <img id="imageBase_h"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Base_h_' . $reporte->precarga_id . '.png'))) }}" />
-                </div>
-            </div>
-        </ul>
-    @else
-        <ul>
-            <span>No hay bases para hieleras</span>
-            <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-        </ul>
-    @endif
-    <hr>
-
-
-    {{--  <!-- Dosificador Doble -->  --}}
-
-    @if ($reporte->dosificadorD == 'dosificadorD_si')
-        <ul>
-
-            <div class="row">
-                <div class="col card-box-xxl">
-                    <h5 class="center">DOSIFICADOR DOBLE</h5>
-                    <p class= "parrafoJustificado">
-                        <span>
-                            <blue>Auditor dice:</blue>
-                        </span>
-                        @if ($reporte->prod_dsD_visibles == 'prod_dsD_visibles_si')
-                            El dosificador doble esta visible al consumidor,
-                        @else
-                            El dosificador doble no esta visible al consumidor,
-                        @endif
-                        @if ($reporte->prod_dsD_diferentes == 'prod_dsD_diferentes_si')
-                            esta exhibido con productos Diageo
-                        @else
-                            esta exhibido con productos diferentes a la marca
-                        @endif
-
-                        @if ($reporte->prod_dsD_danados == 'prod_dsD_danados_si')
-                            y se encuentra en buen estado.
-                        @else
-                            tienen polvo, esta sucio o las etiquetas estan en mal estado.
-                        @endif
-                    </p>
-                    <div class="col">
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross21">
-                                <input id="checkcross21" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross21">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">No<br> es visible</div>
-                            <div class="name1">Es <br>visible</div>
-                        </div>
-
-
-                        <br>
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross22">
-                                <input id="checkcross22" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross22">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">sin<br>productos<br>marca<br>Diageo</div>
-                            <div class="name1">con<br>productos<br>marca<br>Diageo</div>
-                        </div>
-
-
-                        <br>
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross23">
-                                <input id="checkcross23" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross23">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">Mal <br>estado</div>
-                            <div class="name1">Buen <br>estado</div>
-                        </div>
-
-
-                    </div>
-                    <nat class="bt-menu">
-                        <ul>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-in11"><i class="fas fa-plus"
-                                        alt="acercar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-out11"><i
-                                        class="fas fa-minus" alt="alejar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-right11"><i
-                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-left11"><i
-                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                        </ul>
-                        <div id="msgDsDVisi">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <div id="msgDsDProd">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <div id="msgDsDEstado">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <input type="hidden" value="{{ $reporte->dosificadorD }}" name="stateDosificadorD">
-                        <input class="noClass" type="text" id="inpDsDVisi" name="dosiDVisi" required>
-                        <input class="noClass" type="text" id="inpDsDProd" name="dosiDProd" required>
-                        <input class="noClass" type="text" id="inpDsDEstado" name="dosiDEstado" required>
-                    </nat>
-                </div>
-                <div class="col-8">
-                    <img id="imageDosificadorD"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/DosificadorD_' . $reporte->precarga_id . '.png'))) }}" />
-                </div>
-            </div>
-        </ul>
-    @else
-        <ul>
-            <span>No hay dosificador doble</span>
-            <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-        </ul>
-    @endif
-
-
-    <hr>
-    {{--  <!-- Dosificador Sencillo -->  --}}
-
-    @if ($reporte->dosificadorS == 'dosificadorS_si')
-        <ul>
-
-            <div class="row">
-                <div class="col card-box-xxl">
-                    <h5 class="center">DOSIFICADOR SENCILLO</h5>
-                    <p class= "parrafoJustificado">
-                        <span>
-                            <blue>Auditor dice:</blue>
-                        </span>
-                        @if ($reporte->prod_dsS_visibles == 'prod_dsS_visibles_si')
-                            El dosificador sencillo esta visible al consumidor,
-                        @else
-                            El dosificador sencillo no esta visible al consumidor,
-                        @endif
-                        @if ($reporte->prod_dsS_diferentes == 'prod_dsS_diferentes_si')
-                            esta exhibido con productos Diageo
-                        @else
-                            esta exhibido con productos diferentes a la marca
-                        @endif
-
-                        @if ($reporte->prod_dsS_danados == 'prod_dsS_danados_si')
-                            y se encuentra en buen estado.
-                        @else
-                            tienen polvo, esta sucio o las etiquetas estan en mal estado.
-                        @endif
-                    </p>
-                    <div class="col">
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross24">
-                                <input id="checkcross24" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross24">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">No<br> es visible</div>
-                            <div class="name1">Es <br>visible</div>
-                        </div>
-
-
-                        <br>
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross25">
-                                <input id="checkcross25" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross25">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">sin<br>productos<br>marca<br>Diageo</div>
-                            <div class="name1">con<br>productos<br>marca<br>Diageo</div>
-                        </div>
-
-
-                        <br>
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross26">
-                                <input id="checkcross26" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross26">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">Mal <br>estado</div>
-                            <div class="name1">Buen <br>estado</div>
-                        </div>
-
-
-                    </div>
-                    <nat class="bt-menu">
-                        <ul>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-in12"><i class="fas fa-plus"
-                                        alt="acercar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-out12"><i
-                                        class="fas fa-minus" alt="alejar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-right12"><i
-                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-left12"><i
-                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                        </ul>
-                        <div id="msgDsSVisi">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <div id="msgDsSProd">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <div id="msgDsSEstado">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <input type="hidden" value="{{ $reporte->dosificadorS }}" name="stateDosificadorS">
-                        <input class="noClass" type="text" name="dosiSVisi" id="inpDsSVisi" required>
-                        <input class="noClass" type="text" name="dosiSProd" id="inpDsSProd" required>
-                        <input class="noClass" type="text" name="dosiSEstado" id="inpDsSEstado" required>
-                    </nat>
-                </div>
-                <div class="col-8">
-                    <img id="imageDosificadorS"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/DosificadorS_' . $reporte->precarga_id . '.png'))) }}" />
-                </div>
-            </div>
-        </ul>
-    @else
-        <ul>
-            <span>No hay dosificador sencillo</span>
-            <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-        </ul>
-    @endif
-    <hr>
-
-
-    {{--  <!-- branding -->  --}}
-    @if ($reporte->branding == 'branding_si')
-        <ul>
-            <div class="row">
-                <div class="col card-box-xxl">
-                    <h5 class="center">BRANDING</h5>
-                    <p class= "parrafoJustificado">
-                        <span>
-                            <blue>Auditor dice:</blue>
-                        </span>
-                        @if ($reporte->branding_visible == 'branding_visible_si')
-                            El branding esta visible,
-                        @else
-                            El branding no esta visible,
-                        @endif
-                        @if ($reporte->branding_danados == 'branding_danados_si')
-                            se encuentra en buen estado.
-                        @else
-                            no se encuentra en buen estado.
-                        @endif
-                    </p>
-
-
-                    <div class="col">
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross27">
-                                <input id="checkcross27" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross27">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">No<br> es visible</div>
-                            <div class="name1">Es <br>visible</div>
-                        </div>
-
-
-                        <br>
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross28">
-                                <input id="checkcross28" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross28">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">Mal <br>colocado</div>
-                            <div class="name1">Bien <br>colocado</div>
-                        </div>
-
-
-                    </div>
-                    <nat class="bt-menu">
-                        <ul>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-in13"><i class="fas fa-plus"
-                                        alt="acercar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-out13"><i
-                                        class="fas fa-minus" alt="alejar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-right13"><i
-                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-left13"><i
-                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                        </ul>
-                        <div id="msgBrandingVisi">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <div id="msgBrandingEstado">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <input type="hidden" value="{{ $reporte->branding }}" name="stateBranding">
-                        <input class="noClass" type="text" id="inpBrandingVisi" name="brandingVisi" required>
-                        <input class="noClass" type="text" id="inpBrandingEstado" name="brandingEstado" required>
-                    </nat>
-                </div>
-                <div class="col-8">
-                    <img id="imageBranding"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Branding_' . $reporte->precarga_id . '.png'))) }}" />
-                </div>
-            </div>
-        </ul>
-    @else
-        <ul>
-            <span>No hay Branding</span>
-            <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-        </ul>
-    @endif
-    <hr>
-
-
-
-    {{--  <!-- vasos -->  --}}
-    @if ($reporte->vasos == 'vasos_si')
-        <ul>
-            <div class="row">
-                <div class="col card-box-xxl">
-                    <h5 class="center">VASOS Y COPAS</h5>
-                    <p class= "parrafoJustificado">
-                        <span>
-                            <blue>Auditor dice:</blue>
-                        </span>
-                        @if ($reporte->vasos_visibles == 'vasos_visibles_si')
-                            los vasos y copas estan visibles,
-                        @else
-                            los vasos y copas no estan visibles,
-                        @endif
-                        @if ($reporte->vasos_quebrados == 'vasos_quebrados_si')
-                            se encuentran en buen estado.
-                        @else
-                            no estan en buenas condiciones, estan rotas o averiadas.
-                        @endif
-                    </p>
-
-
-                    <div class="col">
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross29">
-                                <input id="checkcross29" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross29">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">No<br> es visible</div>
-                            <div class="name1">Es <br>visible</div>
-                        </div>
-
-
-                        <br>
-                        <div class="toggle-wrapper">
-                            <div class="toggle checkcross30">
-                                <input id="checkcross30" type="checkbox" style="display: none">
-                                <label class="toggle-item" for="checkcross30">
-                                    <div class="check"></div>
-                                </label>
-                            </div>
-                            <div class="name">Mal <br>estado</div>
-                            <div class="name1">Buen <br>estado</div>
-                        </div>
-
-
-                    </div>
-                    <nat class="bt-menu">
-                        <ul>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-in14"><i class="fas fa-plus"
-                                        alt="acercar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-zoom-out14"><i
-                                        class="fas fa-minus" alt="alejar"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-right14"><i
-                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
-                            <li class="bt_li"><button type="button" class="botOn js-rotate-left14"><i
-                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                        </ul>
-                        <div id="msgVasosVisi">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <div id="msgVasosEstado">
-
-                            <red>Calidad dice:</red>
-                        </div>
-                        <input type="hidden" value="{{ $reporte->vasos }}" name="stateVasos">
-                        <input class="noClass" type="text" id="inpVasosVisi" name="vasosVisi" required>
-                        <input class="noClass" type="text" id="inpVasosEstado" name="vasosEstado" required>
-                    </nat>
-                </div>
-                <div class="col-8">
-                    <img id="imageVasos"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Vasos_' . $reporte->precarga_id . '.png'))) }}" />
-                </div>
-            </div>
-        </ul>
-    @else
-        <ul>
-            <span>No hay vasos ni copas </span>
-            <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-        </ul>
-    @endif
-
-    {{--  DISPONIBILIDAD   --}}
-    <hr>
-    <div class="col-12" style="margin: 1rem; background: rgb(193, 243, 250); text-align: center;">
-        <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">DISPONIBILIDAD</h1>
-    </div>
-    <hr>
-
-
-    <div id="simple_gallery">
-        <ul>
-            <div class="row row-cols-3">
-                <div class="col">
-                    <div class="card">
-                        <img src="{{ asset('/storage/b&w.png') }}" class="img_botellasNs swing" />
-                        <div class="card-body">
-                            <h5 class="double-shadow">Black & White</h5>
-                            <p class="card-text">
-                            <table class="table table-hover">
-                                <thead class="table-success">
-                                    <tr>
-                                        <th>Presentaci&oacute;n</th>
-                                        <th>Caras</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if ($reporte->bAndw1000 == 'bAndw1000_si')
-                                        <tr>
-                                            <td>1000 ml</td>
-                                            <td>{{ $reporte->caras_bAndw1000 }}</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    @endif
-                                    @if ($reporte->bAndw700 == 'bAndw700_si')
-                                        <tr>
-                                            <td>700 ml</td>
-                                            <td>{{ $reporte->caras_bAndw700 }}</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    @endif
-                                    @if ($reporte->bAndw375 == 'bAndw375_si')
-                                        <tr>
-                                            <td>375 ml</td>
-                                            <td>{{ $reporte->caras_bAndw375 }}</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    @endif
-                                </tbody>
-                            </table>
+            <hr>
+
+            {{--  <!-- marco  -->  --}}
+
+            @if ($reporte->marco == 'marco_si')
+                <ul>
+                    <div class="row">
+                        <div class="col card-box-xxl">
+                            <h5 class="center">MARCO</h5>
+                            <p class= "parrafoJustificado">
+                                <span>
+                                    <blue>Auditor dice:</blue>
+                                </span>
+                                @if ($reporte->marco_visi == 'marco_visi_si')
+                                    el marco esta visible al público
+                                @else
+                                    el marco no es visible para el público
+                                @endif
+                                @if ($reporte->marco_colo == 'marco_colo_si')
+                                    la colocación del marco es la correcta
+                                @else
+                                    la colocación del marco no es la apropiada
+                                @endif
                             </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="{{ asset('/storage/smirnoff.png') }}" class="img_botellasNs swing" />
-                        <div class="card-body">
-                            <h5 class="double-shadow">Smirnoff x1</h5>
-                            <p class="card-text">
+                            <div class="col">
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross9">
+                                        <input id="checkcross9" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross9">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Audito<br>mal la<br>visibiliad</div>
+                                    <div class="name1">Audito<br>bien la<br>visibiliad</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditMarcoVisi">
+                                    <hr>
+                                    <select name="marco_visi[]" id="marco_visi"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar visibilidad cenefa" required disabled>
+                                        <option disabled value="old{'marco_visi'}" checked>Seleccione una opción </option>
+                                        @foreach ($marco_visi as $marVis)
+                                            <option value="{{ $marVis }}">{{ $marVis }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross10">
+                                        <input id="checkcross10" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross10">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Audito<br>mal la<br>colocación</div>
+                                    <div class="name1">Audito<br>bien la<br>colocación</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditMarcoColo">
+                                    <hr>
+                                    <select name="marco_colo[]" id="marco_colo"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar colocación marco" required disabled>
+                                        <option disabled value="old{'marco_colo'}" checked>Seleccione una opción </option>
+                                        @foreach ($marco_colo as $marCol)
+                                            <option value="{{ $marCol }}">{{ $marCol }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
 
-                            <table class="table table-hover">
-                                <thead class="table-success">
-                                    <tr>
-                                        <th>Presentaci&oacute;n</th>
-                                        <th>Caras</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if ($reporte->smirnoff700 == 'smirnoff700_si')
-                                        <tr>
-                                            <td>700 ml</td>
-                                            <td>{{ $reporte->caras_smirnoff700 }}</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    @endif
-                                    @if ($reporte->smirnoff375 == 'smirnoff375_si')
-                                        <tr>
-                                            <td>375 ml</td>
-                                            <td>{{ $reporte->caras_smirnoff375 }}</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    @endif
-                                    <tr>
-                                        <td><br></td>
-                                        <td><br></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </p>
+                            <nat class="bt-menu">
+                                <ul>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-in6"><i
+                                                class="fas fa-plus" alt="acercar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-out6"><i
+                                                class="fas fa-minus" alt="alejar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-right6"><i
+                                                class="fas fa-redo" alt="giro derecha"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-left6"><i
+                                                class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                                </ul>
+                                <div id="msgMarcoVisi">
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <div id="msgMarcoColo">
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <input type="hidden" value="{{ $reporte->marco }}" name="stateMarco">
+                                <input class="noClass" type="text" id="inpMarcoVisi" name="CalmarcoVisi" required>
+                                <input class="noClass" type="text" id="inpMarcoColo" name="CalmarcoColo" required>
+                            </nat>
+                        </div>
+                        <div class="col-8">
+                            <img id="imageMarco"
+                                src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Marco_' . $reporte->precarga_id . '.png'))) }}" />
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="{{ asset('/storage/smirnoff_sin_azucar.png') }}" class="img_botellasNs swing" />
-                        <div class="card-body">
-                            <h5 class="double-shadow">Smirnoff x1 sin az&uacute;car</h5>
-                            <p class="card-text">
-                            <table class="table table-hover">
-                                <thead class="table-success">
-                                    <tr>
-                                        <th>Presentaci&oacute;n</th>
-                                        <th>Caras</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if ($reporte->smirnoff700 == 'smirnoff700_si')
-                                        <tr>
-                                            <td>700 ml</td>
-                                            <td>{{ $reporte->caras_smirnoff700 }}</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    @endif
-                                    @if ($reporte->smirnoff375 == 'smirnoff375_si')
-                                        <tr>
-                                            <td>375 ml</td>
-                                            <td>{{ $reporte->caras_smirnoff375 }}</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    @endif
-                                    <tr>
-                                        <td><br></td>
-                                        <td><br></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                </ul>
+            @else
+                <ul>
+                    <span>No Hay Cenefa</span>
+                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+                </ul>
+            @endif
+            <hr>
+            {{--  <!-- rompetraficos -->  --}}
+            @if ($reporte->rompetraficos == 'rompetraficos_si')
+                <ul>
+                    <div class="row">
+                        <div class="col card-box-xxl">
+                            <h5 class="center">ROMPETRAFICO</h5>
+                            <p class= "parrafoJustificado">
+                                <span>
+                                    <blue>Auditor dice:</blue>
+                                </span>
+                                @if ($reporte->prod_rt_visibles == 'prod_rt_visibles_si')
+                                    El rompetrafico esta visible al publico,
+                                @else
+                                    El rompetrafico no esta visible para el publico,
+                                @endif
+                                @if ($reporte->prod_rt_properly == 'prod_rt_properly_si')
+                                    la colocaci&oacute;n es considerada la correcta.
+                                @else
+                                    su colocaci&oacute;n no es la apropiada.
+                                @endif
                             </p>
+                            <div class="col">
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross11">
+                                        <input id="checkcross11" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross11">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Audito<br>mal la<br>visibiliad</div>
+                                    <div class="name1">Audito<br>bien la<br>visibiliad</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditRompeVisi">
+                                    <hr>
+                                    <select name="rompe_visi[]" id="rompe_visi"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar visibilidad rompetrafico" required disabled>
+                                        <option disabled value="old{'rompe_visi'}" checked>Seleccione una opción </option>
+                                        @foreach ($rompe_visi as $romVis)
+                                            <option value="{{ $romVis }}">{{ $romVis }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross12">
+                                        <input id="checkcross12" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross12">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Audito<br>mal la<br>colocación</div>
+                                    <div class="name1">Audito<br>bien la<br>colocación</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditRompeColo">
+                                    <hr>
+                                    <select name="rompe_colo[]" id="rompe_colo"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar colocación rompetrafico" required disabled>
+                                        <option disabled value="old{'rompe_colo'}" checked>Seleccione una opción </option>
+                                        @foreach ($rompe_colo as $marCol)
+                                            <option value="{{ $marCol }}">{{ $marCol }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+
+                            <nat class="bt-menu">
+                                <ul>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-in7"><i
+                                                class="fas fa-plus" alt="acercar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-out7"><i
+                                                class="fas fa-minus" alt="alejar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-right7"><i
+                                                class="fas fa-redo" alt="giro derecha"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-left7"><i
+                                                class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                                </ul>
+                                <div id="msgRompeVisi">
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <div id="msgRompeColo">
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <input type="hidden" value="{{ $reporte->rompetraficos }}" name="stateRompetrafico">
+                                <input class="noClass" type="text" id="inpRompeVisi" name="rompeVisi" required>
+                                <input class="noClass" type="text" id="inpRompeColo" name="CalrompeColo" required>
+                            </nat>
+                        </div>
+                        <div class="col-8">
+                            <img id="imageRompetrafico"
+                                src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Rompetrafico_' . $reporte->precarga_id . '.png'))) }}" />
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="{{ asset('/storage/jhonie_walker.png') }}" class="img_botellasNs swing" />
-                        {{--  <img src="{{ Storage::url('/storage/jhonie_walker.png') }}" class="img_botellas swing"
+                </ul>
+            @else
+                <ul>
+                    <span>No Hay Rompetrafico</span>
+                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+                </ul>
+            @endif
+            <hr>
+            {{--  <!-- fachadas -->  --}}
+            @if ($reporte->fachadas == 'fachadas_si')
+                <ul>
+                    <div class="row">
+                        <div class="col card-box-xl">
+                            <h5 class="center">FACHADAS Y AVISOS</h5>
+                            <p class= "parrafoJustificado">
+                                <span>
+                                    <blue>Auditor dice:</blue>
+                                </span>
+                                @if ($reporte->fachadas_visi == 'fachadas_visi_si')
+                                    la fachada y avisos estan visibles al consumidor,
+                                @else
+                                    la fachada y avisos no esta visibles al consumidor,
+                                @endif
+                                @if ($reporte->fachadas_colo == 'fachadas_colo_si')
+                                    y se encuentran en buen estado.
+                                @else
+                                    no estan en buen estado, estan tapadas o da&ntilde;adas.
+                                @endif
+                            </p>
+                            <div class="col">
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross13">
+                                        <input id="checkcross13" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross13">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Audito<br>mal la<br>visibiliad</div>
+                                    <div class="name1">Audito<br>bien la<br>visibiliad</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditFaxadaVisi">
+                                    <hr>
+                                    <select name="fachadas_visi[]" id="fachadas_visi"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar visibilidad fachada y avisos" required disabled>
+                                        <option disabled value="old{'fachadas_visi'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($fachadas_visi as $fachVis)
+                                            <option value="{{ $fachVis }}">{{ $fachVis }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross14">
+                                        <input id="checkcross14" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross14">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Audito<br>mal el<br>estado</div>
+                                    <div class="name1">Audito<br>bien el<br>estado</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditFaxadaColo">
+                                    <hr>
+                                    <select name="fachadas_colo[]" id="fachadas_colo"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar colocación fachada y avisos" required disabled>
+                                        <option disabled value="old{'fachadas_colo'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($fachadas_colo as $fachCol)
+                                            <option value="{{ $fachCol }}">{{ $fachCol }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                            <nat class="bt-menu">
+                                <ul>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-in8"><i
+                                                class="fas fa-plus" alt="acercar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-out8"><i
+                                                class="fas fa-minus" alt="alejar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-right8"><i
+                                                class="fas fa-redo" alt="giro derecha"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-left8"><i
+                                                class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                                </ul>
+                                <div id="msgFaxadaVisi">
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <div id="msgAFaxadaEstado">
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <input type="hidden" value="{{ $reporte->fachadas }}" name="stateFachadas">
+                                <input class="noClass" type="text" id="inpFaxadaVisi" name="CalfaxadaVisi" required>
+                                <input class="noClass" type="text" id="inpAFaxadaEstado" name="CalfaxadaEstado"
+                                    required>
+                            </nat>
+                        </div>
+                        <div class="col-8">
+                            <img id="imageFaxada"
+                                src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Faxada_' . $reporte->precarga_id . '.png'))) }}" />
+                        </div>
+                    </div>
+                </ul>
+            @else
+                <ul>
+                    <span>No Hay fachada ni avisos de la marca</span>
+                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+                </ul>
+            @endif
+            <hr>
+            {{--  <!-- hieleras -->  --}}
+            @if ($reporte->hielera == 'hielera_si')
+                <ul>
+                    <div class="row">
+                        <div class="col card-box-xxl">
+                            <h5 class="center">HIELERAS</h5>
+                            <p class= "parrafoJustificado">
+                                <span>
+                                    <blue>Auditor dice:</blue>
+                                </span>
+                                @if ($reporte->hl_con_prod == 'hl_con_prod_si')
+                                    Las hieleras cuentan con productos DIAGEO,
+                                @else
+                                    Las hieleras no cuentan con productos DIAGEO,
+                                @endif
+                                @if ($reporte->prod_hl_visible == 'prod_hl_visible_si')
+                                    estan visibles al consumidor,
+                                @else
+                                    estan tapadas por otros productos o marcas,
+                                @endif
+
+                                @if ($reporte->prod_hl_danadas == 'prod_hl_danadas_si')
+                                    y se encuentran en buen estado.
+                                @else
+                                    estan quebradas, ralladas, en mal estado.
+                                @endif
+                            </p>
+                            <div class="col">
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross15">
+                                        <input id="checkcross15" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross15">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Audito <br>mal el <br>contenido de las <br>hieleras</div>
+                                    <div class="name1">Audito <br>bien el <br>contenido de las <br>hieleras</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditHieleraProd">
+                                    <hr>
+                                    <select name="hl_con_prod[]" id="hielera_prod"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar hay producto en la hielera" required disabled>
+                                        <option disabled value="old{'hl_con_prod'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($hielera_prod as $hieprod)
+                                            <option value="{{ $hieprod }}">{{ $hieprod }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross16">
+                                        <input id="checkcross16" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross16">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Audito <br>mal la <br>visibilidad de las <br>hieleras</div>
+                                    <div class="name1">Audito <br>bien la <br>visibilidad de las <br>hieleras</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditHieleraVisi">
+                                    <hr>
+                                    <select name="prod_hl_visible[]" id="hielera_visi"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar hielera es visible" required disabled>
+                                        <option disabled value="old{'prod_hl_visible'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($hielera_visi as $hievisi)
+                                            <option value="{{ $hievisi }}">{{ $hievisi }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross17">
+                                        <input id="checkcross17" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross17">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name"> Audito <br>mal el <br>estado de las <br>hieleras</div>
+                                    <div class="name1"> Audito <br>bien el <br>estado de las <br>hieleras</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditHieleraEstado">
+                                    <hr>
+                                    <select name="prod_hl_danadas[]" id="hielera_esta"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar estado de la hielera" required disabled>
+                                        <option disabled value="old{'prod_hl_danadas'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($hielera_esta as $hieesta)
+                                            <option value="{{ $hieesta }}">{{ $hieesta }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+
+
+                            </div>
+                            <nat class="bt-menu">
+                                <ul>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-in9"><i
+                                                class="fas fa-plus" alt="acercar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-out9"><i
+                                                class="fas fa-minus" alt="alejar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-right9"><i
+                                                class="fas fa-redo" alt="giro derecha"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-left9"><i
+                                                class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                                </ul>
+                                <div id="msgHieleraProd">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <div id="msgHieleraVisi">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <div id="msgHieleraEstado">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <input type="hidden" value="{{ $reporte->hielera }}" name="stateHielera">
+                                <input class="noClass" type="text" id="inpHieleraProd" name="CalhieleraProd" required>
+                                <input class="noClass" type="text" id="inpHieleraVisi" name="CalhieleraVisi" required>
+                                <input class="noClass" type="text" id="inpHieleraEstado" name="CalhieleraEstado"
+                                    required>
+                            </nat>
+                        </div>
+                        <div class="col-8">
+                            <img id="imageHielera"
+                                src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Hielera_' . $reporte->precarga_id . '.png'))) }}" />
+                        </div>
+                    </div>
+                </ul>
+            @else
+                <ul>
+                    <span>No Hay hieleras de la marca</span>
+                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+                </ul>
+            @endif
+            <hr>
+
+            {{--  <!-- Bases de hielera -->  --}}
+            @if ($reporte->bases_h == 'bases_h_si')
+                <ul>
+                    <div class="row">
+                        <div class="col card-box-xxl">
+                            <h5 class="center">BASES PARA HIELERAS</h5>
+                            <p class= "parrafoJustificado">
+                                <span>
+                                    <blue>Auditor dice:</blue>
+                                </span>
+                                @if ($reporte->baseshl_con_prod == 'baseshl_con_prod_si')
+                                    Las bases de las hieleras cuentan con productos DIAGEO,
+                                @else
+                                    Las bases de las hieleras no cuentan con productos DIAGEO,
+                                @endif
+                                @if ($reporte->prod_baseshl_visible == 'prod_baseshl_visible_si')
+                                    estan visibles al consumidor,
+                                @else
+                                    estan tapadas por otros productos o marcas,
+                                @endif
+
+                                @if ($reporte->prod_baseshl_danadas == 'prod_baseshl_danadas_si')
+                                    y se encuentran en buen estado.
+                                @else
+                                    estan quebradas, ralladas, en mal estado.
+                                @endif
+                            </p>
+                            <div class="col">
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross18">
+                                        <input id="checkcross18" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross18">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Se audito<br> mal el <br>contenido</div>
+                                    <div class="name1">Se audito<br> bien el <br>contenido</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditBaseHieleraProd">
+                                    <hr>
+                                    <select name="baseshl_con_prod[]" id="baseshl_con_prod"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar producto en la base hielera" required disabled>
+                                        <option disabled value="old{'baseshl_con_prod'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($baseshl_con_prod as $hieprod)
+                                            <option value="{{ $hieprod }}">{{ $hieprod }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross19">
+                                        <input id="checkcross19" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross19">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Se audito<br> mal la <br>visibilidad</div>
+                                    <div class="name1">Se audito<br> bien la <br>visibilidad</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditBaseHieleraVisi">
+                                    <hr>
+                                    <select name="prod_baseshl_visible[]" id="prod_baseshl_visible"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar base de hielera es visible" required disabled>
+                                        <option disabled value="old{'prod_baseshl_visible'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($prod_baseshl_visible as $Basehievisi)
+                                            <option value="{{ $Basehievisi }}">{{ $Basehievisi }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross20">
+                                        <input id="checkcross20" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross20">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Se audito<br> mal el <br>estado</div>
+                                    <div class="name1">Se audito<br> bien el <br>estado</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditBaseHieleraEstado">
+                                    <hr>
+                                    <select name="prod_baseshl_danadas[]" id="prod_baseshl_danadas"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar estado de la base de la hielera" required disabled>
+                                        <option disabled value="old{'prod_baseshl_danadas'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($prod_baseshl_danadas as $Basehieesta)
+                                            <option value="{{ $Basehieesta }}">{{ $Basehieesta }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                            <nat class="bt-menu">
+                                <ul>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-in10"><i
+                                                class="fas fa-plus" alt="acercar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-out10"><i
+                                                class="fas fa-minus" alt="alejar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-right10"><i
+                                                class="fas fa-redo" alt="giro derecha"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-left10"><i
+                                                class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                                </ul>
+                                <div id="msgBsHieProd">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <div id="msgBsHieVisi">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <div id="msgBsHieEstado">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <input type="hidden" value="{{ $reporte->bases_h }}" name="stateBaseHielera">
+                                <input class="noClass" type="text" id="inpBsHieProd" name="CalbasesHieProd" required>
+                                <input class="noClass" type="text" id="inpBsHieVisi" name="CalbasesHieVisi" required>
+                                <input class="noClass" type="text" id="inpBsHieEstado" name="CalbasesHieEstado"
+                                    required>
+                            </nat>
+                        </div>
+                        <div class="col-8">
+                            <img id="imageBase_h"
+                                src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Base_h_' . $reporte->precarga_id . '.png'))) }}" />
+                        </div>
+                    </div>
+                </ul>
+            @else
+                <ul>
+                    <span>No hay bases para hieleras</span>
+                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+                </ul>
+            @endif
+            <hr>
+
+
+            {{--  <!-- Dosificador Doble -->  --}}
+
+            @if ($reporte->dosificadorD == 'dosificadorD_si')
+                <ul>
+                    <div class="row">
+                        <div class="col card-box-xxl">
+                            <h5 class="center">DOSIFICADOR DOBLE</h5>
+                            <p class= "parrafoJustificado">
+                                <span>
+                                    <blue>Auditor dice:</blue>
+                                </span>
+                                @if ($reporte->prod_dsD_visibles == 'prod_dsD_visibles_si')
+                                    El dosificador doble esta visible al consumidor,
+                                @else
+                                    El dosificador doble no esta visible al consumidor,
+                                @endif
+                                @if ($reporte->prod_dsD_diferentes == 'prod_dsD_diferentes_si')
+                                    esta exhibido con productos Diageo
+                                @else
+                                    esta exhibido con productos diferentes a la marca
+                                @endif
+
+                                @if ($reporte->prod_dsD_danados == 'prod_dsD_danados_si')
+                                    y se encuentra en buen estado.
+                                @else
+                                    tienen polvo, esta sucio o las etiquetas estan en mal estado.
+                                @endif
+                            </p>
+                            <div class="col">
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross21">
+                                        <input id="checkcross21" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross21">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Se audito<br> mal la <br>visibilidad</div>
+                                    <div class="name1">Se audito<br> bien la <br>visibilidad</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditDosDbVisi">
+                                    <hr>
+                                    <select name="prod_dsD_visibles[]" id="prod_dsD_visibles"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar si el dosificador es visible " required disabled>
+                                        <option disabled value="old{'prod_dsD_visibles'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($prod_dsD_visibles as $dosDVisi)
+                                            <option value="{{ $dosDVisi }}">{{ $dosDVisi }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross22">
+                                        <input id="checkcross22" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross22">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">se audito <br> mal el<br>contenido</div>
+                                    <div class="name1">se audito <br> bien el<br> contenido</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditDosDbProd">
+                                    <hr>
+                                    <select name="prod_dsD_diferentes[]" id="prod_dsD_diferentes"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar el contedido de los dosificadores" required disabled>
+                                        <option disabled value="old{'prod_dsD_diferentes'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($prod_dsD_diferentes as $dosiDif)
+                                            <option value="{{ $dosiDif }}">{{ $dosiDif }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross23">
+                                        <input id="checkcross23" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross23">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Se audito<br> mal el <br>estado</div>
+                                    <div class="name1">Se audito<br> bien el <br>estado</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditDosDbEstado">
+                                    <hr>
+                                    <select name="prod_dsD_danados[]" id="prod_dsD_danados"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar estado del dosificador" required disabled>
+                                        <option disabled value="old{'prod_dsD_danados'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($prod_dsD_danados as $dsDdanado)
+                                            <option value="{{ $dsDdanado }}">{{ $dsDdanado }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                            <nat class="bt-menu">
+                                <ul>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-in11"><i
+                                                class="fas fa-plus" alt="acercar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-out11"><i
+                                                class="fas fa-minus" alt="alejar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-right11"><i
+                                                class="fas fa-redo" alt="giro derecha"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-left11"><i
+                                                class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                                </ul>
+                                <div id="msgDsDVisi">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <div id="msgDsDProd">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <div id="msgDsDEstado">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <input type="hidden" value="{{ $reporte->dosificadorD }}" name="stateDosificadorD">
+                                <input class="noClass" type="text" id="inpDsDVisi" name="CaldosiDVisi" required>
+                                <input class="noClass" type="text" id="inpDsDProd" name="CaldosiDProd" required>
+                                <input class="noClass" type="text" id="inpDsDEstado" name="CaldosiDEstado" required>
+                            </nat>
+                        </div>
+                        <div class="col-8">
+                            <img id="imageDosificadorD"
+                                src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/DosificadorD_' . $reporte->precarga_id . '.png'))) }}" />
+                        </div>
+                    </div>
+                </ul>
+            @else
+                <ul>
+                    <span>No hay dosificador doble</span>
+                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+                </ul>
+            @endif
+
+
+            <hr>
+            {{--  <!-- Dosificador Sencillo -->  --}}
+
+            @if ($reporte->dosificadorS == 'dosificadorS_si')
+                <ul>
+
+                    <div class="row">
+                        <div class="col card-box-xxl">
+                            <h5 class="center">DOSIFICADOR SENCILLO</h5>
+                            <p class= "parrafoJustificado">
+                                <span>
+                                    <blue>Auditor dice:</blue>
+                                </span>
+                                @if ($reporte->prod_dsS_visibles == 'prod_dsS_visibles_si')
+                                    El dosificador sencillo esta visible al consumidor,
+                                @else
+                                    El dosificador sencillo no esta visible al consumidor,
+                                @endif
+                                @if ($reporte->prod_dsS_diferentes == 'prod_dsS_diferentes_si')
+                                    esta exhibido con productos Diageo
+                                @else
+                                    esta exhibido con productos diferentes a la marca
+                                @endif
+
+                                @if ($reporte->prod_dsS_danados == 'prod_dsS_danados_si')
+                                    y se encuentra en buen estado.
+                                @else
+                                    tienen polvo, esta sucio o las etiquetas estan en mal estado.
+                                @endif
+                            </p>
+                            <div class="col">
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross24">
+                                        <input id="checkcross24" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross24">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Se audito <br>mal la <br>visibilidad</div>
+                                    <div class="name1">Se audito <br>bien la <br>visibilidad</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditDosSVisi">
+                                    <hr>
+                                    <select name="prod_dsS_visibles[]" id="prod_dsS_visibles"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar si el dosificador es visible " required disabled>
+                                        <option disabled value="old{'prod_dsS_visibles'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($prod_dsS_visibles as $dosSVisi)
+                                            <option value="{{ $dosSVisi }}">{{ $dosSVisi }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross25">
+                                        <input id="checkcross25" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross25">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">se audito<br> bien el <br>contedio del <br>dosificador</div>
+                                    <div class="name1">se audito<br> bien el <br>contedio del <br>dosificador</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditDosSnProd">
+                                    <hr>
+                                    <select name="prod_dsS_diferentes[]" id="prod_dsS_diferentes"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar el contedido de los dosificadores" required disabled>
+                                        <option disabled value="old{'prod_dsS_diferentes'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($prod_dsS_diferentes as $dosiDif)
+                                            <option value="{{ $dosiDif }}">{{ $dosiDif }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross26">
+                                        <input id="checkcross26" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross26">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Se audito<br> mal el <br>estado</div>
+                                    <div class="name1">Se audito<br> bien el <br>estado</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditDosSbEstado">
+                                    <hr>
+                                    <select name="prod_dsS_danados[]" id="prod_dsS_danados"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar estado de la base del dosificador" required disabled>
+                                        <option disabled value="old{'prod_dsS_danados'}" checked>Seleccione una opción
+                                        </option>
+                                        @foreach ($prod_dsS_danados as $dsDdanado)
+                                            <option value="{{ $dsDdanado }}">{{ $dsDdanado }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                            <nat class="bt-menu">
+                                <ul>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-in12"><i
+                                                class="fas fa-plus" alt="acercar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-out12"><i
+                                                class="fas fa-minus" alt="alejar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-right12"><i
+                                                class="fas fa-redo" alt="giro derecha"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-left12"><i
+                                                class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                                </ul>
+                                <div id="msgDsSVisi">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <div id="msgDsSProd">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <div id="msgDsSEstado">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <input type="hidden" value="{{ $reporte->dosificadorS }}" name="stateDosificadorS">
+                                <input class="noClass" type="text"  id="inpDsSVisi"    name="CaldosiSVisi"  required>
+                                <input class="noClass" type="text"  id="inpDsSProd"    name="CaldosiSProd"  required>
+                                <input class="noClass" type="text"  id="inpDsSEstado"  name="CaldosiSEstado"required>
+                            </nat>
+                        </div>
+                        <div class="col-8">
+                            <img id="imageDosificadorS"
+                                src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/DosificadorS_' . $reporte->precarga_id . '.png'))) }}" />
+                        </div>
+                    </div>
+                </ul>
+            @else
+                <ul>
+                    <span>No hay dosificador sencillo</span>
+                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+                </ul>
+            @endif
+            <hr>
+
+
+            {{--  <!-- branding -->  --}}
+            @if ($reporte->branding == 'branding_si')
+                <ul>
+                    <div class="row">
+                        <div class="col card-box-xxl">
+                            <h5 class="center">BRANDING</h5>
+                            <p class= "parrafoJustificado">
+                                <span>
+                                    <blue>Auditor dice:</blue>
+                                </span>
+                                @if ($reporte->branding_visible == 'branding_visible_si')
+                                    El branding esta visible,
+                                @else
+                                    El branding no esta visible,
+                                @endif
+                                @if ($reporte->branding_danados == 'branding_danados_si')
+                                    se encuentra en buen estado.
+                                @else
+                                    no se encuentra en buen estado.
+                                @endif
+                            </p>
+
+
+                            <div class="col">
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross27">
+                                        <input id="checkcross27" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross27">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Se audito <br>mal la <br>visibilidad</div>
+                                    <div class="name1">Se audito <br>bien la <br>visibilidad</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditBrandingVisi">
+                                    <hr>
+                                    <select name="branding_visible[]" id="branding_visible"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar visibilidad branding" required disabled>
+                                        <option disabled value="old{'branding_visible'}" checked>Seleccione una opción </option>
+                                        @foreach ($branding_visible as $braVis)
+                                            <option value="{{ $braVis }}">{{ $braVis }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross28">
+                                        <input id="checkcross28" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross28">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Audito<br>mal el<br>estado</div>
+                                    <div class="name1">Audito<br>bien el<br>estado</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditBrandingEstado">
+                                    <hr>
+                                    <select name="branding_danados[]" id="branding_danados"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar estado branding" required disabled>
+                                        <option disabled value="old{'branding_danados'}" checked>Seleccione una opción </option>
+                                        @foreach ($branding_danados as $braDan)
+                                            <option value="{{ $braDan }}">{{ $braDan }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+
+                            <nat class="bt-menu">
+                                <ul>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-in13"><i
+                                                class="fas fa-plus" alt="acercar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-out13"><i
+                                                class="fas fa-minus" alt="alejar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-right13"><i
+                                                class="fas fa-redo" alt="giro derecha"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-left13"><i
+                                                class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                                </ul>
+                                <div id="msgBrandingVisi">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <div id="msgBrandingEstado">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <input type="hidden" value="{{ $reporte->branding }}" name="stateBranding">
+                                <input class="noClass" type="text" id="inpBrandingVisi" name="CalbrandingVisi"
+                                    required>
+                                <input class="noClass" type="text" id="inpBrandingEstado" name="CalbrandingEstado"
+                                    required>
+                            </nat>
+                        </div>
+                        <div class="col-8">
+                            <img id="imageBranding"
+                                src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Branding_' . $reporte->precarga_id . '.png'))) }}" />
+                        </div>
+                    </div>
+                </ul>
+            @else
+                <ul>
+                    <span>No hay Branding</span>
+                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+                </ul>
+            @endif
+            <hr>
+
+
+
+            {{--  <!-- vasos -->  --}}
+            @if ($reporte->vasos == 'vasos_si')
+                <ul>
+                    <div class="row">
+                        <div class="col card-box-xxl">
+                            <h5 class="center">VASOS Y COPAS</h5>
+                            <p class= "parrafoJustificado">
+                                <span>
+                                    <blue>Auditor dice:</blue>
+                                </span>
+                                @if ($reporte->vasos_visibles == 'vasos_visibles_si')
+                                    los vasos y copas estan visibles,
+                                @else
+                                    los vasos y copas no estan visibles,
+                                @endif
+                                @if ($reporte->vasos_quebrados == 'vasos_quebrados_si')
+                                    se encuentran en buen estado.
+                                @else
+                                    no estan en buenas condiciones, estan rotas o averiadas.
+                                @endif
+                            </p>
+                            <div class="col">
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross29">
+                                        <input id="checkcross29" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross29">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Se audito <br>mal la <br>visibilidad</div>
+                                    <div class="name1">Se audito <br>bien la <br>visibilidad</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditVasosVisi">
+                                    <hr>
+                                    <select name="vasos_visibles[]" id="vasos_visibles"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar visibilidad branding" required disabled>
+                                        <option disabled value="old{'vasos_visibles'}" checked>Seleccione una opción </option>
+                                        @foreach ($vasos_visibles as $braVis)
+                                            <option value="{{ $braVis }}">{{ $braVis }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="toggle-wrapper">
+                                    <div class="toggle checkcross30">
+                                        <input id="checkcross30" type="checkbox" style="display: none">
+                                        <label class="toggle-item" for="checkcross30">
+                                            <div class="check"></div>
+                                        </label>
+                                    </div>
+                                    <div class="name">Mal <br>estado</div>
+                                    <div class="name1">Buen <br>estado</div>
+                                </div>
+                                <br>
+                                <div style="display: none" id="EditVasosEstado">
+                                    <hr>
+                                    <select name="vasos_quebrados[]" id="vasos_quebrados"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar estado branding" required disabled>
+                                        <option disabled value="old{'vasos_quebrados'}" checked>Seleccione una opción </option>
+                                        @foreach ($vasos_quebrados as $VasDan)
+                                            <option value="{{ $VasDan }}">{{ $VasDan }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+
+                            </div>
+                            <nat class="bt-menu">
+                                <ul>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-in14"><i
+                                                class="fas fa-plus" alt="acercar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-zoom-out14"><i
+                                                class="fas fa-minus" alt="alejar"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-right14"><i
+                                                class="fas fa-redo" alt="giro derecha"></i></button></li>
+                                    <li class="bt_li"><button type="button" class="botOn js-rotate-left14"><i
+                                                class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                                </ul>
+                                <div id="msgVasosVisi">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <div id="msgVasosEstado">
+
+                                    <red>Calidad dice:</red>
+                                </div>
+                                <input type="hidden" value="{{ $reporte->vasos }}" name="stateVasos">
+                                <input class="noClass" type="text" id="inpVasosVisi" name="CalvasosVisi" required>
+                                <input class="noClass" type="text" id="inpVasosEstado" name="CalasosEstado"
+                                    required>
+                            </nat>
+                        </div>
+                        <div class="col-8">
+                            <img id="imageVasos"
+                                src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Vasos_' . $reporte->precarga_id . '.png'))) }}" />
+                        </div>
+                    </div>
+                </ul>
+            @else
+                <ul>
+                    <span>No hay vasos ni copas </span>
+                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+                </ul>
+            @endif
+
+            {{--  DISPONIBILIDAD   --}}
+            <hr>
+            <div class="col-12" style="margin: 1rem; background: rgb(193, 243, 250); text-align: center;">
+                <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">DISPONIBILIDAD</h1>
+            </div>
+            <hr>
+            <div id="simple_gallery">
+                <ul>
+                    <div class="row row-cols-3">
+                        <div class="col">
+                            <div class="card">
+                                <img src="{{ asset('/storage/b&w.png') }}" class="img_botellasNs swing" />
+                                <div class="card-body">
+                                    <h5 class="double-shadow">Black & White</h5>
+                                    <p class="card-text">
+                                    <table class="table table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Presentaci&oacute;n</th>
+                                                <th>Caras</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($reporte->bAndw1000 == 'bAndw1000_si')
+                                                <tr>
+                                                    <td>1000 ml</td>
+                                                    <td>{{ $reporte->caras_bAndw1000 }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                            @if ($reporte->bAndw700 == 'bAndw700_si')
+                                                <tr>
+                                                    <td>700 ml</td>
+                                                    <td>{{ $reporte->caras_bAndw700 }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                            @if ($reporte->bAndw375 == 'bAndw375_si')
+                                                <tr>
+                                                    <td>375 ml</td>
+                                                    <td>{{ $reporte->caras_bAndw375 }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <img src="{{ asset('/storage/smirnoff.png') }}" class="img_botellasNs swing" />
+                                <div class="card-body">
+                                    <h5 class="double-shadow">Smirnoff x1</h5>
+                                    <p class="card-text">
+
+                                    <table class="table table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Presentaci&oacute;n</th>
+                                                <th>Caras</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($reporte->smirnoff700 == 'smirnoff700_si')
+                                                <tr>
+                                                    <td>700 ml</td>
+                                                    <td>{{ $reporte->caras_smirnoff700 }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                            @if ($reporte->smirnoff375 == 'smirnoff375_si')
+                                                <tr>
+                                                    <td>375 ml</td>
+                                                    <td>{{ $reporte->caras_smirnoff375 }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                            <tr>
+                                                <td><br></td>
+                                                <td><br></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <img src="{{ asset('/storage/smirnoff_sin_azucar.png') }}"
+                                    class="img_botellasNs swing" />
+                                <div class="card-body">
+                                    <h5 class="double-shadow">Smirnoff x1 sin az&uacute;car</h5>
+                                    <p class="card-text">
+                                    <table class="table table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Presentaci&oacute;n</th>
+                                                <th>Caras</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($reporte->smirnoff700 == 'smirnoff700_si')
+                                                <tr>
+                                                    <td>700 ml</td>
+                                                    <td>{{ $reporte->caras_smirnoff700 }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                            @if ($reporte->smirnoff375 == 'smirnoff375_si')
+                                                <tr>
+                                                    <td>375 ml</td>
+                                                    <td>{{ $reporte->caras_smirnoff375 }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                            <tr>
+                                                <td><br></td>
+                                                <td><br></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <img src="{{ asset('/storage/jhonie_walker.png') }}" class="img_botellasNs swing" />
+                                {{--  <img src="{{ Storage::url('/storage/jhonie_walker.png') }}" class="img_botellas swing"
                             alt="Los Angeles Skyscrapers" />  --}}
-                        <div class="card-body">
-                            <h5 class="double-shadow">Jhonnie Walker</h5>
-                            <p class="card-text">
-                            <table class="table table-hover">
-                                <thead class="table-success">
-                                    <tr>
-                                        <th>Presentaci&oacute;n</th>
-                                        <th>Caras</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if ($reporte->jhonnie1000 == 'jhonnie1000_si')
-                                        <tr>
-                                            <td>1000 ml</td>
-                                            <td>{{ $reporte->caras_jhonnie1000 }}</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    @endif
-                                    @if ($reporte->jhonnie700 == 'jhonnie700_si')
-                                        <tr>
-                                            <td>700 ml</td>
-                                            <td>{{ $reporte->caras_jhonnie700 }}</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    @endif
-                                    @if ($reporte->jhonnie375 == 'jhonnie375_si')
-                                        <tr>
-                                            <td>375 ml</td>
-                                            <td>{{ $reporte->caras_jhonnie375 }}</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    @endif
-                                </tbody>
-                            </table>
-                            </p>
+                                <div class="card-body">
+                                    <h5 class="double-shadow">Jhonnie Walker</h5>
+                                    <p class="card-text">
+                                    <table class="table table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Presentaci&oacute;n</th>
+                                                <th>Caras</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($reporte->jhonnie1000 == 'jhonnie1000_si')
+                                                <tr>
+                                                    <td>1000 ml</td>
+                                                    <td>{{ $reporte->caras_jhonnie1000 }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                            @if ($reporte->jhonnie700 == 'jhonnie700_si')
+                                                <tr>
+                                                    <td>700 ml</td>
+                                                    <td>{{ $reporte->caras_jhonnie700 }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                            @if ($reporte->jhonnie375 == 'jhonnie375_si')
+                                                <tr>
+                                                    <td>375 ml</td>
+                                                    <td>{{ $reporte->caras_jhonnie375 }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <img src="{{ asset('/storage/oldparr.png') }}" class="img_botellasPq swing"
+                                    alt="Skyscrapers" />
+                                <div class="card-body">
+                                    <h5 class="double-shadow">Old Parr</h5>
+                                    <p class="card-text">
+                                    <table class="table table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Presentaci&oacute;n</th>
+                                                <th>Caras</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($reporte->oldparr750 == 'oldparr750_si')
+                                                <tr>
+                                                    <td>750 ml</td>
+                                                    <td>{{ $reporte->caras_oldparr750 }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <img src="{{ asset('/storage/buchannas.png') }}" class="img_botellasPq swing"
+                                    alt="Skyscrapers" />
+                                <div class="card-body">
+                                    <h5 class="double-shadow">Buchanna&acute;s</h5>
+                                    <p class="card-text">
+                                    <table class="table table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Presentaci&oacute;n</th>
+                                                <th>Caras</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($reporte->buchannas700 == 'buchannas700_si')
+                                                <tr>
+                                                    <td>700 ml</td>
+                                                    <td>{{ $reporte->caras_buchannas700 }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                            @if ($reporte->buchannas375 == 'buchannas375_si')
+                                                <tr>
+                                                    <td>375 ml</td>
+                                                    <td>{{ $reporte->caras_buchannas375 }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </ul>
+            </div>
+            <hr>
+            <div class="col-12" style="margin: 1rem; background: rgb(193, 243, 250); text-align: center;">
+                <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">EXHIBICI&Oacute;N</h1>
+            </div>
+            <hr>
+            {{--  <!-- CALIDAD DE LA MARCA -->  --}}
+            <ul>
+                <div class="row">
+                    <div class="col card-box-xxl">
+                        <h5 class="center">CALIDAD DE LA MARCA</h5>
+                        <p class= "parrafoJustificado">
+                            <span>
+                                <blue>Auditor dice:</blue>
+                            </span>
+                            @if ($reporte->cal_marc_visible == 'cal_marc_visible_si')
+                                Los productos de la marca son visibles,
+                            @else
+                                los productos de la marca no son visibles,
+                            @endif
+                            @if ($reporte->cal_marc_danados == 'cal_marc_danados_si')
+                                estos se encuentran dañados, averiados o en mal estado,
+                            @else
+                                se encuentran en optimas condiciones,
+                            @endif
+
+                            @if ($reporte->cal_marc_et_danados == 'cal_marc_et_danados_si')
+                                sus etiquetas estan dañadas o sucias.
+                            @else
+                                sus etiquetas estan en perfectas condiciones.
+                            @endif
+                        </p>
+                        <div class="col">
+                            <div class="toggle-wrapper">
+                                <div class="toggle checkcross31">
+                                    <input id="checkcross31" type="checkbox" style="display: none">
+                                    <label class="toggle-item" for="checkcross31">
+                                        <div class="check"></div>
+                                    </label>
+                                </div>
+                                <div class="name">Se audito mal<br> la visibilidad <br>de la marca</div>
+                                <div class="name1">Se audito bien<br> la visibilidad <br>de la marca</div>
+                            </div>
+                            <br>
+                        <div style="display: none" id="EditCalVisi">
+                            <hr>
+                            <select name="cal_marc_visible[]" id="cal_marc_visible" class="form-control selectpicker selector "
+                                data-style="btn-primary" title="Seleccionar visibilidad de la marca" required disabled>
+                                <option disabled value="old{'cal_marc_visible'}" checked>Seleccione una opción </option>
+                                @foreach ($cal_marc_visible as $calVisi)
+                                    <option value="{{ $calVisi }}">{{ $calVisi }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <hr>
+                            <br>
+                            <div class="toggle-wrapper">
+                                <div class="toggle checkcross32">
+                                    <input id="checkcross32" type="checkbox" style="display: none">
+                                    <label class="toggle-item" for="checkcross32">
+                                        <div class="check"></div>
+                                    </label>
+                                </div>
+                                <div class="name">Se audito mal<br> el estado <br>de la marca</div>
+                                <div class="name1">Se audito bien<br> el estado <br>de la marca</div>
+                            </div>
+                            <br>
+                        <div style="display: none" id="EditCalEstado">
+                            <hr>
+                            <select name="cal_marc_danados[]" id="cal_marc_danados" class="form-control selectpicker selector "
+                                data-style="btn-primary" title="Seleccionar visibilidad de la marca" required disabled>
+                                <option disabled value="old{'cal_marc_danados'}" checked>Seleccione una opción </option>
+                                @foreach ($cal_marc_danados as $calEst)
+                                    <option value="{{ $calEst }}">{{ $calEst }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <hr>
+                            <br>
+                            <div class="toggle-wrapper">
+                                <div class="toggle checkcross33">
+                                    <input id="checkcross33" type="checkbox" style="display: none">
+                                    <label class="toggle-item" for="checkcross33">
+                                        <div class="check"></div>
+                                    </label>
+                                </div>
+                                <div class="name">Se audito mal<br> el estado <br>de las etiquetas</div>
+                                <div class="name1">Se audito bien<br> el estado <br>de las etiquetas</div>
+                            </div>
+                            <br>
+                            <div style="display: none" id="EditCalEtiquetas">
+                                <hr>
+                                <select name="cal_marc_et_danados[]" id="cal_marc_et_danados" class="form-control selectpicker selector "
+                                    data-style="btn-primary" title="Seleccionar calidad de las etiquetas de la marcas" required disabled>
+                                    <option disabled value="old{'cal_marc_et_danados'}" checked>Seleccione una opción </option>
+                                    @foreach ($cal_marc_et_danados as $calMarEt)
+                                        <option value="{{ $calMarEt }}">{{ $calMarEt }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <hr>
+                        </div>
+                        <nat class="bt-menu">
+                            <ul>
+                                <li class="bt_li"><button type="button" class="botOn js-zoom-in15"><i
+                                            class="fas fa-plus" alt="acercar"></i></button></li>
+                                <li class="bt_li"><button type="button" class="botOn js-zoom-out15"><i
+                                            class="fas fa-minus" alt="alejar"></i></button></li>
+                                <li class="bt_li"><button type="button" class="botOn js-rotate-right15"><i
+                                            class="fas fa-redo" alt="giro derecha"></i></button></li>
+                                <li class="bt_li"><button type="button" class="botOn js-rotate-left15"><i
+                                            class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                            </ul>
+                            <div id="msgCalMarcVisi">
+                                <red>Calidad dice:</red>
+                            </div>
+                            <div id="msgCalMarcEstado">
+                                <red>Calidad dice:</red>
+                            </div>
+                            <div id="msgCalMarcEtiqueta">
+                                <red>Calidad dice:</red>
+                            </div>
+                            <input class="noClass" type="text" name="calMarcVisi" id="inpCalMarcVisi" required>
+                            <input class="noClass" type="text" name="calMarcEstado" id="inpCalMarcEstado" required>
+                            <input class="noClass" type="text" name="calMarcEtiqueta" id="inpCalMarcEtiqueta" required>
+                        </nat>
+                    </div>
+                    @if ($reporte->seleccionLinealDiageo = !null)
+                        <div class="col-8">
+                            <img id="imageLinealDiageo"
+                                src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/LinealDiageoLinealDg_' . $reporte->precarga_id . '.png'))) }}" />
+                        </div>
                 </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="{{ asset('/storage/oldparr.png') }}" class="img_botellasPq swing"
-                            alt="Skyscrapers" />
-                        <div class="card-body">
-                            <h5 class="double-shadow">Old Parr</h5>
-                            <p class="card-text">
-                            <table class="table table-hover">
-                                <thead class="table-success">
-                                    <tr>
-                                        <th>Presentaci&oacute;n</th>
-                                        <th>Caras</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if ($reporte->oldparr750 == 'oldparr750_si')
-                                        <tr>
-                                            <td>750 ml</td>
-                                            <td>{{ $reporte->caras_oldparr750 }}</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    @endif
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </p>
-                        </div>
-                    </div>
+            </ul>
+        @else
+            <span>No hay foto del lineal</span>
+            <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+            </ul>
+        @endif
+        <hr>
+        <ul>
+            <div class="row">
+                <div class="col card-box-xs">
+                    <h5 class="center">RONES DE LA COMPETENCIA</h5>
+                    <p class= "parrafoJustificado">
+                        <span>
+                            <blue>Auditor dice:</blue>
+                        </span>
+                        La marca de ron mas vendida en el punto es <strong>{{ $reporte->comp_ron1 }} </strong> y la
+                        segunda
+                        mas
+                        vendida es
+                        <strong>{{ $reporte->comp_ron2 }}</strong>, ambas ocupan {{ $reporte->caras_comp_ron }} caras.
+                    </p>
+                    <nat class="bt-menu">
+                        <ul>
+                            <li class="bt_li"><button type="button" class="botOn js-zoom-in16"><i
+                                        class="fas fa-plus" alt="acercar"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-zoom-out16"><i
+                                        class="fas fa-minus" alt="alejar"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-rotate-right16"><i
+                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-rotate-left16"><i
+                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                        </ul>
+                    </nat>
                 </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="{{ asset('/storage/buchannas.png') }}" class="img_botellasPq swing"
-                            alt="Skyscrapers" />
-                        <div class="card-body">
-                            <h5 class="double-shadow">Buchanna&acute;s</h5>
-                            <p class="card-text">
-                            <table class="table table-hover">
-                                <thead class="table-success">
-                                    <tr>
-                                        <th>Presentaci&oacute;n</th>
-                                        <th>Caras</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if ($reporte->buchannas700 == 'buchannas700_si')
-                                        <tr>
-                                            <td>700 ml</td>
-                                            <td>{{ $reporte->caras_buchannas700 }}</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    @endif
-                                    @if ($reporte->buchannas375 == 'buchannas375_si')
-                                        <tr>
-                                            <td>375 ml</td>
-                                            <td>{{ $reporte->caras_buchannas375 }}</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    @endif
-                                </tbody>
-                            </table>
-                            </p>
-                        </div>
-                    </div>
+                <div class="col-8">
+                    @if (file_exists($reporte->seleccionLinealR))
+                        <img id="imageRones"
+                            src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Ron_' . $reporte->precarga_id . '.png'))) }}" />
+                    @else
+                        <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+                    @endif
                 </div>
             </div>
         </ul>
-    </div>
-    <hr>
-    <div class="col-12" style="margin: 1rem; background: rgb(193, 243, 250); text-align: center;">
-        <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">EXHIBICI&Oacute;N</h1>
-    </div>
-    <hr>
-    {{--  <!-- CALIDAD DE LA MARCA -->  --}}
-    <ul>
-        <div class="row">
-            <div class="col card-box-xxl">
-                <h5 class="center">CALIDAD DE LA MARCA</h5>
-                <p class= "parrafoJustificado">
-                    <span>
-                        <blue>Auditor dice:</blue>
-                    </span>
-                    @if ($reporte->cal_marc_visible == 'cal_marc_visible_si')
-                        Los productos de la marca son visibles,
+        <hr>
+        <ul>
+            <div class="row">
+                <div class="col card-box-xs">
+                    <h5 class="center">AGUARDIENTE DE LA COMPETENCIA</h5>
+                    <p class="parrafoJustificado">
+                        <span>
+                            <blue>Auditor dice:</blue>
+                        </span>
+                        La marca mas vendida de aguardientes es <strong>{{ $reporte->comp_aguard1 }}</strong> y la segunda
+                        es <strong>{{ $reporte->comp_aguard2 }}</strong>,
+                        ambas ocupan {{ $reporte->caras_comp_aguardiente }} caras.
+                    </p>
+                    <nat class="bt-menu">
+                        <ul>
+                            <li class="bt_li"><button type="button" class="botOn js-zoom-in17"><i
+                                        class="fas fa-plus" alt="acercar"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-zoom-out17"><i
+                                        class="fas fa-minus" alt="alejar"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-rotate-right17"><i
+                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-rotate-left17"><i
+                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                        </ul>
+                    </nat>
+                </div>
+                <div class="col-8">
+                    @if (file_exists($reporte->seleccionLinealA))
+                        <img id="imageAguardiente"
+                            src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Aguardiente_' . $reporte->precarga_id . '.png'))) }}" />
                     @else
-                        los productos de la marca no son visibles,
+                        <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                     @endif
-                    @if ($reporte->cal_marc_danados == 'cal_marc_danados_si')
-                        estos se encuentran dañados, averiados o en mal estado,
+                </div>
+            </div>
+        </ul>
+        <hr>
+        <div class="col-12" style="margin: 1rem; background: rgb(193, 243, 250); text-align: center;">
+            <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">VISIBILIDAD DE LA MARCA</h1>
+        </div>
+        <hr>
+        <ul>
+            <div class="row">
+                <div class="col card-box-xm">
+                    <h5 class="center">RONES JUNTO A BLACK & WHITE</h5>
+                    <p class= "parrafoJustificado">
+                        <span>
+                            <blue>Auditor dice:</blue>
+                        </span>
+                        @if (file_exists($reporte->ron_byw))
+                            La marca <strong> Black & White </strong> esta ubicada correctamente junto a los
+                            rones de la competencia
+                        @else
+                            La marca <strong> Black & White </strong> no esta correctamente ubicada junto a
+                            los rones de la competencia
+                        @endif
+                    </p>
+                    <div class="toggle-wrapper">
+                        <div class="toggle checkcross34">
+                            <input id="checkcross34" type="checkbox" style="display: none">
+                            <label class="toggle-item" for="checkcross34">
+                                <div class="check"></div>
+                            </label>
+                        </div>
+                        <div class="name">No<br>se<br>cumple</div>
+                        <div class="name1">Se<br>cumple</div>
+                    </div>
+                    <nat class="bt-menu">
+                        <ul>
+                            <li class="bt_li"><button type="button" class="botOn js-zoom-in18"><i
+                                        class="fas fa-plus" alt="acercar"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-zoom-out18"><i
+                                        class="fas fa-minus" alt="alejar"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-rotate-right18"><i
+                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-rotate-left18"><i
+                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                        </ul>
+                        <div id="msgRonBlack">
+                            <red>Calidad dice:</red>
+                        </div>
+                        <input class="noClass" type="text" id="inpRonBlack" name="RonBlack" required>
+                    </nat>
+                </div>
+                <div class="col-8">
+                    @if (file_exists($reporte->seleccionron_byw))
+                        {
+                        <img id="imageRonBlack"
+                            src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/ron_byw_' . $reporte->precarga_id . '.png'))) }}" />
+                        }
                     @else
-                        se encuentran en optimas condiciones,
+                        <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                     @endif
 
-                    @if ($reporte->cal_marc_et_danados == 'cal_marc_et_danados_si')
-                        sus etiquetas estan dañadas o sucias.
-                    @else
-                        sus etiquetas estan en perfectas condiciones.
-                    @endif
-                </p>
-                <div class="col">
-                    <div class="toggle-wrapper">
-                        <div class="toggle checkcross31">
-                            <input id="checkcross31" type="checkbox" style="display: none">
-                            <label class="toggle-item" for="checkcross31">
-                                <div class="check"></div>
-                            </label>
-                        </div>
-                        <div class="name">No<br> es visible</div>
-                        <div class="name1">Es <br>visible</div>
-                    </div>
-                    <br>
-                    <div class="toggle-wrapper">
-                        <div class="toggle checkcross32">
-                            <input id="checkcross32" type="checkbox" style="display: none">
-                            <label class="toggle-item" for="checkcross32">
-                                <div class="check"></div>
-                            </label>
-                        </div>
-                        <div class="name">sin<br>productos<br>marca<br>Diageo</div>
-                        <div class="name1">con<br>productos<br>marca<br>Diageo</div>
-                    </div>
-                    <br>
-                    <div class="toggle-wrapper">
-                        <div class="toggle checkcross33">
-                            <input id="checkcross33" type="checkbox" style="display: none">
-                            <label class="toggle-item" for="checkcross33">
-                                <div class="check"></div>
-                            </label>
-                        </div>
-                        <div class="name">Mal <br>estado</div>
-                        <div class="name1">Buen <br>estado</div>
-                    </div>
                 </div>
-                <nat class="bt-menu">
-                    <ul>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-in15"><i class="fas fa-plus"
-                                    alt="acercar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-out15"><i
-                                    class="fas fa-minus" alt="alejar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-right15"><i
-                                    class="fas fa-redo" alt="giro derecha"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-left15"><i
-                                    class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                    </ul>
-                    <div id="msgCalMarcVisi">
-                        <red>Calidad dice:</red>
-                    </div>
-                    <div id="msgCalMarcEstado">
-                        <red>Calidad dice:</red>
-                    </div>
-                    <div id="msgCalMarcEtiqueta">
-                        <red>Calidad dice:</red>
-                    </div>
-                    <input class="noClass" type="text" name="calMarcVisi" id="inpCalMarcVisi" required>
-                    <input class="noClass" type="text" name="calMarcEstado" id="inpCalMarcEstado" required>
-                    <input class="noClass" type="text" name="calMarcEtiqueta" id="inpCalMarcEtiqueta" required>
-                </nat>
             </div>
-            @if ($reporte->seleccionLinealDiageo = !null)
+        </ul>
+        <hr>
+        <ul>
+            <div class="row">
+                <div class="col card-box-xm">
+                    <h5 class="center">RONES JUNTO A JHONNIE WALKER</h5>
+                    <p class= "parrafoJustificado">
+                        <span>
+                            <blue>Auditor dice:</blue>
+                        </span>
+                        @if ($reporte->ron_jhonny == 'ron_jhonny_si')
+                            La marca <strong> Jhonnie Walker</strong> esta ubicada correctamente junto a
+                            los rones de la competencia.
+                        @else
+                            La marca <strong> Jhonnie Walker</strong> no esta correctamente ubicada junto
+                            a los rones de la competencia.
+                        @endif
+                    </p>
+                    <div class="toggle-wrapper">
+                        <div class="toggle checkcross35">
+                            <input id="checkcross35" type="checkbox" style="display: none">
+                            <label class="toggle-item" for="checkcross35">
+                                <div class="check"></div>
+                            </label>
+                        </div>
+                        <div class="name">No<br>se<br>cumple</div>
+                        <div class="name1">Se<br>cumple</div>
+                    </div>
+                    <nat class="bt-menu">
+                        <ul>
+                            <li class="bt_li"><button type="button" class="botOn js-zoom-in19"><i
+                                        class="fas fa-plus" alt="acercar"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-zoom-out19"><i
+                                        class="fas fa-minus" alt="alejar"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-rotate-right19"><i
+                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-rotate-left19"><i
+                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                        </ul>
+                        <div id="msgJhonnie">
+                            <input class="noClass" type="text" id="inpJhonnie" name="ronVsJhonnie" required>
+                            <red>Calidad dice:</red>
+                        </div>
+                    </nat>
+                </div>
                 <div class="col-8">
-                    <img id="imageLinealDiageo"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/LinealDiageoLinealDg_' . $reporte->precarga_id . '.png'))) }}" />
-                </div>
-        </div>
-    </ul>
-@else
-    <span>No hay foto del lineal</span>
-    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-    </ul>
-    @endif
-    <hr>
-    <ul>
-        <div class="row">
-            <div class="col card-box-xs">
-                <h5 class="center">RONES DE LA COMPETENCIA</h5>
-                <p class= "parrafoJustificado">
-                    <span>
-                        <blue>Auditor dice:</blue>
-                    </span>
-                    La marca de ron mas vendida en el punto es <strong>{{ $reporte->comp_ron1 }} </strong> y la segunda
-                    mas
-                    vendida es
-                    <strong>{{ $reporte->comp_ron2 }}</strong>, ambas ocupan {{ $reporte->caras_comp_ron }} caras.
-                </p>
-                <nat class="bt-menu">
-                    <ul>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-in16"><i class="fas fa-plus"
-                                    alt="acercar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-out16"><i
-                                    class="fas fa-minus" alt="alejar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-right16"><i
-                                    class="fas fa-redo" alt="giro derecha"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-left16"><i
-                                    class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                    </ul>
-                </nat>
-            </div>
-            <div class="col-8">
-                @if (isset($data['seleccionLinealR']))
-                    <img id="imageRones"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Ron_' . $reporte->precarga_id . '.png'))) }}" />
-                @else
-                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-                @endif
-            </div>
-        </div>
-    </ul>
-    <hr>
-    <ul>
-        <div class="row">
-            <div class="col card-box-xs">
-                <h5 class="center">AGUARDIENTE DE LA COMPETENCIA</h5>
-                <p class="parrafoJustificado">
-                    <span>
-                        <blue>Auditor dice:</blue>
-                    </span>
-                    La marca mas vendida de aguardientes es <strong>{{ $reporte->comp_aguard1 }}</strong> y la segunda
-                    es <strong>{{ $reporte->comp_aguard2 }}</strong>,
-                    ambas ocupan {{ $reporte->caras_comp_aguardiente }} caras.
-                </p>
-                <nat class="bt-menu">
-                    <ul>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-in17"><i class="fas fa-plus"
-                                    alt="acercar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-out17"><i
-                                    class="fas fa-minus" alt="alejar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-right17"><i
-                                    class="fas fa-redo" alt="giro derecha"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-left17"><i
-                                    class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                    </ul>
-                </nat>
-            </div>
-            <div class="col-8">
-                @if (isset($data['seleccionLinealR']))
-                    <img id="imageAguardiente"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Aguardiente_' . $reporte->precarga_id . '.png'))) }}" />
-                @else
-                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-                @endif
-            </div>
-        </div>
-    </ul>
-    <hr>
-    <div class="col-12" style="margin: 1rem; background: rgb(193, 243, 250); text-align: center;">
-        <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">VISIBILIDAD DE LA MARCA</h1>
-    </div>
-    <hr>
-    <ul>
-        <div class="row">
-            <div class="col card-box-xm">
-                <h5 class="center">RONES JUNTO A BLACK & WHITE</h5>
-                <p class= "parrafoJustificado">
-                    <span>
-                        <blue>Auditor dice:</blue>
-                    </span>
-                    @if ($reporte->ron_byw == 'ron_byw_si')
-                        La marca <strong> Black & White </strong> esta ubicada correctamente junto a los
-                        rones de la competencia
+                    @if (file_exists($reporte->seleccion_jhonny))
+                        {
+                        <img id="imageJhonnie"
+                            src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/ron_jhonny_' . $reporte->precarga_id . '.png'))) }}" />
+                        }
                     @else
-                        La marca <strong> Black & White </strong> no esta correctamente ubicada junto a
-                        los rones de la competencia
+                        <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                     @endif
-                </p>
-                <div class="toggle-wrapper">
-                    <div class="toggle checkcross34">
-                        <input id="checkcross34" type="checkbox" style="display: none">
-                        <label class="toggle-item" for="checkcross34">
-                            <div class="check"></div>
-                        </label>
-                    </div>
-                    <div class="name">No<br>se<br>cumple</div>
-                    <div class="name1">Se<br>cumple</div>
                 </div>
-                <nat class="bt-menu">
-                    <ul>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-in18"><i class="fas fa-plus"
-                                    alt="acercar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-out18"><i
-                                    class="fas fa-minus" alt="alejar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-right18"><i
-                                    class="fas fa-redo" alt="giro derecha"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-left18"><i
-                                    class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                    </ul>
-                    <div id="msgRonBlack">
-                        <red>Calidad dice:</red>
+            </div>
+        </ul>
+        <hr>
+        <ul>
+            <div class="row">
+                <div class="col card-box-xm">
+                    <h5 class="center">AGUARDIENTE JUNTO A SMIRNOFF</h5>
+                    <p class= "parrafoJustificado">
+                        <span>
+                            <blue>Auditor dice:</blue>
+                        </span>
+                        @if ($reporte->aguard_smirnoff == 'aguard_smirnoff_si')
+                            La marca <strong>Smirnoff X1</strong> esta ubicada correctamente junto a los
+                            aguardientes de la competencia
+                        @else
+                            La marca <strong>Smirnoff X1</strong> no esta correctamente ubicada junto a los
+                            aguardientes de la competencia
+                        @endif
+                    </p>
+                    <div class="toggle-wrapper">
+                        <div class="toggle checkcross36">
+                            <input id="checkcross36" type="checkbox" style="display: none">
+                            <label class="toggle-item" for="checkcross36">
+                                <div class="check"></div>
+                            </label>
+                        </div>
+                        <div class="name">No<br>es<br>correcto</div>
+                        <div class="name1">Se<br>confirma</div>
                     </div>
-                    <input class="noClass" type="text" id="inpRonBlack" name="RonBlack" required>
-                </nat>
-            </div>
-            <div class="col-8">
-                <img id="imageRonBlack"
-                    src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/ron_byw_' . $reporte->precarga_id . '.png'))) }}" />
-            </div>
-        </div>
-    </ul>
-    <hr>
-    <ul>
-        <div class="row">
-            <div class="col card-box-xm">
-                <h5 class="center">RONES JUNTO A JHONNIE WALKER</h5>
-                <p class= "parrafoJustificado">
-                    <span>
-                        <blue>Auditor dice:</blue>
-                    </span>
-                    @if ($reporte->ron_jhonny == 'ron_jhonny_si')
-                        La marca <strong> Jhonnie Walker</strong> esta ubicada correctamente junto a
-                        los rones de la competencia.
+                    <nat class="bt-menu">
+                        <ul>
+                            <li class="bt_li"><button type="button" class="botOn js-zoom-in20"><i
+                                        class="fas fa-plus" alt="acercar"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-zoom-out20"><i
+                                        class="fas fa-minus" alt="alejar"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-rotate-right20"><i
+                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-rotate-left20"><i
+                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                        </ul>
+                        <div id="msgSmirnoff">
+                            <input class="noClass" type="text" id="inpSmirnoff" name="aguVsSmirnoff" required>
+                            <red>Calidad dice:</red>
+                        </div>
+                    </nat>
+                </div>
+                <div class="col-8">
+                    @if (file_exists($reporte->seleccionaguard_smirnoff))
+                        {
+                        <img id="imageSmirnoff"
+                            src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/aguard_smirnoff_' . $reporte->precarga_id . '.png'))) }}" />
+                        }
                     @else
-                        La marca <strong> Jhonnie Walker</strong> no esta correctamente ubicada junto
-                        a los rones de la competencia.
+                        <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                     @endif
-                </p>
-                <div class="toggle-wrapper">
-                    <div class="toggle checkcross35">
-                        <input id="checkcross35" type="checkbox" style="display: none">
-                        <label class="toggle-item" for="checkcross35">
-                            <div class="check"></div>
-                        </label>
-                    </div>
-                    <div class="name">No<br>se<br>cumple</div>
-                    <div class="name1">Se<br>cumple</div>
                 </div>
-                <nat class="bt-menu">
-                    <ul>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-in19"><i class="fas fa-plus"
-                                    alt="acercar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-out19"><i
-                                    class="fas fa-minus" alt="alejar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-right19"><i
-                                    class="fas fa-redo" alt="giro derecha"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-left19"><i
-                                    class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                    </ul>
-                    <div id="msgJhonnie">
-                        <input class="noClass" type="text" id="inpJhonnie" name="ronVsJhonnie" required>
-                        <red>Calidad dice:</red>
-                    </div>
-                </nat>
             </div>
-            <div class="col-8">
-                @if ($reporte->seleccion_jhonny != null)
-                    <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
-                @else
-                    <img id="imageJhonnie"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/ron_jhonny_' . $reporte->precarga_id . '.png'))) }}" />
-                @endif
-            </div>
+        </ul>
+        <hr>
+        <div class="col-12" style="margin: 1rem; background: rgb(193, 243, 250); text-align: center;">
+            <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">GIFT</h1>
         </div>
-    </ul>
-    <hr>
-    <ul>
-        <div class="row">
-            <div class="col card-box-xm">
-                <h5 class="center">AGUARDIENTE JUNTO A SMIRNOFF</h5>
-                <p class= "parrafoJustificado">
-                    <span>
-                        <blue>Auditor dice:</blue>
-                    </span>
-                    @if ($reporte->aguard_smirnoff == 'aguard_smirnoff_si')
-                        La marca <strong>Smirnoff X1</strong> esta ubicada correctamente junto a los
-                        aguardientes de la competencia
-                    @else
-                        La marca <strong>Smirnoff X1</strong> no esta correctamente ubicada junto a los
-                        aguardientes de la competencia
-                    @endif
-                </p>
-                <div class="toggle-wrapper">
-                    <div class="toggle checkcross36">
-                        <input id="checkcross36" type="checkbox" style="display: none">
-                        <label class="toggle-item" for="checkcross36">
-                            <div class="check"></div>
-                        </label>
+        <hr>
+        <ul>
+            <div class="row">
+                <div class="col card-box-xs">
+                    <h5 class="center">ENTREGA DE OBSEQUIO</h5>
+                    <p class= "parrafoJustificado">
+                        <span>
+                            <blue>Auditor dice:</blue>
+                        </span>
+                        @if ($reporte->gift == 'gift_si')
+                            la entrega de {{ $reporte->cant_gift }} gift, se evidencia con la
+                            fotografía.
+                        @else
+                            no se entrego ning&uacute;n gift.no se entrego ning&uacute;n gift.
+                        @endif
+                    </p>
+                    <div class="toggle-wrapper">
+                        <div class="toggle checkcross37">
+                            <input id="checkcross37" type="checkbox" style="display: none" onchange>
+                            <label class="toggle-item" for="checkcross37">
+                                <div class="check"></div>
+                            </label>
+                        </div>
+                        <div class="name">No<br>se<br>cumple</div>
+                        <div class="name1">Se<br>cumple</div>
                     </div>
-                    <div class="name">No<br>es<br>correcto</div>
-                    <div class="name1">Se<br>confirma</div>
+                    <nat class="bt-menu">
+                        <ul>
+                            <li class="bt_li"><button type="button" class="botOn js-zoom-in21"><i
+                                        class="fas fa-plus" alt="acercar"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-zoom-out21"><i
+                                        class="fas fa-minus" alt="alejar"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-rotate-right21"><i
+                                        class="fas fa-redo" alt="giro derecha"></i></button></li>
+                            <li class="bt_li"><button type="button" class="botOn js-rotate-left21"><i
+                                        class="fas fa-undo" alt="giro izquierda"></i></button></li>
+                        </ul>
+                        <div id="msgGift">
+                            <input class="noClass" type="text" id="inpGift" name="gift" required>
+                            <red>Calidad dice:</red>
+                        </div>
+                    </nat>
                 </div>
-                <nat class="bt-menu">
-                    <ul>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-in20"><i class="fas fa-plus"
-                                    alt="acercar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-out20"><i
-                                    class="fas fa-minus" alt="alejar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-right20"><i
-                                    class="fas fa-redo" alt="giro derecha"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-left20"><i
-                                    class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                    </ul>
-                    <div id="msgSmirnoff">
-                        <input class="noClass" type="text" id="inpSmirnoff" name="aguVsSmirnoff" required>
-                        <red>Calidad dice:</red>
-                    </div>
-                </nat>
-            </div>
-            <div class="col-8">
-                <img id="imageSmirnoff"
-                    src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/aguard_smirnoff_' . $reporte->precarga_id . '.png'))) }}" />
-            </div>
-        </div>
-    </ul>
-    <hr>
-    <div class="col-12" style="margin: 1rem; background: rgb(193, 243, 250); text-align: center;">
-        <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">GIFT</h1>
-    </div>
-    <hr>
-    <ul>
-        <div class="row">
-            <div class="col card-box-xs">
-                <h5 class="center">ENTREGA DE OBSEQUIO</h5>
-                <p class= "parrafoJustificado">
-                    <span>
-                        <blue>Auditor dice:</blue>
-                    </span>
+                <div class="col-8">
                     @if ($reporte->gift == 'gift_si')
-                        la entrega de {{ $reporte->cant_gift }} gift, se evidencia con la
-                        fotografía.
+                        <img id="imageGift"
+                            src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Gift_' . $reporte->precarga_id . '.png'))) }}" />
                     @else
-                        no se entrego ning&uacute;n gift.no se entrego ning&uacute;n gift.
+                        <img id= "imageNotGift" src="{{ asset('img/no_gift.png') }}" alt="">
                     @endif
-                </p>
-                <div class="toggle-wrapper">
-                    <div class="toggle checkcross37">
-                        <input id="checkcross37" type="checkbox" style="display: none" onchange>
-                        <label class="toggle-item" for="checkcross37">
-                            <div class="check"></div>
-                        </label>
-                    </div>
-                    <div class="name">No<br>se<br>cumple</div>
-                    <div class="name1">Se<br>cumple</div>
                 </div>
-                <nat class="bt-menu">
-                    <ul>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-in21"><i class="fas fa-plus"
-                                    alt="acercar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-zoom-out21"><i
-                                    class="fas fa-minus" alt="alejar"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-right21"><i
-                                    class="fas fa-redo" alt="giro derecha"></i></button></li>
-                        <li class="bt_li"><button type="button" class="botOn js-rotate-left21"><i
-                                    class="fas fa-undo" alt="giro izquierda"></i></button></li>
-                    </ul>
-                    <div id="msgGift">
-                        <input class="noClass" type="text" id="inpGift" name="gift" required>
-                        <red>Calidad dice:</red>
-                    </div>
-                </nat>
             </div>
-            <div class="col-8">
-                @if ($reporte->gift == 'gift_si')
-                    <img id="imageGift"
-                        src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Gift_' . $reporte->precarga_id . '.png'))) }}" />
-                @else
-                    <img id= "imageNotGift" src="{{ asset('img/no_gift.png') }}" alt="">
-                @endif
+        </ul>
+        @endif
+        <hr>
+        <ul>
+            <div class="row">
+                <div class="col card-box">
+                    <h5 class="center">OBSEVACIONES DE CIERRE</h5>
+                    <blue>Auditor dice:</blue>
+                    <p class="parrafoJustificado detalle">
+                        {{ $reporte->observacionesDetallista }}
+                    </p>
+                </div>
             </div>
+        </ul>
+        <hr>
+        <div>
+            <span>
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadSegmento">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadCantidades">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadTipologia">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadCenefaVisi">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadCenefaColo">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadAfiche_visi">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadAfiche_colo">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadAfiche_combo">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadMarcoVisi">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadMarcoColo">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadRompeVisi">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadRompeColo">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadfachadas_visi">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadfachadas_colo">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadHieleraProd">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadHieleraVisi">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadHieleraEstado">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadBsHieProd">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadBsHieVisi">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadBsHieEstado">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadDosiDVisi">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadDosiDProd">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadDosiDEstado">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadDosiSVisi">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadDosiSProd">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadDosiSEstado">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadBrandingVisi">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadBrandingEstado">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadVasosVisi">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadVasosEstado">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadCalMarcVisi">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadCalMarcEstado">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadCalMarcEtiqueta">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadRonBlack">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadRonVsJhonnie">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadAguVsSmirnoff">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadGift">
+                <input type="hidden" style="width: 65px;" value="0" id="criticidadFachada">
+            </span>
         </div>
-    </ul>
-    @endif
-    <hr>
-    <ul>
-        <div class="row">
-            <div class="col card-box">
-                <h5 class="center">OBSEVACIONES DE CIERRE</h5>
-                <blue>Auditor dice:</blue>
-                <p class="parrafoJustificado detalle">
-                    {{ $reporte->observacionesDetallista }}
-                </p>
+        <hr>
+        <ul>
+            <button class="btn btn-info" type="button" onclick="Suma()">Valide el numero de errores</button>
+            <span>Se encontraron :</span><input type="text" style="width: 65px;" id="ResultadoSuma"
+                name="ResultadoSuma" onKeyUp="calcular(this);" placeholder=""><span> errores</span>
+            <input type="text" class="criticidad" id="spanFachada" disabled>
+            <div id="DivCriticidadA" style="display: none">
+                <input type="text" class="form-control" id = "criticidad1" name="criticidad"
+                    value="error critico de fondo" disabled>
             </div>
-        </div>
-    </ul>
-    <hr>
-    <div>
-        <span>
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadSegmento">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadCantidades">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadTipologia">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadCenefaVisi">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadCenefaColo">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadAfiche_visi">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadAfiche_colo">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadAfiche_combo">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadMarcoVisi">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadMarcoColo">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadRompeVisi">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadRompeColo">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadfachadas_visi">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadfachadas_colo">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadHieleraProd">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadHieleraVisi">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadHieleraEstado">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadBsHieProd">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadBsHieVisi">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadBsHieEstado">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadDosiDVisi">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadDosiDProd">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadDosiDEstado">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadDosiSVisi">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadDosiSProd">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadDosiSEstado">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadBrandingVisi">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadBrandingEstado">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadVasosVisi">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadVasosEstado">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadCalMarcVisi">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadCalMarcEstado">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadCalMarcEtiqueta">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadRonBlack">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadRonVsJhonnie">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadAguVsSmirnoff">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadGift">
-            <input type="hidden" style="width: 65px;" value="0" id="criticidadFachada">
-        </span>
+            <div id="DivCriticidadB" style="display: none">
+                <input type="text" class="form-control" id = "criticidad2" name="criticidad"
+                    value="error critico de forma" disabled>
+            </div>
+            <div id="DivCriticidadC" style="display: none">
+                <input type="text" class="form-control" id = "criticidad3" name="criticidad"
+                    value="errores criticos de fondo y forma" disabled>
+            </div>
+            <div id="DivCriticidadD" style="display: none">
+                <input type="text" class="form-control" id = "criticidad4" name="criticidad"
+                    value="sin errores">
+            </div>
+        </ul>
+        <hr>
+        <ul>
+            <div class="row">
+                <div class="col card-box">
+                    <h5 class="center">OBSERVACIONES DE CALIDAD</h5>
+                    <p class="parrafoJustificado">
+                        <textarea class="comentario" placeholder="Observaciones de calidad" id="observacionesCalidad"
+                            name="observacionesCalidad" rows="8" maxlength="300" minlength="10" required></textarea>
+                        <span class="badge bg-primary float-right" id="characterCount">0/300</span>
+                    </p>
+                    <br><br>
+                </div>
+            </div>
+        </ul>
+        <hr>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <br><br>
+        <hr>
     </div>
-    <hr>
-    <ul>
-        <button class="btn btn-info" type="button" onclick="Suma()">Valide el numero de errores</button>
-        <span>Se encontraron :</span><input type="text" style="width: 65px;" id="ResultadoSuma"
-            name="ResultadoSuma" onKeyUp="calcular(this);" placeholder=""><span> errores</span>
-        <input type="text" class="criticidad" id="spanFachada" disabled>
-        <div id="DivCriticidadA" style="display: none">
-            <input type="text" class="form-control" id = "criticidad1" name="criticidad"
-                value="error critico de fondo" disabled>
-        </div>
-        <div id="DivCriticidadB" style="display: none">
-            <input type="text" class="form-control" id = "criticidad2" name="criticidad"
-                value="error critico de forma" disabled>
-        </div>
-        <div id="DivCriticidadC" style="display: none">
-            <input type="text" class="form-control" id = "criticidad3" name="criticidad"
-                value="errores criticos de fondo y forma" disabled>
-        </div>
-        <div id="DivCriticidadD" style="display: none">
-            <input type="text" class="form-control" id = "criticidad4" name="criticidad" value="sin errores">
-        </div>
-    </ul>
-    <hr>
-    <ul>
-        <div class="row">
-            <div class="col card-box">
-                <h5 class="center">OBSERVACIONES DE CALIDAD</h5>
-                <p class="parrafoJustificado">
-                    <textarea class="comentario" placeholder="Observaciones de calidad" id="observacionesCalidad"
-                        name="observacionesCalidad" rows="8" maxlength="300" minlength="10" required></textarea>
-                    <span class="badge bg-primary float-right" id="characterCount">0/300</span>
-                </p>
-                <br><br>
-            </div>
-        </div>
-    </ul>
-    <hr>
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <br><br>
-    <hr>
+
+
     {!! Form::close() !!}
 @stop
 
@@ -2405,14 +2743,11 @@
                         inpFachada.value = "se audito mal la activación";
                         inpCriticidadFachada.value = 1;
                         spanFachada.value = message;
-
-
                     }
                 } else {
                     msgFachada.innerText = 'Según la validación, se tipificó la activación correctamente.';
                     inpFachada.value = "Se audito bien la activación";
                     inpCriticidadFachada.value = 0;
-
                     spanFachada.value = " ";
 
                 }
@@ -2425,9 +2760,6 @@
         var inpSegmento = document.getElementById('inpSegmento');
         var inpCriticidadSegmento = document.getElementById('criticidadSegmento');
         var divSegmento = document.getElementById('EditSegmento');
-
-
-
         if (miCheckbox2 != null) {
             miCheckbox2.addEventListener('click', function() {
                 if (miCheckbox2.checked) {
@@ -2436,16 +2768,14 @@
                         inpSegmento.value = "se audito mal el segmento";
                         inpCriticidadSegmento.value = 1;
                         divSegmento.style.display = "block";
-                        $('#segmento').prop("disabled", false);
+                        $('#segmento').prop('disabled', false);
                     }
-
-
                 } else {
                     msgSegmento.innerText = 'Según la validación, el segmento corresponde';
                     inpSegmento.value = "se audito bien el segmento";
                     inpCriticidadSegmento.value = 0;
                     divSegmento.style.display = "none";
-                    $('#segmento').prop("disabled", true);
+                    $('#segmento').prop('disabled', true);
                 }
             });
         }
@@ -2495,14 +2825,14 @@
                         inpTipologia.value = "se audito mal la tipologia";
                         inpCriticidadTipologia.value = 1;
                         divTipologia.style.display = "block";
-                        $('#tipologia').prop("disabled", false);
+                        $('#tipologia').prop('disabled', false);
                     }
                 } else {
                     msgTipologia.innerText = 'Según la validación, la tipologia corresponde';
                     inpTipologia.value = "se audito bien la tipologia";
                     inpCriticidadTipologia.value = 0;
                     divTipologia.style.display = "none";
-                    $('#tipologia').prop("disabled", true);
+                    $('#tipologia').prop('disabled', true);
                 }
             });
         }
@@ -2518,17 +2848,17 @@
                 if (miCheckbox4.checked) {
                     msgCenefaVisi.innerText = 'se confirma que la cenefa no es visible';
                     if (miCheckbox4.checked = "true") {
-                        inpCenefaVisi.value = "se audito mal la visibilidad de la cenafa";
+                        inpCenefaVisi.value = "se audito mal la visibilidad de la cenefa";
                         inpCriticidadCenefaVisi.value = 1;
                         EditCenefaVisi.style.display = "block";
-                        $('#cenefa_visi').prop("disabled", false);
+                        $('#cenefa_visi').prop('disabled', false);
                     }
                 } else {
                     msgCenefaVisi.innerText = 'Según la validación, la cenefa es visible';
                     inpCenefaVisi.value = "se audito bien la visibilidad de la cenefa";
                     inpCriticidadCenefaVisi.value = 0;
                     EditCenefaVisi.style.display = "none";
-                    $('#cenefa_visi').prop("disabled", true);
+                    $('#cenefa_visi').prop('disabled', true);
                 }
             });
         }
@@ -2548,14 +2878,14 @@
                         inpCenefaColo.value = "se audito mal la colocación de la cenefa";
                         inpCriticidadCenefaColo.value = 1;
                         EditCenefaColo.style.display = "block";
-                        $('#cenefa_colo').prop("disabled", false);
+                        $('#cenefa_colo').prop('disabled', false);
                     }
                 } else {
                     msgCenefaColo.innerText = 'La cenefa esta bien colocada';
                     inpCenefaColo.value = "se audito bien la colocación de la cenefa";
                     inpCriticidadCenefaColo.value = 0;
                     EditCenefaColo.style.display = "none";
-                    $('#cenefa_colo').prop("disabled", true);
+                    $('#cenefa_colo').prop('disabled', true);
                 }
             });
         }
@@ -2577,14 +2907,14 @@
                         inpAficheVisi.value = "se audito mal la visibilidad del afiche";
                         criticidadAfiche_visi.value = 1;
                         EditAficheVisi.style.display = "block";
-                        $('#afiche_visi').prop("disabled", false);
+                        $('#afiche_visi').prop('disabled', false);
                     }
                 } else {
                     msgAficheVisi.innerText = 'Según la validación, el afiche es visible';
                     inpAficheVisi.value = "se audito bien la visibilidad del afiche";
                     criticidadAfiche_visi.value = 0;
                     EditAficheVisi.style.display = "none";
-                    $('#afiche_visi').prop("disabled", true);
+                    $('#afiche_visi').prop('disabled', true);
                 }
             });
         }
@@ -2604,14 +2934,14 @@
                         inpAficheColo.value = "se audito mal la colocación del afiche";
                         criticidadAfiche_colo.value = 1;
                         EditAficheColo.style.display = "block";
-                        $('#afiche_colo').prop("disabled", false);
+                        $('#afiche_colo').prop('disabled', false);
                     }
                 } else {
                     msgAficheColo.innerText = 'El afiche esta bien colocado';
                     inpAficheColo.value = "se audito bien la colocación del afiche";
                     criticidadAfiche_colo.value = 0;
                     EditAficheColo.style.display = "none";
-                    $('#afiche_colo').prop("disabled", true);
+                    $('#afiche_colo').prop('disabled', true);
 
                 }
             });
@@ -2622,6 +2952,8 @@
         var msgAficheCombo = document.getElementById('msgAficheCombo');
         var inpAficheCombo = document.getElementById('inpAficheCombo');
         var criticidadAfiche_combo = document.getElementById('criticidadAfiche_combo');
+        var EditAficheCombotizado = document.getElementById('EditAficheCombotizado');
+        var cardAfiche = document.getElementById('cardAfiche');
 
         if (miCheckbox8 != null) {
             miCheckbox8.addEventListener('click', function() {
@@ -2630,11 +2962,26 @@
                     if (miCheckbox8.checked = "true") {
                         inpAficheCombo.value = "se audito mal la combotizacion";
                         criticidadAfiche_combo.value = 1;
+                        EditAficheCombotizado.style.display = "block";
+                        $('#afiche_combo').prop('disabled', false);
+                        $('#marca_combo').prop('disabled', false);
+                        $('#combox1').prop('disabled', false);
+                        $('#combox2').prop('disabled', false);
+                        $('#combox3').prop('disabled', false);
+
+                        cardAfiche.style.height = '1500px';
                     }
                 } else {
                     msgAficheCombo.innerText = 'La combotización es correcta';
                     inpAficheCombo.value = "se audito bien la combotización";
                     criticidadAfiche_combo.value = 0;
+                    EditAficheCombotizado.style.display = "none";
+                    $('#afiche_combo').prop('disabled', true);
+                    $('#marca_combo').prop('disabled', true);
+                    $('#combox1').prop('disabled', true);
+                    $('#combox2').prop('disabled', true);
+                    $('#combox3').prop('disabled', true);
+                    cardAfiche.style.height = '1000px';
                 }
             });
         }
@@ -2645,6 +2992,7 @@
         var miCheckbox9 = document.getElementById('checkcross9');
         var msgMarcoVisi = document.getElementById('msgMarcoVisi');
         var inpMarcoVisi = document.getElementById('inpMarcoVisi');
+        var EditMarcoVisi = document.getElementById('EditMarcoVisi');
         var criticidadMarcoVisi = document.getElementById('criticidadMarcoVisi');
 
         if (miCheckbox9 != null) {
@@ -2654,11 +3002,15 @@
                     if (miCheckbox9.checked = "true") {
                         inpMarcoVisi.value = "se audito mal la visibilidad del marco";
                         criticidadMarcoVisi.value = 1;
+                        EditMarcoVisi.style.display = "block";
+                        $('#marco_visi').prop('disabled', false);
                     }
                 } else {
                     msgMarcoVisi.innerText = 'Según la validación, el marco es visible';
                     inpMarcoVisi.value = "se audito bien la visibilidad del marco";
                     criticidadMarcoVisi.value = 0;
+                    EditMarcoVisi.style.display = "none";
+                    $('#marco_visi').prop('disabled', true);
                 }
             });
         }
@@ -2669,6 +3021,7 @@
         var msgMarcoColo = document.getElementById('msgMarcoColo');
         var inpMarcoColo = document.getElementById('inpMarcoColo');
         var criticidadMarcoColo = document.getElementById('criticidadMarcoColo');
+        var EditMarcoColo = document.getElementById('EditMarcoColo');
         if (miCheckbox10 != null) {
             miCheckbox10.addEventListener('click', function() {
                 if (miCheckbox10.checked) {
@@ -2676,11 +3029,15 @@
                     if (miCheckbox10.checked = "true") {
                         inpMarcoColo.value = "se tipificico mal la colocación del marco";
                         criticidadMarcoColo.value = 1;
+                        EditMarcoColo.style.display = "block";
+                        $('#marco_colo').prop('disabled', false);
                     }
                 } else {
                     msgMarcoColo.innerText = 'Según la validación, el marco esta bien colocado';
                     inpMarcoColo.value = "se audito bien la colocación del marco";
                     criticidadMarcoColo.value = 0;
+                    EditMarcoColo.style.display = "none";
+                    $('#marco_colo').prop('disabled', true);
                 }
             });
         }
@@ -2691,6 +3048,7 @@
         var msgRompeVisi = document.getElementById('msgRompeVisi');
         var inpRompeVisi = document.getElementById('inpRompeVisi');
         var criticidadRompeVisi = document.getElementById('criticidadRompeVisi');
+        var EditRompeVisi = document.getElementById('EditRompeVisi');
         if (miCheckbox11 != null) {
             miCheckbox11.addEventListener('click', function() {
                 if (miCheckbox11.checked) {
@@ -2698,11 +3056,18 @@
                     if (miCheckbox11.checked = "true") {
                         inpRompeVisi.value = "se audito mal la visibilidad del rompetrafico";
                         criticidadRompeVisi.value = 1;
+                        EditRompeVisi.style.display = "block";
+                        $('#rompe_visi').prop('disabled', false);
+
                     }
                 } else {
                     msgRompeVisi.innerText = 'Según la validación, el rompetrafico esta visible';
                     inpRompeVisi.value = "se audito bien la visibilidad del rompetrafico";
                     criticidadRompeVisi.value = 0;
+                    EditRompeVisi.style.display = "none";
+                    $('#rompe_visi').prop('disabled', true);
+
+
                 }
             });
         }
@@ -2714,6 +3079,8 @@
         var msgRompeColo = document.getElementById('msgRompeColo');
         var inpRompeColo = document.getElementById('inpRompeColo');
         var criticidadRompeColo = document.getElementById('criticidadRompeColo');
+        var EditRompeColo = document.getElementById('EditRompeColo');
+
         if (miCheckbox12 != null) {
             miCheckbox12.addEventListener('click', function() {
                 if (miCheckbox12.checked) {
@@ -2721,11 +3088,15 @@
                     if (miCheckbox12.checked = "true") {
                         inpRompeColo.value = "se audito mal la colocación del rompetrafico";
                         criticidadRompeColo.value = 1;
+                        EditRompeColo.style.display = "block";
+                        $('#rompe_colo').prop('disabled', false);
                     }
                 } else {
                     msgRompeColo.innerText = 'Según la validación, el rompetrafico esta bien colocado';
                     inpRompeColo.value = "se audito bien la colocación del rompetrafico";
                     criticidadRompeColo.value = 0;
+                    EditRompeColo.style.display = "none";
+                    $('#rompe_colo').prop('disabled', true);
                 }
             });
         }
@@ -2737,6 +3108,7 @@
         var msgFaxadaVisi = document.getElementById('msgFaxadaVisi');
         var inpFaxadaVisi = document.getElementById('inpFaxadaVisi');
         var criticidadfachadas_visi = document.getElementById('criticidadfachadas_visi');
+        var EditFaxadaVisi = document.getElementById('EditFaxadaVisi');
 
         if (miCheckbox13 != null) {
             miCheckbox13.addEventListener('click', function() {
@@ -2745,11 +3117,16 @@
                     if (miCheckbox13.checked = "true") {
                         inpFaxadaVisi.value = "se audito mal la visibilidad de la fachada y los avisos";
                         criticidadfachadas_visi.value = 1;
+                        EditFaxadaVisi.style.display = "block";
+                        $('#fachadas_visi').prop('disabled', false);
+
                     }
                 } else {
                     msgFaxadaVisi.innerText = 'Según la validación, la fachada y los avisos estan visibles';
                     inpFaxadaVisi.value = "se audito bien la visibilidad de la fachada y los avisos";
                     criticidadfachadas_visi.value = 0;
+                    EditFaxadaVisi.style.display = "none";
+                    $('#fachadas_visi').prop('disabled', true);
                 }
             });
         }
@@ -2761,6 +3138,7 @@
         var msgAFaxadaEstado = document.getElementById('msgAFaxadaEstado');
         var inpAFaxadaEstado = document.getElementById('inpAFaxadaEstado');
         var criticidadfachadas_colo = document.getElementById('criticidadfachadas_colo');
+        var EditFaxadaColo = document.getElementById('EditFaxadaColo');
 
         if (miCheckbox14 != null) {
             miCheckbox14.addEventListener('click', function() {
@@ -2769,12 +3147,16 @@
                     if (miCheckbox14.checked = "true") {
                         inpAFaxadaColo.value = "se audito mal el estado de la fachada y los avisos";
                         criticidadfachadas_colo.value = 1;
+                        EditFaxadaColo.style.display = "block";
+                        $('#fachadas_colo').prop('disabled', false);
                     }
                 } else {
                     msgAFaxadaEstado.innerText =
                         'Según la validación, la fachada y los avisos estan en buen estado';
                     inpAFaxadaEstado.value = "se audito bien el estado de la fachada y los afiches";
                     criticidadfachadas_colo.value = 0;
+                    EditFaxadaColo.style.display = "none";
+                    $('#fachadas_colo').prop('disabled', true);
                 }
             });
         }
@@ -2786,6 +3168,8 @@
         var msgHieleraProd = document.getElementById('msgHieleraProd');
         var inpHieleraProd = document.getElementById('inpHieleraProd');
         var criticidadHieleraProd = document.getElementById('criticidadHieleraProd');
+        var EditHieleraProd = document.getElementById('EditHieleraProd');
+
 
         if (miCheckbox15 != null) {
             miCheckbox15.addEventListener('click', function() {
@@ -2794,11 +3178,15 @@
                     if (miCheckbox15.checked = "true") {
                         inpHieleraProd.value = "se audito mal el contenido de la hielera";
                         criticidadHieleraProd.value = 1;
+                        EditHieleraProd.style.display = "block";
+                        $("#hielera_prod").prop('disabled', false);
                     }
                 } else {
                     msgHieleraProd.innerText = 'Según la validación, la hielera cuenta con producto de la marca';
                     inpHieleraProd.value = "se audito bien el contenido de la hielera";
                     criticidadHieleraProd.value = 0;
+                    EditHieleraProd.style.display = "none";
+                    $("#hielera_prod").prop('disabled', true);
                 }
             });
         }
@@ -2809,6 +3197,7 @@
         var msgHieleraVisi = document.getElementById('msgHieleraVisi');
         var inpHieleraVisi = document.getElementById('inpHieleraVisi');
         var criticidadHieleraVisi = document.getElementById('criticidadHieleraVisi');
+        var EditHieleraVisi = document.getElementById('EditHieleraVisi');
 
         if (miCheckbox16 != null) {
             miCheckbox16.addEventListener('click', function() {
@@ -2817,11 +3206,17 @@
                     if (miCheckbox16.checked = "true") {
                         inpHieleraVisi.value = "se audito mal la visibilidad de la hielera";
                         criticidadHieleraVisi.value = 1;
+                        EditHieleraVisi.style.display = "block";
+                        $("#hielera_visi").prop('disabled', false);
+
                     }
                 } else {
                     msgHieleraVisi.innerText = 'Según la validación, la hielera esta visible al publico';
                     inpHieleraVisi.value = "se audito bien la visibilidad de la hielera";
                     criticidadHieleraVisi.value = 0;
+                    EditHieleraVisi.style.display = "none";
+                    $("#hielera_visi").prop('disabled', true);
+
                 }
             });
         }
@@ -2833,6 +3228,7 @@
         var msgHieleraEstado = document.getElementById('msgHieleraEstado');
         var inpHieleraEstado = document.getElementById('inpHieleraEstado');
         var criticidadHieleraEstado = document.getElementById('criticidadHieleraEstado');
+        var EditHieleraEstado = document.getElementById('EditHieleraEstado');
 
         if (miCheckbox17 != null) {
             miCheckbox17.addEventListener('click', function() {
@@ -2841,11 +3237,17 @@
                     if (miCheckbox17.checked = "true") {
                         inpHieleraEstado.value = "se audito mal el estado de la hielera";
                         criticidadHieleraEstado.value = 1;
+                        EditHieleraEstado.style.display = "block";
+                        $("#hielera_esta").prop('disabled', false);
+
                     }
                 } else {
                     msgHieleraEstado.innerText = 'Según la validación, la hielera esta en buen estado';
                     inpHieleraEstado.value = "se audito bien el estado de la hielera";
                     criticidadHieleraEstado.value = 0;
+                    EditHieleraEstado.style.display = "none";
+                    $("#hielera_esta").prop('disabled', true);
+
                 }
             });
         }
@@ -2858,6 +3260,8 @@
         var msgBsHieProd = document.getElementById('msgBsHieProd');
         var inpBsHieProd = document.getElementById('inpBsHieProd');
         var criticidadBsHieProd = document.getElementById('criticidadBsHieProd');
+        var EditBaseHieleraProd = document.getElementById('EditBaseHieleraProd');
+
 
         if (miCheckbox18 != null) {
             miCheckbox18.addEventListener('click', function() {
@@ -2866,12 +3270,16 @@
                     if (miCheckbox18.checked = "true") {
                         inpBsHieProd.value = "se audito mal el contenido de la base de la hielera";
                         criticidadBsHieProd.value = 1;
+                        EditBaseHieleraProd.style.display = "block";
+                        $("#baseshl_con_prod").prop('disabled', false);
                     }
                 } else {
                     msgBsHieProd.innerText =
                         'Según la validación, la base de la hielera cuenta con producto de la marca';
                     inpBsHieProd.value = "se audito bien el contenido de la base de la hielera";
                     criticidadBsHieProd.value = 0;
+                    EditBaseHieleraProd.style.display = "none";
+                    $("#baseshl_con_prod").prop('disabled', true);
                 }
             });
         }
@@ -2883,6 +3291,8 @@
         var msgBsHieVisi = document.getElementById('msgBsHieVisi');
         var inpBsHieVisi = document.getElementById('inpBsHieVisi');
         var criticidadBsHieVisi = document.getElementById('criticidadBsHieVisi');
+        var EditBaseHieleraVisi = document.getElementById('EditBaseHieleraVisi');
+
 
         if (miCheckbox19 != null) {
             miCheckbox19.addEventListener('click', function() {
@@ -2891,11 +3301,17 @@
                     if (miCheckbox19.checked = "true") {
                         inpBsHieVisi.value = "se tipificico mal el estado la base de la hielera";
                         criticidadBsHieVisi.value = 1;
+                        EditBaseHieleraVisi.style.display = "block";
+                        $("#prod_baseshl_visible").prop('disabled', false);
+
                     }
                 } else {
                     msgBsHieVisi.innerText = 'Según la validación, la base de la hielera esta en buen estado';
                     inpBsHieVisi.value = "se audito bien el estado de la base de la hielera";
                     criticidadBsHieVisi.value = 0;
+                    EditBaseHieleraVisi.style.display = "none";
+                    $("#prod_baseshl_visible").prop('disabled', true);
+
                 }
             });
         }
@@ -2907,6 +3323,8 @@
         var msgBsHieEstado = document.getElementById('msgBsHieEstado');
         var inpBsHieEstado = document.getElementById('inpBsHieEstado');
         var criticidadBsHieEstado = document.getElementById('criticidadBsHieEstado');
+        var EditBaseHieleraEstado = document.getElementById('EditBaseHieleraEstado');
+
         if (miCheckbox20 != null) {
             miCheckbox20.addEventListener('click', function() {
                 if (miCheckbox20.checked) {
@@ -2914,11 +3332,17 @@
                     if (miCheckbox20.checked = "true") {
                         inpBsHieEstado.value = "se audito mal el estado de la base de la hielera";
                         criticidadBsHieEstado.value = 1;
+                        EditBaseHieleraEstado.style.display = "block";
+                        $("#prod_baseshl_danadas").prop('disabled', false);
+
                     }
                 } else {
                     msgBsHieEstado.innerText = 'Según la validación, la base de la hielera esta en buen estado';
                     inpBsHieEstado.value = "se audito bien el estado de la base de la hielera";
                     criticidadBsHieEstado.value = 0;
+                    EditBaseHieleraEstado.style.display = "none";
+                    $("#prod_baseshl_danadas").prop('disabled', true);
+
                 }
             });
         }
@@ -2930,6 +3354,7 @@
         var msgDsDVisi = document.getElementById('msgDsDVisi');
         var inpDsDVisi = document.getElementById('inpDsDVisi');
         var criticidadDosiDVisi = document.getElementById('criticidadDosiDVisi');
+        var EditDosDbVisi = document.getElementById('EditDosDbVisi');
         if (miCheckbox21 != null) {
             miCheckbox21.addEventListener('click', function() {
                 if (miCheckbox21.checked) {
@@ -2937,11 +3362,17 @@
                     if (miCheckbox21.checked = "true") {
                         inpDsDVisi.value = "Se audito mal la visibilidad del el dosificador doble";
                         criticidadDosiDVisi.value = 1;
+                        EditDosDbVisi.style.display = "block";
+                        $("#prod_dsD_visibles").prop('disabled', false);
+
                     }
                 } else {
                     msgDsDVisi.innerText = 'El dosificador doble es visible';
                     inpDsDVisi.value = "se audito bien la visibilidad del dosificador doble";
                     criticidadDosiDVisi.value = 0;
+                    EditDosDbVisi.style.display = "none";
+                    $("#prod_dsD_visibles").prop('disabled', true);
+
                 }
             });
         }
@@ -2953,6 +3384,8 @@
         var msgDsDProd = document.getElementById('msgDsDProd');
         var inpDsDProd = document.getElementById('inpDsDProd');
         var criticidadDosiDProd = document.getElementById('criticidadDosiDProd');
+        var EditDosDbProd = document.getElementById('EditDosDbProd');
+
         if (miCheckbox22 != null) {
             miCheckbox22.addEventListener('click', function() {
                 if (miCheckbox22.checked) {
@@ -2960,11 +3393,15 @@
                     if (miCheckbox22.checked = "true") {
                         inpDsDProd.value = "se audito mal el contenido del dosificador doble";
                         criticidadDosiDProd.value = 1;
+                        EditDosDbProd.style.display = "block";
+                        $("#prod_dsD_diferentes").prop('disabled', false);
                     }
                 } else {
                     msgDsDProd.innerText = 'cuenta con productos Diageo';
                     inpDsDProd.value = "se audito bien contenido del dosificador doble";
                     criticidadDosiDProd.value = 0;
+                    EditDosDbProd.style.display = "none";
+                    $("#prod_dsD_diferentes").prop('disabled', true);
                 }
             });
         }
@@ -2975,6 +3412,8 @@
         var msgDsDEstado = document.getElementById('msgDsDEstado');
         var inpDsDEstado = document.getElementById('inpDsDEstado');
         var criticidadDosiDEstado = document.getElementById('criticidadDosiDEstado');
+        var EditDosDbEstado = document.getElementById('EditDosDbEstado');
+
         if (miCheckbox23 != null) {
             miCheckbox23.addEventListener('click', function() {
                 if (miCheckbox23.checked) {
@@ -2982,11 +3421,19 @@
                     if (miCheckbox23.checked = "true") {
                         inpDsDEstado.value = "se audito mal el estado del dosificador doble";
                         criticidadDosiDEstado.value = 1;
+                        EditDosDbEstado.style.display = "block";
+                        $("#prod_baseshl_danadas").prop('disabled', false);
+
+
                     }
                 } else {
                     msgDsDEstado.innerText = 'en general esta en buen estado';
                     inpDsDEstado.value = "se audito bien el estado del dosificador doble";
                     criticidadDosiDEstado.value = 0;
+                    EditDosDbEstado.style.display = "none";
+                    $("#prod_baseshl_danadas").prop('disabled', true);
+
+
                 }
             });
         }
@@ -2997,6 +3444,8 @@
         var msgDsSVisi = document.getElementById('msgDsSVisi');
         var inpDsSVisi = document.getElementById('inpDsSVisi');
         var criticidadDosiSVisi = document.getElementById('criticidadDosiSVisi');
+        var EditDosSVisi = document.getElementById('EditDosSVisi');
+
         if (miCheckbox24 != null) {
             miCheckbox24.addEventListener('click', function() {
                 if (miCheckbox24.checked) {
@@ -3004,11 +3453,16 @@
                     if (miCheckbox24.checked = "true") {
                         inpDsSVisi.value = "se audito mal la visibilidad del dosificador sencillo";
                         criticidadDosiSVisi.value = 1;
+                        EditDosSVisi.style.display = "block";
+                        $("#prod_dsS_visibles").prop('disabled', false);
                     }
                 } else {
                     msgDsSVisi.innerText = 'El dosificador sencillo es visible, ';
                     inpDsSVisi.value = "se audito bien la visibilidad del dosificador sencillo";
                     criticidadDosiSVisi.value = 0;
+                    EditDosSVisi.style.display = "none";
+                    $("#prod_dsS_visibles").prop('disabled', true);
+
                 }
             });
         }
@@ -3019,6 +3473,7 @@
         var msgDsSProd = document.getElementById('msgDsSProd');
         var inpDsSProd = document.getElementById('inpDsSProd');
         var criticidadDosiSProd = document.getElementById('criticidadDosiSProd');
+        var EditDosSnProd = document.getElementById('EditDosSnProd');
         if (miCheckbox25 != null) {
             miCheckbox25.addEventListener('click', function() {
                 if (miCheckbox25.checked) {
@@ -3026,11 +3481,17 @@
                     if (miCheckbox25.checked = "true") {
                         inpDsSProd.value = "se audito mal el contenido del dosificador sencillo";
                         criticidadDosiSProd.value = 1;
+                        EditDosSnProd.style.display = "block";
+                        $("#prod_dsS_diferentes").prop('disabled', false);
+
                     }
                 } else {
                     msgDsSProd.innerText = 'cuenta con productos de la marca';
                     inpDsSProd.value = "se audito bien el contenido del dosificador sencillo";
                     criticidadDosiSProd.value = 0;
+                    EditDosSnProd.style.display = "none";
+                    $("#prod_dsS_diferentes").prop('disabled', true);
+
                 }
             });
         }
@@ -3041,6 +3502,8 @@
         var msgDsSEstado = document.getElementById('msgDsSEstado');
         var inpDsSEstado = document.getElementById('inpDsSEstado');
         var criticidadDosiSEstado = document.getElementById('criticidadDosiSEstado');
+        var EditDosSbEstado = document.getElementById('EditDosSbEstado');
+
         if (miCheckbox26 != null) {
             miCheckbox26.addEventListener('click', function() {
                 if (miCheckbox26.checked) {
@@ -3048,11 +3511,17 @@
                     if (miCheckbox26.checked = "true") {
                         inpDsSEstado.value = "se audito mal el estado del dosificador sencillo";
                         criticidadDosiSEstado.value = 1;
+                        EditDosSbEstado.style.display = "block";
+                        $("#prod_dsS_danados").prop('disabled', false);
+
                     }
                 } else {
                     msgDsSEstado.innerText = 'en general esta en buen estado.';
                     inpDsSEstado.value = "se audito bien el estado del dosificador sencillo";
                     criticidadDosiSEstado.value = 0;
+                    EditDosSbEstado.style.display = "none";
+                    $("#prod_dsS_danados").prop('disabled', true);
+
                 }
             });
         }
@@ -3064,6 +3533,7 @@
         var msgBrandingVisi = document.getElementById('msgBrandingVisi');
         var inpBrandingVisi = document.getElementById('inpBrandingVisi');
         var criticidadBrandingVisi = document.getElementById('criticidadBrandingVisi');
+        var EditBrandingVisi = document.getElementById('EditBrandingVisi');
         if (miCheckbox27 != null) {
             miCheckbox27.addEventListener('click', function() {
                 if (miCheckbox27.checked) {
@@ -3071,11 +3541,15 @@
                     if (miCheckbox27.checked = "true") {
                         inpBrandingVisi.value = "se audito mal la visibilidad del branding";
                         criticidadBrandingVisi.value = 1;
+                        EditBrandingVisi.style.display = "block";
+                        $("#branding_visible").prop('disabled', false);
                     }
                 } else {
                     msgBrandingVisi.innerText = 'Según la validación, el branding es visible';
                     inpBrandingVisi.value = "se audito bien la visibilidad del branding";
                     criticidadBrandingVisi.value = 0;
+                    EditBrandingVisi.style.display = "none";
+                    $("#branding_visible").prop('disabled', true);
                 }
             });
         }
@@ -3085,19 +3559,24 @@
         var miCheckbox28 = document.getElementById('checkcross28');
         var msgBrandingEstado = document.getElementById('msgBrandingEstado');
         var inpBrandingEstado = document.getElementById('inpBrandingEstado');
-        var criticidadBrandingEstado = document.getElementById('criticidadBrandingEstado');
+        var inpCriticidadBrandingEstado = document.getElementById('criticidadBrandingEstado');
+        var EditBrandingEstado = document.getElementById('EditBrandingEstado');
         if (miCheckbox28 != null) {
             miCheckbox28.addEventListener('click', function() {
                 if (miCheckbox28.checked) {
                     msgBrandingEstado.innerText = 'El branding se encuentra en mal estado';
                     if (miCheckbox28.checked = "true") {
                         inpBrandingColo.value = "se audito mal el estado del branding";
-                        criticidadBrandingEstado.value = 1;
+                        inpCriticidadBrandingEstado.value = 1;
+                        EditBrandingEstado.style.display = "block";
+                        $("#branding_danados").prop('disabled', false);
                     }
                 } else {
                     msgBrandingEstado.innerText = 'Según la validación, el branding esta en buen estado';
                     inpBrandingEstado.value = "se audito bien el estado del branding";
-                    criticidadBrandingEstado.value = 0;
+                    inpCriticidadBrandingEstado.value = 0;
+                    EditBrandingEstado.style.display = "none";
+                    $("#branding_danados").prop('disabled', true);
                 }
             });
         }
@@ -3110,6 +3589,7 @@
         var msgVasosVisi = document.getElementById('msgVasosVisi');
         var inpVasosVisi = document.getElementById('inpVasosVisi');
         var criticidadVasosVisi = document.getElementById('criticidadVasosVisi');
+        var EditVasosVisi = document.getElementById('EditVasosVisi');
         if (miCheckbox29 != null) {
             miCheckbox29.addEventListener('click', function() {
                 if (miCheckbox29.checked) {
@@ -3117,11 +3597,17 @@
                     if (miCheckbox29.checked = "true") {
                         inpVasosVisi.value = "se audito mal la visibilidad de los vasos y copas";
                         criticidadVasosVisi.value = 1;
+                        EditVasosVisi.style.display = "block";
+                        $('#vasos_visibles').prop('disabled', false )
+
                     }
                 } else {
                     msgVasosVisi.innerText = 'Según la validación, los vasos y las copas son visibles';
                     inpVasosVisi.value = "se audito bien la visibilidad de los vasos y copas";
                     criticidadVasosVisi.value = 0;
+                        EditVasosVisi.style.display = "none";
+                        $('#vasos_visibles').prop('disabled', true )
+
                 }
             });
         }
@@ -3133,6 +3619,8 @@
         var msgVasosEstado = document.getElementById('msgVasosEstado');
         var inpVasosEstado = document.getElementById('inpVasosEstado');
         var criticidadVasosEstado = document.getElementById('criticidadVasosEstado');
+        var EditVasosEstado = document.getElementById('EditVasosEstado');
+
         if (miCheckbox30 != null) {
             miCheckbox30.addEventListener('click', function() {
                 if (miCheckbox30.checked) {
@@ -3140,11 +3628,17 @@
                     if (miCheckbox30.checked = "true") {
                         inpVasosColo.value = "se audito mal el estado de los vasos y copas";
                         criticidadVasosEstado.value = 1;
+                        EditVasosEstado.style.display = "block";
+                        $('#vasos_quebrados').prop('disabled', false )
+
                     }
                 } else {
                     msgVasosEstado.innerText = 'Los vasos y las copas estan en optimas condiciones';
                     inpVasosEstado.value = "se audito bien el estado de los vasos y copas";
                     criticidadVasosEstado.value = 0;
+                     EditVasosEstado.style.display = "none";
+                        $('#vasos_quebrados').prop('disabled', true )
+
                 }
             });
         }
@@ -3156,6 +3650,8 @@
         var msgCalMarcVisi = document.getElementById('msgCalMarcVisi');
         var inpCalMarcVisi = document.getElementById('inpCalMarcVisi');
         var criticidadCalMarcVisi = document.getElementById('criticidadCalMarcVisi');
+        var EditCalVisi = document.getElementById('EditCalVisi');
+
         if (miCheckbox31 != null) {
             miCheckbox31.addEventListener('click', function() {
                 if (miCheckbox31.checked) {
@@ -3163,11 +3659,17 @@
                     if (miCheckbox31.checked = "true") {
                         inpCalMarcVisi.value = "se audito mal la visibilidad de los productos del lineal Diageo";
                         criticidadCalMarcVisi.value = 1;
+                    EditCalVisi.style.display = "block";
+                    $('#cal_marc_visible').prop('disabled', false );
+
                     }
                 } else {
                     msgCalMarcVisi.innerText = 'Se pueden apreciar correctamente los productos de la marca';
                     inpCalMarcVisi.value = "se audito bien la visibilidad de los productos del lineal Diageo";
                     criticidadCalMarcVisi.value = 0;
+                    EditCalVisi.style.display = "none";
+                    $('#cal_marc_visible').prop('disabled', true );
+
                 }
             });
         }
@@ -3179,6 +3681,9 @@
         var msgCalMarcEstado = document.getElementById('msgCalMarcEstado');
         var inpCalMarcEstado = document.getElementById('inpCalMarcEstado');
         var criticidadCalMarcEstado = document.getElementById('criticidadCalMarcEstado');
+        var EditCalEstado = document.getElementById('EditCalEstado');
+
+
         if (miCheckbox32 != null) {
             miCheckbox32.addEventListener('click', function() {
                 if (miCheckbox32.checked) {
@@ -3186,11 +3691,17 @@
                     if (miCheckbox32.checked = "true") {
                         inpCalMarcEstado.value = "se audito mal el estado de los productos del lineal Diageo";
                         criticidadCalMarcEstado.value = 1;
+                        EditCalEstado.style.display = "block";
+                        $('#cal_marc_danados').prop('disabled', false );
+
                     }
                 } else {
                     msgCalMarcEstado.innerText = 'Los productos de la marca se encuentran en optimas condiciones';
                     inpCalMarcEstado.value = "se audito bien el estado de los productos del lineal Diageo";
                     criticidadCalMarcEstado.value = 0;
+                        EditCalEstado.style.display = "none";
+                        $('#cal_marc_danados').prop('disabled', true );
+
                 }
             });
         }
@@ -3201,19 +3712,26 @@
         var msgCalMarcEtiqueta = document.getElementById('msgCalMarcEtiqueta');
         var inpCalMarcEtiqueta = document.getElementById('inpCalMarcEtiqueta');
         var criticidadCalMarcEtiqueta = document.getElementById('criticidadCalMarcEtiqueta');
+        var EditCalEtiquetas = document.getElementById('EditCalEtiquetas');
         if (miCheckbox33 != null) {
             miCheckbox33.addEventListener('click', function() {
                 if (miCheckbox33.checked) {
                     msgCalMarcEtiqueta.innerText =
-                        'La foto del lineal no muestra los productos DIAGEO correctamente';
+                        "La foto del lineal no muestra los productos DIAGEO correctamente";
                     if (miCheckbox33.checked = "true") {
-                        inpCalMarcEtiqueta.value = "se auditor mal el estado de las etiquetas de la marca Diageo";
                         criticidadCalMarcEtiqueta.value = 1;
+                        inpCalMarcEtiqueta.value = "se audito mal el estado de las etiquetas de la marca Diageo";
+                        EditCalEtiquetas.style.display = ("block");
+                        $('#cal_marc_et_danados').prop('disabled', false );
+
                     }
                 } else {
                     msgCalMarcEtiqueta.innerText = 'Se pueden apreciar correctamente los productos de la marca';
                     inpCalMarcEtiqueta.value = "se auditor bien el estado de las etiquetas de la marca Diageo";
                     criticidadCalMarcEtiqueta.value = 0;
+                        EditCalEtiquetas.style.display = ("none");
+                        $('#cal_marc_et_danados').prop('disabled', true );
+
                 }
             });
         }

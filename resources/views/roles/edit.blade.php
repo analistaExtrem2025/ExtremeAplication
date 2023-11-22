@@ -17,7 +17,7 @@
     <div class="card">
         <div class="card-form">
 
-            {!! Form::model($role, ['route' => ['role.update', $role], 'method' => 'put']) !!}
+            {!! Form::model($role, ['route' => ['roles.update', $role], 'method' => 'put']) !!}
             @include('roles.partials.form')
             {!! Form::submit('Actualizar rol', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}

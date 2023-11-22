@@ -3,7 +3,7 @@
 @section('title', 'Lista de Roles')
 
 @section('content_header')
-    <a href="{{ route('role.create') }}" class="btn btn-primary btn-sm float-right"><i
+    <a href="{{ route('roles.create') }}" class="btn btn-primary btn-sm float-right"><i
             class="fas fa-plus-square"></i></a>
 
     <h1>Lista de Roles</h1>
@@ -35,14 +35,14 @@
                             <td>{{ $role->id }}</td>
                             <td>{{ $role->name }}</td>
                             <td width="10px">
-                                <a href="{{ route('role.show', $role) }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                <a href="{{ route('roles.show', $role) }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
                             </td>
                             <td width="10px">
-                                <a href="{{ route('role.edit', $role) }}" class="btn btn-success"><i
+                                <a href="{{ route('roles.edit', $role) }}" class="btn btn-success"><i
                                         class="fas fa-user-edit"></i></a>
                             </td>
                             <td width="10px">
-                                {!! Form::open(['route' => ['role.destroy', $role->id], 'method' => 'DELETE']) !!}
+                                {!! Form::open(['route' => ['roles.destroy', $role->id], 'method' => 'DELETE']) !!}
                                 <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                 {!! Form::close() !!}
                             </td>
