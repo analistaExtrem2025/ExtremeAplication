@@ -2092,6 +2092,10 @@ span.numeros {
 .ttulo {
     text-align: center;
 
+    font-size: 25px;
+    text-transform: uppercase;
+
+
 }
 
 .flexbox {
@@ -2217,7 +2221,19 @@ span.gbp input {
     -moz-box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
 }
 
-
+.card-box-exhi {
+    background: #d1ddd3 !important;
+    border-radius: 0.75rem;
+    height: 1200px;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+    padding: 1rem 1rem 1rem 1rem;
+    box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+    -webkit-box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+    -moz-box-shadow: 22px 20px 42px 4px rgba(96, 92, 115, 0.69);
+}
 
 
 
@@ -2398,11 +2414,22 @@ label > input[type="radio"] {
   }
 
 
+  .box_cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+  }
+
 .noClass {
 
     width: 0px;
     background: transparent;
     color: transparent;
     border: transparent;
+    text-align: center;
+
 
 }

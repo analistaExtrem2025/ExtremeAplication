@@ -360,7 +360,7 @@ return [
                     'route' => 'Galeria.index',
                     'icon'  => 'fas fa-photo-video',
                     'shift' => 'ml-4',
-                    'can'  => 'encuesta.diageo.edit',
+                    'can'  => 'auditoria.edit',
                 ],
                 [
                     'text'  => 'Asignacion',
@@ -368,6 +368,22 @@ return [
                     'icon'  => 'fas fa-shoe-prints',
                     'shift' => 'ml-4',
                     'can'  => 'encuesta.diageo.edit',
+                ],
+                [
+                    'text'  => 'Admin Auditorias',
+                    'route' => 'inactivos',
+                    'icon'  => 'fas fa-wrench',
+                    'shift' => 'ml-4',
+                    'can'   => 'admin.home',
+                ],
+
+                [
+                    'text'  => 'Inactivos',
+                    'text'  => 'Inactivos',
+                    'route' => 'tapados.index',
+                    'icon'  => 'fas fa-skull-crossbones',
+                    'shift' => 'ml-4',
+                    'can'    =>  'admin.diageo',
                 ],
                 // [
                 //     'text'  => 'Dashboard Auditorias',
@@ -382,21 +398,24 @@ return [
             'text'    => 'Administrativo',
             'icon'    => 'fas fa-user-shield',
             'icon_color' => 'success',
-            'can'    =>  'admin.diageo',
+            'can'   => 'admin.home',
+            //'can'    =>  'admin.diageo',
             'submenu' => [
                 [
                     'text'  => 'Roles',
                     'route' => 'users.index',
                     'icon'  => 'fas fa-users fa-fw',
                     'shift' => 'ml-4',
-                   'can'   =>  'admin.diageo'
+                    'can'   => 'admin.home',
+                   //'can'   =>  'admin.diageo'
                 ],
                 [
                     'text'  => 'Permisos',
                     'route' => 'roles.index',
                     'icon'  => 'fas fa-users-cog fa-fw',
                     'shift' => 'ml-4',
-                    'can'   =>  'admin.diageo'
+                    'can'   => 'admin.home',
+                    //'can'   =>  'admin.diageo'
                 ],
 
             ],

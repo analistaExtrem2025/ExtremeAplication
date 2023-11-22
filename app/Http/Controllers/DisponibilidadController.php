@@ -48,6 +48,7 @@ class DisponibilidadController extends Controller
             'Medellín añejo 3 años' => 'Medellín añejo 3 años',
             'Santa Fe' => 'Santa Fe',
             'Otro' => 'Otro',
+            'Ninguno' => 'Ninguno',
         ];
         $competenciaAguardiente = [
             'Amarillo 750 ml' => 'Amarillo 750 ml',
@@ -60,6 +61,7 @@ class DisponibilidadController extends Controller
             'Blanco del valle sin azúcar' => 'Blanco del valle sin azúcar',
             'Blanco  24 grados nigth' => 'Blanco  24 grados nigth',
             'Otro' => 'Otro',
+            'Ninguno' => 'Ninguno',
         ];
         $puntos_auditoria = Disponibilidad::findOrFail($id);
         $usuario = Auth::user()->municipio;

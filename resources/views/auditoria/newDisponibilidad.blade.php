@@ -708,7 +708,7 @@
                     </select>
                     {{ Form::label('precio_comp_ron1', 'Precio $$ 750 ml') }}
                     <input type="text" name="precio_comp_ron1" id="precio_comp_ron1" class="form-control"
-                        style="border-radius: 0.3rem;" maxlength="6" minlength="5" autocomplete="off" required>
+                        style="border-radius: 0.3rem;" maxlength="6" minlength="1" autocomplete="off" required>
                     <hr>
                     <span id="texto14"></span>
                     <hr>
@@ -723,7 +723,7 @@
                     </select>
                     {{ Form::label('precio_comp_ron2', 'Precio $$ 750 ml') }}
                     <input type="text" name="precio_comp_ron2" id="precio_comp_ron2" class="form-control"
-                        style="border-radius: 0.3rem;" maxlength="6" minlength="5" autocomplete="off" required>
+                        style="border-radius: 0.3rem;" maxlength="6" minlength="1" autocomplete="off" required>
                     <hr>
                     <span id="texto15"></span>
                     <hr>
@@ -780,7 +780,7 @@
                     </select>
                     {{ Form::label('precio_comp_aguardiente1', 'Precio $$ 750 ml') }}
                     <input type="text" name="precio_comp_aguardiente1" id="precio_comp_aguardiente1"
-                        class="form-control" style="border-radius: 0.3rem;" maxlength="6" minlength="5"
+                        class="form-control" style="border-radius: 0.3rem;" maxlength="6" minlength="1"
                         autocomplete="off" required>
                     <hr>
                     <span id="texto16"></span>
@@ -796,7 +796,7 @@
                     </select>
                     {{ Form::label('precio_comp_aguardiente2', 'Precio $$ 750 ml') }}
                     <input type="text" name="precio_comp_aguardiente2" id="precio_comp_aguardiente2"
-                        class="form-control" style="border-radius: 0.3rem;" maxlength="6" minlength="5"
+                        class="form-control" style="border-radius: 0.3rem;" maxlength="6" minlength="1"
                         autocomplete="off" required>
                     <hr>
                     <span id="texto17"></span>
@@ -1260,8 +1260,8 @@
                 $("#InputOldParr").val("1");
             } else if (check5no.checked) {
                 element5.style.display = 'none';
-                $("#caras_oldparr750").val(" ");
-                $("#precio_oldparr750").val(" ");
+                $("#caras_oldparr750").val("");
+                $("#precio_oldparr750").val("");
                 $("#caras_oldparr750").prop('disabled', true);
                 $("#precio_oldparr750").prop('disabled', true);
                 OldParr750si.checked = false;
@@ -1280,14 +1280,14 @@
                 if (valor == "oldparr750_si") {
                     $("#caras_oldparr750").prop('disabled', false);
                     $("#precio_oldparr750").prop('disabled', false);
-                    $("#caras_oldparr750").val(" ");
-                    $("#precio_oldparr750").val(" ");
+                    $("#caras_oldparr750").val("");
+                    $("#precio_oldparr750").val("");
                     $("#caras_oldparr750").focus();
                     texto11.style.display = 'block';
                     $("#InputOldParr750 ").val("1");
                 } else if (valor == "oldparr750_no") {
-                    $("#caras_oldparr750").val(" ");
-                    $("#precio_oldparr750").val(" ");
+                    $("#caras_oldparr750").val("");
+                    $("#precio_oldparr750").val("");
                     $("#caras_oldparr750").prop('disabled', true);
                     $("#precio_oldparr750").prop('disabled', true);
                     texto11.style.display = 'none';
@@ -1312,10 +1312,10 @@
                 $("#InputBuchannas ").val("1");
             } else if (check6no.checked) {
                 element6.style.display = 'none';
-                $("#caras_buchannas700").val(" ");
-                $("#precio_buchannas700").val(" ");
-                $("#caras_buchannas375").val(" ");
-                $("#precio_buchannas375").val(" ");
+                $("#caras_buchannas700").val("");
+                $("#precio_buchannas700").val("");
+                $("#caras_buchannas375").val("");
+                $("#precio_buchannas375").val("");
                 $("#caras_buchannas700").prop('disabled', true);
                 $("#precio_buchannas700").prop('disabled', true);
                 $("#caras_buchannas375").prop('disabled', true);
@@ -1340,18 +1340,18 @@
                 if (valor == "buchannas700_si") {
                     $("#caras_buchannas700").prop('disabled', false);
                     $("#precio_buchannas700").prop('disabled', false);
-                    $("#caras_buchannas700").val(" ");
-                    $("#precio_buchannas700").val(" ");
+                    $("#caras_buchannas700").val("");
+                    $("#precio_buchannas700").val("");
                     $("#caras_buchannas700").focus();
                     texto12.style.display = 'block';
                     $("#InputBuchannas700 ").val("1");
                 } else if (valor == "buchannas700_no") {
-                    $("#caras_buchannas700").val(" ");
-                    $("#precio_buchannas700").val(" ");
+                    $("#caras_buchannas700").val("");
+                    $("#precio_buchannas700").val("");
                     $("#caras_buchannas700").prop('disabled', true);
                     $("#precio_buchannas700").prop('disabled', true);
                     texto12.style.display = 'none';
-                    $("#InputBuchannas700 ").val("0");
+                    $("#InputBuchannas700").val("0");
                 }
             });
         });
@@ -1364,14 +1364,14 @@
                 if (valor == "buchannas375_si") {
                     $("#caras_buchannas375").prop('disabled', false);
                     $("#precio_buchannas375").prop('disabled', false);
-                    $("#caras_buchannas375").val(" ");
-                    $("#precio_buchannas375").val(" ");
+                    $("#caras_buchannas375").val("");
+                    $("#precio_buchannas375").val("");
                     $("#caras_buchannas375").focus();
                     texto13.style.display = 'block';
                     $("#InputBuchannas375 ").val("1");
                 } else if (valor == "buchannas375_no") {
-                    $("#caras_buchannas375").val(" ");
-                    $("#precio_buchannas375").val(" ");
+                    $("#caras_buchannas375").val("");
+                    $("#precio_buchannas375").val("");
                     $("#caras_buchannas375").prop('disabled', true);
                     $("#precio_buchannas375").prop('disabled', true);
                     texto13.style.display = 'none';

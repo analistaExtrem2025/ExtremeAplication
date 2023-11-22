@@ -150,9 +150,9 @@ class AuditoriasExport implements FromCollection, WithHeadings
             'seleccionLinealDiageo',
             'comp_ron1',
             'hay_ron',
-            'caras_comp_ron',
             'precio_comp_ron1',
             'comp_ron2',
+            'caras_comp_ron',
             'precio_comp_ron2',
             'seleccionLinealR',
             'comp_aguard1',
@@ -172,12 +172,12 @@ class AuditoriasExport implements FromCollection, WithHeadings
             'cant_gift',
             'selecciongift',
             'observacionesDetallista',
+            'created_at',
+            'updated_at',
             'revisadoPor',
             'revisionCalidad',
             'fechaCalidad',
             'criticidad',
-            'created_at',
-            'updated_at',
         ];
     }
 }

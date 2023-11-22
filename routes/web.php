@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\AsignacionesController;
 use App\Http\Controllers\AuditoriaController;
 use App\Http\Controllers\CalidadAuditoriaController;
-use App\Http\Controllers\DashboardAuditoriasController;
+// use App\Http\Controllers\DashboardAuditoriasController;
 use App\Http\Controllers\DiageoActivadosController;
 use App\Http\Controllers\DiageoCerradosController;
 use App\Http\Controllers\DiageoClienteFemsaController;
@@ -23,9 +23,7 @@ use App\Http\Controllers\ReemplazoController;
 use App\Http\Controllers\SegmentoController;
 use App\Http\Controllers\TapadosController;
 use App\Http\Controllers\TipologiaController;
-use App\Http\Controllers\PDFController;
-use App\Http\Controllers\HomeController;
-
+// use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,9 +105,16 @@ Route::resource('gifts', GiftsController::class);
 Route::resource('generalidades', GeneralidadesController::class);
 
 //Route::resource('dashboard', DashboardAuditoriasController::class);
-
-
 Route::resource('Galeria', CalidadAuditoriaController::class);
+
+//Route::get('auditoria.inactivos', [CalidadAuditoriaController::class, 'inactivos'])->name('auditorias.inactivos');
+
+Route::get('inactivos', [CalidadAuditoriaController::class, 'inactivos'])->name('inactivos');
+
+
+
+
+
 Route::resource('asignaciones', AsignacionesController::class);
 
 

@@ -86,6 +86,7 @@ class AuditoriaController extends Controller
             'Buchanan´s 700 ml' => 'Buchanan´s 700 ml',
             'Buchanan´s 375 ml' => 'Buchanan´s 375 ml',
             'Old Parr 750 ml' => 'Old Parr 750 ml',
+
         ];
 
         $competenciaRon = [
@@ -93,6 +94,7 @@ class AuditoriaController extends Controller
             'Medellín añejo 3 años' => 'Medellín añejo 3 años',
             'Santa Fe' => 'Santa Fe',
             'Otro' => 'Otro',
+            'Ninguno' => 'Ninguno',
         ];
         $competenciaAguardiente = [
             'Antioqueño con azúcar' => 'Antioqueño con azúcar',
@@ -105,6 +107,7 @@ class AuditoriaController extends Controller
             'Blanco  24 grados nigth' => 'Blanco  24 grados nigth',
             'Amarillo 750 ml' => 'Amarillo 750 ml',
             'Otro' => 'Otro',
+            'Ninguno' => 'Ninguno',
         ];
 
         return view(
@@ -135,7 +138,7 @@ class AuditoriaController extends Controller
             ],
             $messages =
                 [
-                    'unique' => 'Este registro ya se registro con anterioridad',
+                    'unique' => 'el registro con el id :'.  $request->precarga_id. ', ya se guardo con anterioridad',
                 ]
         );
         if ($validator->fails()) {
@@ -193,6 +196,7 @@ class AuditoriaController extends Controller
                 $activacion->barrio = $request->barrio;
                 $activacion->activacion = $request->activacion;
                 $activacion->fotoActiv = 'auditorias_pics/fachadas' .  $nombre;
+                $activacion->estatusGestion = 'Pendiente - tipologia';
                 $activacion->save();
                 return redirect('tipologia');
             } else if ($request->activacion == 'inactivo') {
@@ -214,6 +218,7 @@ class AuditoriaController extends Controller
                 $activacion->cual = $request->cual;
                 $activacion->observaciones = $request->observaciones;
                 $activacion->fotoActiv = 'auditorias_pics/fachadas' .  $nombre;
+
                 $activacion->save();
                 $now = Carbon::now();
                 $id =  $request->precarga_id;

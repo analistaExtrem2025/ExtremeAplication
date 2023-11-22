@@ -15,9 +15,11 @@ class TapadosController extends Controller
      */
     public function index()
     {
-        $tapados = Auditoria::where('promotor', Auth::user()->name)
-            ->orderBy('created_at', 'desc')->first();
-        return view('auditoria.tapados', compact('tapados'));
+        $auditoria = Auditoria::Where('star', '>=', '2000-01-01 00:00:00')
+        //$auditoria = Auditoria::Where('star', '>=', '2023-11-15 00:00:00')
+            ->where('activacion', 'activo')
+            ->get();
+        return view('auditoria.galeriaIndex', compact('auditoria'));
     }
 
     /**
@@ -25,7 +27,7 @@ class TapadosController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

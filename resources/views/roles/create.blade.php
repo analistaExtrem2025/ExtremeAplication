@@ -10,7 +10,7 @@
     <div class="card">
         <div class="card-body">
 
-            {!! Form::open(['route' => 'role.store']) !!}
+            {!! Form::open(['route' => 'roles.store']) !!}
             @include('roles.partials.form')
             {!! Form::submit('Crear rol', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
