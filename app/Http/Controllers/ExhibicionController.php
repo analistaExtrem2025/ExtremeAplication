@@ -202,6 +202,7 @@ class ExhibicionController extends Controller
                     'ron_byw' => $request->ron_byw,
                     'ron_jhonny' => $request->ron_jhonny,
                     'aguard_smirnoff' => $request->aguard_smirnoff,
+                    'criticidad' => 'paso 6 - Exhibicion',
                 ]
             );
         } else {
@@ -209,6 +210,7 @@ class ExhibicionController extends Controller
                 [
                     'ron_byw' => $request->ron_byw,
                     'aguard_smirnoff' => $request->aguard_smirnoff,
+                    'criticidad' => 'paso 6 - Exhibicion',
 
                 ]
             );

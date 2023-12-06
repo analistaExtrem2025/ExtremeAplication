@@ -282,6 +282,7 @@ class DisponibilidadController extends Controller
                 'seleccionLinealDiageo' => 'auditorias_pics/LinealDiageo' .  $nombreLinealDiageo,
                 'seleccionLinealR' => 'auditorias_pics/Ron'.  $nombreRon,
                 'seleccionLinealA' =>'auditorias_pics/Aguardiente' .  $nombreAguardiente,
+                'criticidad' => 'paso 5 - disponibilidad',
 
             ]
         );

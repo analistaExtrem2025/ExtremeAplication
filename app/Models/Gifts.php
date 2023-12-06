@@ -17,7 +17,8 @@ class Gifts extends Model
         'precarga_id',
         'gift',
         'cant_gift',
-        'selecciongift'
+        'selecciongift',
+        'criticidad'
     ];
 
     public $timestamps = false;

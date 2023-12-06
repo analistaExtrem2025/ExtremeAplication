@@ -563,6 +563,8 @@ class MaterialesController extends Controller
                 'vasos' => $request->vasos,
                 'vasos_visibles' => $request->vasos_visibles,
                 'vasos_quebrados' => $request->vasos_quebrados,
+                'criticidad' => 'paso 4 - materiales',
+
             ]
         );
 

@@ -18,6 +18,7 @@ class Exhibicion extends Model
         'seleccionron_jhonny',
         'aguard_smirnoff',
         'seleccionaguard_smirnoff',
+        'criticidad'
     ];
 
     public $timestamps = false;

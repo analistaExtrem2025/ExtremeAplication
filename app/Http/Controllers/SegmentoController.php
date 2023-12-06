@@ -120,6 +120,7 @@ class SegmentoController extends Controller
                     'caja_ron' => $request->caja_ron,
                     'caja_whiskey' => $request->caja_whiskey,
                     'fotosegmento' => 'auditorias_pics/segmento'. $nombreSegmento,
+                    'criticidad' => 'paso 3 - segmento',
                 ]
             );
         } else if ($request->state_segmento == 'segmento_si') {
@@ -132,6 +133,7 @@ class SegmentoController extends Controller
                     'caja_ron' => $request->caja_ron,
                     'caja_whiskey' => $request->caja_whiskey,
                     'fotosegmento' => 'auditorias_pics/segmento'. $nombreSegmento,
+                    'criticidad' => 'paso 3 - segmento',
                 ]
             );
         }

@@ -14,6 +14,7 @@ use App\Http\Controllers\DiageoNoActivadosController;
 use App\Http\Controllers\DisponibilidadController;
 use App\Http\Controllers\EncuestaController;
 use App\Http\Controllers\ExhibicionController;
+use App\Http\Controllers\ExportPdfController;
 use App\Http\Controllers\GeneralidadesController;
 use App\Http\Controllers\GiftsController;
 use App\Http\Controllers\MaterialesController;
@@ -93,7 +94,6 @@ Route::resource('reemplazo', ReemplazoController::class)
     ->names('encuesta.reemplazo');
 Route::resource('diageo_clienteFemsa', DiageoClienteFemsaController::class);
 Route::resource('roles', RoleController::class)->names('roles');
-
 Route::resource('auditoria', AuditoriaController::class);
 Route::resource('tipologia', TipologiaController::class);
 Route::resource('segmento', SegmentoController::class);
@@ -103,35 +103,11 @@ Route::resource('tapados', TapadosController::class);
 Route::resource('exhibicion', ExhibicionController::class);
 Route::resource('gifts', GiftsController::class);
 Route::resource('generalidades', GeneralidadesController::class);
-
-//Route::resource('dashboard', DashboardAuditoriasController::class);
+Route::resource('pdfExport', ExportPdfController::class);
 Route::resource('Galeria', CalidadAuditoriaController::class);
-
-//Route::get('auditoria.inactivos', [CalidadAuditoriaController::class, 'inactivos'])->name('auditorias.inactivos');
-
 Route::get('inactivos', [CalidadAuditoriaController::class, 'inactivos'])->name('inactivos');
-
-
-
-
-
 Route::resource('asignaciones', AsignacionesController::class);
+Route::get('downloadPdf/{id}', [ExportPdfController::class, 'downloadPdf'])->name('downloadPdf');
 
 
-
-
-// Route::get('exportar', 'AuditoriaController@export')->name('export');
-
-// Route::get('myPDF/{id}', [App\Http\Controllers\PDFController::class, 'pdf']);
-
-// Route::get('auditoriaPDF/{id}/download', [App\Http\Controllers\PDFController::class, 'download'])->name('download');
-
-
-
-
-// Route::get(
-//     'appointments/pdf/{id}',
-//     [AppointmentController::class, 'pdf']
-// )->name('appointments.pdf');
-
-// Route::get('generate-pdf', [AppointmentController::class, 'generatePDF']);
+Route::resource('pdf', ExportPdfController::class);

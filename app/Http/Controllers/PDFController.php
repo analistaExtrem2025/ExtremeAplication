@@ -15,9 +15,13 @@ class PDFController extends Controller
         $now = Carbon::now();
         $reporte = Auditoria::findOrFail($id);
 
-        view()->share('reporte', $reporte);
-        $pdf = PDF::loadview('myPDF', $reporte->toArray())->output();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML('<h1>Test</h1>');
         return $pdf->stream();
+
+        // view()->share('reporte', $reporte);
+        // $pdf = PDF::loadview('myPDF', $reporte->toArray())->output();
+        // return $pdf->stream();
        //   return $pdf->download();
 
 

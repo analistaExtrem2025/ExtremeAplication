@@ -14,7 +14,8 @@ class Tipologia extends Model
         'state_tipologia',
         'OtraTipologia',
         'tipologia',
-        'fototipologia'
+        'fototipologia',
+        'criticidad'
     ];
 
     public $timestamps = false;
