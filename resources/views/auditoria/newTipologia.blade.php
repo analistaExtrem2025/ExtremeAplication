@@ -41,17 +41,15 @@
                             'disabled',
                         ]) !!}
                     </div>
-
                     <div class="input" id="divOtroCual" style="display: none">
                         {!! Form::label('¿Cual?') !!}
-                        {!! Form::text('OtraTipologia', null, [
-                            'class' => 'form-control textar',
-                            'autocomplete' => 'off',
-                            'id' => 'cual',
-                            'maxlength' => 50,
-                            'required',
-                            'disabled',
-                        ]) !!}
+
+                        <select name="OtraTipologia" class="form-control textar" id="cual" required disabled>
+                            <option value="" disabled selected>Seleccione una opción</option>
+                            @foreach ($otros as $otro)
+                                <option value="{{ $otro }}">{{ $otro }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col">

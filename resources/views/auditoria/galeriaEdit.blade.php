@@ -2,8 +2,6 @@
 @section('title', 'Validación de Calidad')
 @section('css')
     <link href="{{ asset('css/galeria.css') }}" rel="stylesheet">
-    {{--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  --}}
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link rel="stylesheet" href="<?php echo asset('css/auditoria.css'); ?>" type="text/css">
 @stop
@@ -23,7 +21,8 @@
         </div>
     @endif
 
-
+    <input type="hidden" name="star" value="{{ $star }}">
+    <input type="hidden" name="precarga_id" value="{{ $reporte->precarga_id }}">
     <div class="container">
         <ul>
             <div class="col-sm-12">
@@ -126,6 +125,7 @@
             </div>
         </ul>
         <input type="hidden" name="auditoria_id" value="{{ $reporte->id }}">
+        <input type="hidden" name="id" value="{{ $reporte->id }}">
         <input type="hidden" name="precarga_id" value="{{ $reporte->precarga_id }}">
         <input type="hidden" name="activacionState" value="{{ $reporte->activacion }}">
         <input type="hidden" name="auditadoPor" value="{{ $reporte->promotor }}">
@@ -151,13 +151,14 @@
                         <br>
                         <div style="display: none" id="EditSegmento">
                             <hr>
-                            <select name="segmento[]" id="segmento" class="form-control selectpicker selector "
+                            <select name="segmento" id="segmento" class="form-control selectpicker selector"
                                 data-style="btn-primary" title="Seleccionar segmento" required disabled>
                                 <option disabled value="old{'segmento'}" checked>Seleccione una opción </option>
                                 @foreach ($segmento as $seg)
                                     <option value="{{ $seg }}">{{ $seg }}</option>
                                 @endforeach
                             </select>
+                            @include('errors.errors', ['field' => 'segmento'])
                         </div>
                         <hr>
                         <div class="toggle-wrapper">
@@ -232,16 +233,11 @@
                             <input class="noClass" type="text" id="inpSegmento" name="Calsegmento" required>
                             <input class="noClass" type="text" id="inpCantidades" name="cantidadCajas" required>
                         </nat>
-
                     </div>
-
-
-
                     <div class="col-8">
                         <img id="imageSegmento"
                             src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/segmento_' . $reporte->precarga_id . '.png'))) }}" />
                     </div>
-
                 </div>
             </ul>
             {{--  <!-- Tipologia -->  --}}
@@ -250,7 +246,6 @@
                 <div class="row">
                     <div class="col card-box">
                         <h5>TIPOLOGIA ACTUAL: <strong>{{ $reporte->tipologia }}</strong></h5>
-
                         <div class="toggle-wrapper">
                             <div class="toggle checkcross3">
                                 <input id="checkcross3" type="checkbox" style="display: none">
@@ -258,21 +253,33 @@
                                     <div class="check"></div>
                                 </label>
                             </div>
-                            <div class="name"> Tipoloigia<br> no <br>coincide</div>
-                            <div class="name1">Tipoloigia <br>coincide</div>
+                            <div class="name"> Tipologia<br> no <br>coincide</div>
+                            <div class="name1">Tipologia <br>coincide</div>
                         </div>
                         <br>
                         <div style="display: none" id="EditTipologia">
                             <hr>
-                            <select name="tipologia[]" id="tipologia" class="form-control selectpicker selector"
-                                data-style="btn-primary" title="Seleccionar tipologia" required disabled>
-                                <option disabled value="old{'tipologia'}" checked>Seleccione una opción </option>
+
+                            <select name="tipologia" id="tipologia" class="form-control selectpicker selector"
+                                onchange="editor()" data-style="btn-primary" title="Seleccionar tipologia" required
+                                disabled>
+                                <option disabled selected value="--" required>Seleccione la tipologia correcta
+                                </option>
                                 @foreach ($tipologia as $tip)
                                     <option value="{{ $tip }}">{{ $tip }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        <div class="input" id="divOtroCual" style="display: none">
+                            {!! Form::label('¿Cual?') !!}
 
+                            <select name="OtraTipologia" class="form-control textar" id="cual" required disabled>
+                                <option value="" disabled selected>Seleccione una opción</option>
+                                @foreach ($otros as $otro)
+                                    <option value="{{ $otro }}">{{ $otro }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <nat class="bt-menu">
                             <ul>
                                 <li class="bt_li"><button type="button" class="botOn js-zoom-in2"><i
@@ -285,14 +292,12 @@
                                             class="fas fa-undo" alt="giro izquierda"></i></button></li>
                             </ul>
                             <div id="msgTipologia">
-
                                 <red>Calidad dice:</red>
                             </div>
                             <input class="noClass" type="text" id="inpTipologia" name="Caltipologia" required>
                         </nat>
                     </div>
                     <div class="col-8">
-
                         <img id="imageTipologia"
                             src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/tipologia_' . $reporte->precarga_id . '.png'))) }}" />
                     </div>
@@ -340,7 +345,7 @@
                                 <br>
                                 <div style="display: none" id="EditCenefaVisi">
                                     <hr>
-                                    <select name="cenefa_visi[]" id="cenefa_visi"
+                                    <select name="cenefa_visi" id="cenefa_visi"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar visibilidad cenefa" required disabled>
                                         <option disabled value="old{'cenefa_visi'}" checked>Seleccione una opción </option>
@@ -348,6 +353,7 @@
                                             <option value="{{ $cenVis }}">{{ $cenVis }}</option>
                                         @endforeach
                                     </select>
+
                                 </div>
                                 <br>
                                 <br>
@@ -364,14 +370,15 @@
                                 <br>
                                 <div style="display: none" id="EditCenefaColo">
                                     <hr>
-                                    <select name="cenefa_colo[]" id="cenefa_colo"
-                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                    <select name="cenefa_colo" id="cenefa_colo"
+                                        class="form-control selectpicker selector " data-style="btn-primary"
                                         title="Seleccionar colocación cenefa" required disabled>
                                         <option disabled value="old{'cenefa_colo'}" checked>Seleccione una opción </option>
                                         @foreach ($cenefa_colo as $cenCol)
                                             <option value="{{ $cenCol }}">{{ $cenCol }}</option>
                                         @endforeach
                                     </select>
+
                                 </div>
                                 <br>
                                 <br>
@@ -399,6 +406,8 @@
                                 <input class="noClass" type="text" id="inpCenefaColo" name="CalCenefaColo" required>
                             </nat>
                         </div>
+                        @include('errors.errors', ['field' => 'cenefa_visi'])
+                        @include('errors.errors', ['field' => 'cenefa_colo'])
                         <div class="col-8">
                             <img id="imageCenefa"
                                 src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Cenefa_' . $reporte->precarga_id . '.png'))) }}" />
@@ -407,13 +416,102 @@
                 </ul>
             @else
                 <ul>
-                    <span>No Hay Cenefa</span>
+                    <span>Según la auditoria no hay cenefa</span>
+                    <br><br>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btnMat" data-toggle="modal" data-target="#cenefaModal"
+                        onclick="seeCenefa()">
+                        Modificar presencia del material
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="cenefaModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Confirme si hay cenefa</span></green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img class="img_cenefa" src="{{ asset('/storage/cenefa.png') }}" />
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" checked>
+                                                    <input type="hidden" name="cenefa" id="cenefa"
+                                                        value="cenefa_si" disabled>
+                                                    <label class="custom-control-label" for="cenefa_si">Si hay
+                                                        cenefa</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>LA CENEFA ES VISIBLE?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="cenefa_visi"
+                                                        id="cenefa_visi_si" value="cenefa_visi_si" disabled>
+                                                    <label class="form-check-label" for="cenefa_visi_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="cenefa_visi"
+                                                        id="cenefa_visi_no" value="cenefa_visi_no" disabled>
+                                                    <label class="form-check-label" for="cenefa_visi_no">NO</label>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>LA CENEFA ESTA BIEN COLOCADA?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="cenefa_colo"
+                                                        id="cenefa_colo_si" value="cenefa_colo_si" disabled>
+                                                    <label class="form-check-label" for="cenefa_colo_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="cenefa_colo"
+                                                        id="cenefa_colo_no" value="cenefa_colo_no" disabled>
+                                                    <label class="form-check-label" for="cenefa_colo_no">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div id="divCenefa_Img" style="display: block">
+                                                <div class="row" style="text-align: center">
+                                                    <div class="col">
+                                                        <br><br>
+                                                        <hr>
+                                                        <green> <span>Tome foto del cenefa</span></green>
+                                                        <input type="file" id="seleccionCenefa" name="seleccionCenefa"
+                                                            accept="image/*" required disabled>
+                                                        <img class="card-img-mate" id="imagenCenefa">
+                                                        <br><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                     <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                 </ul>
             @endif
             <hr>
-
-
             {{--  <!-- Afiche 2-->  --}}
             @if ($reporte->afiche == 'afiche_si')
                 <ul>
@@ -470,7 +568,7 @@
                                 <br>
                                 <div style="display: none" id="EditAficheVisi">
                                     <hr>
-                                    <select name="afiche_visi[]" id="afiche_visi"
+                                    <select name="afiche_visi" id="afiche_visi"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar visibiliad afiche" required disabled>
                                         <option disabled value="old{'afiche_visi'}" checked>Seleccione una opción </option>
@@ -495,7 +593,7 @@
                                 <br>
                                 <div style="display: none" id="EditAficheColo">
                                     <hr>
-                                    <select name="afiche_colo[]" id="afiche_colo"
+                                    <select name="afiche_colo" id="afiche_colo"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar colocación afiche" required disabled>
                                         <option disabled value="old{'afiche_colo'}" checked>Seleccione una opción </option>
@@ -547,17 +645,17 @@
                                 <ul>
                                     <div style="display: none" id="EditAficheCombotizado" class="bt-sub-menu">
                                         <hr>
-                                        <select name="afiche_combo[]" id="afiche_combo"
+                                        <select name="aficheCombotizado" id="afiche_combo"
                                             class="form-control selectpicker selector" data-style="btn-primary"
                                             title="Seleccionar combotizacion afiche" required disabled>
-                                            <option disabled value="old{'afiche_combo'}" checked>Seleccione una opción
+                                            <option disabled value="old{'aficheCombotizado'}" checked>Seleccione una opción
                                             </option>
                                             @foreach ($aficheCombotizado as $afiCombo)
                                                 <option value="{{ $afiCombo }}">{{ $afiCombo }}</option>
                                             @endforeach
                                         </select>
                                         <hr>
-                                        <select name="marca_combo[]" id="marca_combo"
+                                        <select name="marca_combo" id="marca_combo"
                                             class="form-control selectpicker selector" data-style="btn-primary"
                                             title="Seleccionar marca con la que se combotizo" required disabled>
                                             <option disabled value="old{'marca_combo'}" checked>Seleccione una opción
@@ -567,27 +665,27 @@
                                             @endforeach
                                         </select>
                                         <hr>
-                                        <select name="combox1[]" id="combox1"
-                                            class="form-control selectpicker selector" data-style="btn-primary"
-                                            title="Seleccionar combotizacion afiche" required disabled>
+                                        <select name="combox1" id="combox1" class="form-control selectpicker selector"
+                                            data-style="btn-primary" title="Seleccionar combotizacion afiche" required
+                                            disabled>
                                             <option disabled value="old{'combox1'}" checked>Seleccione una opción </option>
                                             @foreach ($Combox1 as $x1)
                                                 <option value="{{ $x1 }}">{{ $x1 }}</option>
                                             @endforeach
                                         </select>
                                         <hr>
-                                        <select name="combox2[]" id="combox2"
-                                            class="form-control selectpicker selector" data-style="btn-primary"
-                                            title="Seleccionar combotizacion afiche" required disabled>
+                                        <select name="combox2" id="combox2" class="form-control selectpicker selector"
+                                            data-style="btn-primary" title="Seleccionar combotizacion afiche" required
+                                            disabled>
                                             <option disabled value="old{'combox2'}" checked>Seleccione una opción </option>
                                             @foreach ($Combox2 as $x2)
                                                 <option value="{{ $x2 }}">{{ $x2 }}</option>
                                             @endforeach
                                         </select>
                                         <hr>
-                                        <select name="combox3[]" id="combox3"
-                                            class="form-control selectpicker selector" data-style="btn-primary"
-                                            title="Seleccionar combotizacion afiche" required disabled>
+                                        <select name="combox3" id="combox3" class="form-control selectpicker selector"
+                                            data-style="btn-primary" title="Seleccionar combotizacion afiche" required
+                                            disabled>
                                             <option disabled value="old{'combox3'}" checked>Seleccione una opción </option>
                                             @foreach ($Combox3 as $x3)
                                                 <option value="{{ $x3 }}">{{ $x3 }}</option>
@@ -602,7 +700,8 @@
                                 <input type="hidden" name="aficheCombo" value="{{ $reporte->aficheCombotizado }}">
                                 <input class="noClass" type="text" id="inpAficheVisi" name="CalaficheVis" required>
                                 <input class="noClass" type="text" id="inpAficheColo" name="CalaficheColo" required>
-                                <input class="noClass" type="text" id="inpAficheCombo" name="CalaficheCombo" required>
+                                <input class="noClass" type="text" id="inpAficheCombo" name="CalaficheCombo"
+                                    required>
                             </nat>
                         </div>
                         <div class="col-8">
@@ -613,14 +712,180 @@
                 </ul>
             @else
                 <ul>
-                    <span>No Hay Afiche</span>
+                    <span>Según la auditoria no hay afiche</span>
+                    <br><br>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btnMat" data-toggle="modal" data-target="#aficheModal"
+                        onclick="seeAfiche()">
+                        Modificar presencia del material
+                    </button>
+                    <div class="modal fade" id="aficheModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Confirme si hay afiche</span></green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img class="img_afiche" src="{{ asset('/storage/afiche.png') }}" />
+
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" checked>
+
+                                                    <input type="hidden" name="afiche" id="afiche"
+                                                        value="afiche_si" disabled>
+                                                    <label class="custom-control-label" for="afiche_si">Si hay
+                                                        afiche</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>EL AFICHE ES VISIBLE?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="afiche_visi"
+                                                        id="afiche_visi_si" value="afiche_visi_si" disabled>
+                                                    <label class="form-check-label" for="afiche_visi_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="afiche_visi"
+                                                        id="afiche_visi_no" value="afiche_visi_no" disabled>
+                                                    <label class="form-check-label" for="afiche_visi_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>EL AFICHE ESTA BIEN COLOCADO?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="afiche_colo"
+                                                        id="afiche_colo_si" value="afiche_colo_si" disabled>
+                                                    <label class="form-check-label" for="afiche_colo_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="afiche_colo"
+                                                        id="afiche_colo_no" value="afiche_colo_no" disabled>
+                                                    <label class="form-check-label" for="afiche_colo_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>&iquest;Esta diligenciado con información de
+                                                        combotización?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="aficheCombotizado" id="afiche_combo_si"
+                                                        value="afiche_combo_si" disabled>
+                                                    <label class="form-check-label" for="afiche_combo_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="aficheCombotizado" id="afiche_combo_no"
+                                                        value="afiche_combo_no" disabled>
+                                                    <label class="form-check-label" for="afiche_combo_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="container">
+                                                <center>
+                                                    <h4> CON QUE MARCA FUE COMBOTIZADO</h4>
+                                                </center>
+                                                <div>
+                                                    <select name="marca_combo" id="marca_combo" class="form-control"
+                                                        disabled>
+                                                        <option value=" " disabled selected>Seleccione una marca
+                                                        </option>
+                                                        @foreach ($diageoMarca as $marca)
+                                                            <option value="{{ $marca }}">{{ $marca }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="container">
+                                            <CENTER>
+                                                <h4>Diageo + otro producto</h4>
+                                            </CENTER>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="combox1"
+                                                    id="combox1_si" value="combox1_si" disabled>
+                                                <label class="form-check-label" for="combox1_si">SI</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="combox1"
+                                                    id="combox1_no" value="combox1_no" disabled>
+                                                <label class="form-check-label" for="combox1_no">NO</label>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="container">
+                                            <CENTER>
+                                                <h4>Diageo indicando precio</h4>
+                                            </CENTER>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="combox2"
+                                                    id="combox2_si" value="combox2_si" disabled>
+                                                <label class="form-check-label" for="combox2_si">SI</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="combox2"
+                                                    id="combox2_no" value="combox2_no" disabled>
+                                                <label class="form-check-label" for="combox2_no">NO</label>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="container">
+                                            <CENTER>
+                                                <h4>Diageo + gift</h4>
+                                            </CENTER>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="combox3"
+                                                    id="combox3_si" value="combox3_si" disabled>
+                                                <label class="form-check-label" for="combox3_si">SI</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="combox3"
+                                                    id="combox3_no" value="combox3_no" disabled>
+                                                <label class="form-check-label" for="combox3_no">NO</label>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <br>
+                                    <div class="row" style="text-align: center">
+                                        <div class="col">
+                                            <green> <span>Tome foto del afiche </span></green>
+                                            <input type="file" id="seleccionAfiche" name="seleccionAfiche"
+                                                accept="image/*" required disabled>
+                                            <img class="card-img-mate" id="imagenAfiche">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Continuar</button>
+                            </div>
+                        </div>
+                    </div>
                     <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                 </ul>
             @endif
             <hr>
-
             {{--  <!-- marco  -->  --}}
-
             @if ($reporte->marco == 'marco_si')
                 <ul>
                     <div class="row">
@@ -655,9 +920,9 @@
                                 <br>
                                 <div style="display: none" id="EditMarcoVisi">
                                     <hr>
-                                    <select name="marco_visi[]" id="marco_visi"
-                                        class="form-control selectpicker selector" data-style="btn-primary"
-                                        title="Seleccionar visibilidad cenefa" required disabled>
+                                    <select name="marco_visi" id="marco_visi" class="form-control selectpicker selector"
+                                        data-style="btn-primary" title="Seleccionar visibilidad del marco" required
+                                        disabled>
                                         <option disabled value="old{'marco_visi'}" checked>Seleccione una opción </option>
                                         @foreach ($marco_visi as $marVis)
                                             <option value="{{ $marVis }}">{{ $marVis }}</option>
@@ -679,9 +944,8 @@
                                 <br>
                                 <div style="display: none" id="EditMarcoColo">
                                     <hr>
-                                    <select name="marco_colo[]" id="marco_colo"
-                                        class="form-control selectpicker selector" data-style="btn-primary"
-                                        title="Seleccionar colocación marco" required disabled>
+                                    <select name="marco_colo" id="marco_colo" class="form-control selectpicker selector"
+                                        data-style="btn-primary" title="Seleccionar colocación marco" required disabled>
                                         <option disabled value="old{'marco_colo'}" checked>Seleccione una opción </option>
                                         @foreach ($marco_colo as $marCol)
                                             <option value="{{ $marCol }}">{{ $marCol }}</option>
@@ -691,7 +955,6 @@
                                 <br>
                                 <br>
                             </div>
-
                             <nat class="bt-menu">
                                 <ul>
                                     <li class="bt_li"><button type="button" class="botOn js-zoom-in6"><i
@@ -722,7 +985,99 @@
                 </ul>
             @else
                 <ul>
-                    <span>No Hay Cenefa</span>
+                    <span>Según la auditoria no hay marco</span>
+                    <br><br>
+
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btnMat" data-toggle="modal" data-target="#marcoModal"
+                        onclick="seeMarco()">
+                        Modificar presencia del material
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="marcoModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Confirme si hay marco</span></green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img class="img_cenefa" src="{{ asset('/storage/marco.png') }}" />
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" checked>
+                                                    <input type="hidden" name="marco" id="marco" value="marco_si"
+                                                        disabled>
+                                                    <label class="custom-control-label" for="marco_si">Si hay
+                                                        marco</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>EL MARCO ES VISIBLE?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="marco_visi"
+                                                        id="marco_visi_si" value="marco_visi_si" disabled>
+                                                    <label class="form-check-label" for="marco_visi_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="marco_visi"
+                                                        id="marco_visi_no" value="marco_visi_no" disabled>
+                                                    <label class="form-check-label" for="marco_visi_no">NO</label>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>EL MARCO ESTA BIEN COLOCADO?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="marco_colo"
+                                                        id="marco_colo_si" value="marco_colo_si" disabled>
+                                                    <label class="form-check-label" for="marco_colo_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="marco_colo"
+                                                        id="marco_colo_no" value="marco_colo_no" disabled>
+                                                    <label class="form-check-label" for="marco_colo_no">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div id="divMarco_Img" style="display: none">
+                                                <div class="row" style="text-align: center">
+                                                    <div class="col">
+                                                        <br><br>
+                                                        <hr>
+                                                        <green> <span>Tome foto del marco </span></green>
+                                                        <input type="file" id="seleccionMarco" name="seleccionMarco"
+                                                            accept="image/*" required disabled>
+                                                        <img class="card-img-mate" id="imagenMarco">
+                                                        <br><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                     <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                 </ul>
             @endif
@@ -762,9 +1117,9 @@
                                 <br>
                                 <div style="display: none" id="EditRompeVisi">
                                     <hr>
-                                    <select name="rompe_visi[]" id="rompe_visi"
-                                        class="form-control selectpicker selector" data-style="btn-primary"
-                                        title="Seleccionar visibilidad rompetrafico" required disabled>
+                                    <select name="rompe_visi" id="rompe_visi" class="form-control selectpicker selector"
+                                        data-style="btn-primary" title="Seleccionar visibilidad rompetrafico" required
+                                        disabled>
                                         <option disabled value="old{'rompe_visi'}" checked>Seleccione una opción </option>
                                         @foreach ($rompe_visi as $romVis)
                                             <option value="{{ $romVis }}">{{ $romVis }}</option>
@@ -786,9 +1141,9 @@
                                 <br>
                                 <div style="display: none" id="EditRompeColo">
                                     <hr>
-                                    <select name="rompe_colo[]" id="rompe_colo"
-                                        class="form-control selectpicker selector" data-style="btn-primary"
-                                        title="Seleccionar colocación rompetrafico" required disabled>
+                                    <select name="rompe_colo" id="rompe_colo" class="form-control selectpicker selector"
+                                        data-style="btn-primary" title="Seleccionar colocación rompetrafico" required
+                                        disabled>
                                         <option disabled value="old{'rompe_colo'}" checked>Seleccione una opción </option>
                                         @foreach ($rompe_colo as $marCol)
                                             <option value="{{ $marCol }}">{{ $marCol }}</option>
@@ -829,7 +1184,100 @@
                 </ul>
             @else
                 <ul>
-                    <span>No Hay Rompetrafico</span>
+                    <span>Según la auditoria no hay rompetrafico</span>
+                    <br><br>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btnMat" data-toggle="modal" data-target="#rompetraficoModal"
+                        onclick="seeRompetrafico()">
+                        Modificar presencia del material
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="rompetraficoModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Confirme si hay rompetrafico</span></green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img class="img_rompetrafico"
+                                                    src="{{ asset('/storage/rompetraficos.png') }}" />
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" checked>
+                                                    <input type="hidden" name="rompetraficos" id="rompetraficos"
+                                                        value="rompetraficos_si" disabled>
+                                                    <label class="custom-control-label" for="rompetraficos_si">Si hay
+                                                        rompetraficos</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>EL ROMPETRAFICO ES VISIBLE?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_rt_visibles" id="prod_rt_visibles_si"
+                                                        value="prod_rt_visibles_si" disabled>
+                                                    <label class="form-check-label" for="prod_rt_visibles_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_rt_visibles" id="prod_rt_visibles_no"
+                                                        value="prod_rt_visibles_no" disabled>
+                                                    <label class="form-check-label" for="prod_rt_visibles_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>LOS ROMPETRAFICOS ESTAN COLOCADOS CORRECTAMENTE, ATORNILLADO Y/O
+                                                        PEGADOS?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_rt_properly" id="prod_rt_properly_si"
+                                                        value="prod_rt_properly_si" disabled>
+                                                    <label class="form-check-label" for="prod_rt_properly_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_rt_properly" id="prod_rt_properly_no"
+                                                        value="prod_rt_properly_no" disabled>
+                                                    <label class="form-check-label" for="prod_rt_properly_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <div id="divRompetrafico_Img" style="display: none">
+                                                <div class="row" style="text-align: center">
+                                                    <div class="col">
+                                                        <br><br>
+                                                        <hr>
+                                                        <green> <span>Tome foto del rompetrafico </span></green>
+                                                        <input type="file" id="seleccionRompetrafico"
+                                                            name="seleccionRompetrafico" accept="image/*" required
+                                                            disabled>
+                                                        <img class="card-img-mate" id="imagenRompetrafico">
+                                                        <br><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                 </ul>
             @endif
@@ -869,7 +1317,7 @@
                                 <br>
                                 <div style="display: none" id="EditFaxadaVisi">
                                     <hr>
-                                    <select name="fachadas_visi[]" id="fachadas_visi"
+                                    <select name="fachadas_visi" id="fachadas_visi"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar visibilidad fachada y avisos" required disabled>
                                         <option disabled value="old{'fachadas_visi'}" checked>Seleccione una opción
@@ -894,7 +1342,7 @@
                                 <br>
                                 <div style="display: none" id="EditFaxadaColo">
                                     <hr>
-                                    <select name="fachadas_colo[]" id="fachadas_colo"
+                                    <select name="fachadas_colo" id="fachadas_colo"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar colocación fachada y avisos" required disabled>
                                         <option disabled value="old{'fachadas_colo'}" checked>Seleccione una opción
@@ -925,7 +1373,8 @@
                                     <red>Calidad dice:</red>
                                 </div>
                                 <input type="hidden" value="{{ $reporte->fachadas }}" name="stateFachadas">
-                                <input class="noClass" type="text" id="inpFaxadaVisi" name="CalfaxadaVisi" required>
+                                <input class="noClass" type="text" id="inpFaxadaVisi" name="CalfaxadaVisi"
+                                    required>
                                 <input class="noClass" type="text" id="inpAFaxadaEstado" name="CalfaxadaEstado"
                                     required>
                             </nat>
@@ -938,7 +1387,100 @@
                 </ul>
             @else
                 <ul>
-                    <span>No Hay fachada ni avisos de la marca</span>
+                    <span>Según la auditoria no hay fachada con la marca ni avisos</span>
+
+                    <br><br>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btnMat" data-toggle="modal" data-target="#faxadaModal"
+                        onclick="seeFaxada()">
+                        Modificar presencia del material
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="faxadaModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Confirme si hay fachadas y avisos</span></green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img class="img_fachada" src="{{ asset('/storage/fachada.png') }}" />
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" checked>
+                                                    <input type="hidden" name="fachadas" id="fachadas"
+                                                        value="fachadas_si" disabled>
+                                                    <label class="custom-control-label" for="fachadas_si">Si hay
+                                                        fachadas y avisos</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>LAS FACHADAS Y AVISOS SON VISIBLES?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="fachadas_visi" id="fachadas_visi_si"
+                                                        value="fachadas_visi_si" disabled>
+                                                    <label class="form-check-label" for="fachadas_visi_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="fachadas_visi" id="fachadas_visi_no"
+                                                        value="fachadas_visi_no" disabled>
+                                                    <label class="form-check-label" for="fachadas_visi_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>LAS FACHADAS Y AVISOS ESTAN EN BUEN ESTADO? SIN RAYADURAS, STIKERS,
+                                                        NO ESTAN SUCIOS NI DESGASTADOS? </h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="fachadas_colo" id="fachadas_colo_si"
+                                                        value="fachadas_colo_si" disabled>
+                                                    <label class="form-check-label" for="fachadas_colo_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="fachadas_colo" id="fachadas_colo_no"
+                                                        value="fachadas_colo_no" disabled>
+                                                    <label class="form-check-label" for="fachadas_colo_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <div id="divFachada_Img" style="display: none">
+                                                <div class="row" style="text-align: center">
+                                                    <div class="col">
+                                                        <br><br>
+                                                        <hr>
+                                                        <green> <span>Tome foto del rompetrafico </span></green>
+                                                        <input type="file" id="seleccionFaxada"
+                                                            name="seleccionFaxada" accept="image/*" required disabled>
+                                                        <img class="card-img-mate" id="imagenFaxada">
+                                                        <br><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                 </ul>
             @endif
@@ -984,7 +1526,7 @@
                                 <br>
                                 <div style="display: none" id="EditHieleraProd">
                                     <hr>
-                                    <select name="hl_con_prod[]" id="hielera_prod"
+                                    <select name="hl_con_prod" id="hielera_prod"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar hay producto en la hielera" required disabled>
                                         <option disabled value="old{'hl_con_prod'}" checked>Seleccione una opción
@@ -1009,7 +1551,7 @@
                                 <br>
                                 <div style="display: none" id="EditHieleraVisi">
                                     <hr>
-                                    <select name="prod_hl_visible[]" id="hielera_visi"
+                                    <select name="prod_hl_visible" id="hielera_visi"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar hielera es visible" required disabled>
                                         <option disabled value="old{'prod_hl_visible'}" checked>Seleccione una opción
@@ -1034,7 +1576,7 @@
                                 <br>
                                 <div style="display: none" id="EditHieleraEstado">
                                     <hr>
-                                    <select name="prod_hl_danadas[]" id="hielera_esta"
+                                    <select name="prod_hl_danadas" id="hielera_esta"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar estado de la hielera" required disabled>
                                         <option disabled value="old{'prod_hl_danadas'}" checked>Seleccione una opción
@@ -1073,8 +1615,10 @@
                                     <red>Calidad dice:</red>
                                 </div>
                                 <input type="hidden" value="{{ $reporte->hielera }}" name="stateHielera">
-                                <input class="noClass" type="text" id="inpHieleraProd" name="CalhieleraProd" required>
-                                <input class="noClass" type="text" id="inpHieleraVisi" name="CalhieleraVisi" required>
+                                <input class="noClass" type="text" id="inpHieleraProd" name="CalhieleraProd"
+                                    required>
+                                <input class="noClass" type="text" id="inpHieleraVisi" name="CalhieleraVisi"
+                                    required>
                                 <input class="noClass" type="text" id="inpHieleraEstado" name="CalhieleraEstado"
                                     required>
                             </nat>
@@ -1087,12 +1631,116 @@
                 </ul>
             @else
                 <ul>
-                    <span>No Hay hieleras de la marca</span>
+                    <span>Según la auditoria no hay hieleras de la marca</span>
+                    <br><br>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btnMat" data-toggle="modal" data-target="#hieleraModal"
+                        onclick="seeHielera()">
+                        Modificar presencia del material
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="hieleraModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Confirme si hay hieleras</span></green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img class="img_fachada" src="{{ asset('/storage/hieler.png') }}" />
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" checked>
+                                                    <input type="hidden" name="hielera" id="hielera"
+                                                        value="hielera_si" disabled>
+                                                    <label class="custom-control-label" for="hielera_si">Si hay
+                                                        hieleras</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>LAS HIELERAS TIENEN PRODUCTOS DIAGEO?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="hl_con_prod"
+                                                        id="hl_con_prod_si" value="hl_con_prod_si" disabled>
+                                                    <label class="form-check-label" for="hl_con_prod_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="hl_con_prod"
+                                                        id="hl_con_prod_no" value="hl_con_prod_no" disabled>
+                                                    <label class="form-check-label" for="hl_con_prod_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>LAS HIELRAS SON VISIBLES?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_hl_visible" id="prod_hl_visible_si"
+                                                        value="prod_hl_visible_si" disabled>
+                                                    <label class="form-check-label" for="prod_hl_visible_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_hl_visible" id="prod_hl_visible_no"
+                                                        value="prod_hl_visible_no" disabled>
+                                                    <label class="form-check-label" for="prod_hl_visible_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>LAS HIELRAS ESTAN EN BUEN ESTADO? SIN RAYADURAS, STIKERS, NO ESTAN
+                                                        SUCIOS NI DESGASTADOS? </h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_hl_danadas" id="prod_hl_danadas_si"
+                                                        value="prod_hl_danadas_si" disabled>
+                                                    <label class="form-check-label" for="prod_hl_danadas_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_hl_danadas" id="prod_hl_danadas_no"
+                                                        value="prod_hl_danadas_no" disabled>
+                                                    <label class="form-check-label" for="prod_hl_danadas_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <div id="divHielera_Img" style="display: none">
+                                                <div class="row" style="text-align: center">
+                                                    <div class="col">
+                                                        <br><br>
+                                                        <hr>
+                                                        <green> <span>Tome foto de la hielera </span></green>
+                                                        <input type="file" id="seleccionHielera"
+                                                            name="seleccionHielera" accept="image/*" required disabled>
+                                                        <img class="card-img-mate" id="imagenHielera">
+                                                        <br><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                 </ul>
             @endif
             <hr>
-
             {{--  <!-- Bases de hielera -->  --}}
             @if ($reporte->bases_h == 'bases_h_si')
                 <ul>
@@ -1134,7 +1782,7 @@
                                 <br>
                                 <div style="display: none" id="EditBaseHieleraProd">
                                     <hr>
-                                    <select name="baseshl_con_prod[]" id="baseshl_con_prod"
+                                    <select name="baseshl_con_prod" id="baseshl_con_prod"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar producto en la base hielera" required disabled>
                                         <option disabled value="old{'baseshl_con_prod'}" checked>Seleccione una opción
@@ -1159,7 +1807,7 @@
                                 <br>
                                 <div style="display: none" id="EditBaseHieleraVisi">
                                     <hr>
-                                    <select name="prod_baseshl_visible[]" id="prod_baseshl_visible"
+                                    <select name="prod_baseshl_visible" id="prod_baseshl_visible"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar base de hielera es visible" required disabled>
                                         <option disabled value="old{'prod_baseshl_visible'}" checked>Seleccione una opción
@@ -1184,7 +1832,7 @@
                                 <br>
                                 <div style="display: none" id="EditBaseHieleraEstado">
                                     <hr>
-                                    <select name="prod_baseshl_danadas[]" id="prod_baseshl_danadas"
+                                    <select name="prod_baseshl_danadas" id="prod_baseshl_danadas"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar estado de la base de la hielera" required disabled>
                                         <option disabled value="old{'prod_baseshl_danadas'}" checked>Seleccione una opción
@@ -1221,8 +1869,10 @@
                                     <red>Calidad dice:</red>
                                 </div>
                                 <input type="hidden" value="{{ $reporte->bases_h }}" name="stateBaseHielera">
-                                <input class="noClass" type="text" id="inpBsHieProd" name="CalbasesHieProd" required>
-                                <input class="noClass" type="text" id="inpBsHieVisi" name="CalbasesHieVisi" required>
+                                <input class="noClass" type="text" id="inpBsHieProd" name="CalbasesHieProd"
+                                    required>
+                                <input class="noClass" type="text" id="inpBsHieVisi" name="CalbasesHieVisi"
+                                    required>
                                 <input class="noClass" type="text" id="inpBsHieEstado" name="CalbasesHieEstado"
                                     required>
                             </nat>
@@ -1235,15 +1885,128 @@
                 </ul>
             @else
                 <ul>
-                    <span>No hay bases para hieleras</span>
+
+                    <span>Según la auditoria no hay bases para las hieleras</span>
+
+                    <br><br>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btnMat" data-toggle="modal" data-target="#BasesHieleraModal"
+                        onclick="seeBase_H()">
+                        Modificar presencia del material
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="BasesHieleraModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Confirme si hay hieleras</span></green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img class="img_fachada" src="{{ asset('/storage/bases_h.png') }}" />
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" checked>
+                                                    <input type="hidden" name="bases_h" id="bases_h"
+                                                        value="bases_h_si" disabled>
+                                                    <label class="custom-control-label" for="bases_h_si">Si hay
+                                                        bases para hieleras</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>LAS BASES PARA HIELRAS SON VISIBLES?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_baseshl_visible" id="prod_baseshl_visible_si"
+                                                        value="prod_baseshl_visible_si" disabled>
+                                                    <label class="form-check-label"
+                                                        for="prod_baseshl_visible_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_baseshl_visible" id="prod_baseshl_visible_no"
+                                                        value="prod_baseshl_visible_no" disabled>
+                                                    <label class="form-check-label"
+                                                        for="prod_baseshl_visible_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>LAS BASES PARA HIELRAS ESTAN EN BUEN ESTADO? SIN RAYADURAS,
+                                                        STIKERS, NO ESTAN SUCIOS NI DESGASTADOS? </h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_baseshl_danadas" id="prod_baseshl_danadas_si"
+                                                        value="prod_baseshl_danadas_si" disabled>
+                                                    <label class="form-check-label"
+                                                        for="prod_baseshl_danadas_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_baseshl_danadas" id="prod_baseshl_danadas_no"
+                                                        value="prod_baseshl_danadas_no" disabled>
+                                                    <label class="form-check-label"
+                                                        for="prod_baseshl_danadas_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>LAS BASES PARA HIELERAS TIENEN PRODUCTOS DIAGEO?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="baseshl_con_prod" id="baseshl_con_prod_si"
+                                                        value="baseshl_con_prod_si" disabled>
+                                                    <label class="form-check-label" for="baseshl_con_prod_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="baseshl_con_prod" id="baseshl_con_prod_no"
+                                                        value="baseshl_con_prod_no" disabled>
+                                                    <label class="form-check-label" for="baseshl_con_prod_no">NO</label>
+                                                </div>
+                                            </div>
+
+
+                                            <div id="divBaseHielera_Img" style="display: none">
+                                                <div class="row" style="text-align: center">
+                                                    <div class="col">
+                                                        <br><br>
+                                                        <hr>
+                                                        <green> <span>Tome foto de las bases para hielera </span>
+                                                        </green>
+                                                        <input type="file" id="seleccionBase_h"
+                                                            name="seleccionBase_h" accept="image/*" required disabled>
+                                                        <img class="card-img-mate" id="imagenBase_h">
+                                                        <br><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                 </ul>
             @endif
             <hr>
-
-
             {{--  <!-- Dosificador Doble -->  --}}
-
             @if ($reporte->dosificadorD == 'dosificadorD_si')
                 <ul>
                     <div class="row">
@@ -1284,7 +2047,7 @@
                                 <br>
                                 <div style="display: none" id="EditDosDbVisi">
                                     <hr>
-                                    <select name="prod_dsD_visibles[]" id="prod_dsD_visibles"
+                                    <select name="prod_dsD_visibles" id="prod_dsD_visibles"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar si el dosificador es visible " required disabled>
                                         <option disabled value="old{'prod_dsD_visibles'}" checked>Seleccione una opción
@@ -1309,7 +2072,7 @@
                                 <br>
                                 <div style="display: none" id="EditDosDbProd">
                                     <hr>
-                                    <select name="prod_dsD_diferentes[]" id="prod_dsD_diferentes"
+                                    <select name="prod_dsD_diferentes" id="prod_dsD_diferentes"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar el contedido de los dosificadores" required disabled>
                                         <option disabled value="old{'prod_dsD_diferentes'}" checked>Seleccione una opción
@@ -1334,7 +2097,7 @@
                                 <br>
                                 <div style="display: none" id="EditDosDbEstado">
                                     <hr>
-                                    <select name="prod_dsD_danados[]" id="prod_dsD_danados"
+                                    <select name="prod_dsD_danados" id="prod_dsD_danados"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar estado del dosificador" required disabled>
                                         <option disabled value="old{'prod_dsD_danados'}" checked>Seleccione una opción
@@ -1373,7 +2136,8 @@
                                 <input type="hidden" value="{{ $reporte->dosificadorD }}" name="stateDosificadorD">
                                 <input class="noClass" type="text" id="inpDsDVisi" name="CaldosiDVisi" required>
                                 <input class="noClass" type="text" id="inpDsDProd" name="CaldosiDProd" required>
-                                <input class="noClass" type="text" id="inpDsDEstado" name="CaldosiDEstado" required>
+                                <input class="noClass" type="text" id="inpDsDEstado" name="CaldosiDEstado"
+                                    required>
                             </nat>
                         </div>
                         <div class="col-8">
@@ -1384,18 +2148,132 @@
                 </ul>
             @else
                 <ul>
-                    <span>No hay dosificador doble</span>
+                    <span>Según la auditoria no hay dosificador doble</span>
+
+                    <br><br>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btnMat" data-toggle="modal" data-target="#DosifiacadorDobleModal"
+                        onclick="seeDosificadorD()">
+                        Modificar presencia del material
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="DosifiacadorDobleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Confirme si hay dosificador doble</span></green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img class="img_fachada"
+                                                    src="{{ asset('/storage/dosificador_doble.png') }}" />
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" checked>
+                                                    <input type="hidden" name="dosificadorD" id="dosificadorD"
+                                                        value="dosificadorD_si" disabled>
+                                                    <label class="custom-control-label" for="dosificadorD_si">Si hay
+                                                        dosificador doble</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>EL DOSIFICADOR DOBLE ES VISIBLE?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_dsD_visibles" id="prod_dsD_visibles_si"
+                                                        value="prod_dsD_visibles_si" disabled>
+                                                    <label class="form-check-label"
+                                                        for="prod_dsD_visibles_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_dsD_visibles" id="prod_dsD_visibles_no"
+                                                        value="prod_dsD_visibles_no" disabled>
+                                                    <label class="form-check-label"
+                                                        for="prod_dsD_visibles_no">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>EL DOSIFICADOR DOBLE ESTA EN PERFECTAS CONDICIONES? SIN POLVO, SIN
+                                                        SUCIEDAD? LAS ETIQUETAS ESTAN EN BUEN ESTADO?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_dsD_danados" id="prod_dsD_danados_si"
+                                                        value="prod_dsD_danados_si" disabled>
+                                                    <label class="form-check-label" for="prod_dsD_danados_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_dsD_danados" id="prod_dsD_danados_no"
+                                                        value="prod_dsD_danados_no" disabled>
+                                                    <label class="form-check-label" for="prod_dsD_danados_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>EL DOSIFICADOR DOBLE ESTA SIENDO UTILIZADO CON PRODUCTOS DIAGEO?
+                                                    </h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_dsD_diferentes" id="prod_dsD_diferentes_si"
+                                                        value="prod_dsD_diferentes_si" disabled>
+                                                    <label class="form-check-label"
+                                                        for="prod_dsD_diferentes_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_dsD_diferentes" id="prod_dsD_diferentes_no"
+                                                        value="prod_dsD_diferentes_no" disabled>
+                                                    <label class="form-check-label"
+                                                        for="prod_dsD_diferentes_no">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div id="divDosificadorD" style="display: none">
+                                                <div class="row" style="text-align: center">
+                                                    <div class="col">
+                                                        <br><br>
+                                                        <hr>
+                                                        <green><span>Tome foto del dosificador doble</span>
+                                                        </green>
+                                                        <input type="file" id="seleccionDosificadorD"
+                                                            name="seleccionDosificadorD" accept="image/*" required
+                                                            disabled>
+                                                        <img class="card-img-mate" id="imagenDosificadorD">
+                                                        <br><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                 </ul>
             @endif
-
-
             <hr>
             {{--  <!-- Dosificador Sencillo -->  --}}
-
             @if ($reporte->dosificadorS == 'dosificadorS_si')
                 <ul>
-
                     <div class="row">
                         <div class="col card-box-xxl">
                             <h5 class="center">DOSIFICADOR SENCILLO</h5>
@@ -1434,7 +2312,7 @@
                                 <br>
                                 <div style="display: none" id="EditDosSVisi">
                                     <hr>
-                                    <select name="prod_dsS_visibles[]" id="prod_dsS_visibles"
+                                    <select name="prod_dsS_visibles" id="prod_dsS_visibles"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar si el dosificador es visible " required disabled>
                                         <option disabled value="old{'prod_dsS_visibles'}" checked>Seleccione una opción
@@ -1459,7 +2337,7 @@
                                 <br>
                                 <div style="display: none" id="EditDosSnProd">
                                     <hr>
-                                    <select name="prod_dsS_diferentes[]" id="prod_dsS_diferentes"
+                                    <select name="prod_dsS_diferentes" id="prod_dsS_diferentes"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar el contedido de los dosificadores" required disabled>
                                         <option disabled value="old{'prod_dsS_diferentes'}" checked>Seleccione una opción
@@ -1484,7 +2362,7 @@
                                 <br>
                                 <div style="display: none" id="EditDosSbEstado">
                                     <hr>
-                                    <select name="prod_dsS_danados[]" id="prod_dsS_danados"
+                                    <select name="prod_dsS_danados" id="prod_dsS_danados"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar estado de la base del dosificador" required disabled>
                                         <option disabled value="old{'prod_dsS_danados'}" checked>Seleccione una opción
@@ -1521,9 +2399,10 @@
                                     <red>Calidad dice:</red>
                                 </div>
                                 <input type="hidden" value="{{ $reporte->dosificadorS }}" name="stateDosificadorS">
-                                <input class="noClass" type="text"  id="inpDsSVisi"    name="CaldosiSVisi"  required>
-                                <input class="noClass" type="text"  id="inpDsSProd"    name="CaldosiSProd"  required>
-                                <input class="noClass" type="text"  id="inpDsSEstado"  name="CaldosiSEstado"required>
+                                <input class="noClass" type="text" id="inpDsSVisi" name="CaldosiSVisi" required>
+                                <input class="noClass" type="text" id="inpDsSProd" name="CaldosiSProd" required>
+                                <input class="noClass" type="text" id="inpDsSEstado"
+                                    name="CaldosiSEstado"required>
                             </nat>
                         </div>
                         <div class="col-8">
@@ -1534,13 +2413,128 @@
                 </ul>
             @else
                 <ul>
-                    <span>No hay dosificador sencillo</span>
+                    <span>Según la auditoria no hay dosificador sencillo</span>
+
+                    <br><br>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btnMat" data-toggle="modal"
+                        data-target="#DosifiacadorSencilloModal" onclick="seeDosificadorS()">
+                        Modificar presencia del material
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="DosifiacadorSencilloModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Confirme si hay dosificador sencillo</span></green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img class="img_fachada"
+                                                    src="{{ asset('/storage/dosificador_sencillo.png') }}" />
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" checked>
+                                                    <input type="hidden" name="dosificadorS" id="dosificadorS"
+                                                        value="dosificadorS_si" disabled>
+                                                    <label class="custom-control-label" for="dosificadorS_si">Si hay
+                                                        dosificador sencillo</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>EL DOSIFICADOR SENCILLO ES VISIBLE?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_dsS_visibles" id="prod_dsS_visibles_si"
+                                                        value="prod_dsS_visibles_si" disabled>
+                                                    <label class="form-check-label"
+                                                        for="prod_dsS_visibles_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_dsS_visibles" id="prod_dsS_visibles_no"
+                                                        value="prod_dsS_visibles_no" disabled>
+                                                    <label class="form-check-label"
+                                                        for="prod_dsS_visibles_no">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>EL DOSIFICADOR SENCILLO ESTA EN PERFECTAS CONDICIONES? SIN POLVO,
+                                                        SIN SUCIEDAD? LAS ETIQUETAS ESTAN EN BUEN ESTADO?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_dsS_danados" id="prod_dsS_danados_si"
+                                                        value="prod_dsS_danados_si" disabled>
+                                                    <label class="form-check-label" for="prod_dsS_danados_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_dsS_danados" id="prod_dsS_danados_no"
+                                                        value="prod_dsS_danados_no" disabled>
+                                                    <label class="form-check-label" for="prod_dsS_danados_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>EL DOSIFICADOR SENCILLO ESTA SIENDO UTILIZADO CON PRODUCTOS DIAGEO?
+                                                    </h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_dsS_diferentes" id="prod_dsS_diferentes_si"
+                                                        value="prod_dsS_diferentes_si" disabled>
+                                                    <label class="form-check-label"
+                                                        for="prod_dsS_diferentes_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="prod_dsS_diferentes" id="prod_dsS_diferentes_no"
+                                                        value="prod_dsS_diferentes_no" disabled>
+                                                    <label class="form-check-label"
+                                                        for="prod_dsS_diferentes_no">NO</label>
+                                                </div>
+                                            </div>
+                                            <div id="divDosificadorS" style="display: none">
+                                                <div class="row" style="text-align: center">
+                                                    <div class="col">
+                                                        <br><br>
+                                                        <hr>
+                                                        <green><span>Tome foto del dosificador sencillo</span>
+                                                        </green>
+                                                        <input type="file" id="seleccionDosificadorS"
+                                                            name="seleccionDosificadorS" accept="image/*" required
+                                                            disabled>
+                                                        <img class="card-img-mate" id="imagenDosificadorS">
+                                                        <br><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                 </ul>
             @endif
             <hr>
-
-
             {{--  <!-- branding -->  --}}
             @if ($reporte->branding == 'branding_si')
                 <ul>
@@ -1578,10 +2572,11 @@
                                 <br>
                                 <div style="display: none" id="EditBrandingVisi">
                                     <hr>
-                                    <select name="branding_visible[]" id="branding_visible"
+                                    <select name="branding_visible" id="branding_visible"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar visibilidad branding" required disabled>
-                                        <option disabled value="old{'branding_visible'}" checked>Seleccione una opción </option>
+                                        <option disabled value="old{'branding_visible'}" checked>Seleccione una opción
+                                        </option>
                                         @foreach ($branding_visible as $braVis)
                                             <option value="{{ $braVis }}">{{ $braVis }}</option>
                                         @endforeach
@@ -1602,10 +2597,11 @@
                                 <br>
                                 <div style="display: none" id="EditBrandingEstado">
                                     <hr>
-                                    <select name="branding_danados[]" id="branding_danados"
+                                    <select name="branding_danados" id="branding_danados"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar estado branding" required disabled>
-                                        <option disabled value="old{'branding_danados'}" checked>Seleccione una opción </option>
+                                        <option disabled value="old{'branding_danados'}" checked>Seleccione una opción
+                                        </option>
                                         @foreach ($branding_danados as $braDan)
                                             <option value="{{ $braDan }}">{{ $braDan }}</option>
                                         @endforeach
@@ -1637,8 +2633,8 @@
                                 <input type="hidden" value="{{ $reporte->branding }}" name="stateBranding">
                                 <input class="noClass" type="text" id="inpBrandingVisi" name="CalbrandingVisi"
                                     required>
-                                <input class="noClass" type="text" id="inpBrandingEstado" name="CalbrandingEstado"
-                                    required>
+                                <input class="noClass" type="text" id="inpBrandingEstado"
+                                    name="CalbrandingEstado" required>
                             </nat>
                         </div>
                         <div class="col-8">
@@ -1649,14 +2645,115 @@
                 </ul>
             @else
                 <ul>
-                    <span>No hay Branding</span>
+                    <span>Según la auditoria no hay Branding</span>
+                    <br><br>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btnMat" data-toggle="modal" data-target="#brandingModal"
+                        onclick="seeBranding()">
+                        Modificar presencia del material
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="brandingModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Confirme si hay branding</span></green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img class="img_cenefa"
+                                                    src="{{ asset('/storage/branding_mesas.png') }}" />
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" checked>
+                                                    <input type="hidden" name="branding" id="branding"
+                                                        value="branding_si" disabled>
+                                                    <label class="custom-control-label" for="branding_si">Si hay
+                                                        branding</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>EL BRANDING DE LAS MESAS ES VISIBLE?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="branding_visible" id="branding_visible_si"
+                                                        value="branding_visible_si" disabled>
+                                                    <label class="form-check-label" for="branding_visible_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="branding_visible" id="branding_visible_no"
+                                                        value="branding_visible_no" disabled>
+                                                    <label class="form-check-label" for="branding_visible_no">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>EL BRANDING DE LAS MESAS ESTA EN BUENAS CONDICIONES?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="branding_danados" id="branding_danados_si"
+                                                        value="branding_danados_si" disabled>
+                                                    <label class="form-check-label" for="branding_danados_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="branding_danados" id="branding_danados_no"
+                                                        value="branding_danados_no" disabled>
+                                                    <label class="form-check-label" for="branding_danados_no">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div id="divBrandingPic" style="display: none">
+                                                <div class="row" style="text-align: center">
+                                                    <div class="col">
+                                                        <br><br>
+                                                        <hr>
+                                                        <green> <span>Tome foto del branding</span></green>
+                                                        <input type="file" id="seleccionBranding"
+                                                            name="seleccionBranding" accept="image/*" required disabled>
+                                                        <img class="card-img-mate" id="imagenBranding">
+                                                        <br><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
                     <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                 </ul>
             @endif
             <hr>
-
-
-
             {{--  <!-- vasos -->  --}}
             @if ($reporte->vasos == 'vasos_si')
                 <ul>
@@ -1692,10 +2789,11 @@
                                 <br>
                                 <div style="display: none" id="EditVasosVisi">
                                     <hr>
-                                    <select name="vasos_visibles[]" id="vasos_visibles"
+                                    <select name="vasos_visibles" id="vasos_visibles"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar visibilidad branding" required disabled>
-                                        <option disabled value="old{'vasos_visibles'}" checked>Seleccione una opción </option>
+                                        <option disabled value="old{'vasos_visibles'}" checked>Seleccione una opción
+                                        </option>
                                         @foreach ($vasos_visibles as $braVis)
                                             <option value="{{ $braVis }}">{{ $braVis }}</option>
                                         @endforeach
@@ -1716,17 +2814,16 @@
                                 <br>
                                 <div style="display: none" id="EditVasosEstado">
                                     <hr>
-                                    <select name="vasos_quebrados[]" id="vasos_quebrados"
+                                    <select name="vasos_quebrados" id="vasos_quebrados"
                                         class="form-control selectpicker selector" data-style="btn-primary"
                                         title="Seleccionar estado branding" required disabled>
-                                        <option disabled value="old{'vasos_quebrados'}" checked>Seleccione una opción </option>
+                                        <option disabled value="old{'vasos_quebrados'}" checked>Seleccione una opción
+                                        </option>
                                         @foreach ($vasos_quebrados as $VasDan)
                                             <option value="{{ $VasDan }}">{{ $VasDan }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-
-
                             </div>
                             <nat class="bt-menu">
                                 <ul>
@@ -1748,7 +2845,8 @@
                                     <red>Calidad dice:</red>
                                 </div>
                                 <input type="hidden" value="{{ $reporte->vasos }}" name="stateVasos">
-                                <input class="noClass" type="text" id="inpVasosVisi" name="CalvasosVisi" required>
+                                <input class="noClass" type="text" id="inpVasosVisi" name="CalvasosVisi"
+                                    required>
                                 <input class="noClass" type="text" id="inpVasosEstado" name="CalasosEstado"
                                     required>
                             </nat>
@@ -1761,11 +2859,109 @@
                 </ul>
             @else
                 <ul>
-                    <span>No hay vasos ni copas </span>
+                    <span>Según la auditoria no hay vasos ni copas</span>
+
+                    <br><br>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btnMat" data-toggle="modal" data-target="#vasosModal"
+                        onclick="seeVasos()">
+                        Modificar presencia del material
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="vasosModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Confirme si hay vasos y copas de la marca </span></green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img class="img_cenefa"
+                                                    src="{{ asset('/storage/vasos_copas.png') }}" />
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" checked>
+                                                    <input type="hidden" name="vasos" id="vasos"
+                                                        value="vasos_si" disabled>
+                                                    <label class="custom-control-label" for="vasos_si">Si hay
+                                                        vasos</label>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>LOS VASOS Y COPAS DE LA MARCA SON VISIBLES?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="vasos_visibles" id="vasos_visibles_si"
+                                                        value="vasos_visibles_si" disabled>
+                                                    <label class="form-check-label" for="vasos_visibles_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="vasos_visibles" id="vasos_visibles_no"
+                                                        value="vasos_visibles_no" disabled>
+                                                    <label class="form-check-label" for="vasos_visibles_no">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="container">
+                                                <CENTER>
+                                                    <h4>LOS VASOS Y LAS COPAS ESTA EN BUENAS CONDICIONES?</h4>
+                                                </CENTER>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="vasos_quebrados" id="vasos_quebrados_si"
+                                                        value="vasos_quebrados_si" disabled>
+                                                    <label class="form-check-label" for="vasos_quebrados_si">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="vasos_quebrados" id="vasos_quebrados_no"
+                                                        value="vasos_quebrados_no" disabled>
+                                                    <label class="form-check-label" for="vasos_quebrados_no">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div id="divVasosPic" style="display: none">
+                                                <div class="row" style="text-align: center">
+                                                    <div class="col">
+                                                        <br><br>
+                                                        <hr>
+                                                        <green> <span>Tome foto del branding</span></green>
+                                                        <input type="file" id="seleccionVasos"
+                                                            name="seleccionVasos" accept="image/*" disabled>
+                                                        <img class="card-img-mate" id="imagenVasos">
+                                                        <br><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
                     <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                 </ul>
             @endif
-
             {{--  DISPONIBILIDAD   --}}
             <hr>
             <div class="col-12" style="margin: 1rem; background: rgb(193, 243, 250); text-align: center;">
@@ -1778,6 +2974,7 @@
                         <div class="col">
                             <div class="card">
                                 <img src="{{ asset('/storage/b&w.png') }}" class="img_botellasNs swing" />
+                                <p><br></p>
                                 <div class="card-body">
                                     <h5 class="double-shadow">Black & White</h5>
                                     <p class="card-text">
@@ -1795,12 +2992,113 @@
                                                     <td>1000 ml</td>
                                                     <td>{{ $reporte->caras_bAndw1000 }}</td>
                                                 </tr>
+                                                <tr>
+                                                    <button type="button" class="btnCant" data-toggle="modal"
+                                                        data-target="#Byw1000Modal">
+                                                        Modificar caras del producto
+                                                    </button>
+                                                </tr>
                                             @else
                                                 <tr>
                                                     <td></td>
                                                     <td></td>
                                                 </tr>
+                                                <tr>
+                                                    <button type="button" class="btnCant" data-toggle="modal"
+                                                        data-target="#Byw1000Modal">
+                                                        Modificar cantidad de caras
+                                                    </button>
+                                                </tr>
                                             @endif
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="Byw1000Modal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="ttulo">
+                                                                <green><span>Modifique las cantidades si es necesario</span>
+                                                                </green>
+                                                            </div>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="card">
+                                                                <div class="col">
+                                                                    <div class="col">
+                                                                        <img src="{{ asset('/storage/b&w.png') }}"
+                                                                            class="img_botellasNs" />
+                                                                    </div>
+                                                                    <div class="container">
+                                                                        <CENTER>
+                                                                            <h4>PRESENTACION DE 1000 ML</h4>
+                                                                        </CENTER>
+                                                                        <input type="button" onclick="seeBlack1000()"
+                                                                            class="btnCantModal"
+                                                                            value="INGRESAR CANTIDAD" id="btnblack1000">
+                                                                        <div id="divBlack1000" style="display: none">
+                                                                            <input name="caras_bAndw1000"
+                                                                                id="caras_bAndw1000"
+                                                                                class="form-control" type="number"
+                                                                                value="{{ old('caras_bAndw1000, $reporte->caras_bAndw1000') }}"
+                                                                                disabled>
+                                                                            <input type="hidden" name="bAndw1000"
+                                                                                id="bAndw1000" value="bAndw1000_si"
+                                                                                disabled>
+                                                                        </div>
+                                                                    </div><br>
+
+                                                                    <div class="container">
+                                                                        <CENTER>
+                                                                            <h4>PRESENTACION DE 700 ML</h4>
+                                                                        </CENTER>
+                                                                        <input type="button" onclick="seeBlack700()"
+                                                                            class="btnCantModal"
+                                                                            value="INGRESAR CANTIDAD" id="btnblack700">
+                                                                        <div id="divBlack700" style="display: none">
+                                                                            <input name="caras_bAndw700"
+                                                                                id="caras_bAndw700" class="form-control"
+                                                                                type="number"
+                                                                                value="{{ old('caras_bAndw700, $reporte->caras_bAndw700') }}"
+                                                                                disabled>
+                                                                            <input type="hidden" name="bAndw700"
+                                                                                id="bAndw700" value="bAndw700_si"
+                                                                                disabled>
+                                                                        </div>
+                                                                    </div><br>
+
+                                                                    <div class="container">
+                                                                        <CENTER>
+                                                                            <h4>PRESENTACION DE 375 ML</h4>
+                                                                        </CENTER>
+                                                                        <input type="button" onclick="seeBlack375()"
+                                                                            class="btnCantModal"
+                                                                            value="INGRESAR CANTIDAD" id="btnblack375">
+                                                                        <div id="divBlack375" style="display: none">
+                                                                            <input name="caras_bAndw375"
+                                                                                id="caras_bAndw375" class="form-control"
+                                                                                type="number"
+                                                                                value="{{ old('caras_bAndw375, $reporte->caras_bAndw375') }}"
+                                                                                disabled>
+                                                                            <input type="hidden" name="bAndw375"
+                                                                                id="bAndw375" value="bAndw375_si"
+                                                                                disabled>
+                                                                        </div>
+                                                                    </div><br>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Continuar</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                             @if ($reporte->bAndw700 == 'bAndw700_si')
                                                 <tr>
                                                     <td>700 ml</td>
@@ -1832,6 +3130,7 @@
                         <div class="col">
                             <div class="card">
                                 <img src="{{ asset('/storage/smirnoff.png') }}" class="img_botellasNs swing" />
+                                <p><br></p>
                                 <div class="card-body">
                                     <h5 class="double-shadow">Smirnoff x1</h5>
                                     <p class="card-text">
@@ -1849,12 +3148,97 @@
                                                     <td>700 ml</td>
                                                     <td>{{ $reporte->caras_smirnoff700 }}</td>
                                                 </tr>
+                                                <tr>
+                                                    <button type="button" class="btnCant" data-toggle="modal"
+                                                        data-target="#Smirnoff700Modal">
+                                                        Modificar caras del producto
+                                                    </button>
+                                                </tr>
                                             @else
                                                 <tr>
                                                     <td></td>
                                                     <td></td>
                                                 </tr>
+                                                <tr>
+                                                    <button type="button" class="btnCant" data-toggle="modal"
+                                                        data-target="#Smirnoff700Modal">
+                                                        Modificar caras del producto
+                                                    </button>
+                                                </tr>
                                             @endif
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="Smirnoff700Modal" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="ttulo">
+                                                                <green><span>Modifique las cantidades si es necesario</span>
+                                                                </green>
+                                                            </div>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="card">
+                                                                <div class="col">
+                                                                    <div class="col">
+                                                                        <img src="{{ asset('/storage/smirnoff.png') }}"
+                                                                            class="img_botellasNs" />
+
+                                                                    </div>
+                                                                    <div class="container">
+                                                                        <CENTER>
+                                                                            <h4>PRESENTACION DE 700 ML</h4>
+                                                                        </CENTER>
+                                                                        <input type="button" onclick="seeSmirnoff700()"
+                                                                            class="btnCantModal"
+                                                                            value="INGRESAR CANTIDAD"
+                                                                            id="btnsmirnoff700">
+                                                                        <div id="divSmirnoff700" style="display: none">
+                                                                            <input name="caras_smirnoff700"
+                                                                                id="caras_smirnoff700"
+                                                                                class="form-control" type="number"
+                                                                                value="{{ old('caras_smirnoff700, $reporte->caras_smirnoff700') }}"
+                                                                                disabled>
+                                                                            <input type="hidden" name="smirnoff700"
+                                                                                id="smirnoff700" value="smirnoff700_si"
+                                                                                disabled>
+                                                                        </div>
+                                                                    </div><br>
+
+                                                                    <div class="container">
+                                                                        <CENTER>
+                                                                            <h4>PRESENTACION DE 375 ML</h4>
+                                                                        </CENTER>
+                                                                        <input type="button" onclick="seeSmirnoff375()"
+                                                                            class="btnCantModal"
+                                                                            value="INGRESAR CANTIDAD"
+                                                                            id="btnsmirnoff375">
+                                                                        <div id="divSmirnoff375" style="display: none">
+                                                                            <input name="caras_smirnoff375"
+                                                                                id="caras_smirnoff375"
+                                                                                class="form-control" type="number"
+                                                                                value="{{ old('caras_smirnoff375, $reporte->caras_smirnoff375') }}"
+                                                                                disabled>
+                                                                            <input type="hidden" name="smirnoff375"
+                                                                                id="smirnoff375" value="smirnoff375_si"
+                                                                                disabled>
+                                                                        </div>
+                                                                    </div><br>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Continuar</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                             @if ($reporte->smirnoff375 == 'smirnoff375_si')
                                                 <tr>
                                                     <td>375 ml</td>
@@ -1880,6 +3264,7 @@
                             <div class="card">
                                 <img src="{{ asset('/storage/smirnoff_sin_azucar.png') }}"
                                     class="img_botellasNs swing" />
+                                <p><br></p>
                                 <div class="card-body">
                                     <h5 class="double-shadow">Smirnoff x1 sin az&uacute;car</h5>
                                     <p class="card-text">
@@ -1891,21 +3276,109 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if ($reporte->smirnoff700 == 'smirnoff700_si')
+                                            @if ($reporte->smirnoff_ns700 == 'smirnoff_ns700_si')
                                                 <tr>
                                                     <td>700 ml</td>
-                                                    <td>{{ $reporte->caras_smirnoff700 }}</td>
+                                                    <td>{{ $reporte->caras_smirnoff_ns700 }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <button type="button" class="btnCant" data-toggle="modal"
+                                                        data-target="#Smirnoff_nsModal">
+                                                        Modificar caras del producto
+                                                    </button>
                                                 </tr>
                                             @else
                                                 <tr>
                                                     <td></td>
                                                     <td></td>
                                                 </tr>
+                                                <tr>
+                                                    <button type="button" class="btnCant" data-toggle="modal"
+                                                        data-target="#Smirnoff_nsModal">
+                                                        Modificar caras del producto
+                                                    </button>
+                                                </tr>
                                             @endif
-                                            @if ($reporte->smirnoff375 == 'smirnoff375_si')
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="Smirnoff_nsModal" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="ttulo">
+                                                                <green><span>Modifique las cantidades si es necesario</span>
+                                                                </green>
+                                                            </div>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="card">
+                                                                <div class="col">
+                                                                    <div class="col">
+                                                                        <img src="{{ asset('/storage/smirnoff_sin_azucar.png') }}"
+                                                                            class="img_botellasNs" />
+                                                                    </div>
+                                                                    <div class="container">
+                                                                        <CENTER>
+                                                                            <h4>PRESENTACION DE 700 ML</h4>
+                                                                        </CENTER>
+                                                                        <input type="button"
+                                                                            onclick="seeSmirnoff_ns700()"
+                                                                            class="btnCantModal"
+                                                                            value="INGRESAR CANTIDAD"
+                                                                            id="btnsmirnoff_ns700">
+                                                                        <div id="divSmirnoff_ns700"
+                                                                            style="display: none">
+                                                                            <input name="caras_smirnoff_ns700"
+                                                                                id="caras_smirnoff_ns700"
+                                                                                class="form-control" type="number"
+                                                                                value="{{ old('caras_smirnoff_ns700, $reporte->caras_smirnoff_ns700') }}"
+                                                                                disabled>
+                                                                            <input type="hidden" name="smirnoff_ns700"
+                                                                                id="smirnoff_ns700"
+                                                                                value="smirnoff_ns700_si" disabled>
+                                                                        </div>
+                                                                    </div><br>
+
+                                                                    <div class="container">
+                                                                        <CENTER>
+                                                                            <h4>PRESENTACION DE 375 ML</h4>
+                                                                        </CENTER>
+                                                                        <input type="button"
+                                                                            onclick="seeSmirnoff_ns375()"
+                                                                            class="btnCantModal"
+                                                                            value="INGRESAR CANTIDAD"
+                                                                            id="btnsmirnoff_ns375">
+                                                                        <div id="divSmirnoff_ns375"
+                                                                            style="display: none">
+                                                                            <input name="caras_smirnoff_ns375"
+                                                                                id="caras_smirnoff_ns375"
+                                                                                class="form-control" type="number"
+                                                                                value="{{ old('caras_smirnoff_ns375 , $reporte->caras_smirnoff_ns375') }}"
+                                                                                disabled>
+                                                                            <input type="hidden" name="smirnoff_ns375"
+                                                                                id="smirnoff_ns375"
+                                                                                value="smirnoff_ns375_si" disabled>
+                                                                        </div>
+                                                                    </div><br>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Continuar</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @if ($reporte->smirnoff_ns375 == 'smirnoff_ns375_si')
                                                 <tr>
                                                     <td>375 ml</td>
-                                                    <td>{{ $reporte->caras_smirnoff375 }}</td>
+                                                    <td>{{ $reporte->caras_smirnoff_ns375 }}</td>
                                                 </tr>
                                             @else
                                                 <tr>
@@ -1926,8 +3399,7 @@
                         <div class="col">
                             <div class="card">
                                 <img src="{{ asset('/storage/jhonie_walker.png') }}" class="img_botellasNs swing" />
-                                {{--  <img src="{{ Storage::url('/storage/jhonie_walker.png') }}" class="img_botellas swing"
-                            alt="Los Angeles Skyscrapers" />  --}}
+                                <p><br></p>
                                 <div class="card-body">
                                     <h5 class="double-shadow">Jhonnie Walker</h5>
                                     <p class="card-text">
@@ -1944,12 +3416,115 @@
                                                     <td>1000 ml</td>
                                                     <td>{{ $reporte->caras_jhonnie1000 }}</td>
                                                 </tr>
+                                                <tr>
+                                                    <button type="button" class="btnCant" data-toggle="modal"
+                                                        data-target="#JhonnieModal">
+                                                        Modificar caras del producto
+                                                    </button>
+                                                </tr>
                                             @else
                                                 <tr>
                                                     <td></td>
                                                     <td></td>
                                                 </tr>
+                                                <tr>
+                                                    <button type="button" class="btnCant" data-toggle="modal"
+                                                        data-target="#JhonnieModal">
+                                                        Modificar caras del producto
+                                                    </button>
+                                                </tr>
                                             @endif
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="JhonnieModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="ttulo">
+                                                                <green><span>Modifique las cantidades si es necesario</span>
+                                                                </green>
+                                                            </div>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="card">
+                                                                <div class="col">
+                                                                    <div class="col">
+                                                                        <img src="{{ asset('/storage/jhonie_walker.png') }}"
+                                                                            class="img_botellasNs" />
+                                                                    </div>
+                                                                    <div class="container">
+                                                                        <CENTER>
+                                                                            <h4>PRESENTACION DE 1000 ML</h4>
+                                                                        </CENTER>
+                                                                        <input type="button" onclick="seeJhonnie1000()"
+                                                                            class="btnCantModal"
+                                                                            value="INGRESAR CANTIDAD"
+                                                                            id="btnJhonnie1000">
+                                                                        <div id="divjhonnie1000" style="display: none">
+                                                                            <input name="caras_jhonnie1000"
+                                                                                id="caras_jhonnie1000"
+                                                                                class="form-control" type="number"
+                                                                                value="{{ old('caras_jhonnie1000, $reporte->caras_jhonnie1000') }}"
+                                                                                disabled>
+                                                                            <input type="hidden" name="jhonnie1000"
+                                                                                id="jhonnie1000" value="jhonnie1000_si"
+                                                                                disabled>
+                                                                        </div>
+                                                                    </div><br>
+                                                                    <div class="container">
+                                                                        <CENTER>
+                                                                            <h4>PRESENTACION DE 700 ML</h4>
+                                                                        </CENTER>
+                                                                        <input type="button" onclick="seeJhonnie700()"
+                                                                            class="btnCantModal"
+                                                                            value="INGRESAR CANTIDAD"
+                                                                            id="btnJhonnie700">
+                                                                        <div id="divJhonnie700" style="display: none">
+                                                                            <input name="caras_jhonnie700"
+                                                                                id="caras_jhonnie700"
+                                                                                class="form-control" type="number"
+                                                                                value="{{ old('caras_jhonnie700, $reporte->caras_jhonnie700') }}"
+                                                                                disabled>
+                                                                            <input type="hidden" name="jhonnie700"
+                                                                                id="jhonnie700" value="jhonnie700_si"
+                                                                                disabled>
+                                                                        </div>
+                                                                    </div><br>
+
+                                                                    <div class="container">
+                                                                        <CENTER>
+                                                                            <h4>PRESENTACION DE 375 ML</h4>
+                                                                        </CENTER>
+                                                                        <input type="button" onclick="seeJhonnie375()"
+                                                                            class="btnCantModal"
+                                                                            value="INGRESAR CANTIDAD"
+                                                                            id="btnJhonnie375">
+                                                                        <div id="divJhonnie375" style="display: none">
+                                                                            <input name="caras_jhonnie375"
+                                                                                id="caras_jhonnie375"
+                                                                                class="form-control" type="number"
+                                                                                value="{{ old('caras_jhonnie375 , $reporte->caras_jhonnie375') }}"
+                                                                                disabled>
+                                                                            <input type="hidden" name="jhonnie375"
+                                                                                id="jhonnie375" value="jhonnie375_si"
+                                                                                disabled>
+                                                                        </div>
+                                                                    </div><br>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Continuar</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                             @if ($reporte->jhonnie700 == 'jhonnie700_si')
                                                 <tr>
                                                     <td>700 ml</td>
@@ -1961,6 +3536,7 @@
                                                     <td></td>
                                                 </tr>
                                             @endif
+
                                             @if ($reporte->jhonnie375 == 'jhonnie375_si')
                                                 <tr>
                                                     <td>375 ml</td>
@@ -1982,6 +3558,7 @@
                             <div class="card">
                                 <img src="{{ asset('/storage/oldparr.png') }}" class="img_botellasPq swing"
                                     alt="Skyscrapers" />
+                                <p><br></p>
                                 <div class="card-body">
                                     <h5 class="double-shadow">Old Parr</h5>
                                     <p class="card-text">
@@ -1998,24 +3575,74 @@
                                                     <td>750 ml</td>
                                                     <td>{{ $reporte->caras_oldparr750 }}</td>
                                                 </tr>
+                                                <tr>
+                                                    <button type="button" class="btnCant" data-toggle="modal"
+                                                        data-target="#OldParrModal">
+                                                        Modificar caras del producto
+                                                    </button>
+                                                </tr>
                                             @else
                                                 <tr>
                                                     <td></td>
-                                                    <td></td>
-                                                </tr>
                                                 <tr>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <button type="button" class="btnCant" data-toggle="modal"
+                                                        data-target="#OldParrModal">
+                                                        Modificar caras del producto
+                                                    </button>
+                                                </tr>
                                                 </tr>
                                             @endif
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="OldParrModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="ttulo">
+                                                                <green><span>Modifique las cantidades si es necesario</span>
+                                                                </green>
+                                                            </div>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="card">
+                                                                <div class="col">
+                                                                    <div class="col">
+                                                                        <img src="{{ asset('/storage/oldparr.png') }}"
+                                                                            class="img_botellasPq" />
+                                                                    </div>
+                                                                    <div class="container">
+                                                                        <CENTER>
+                                                                            <h4>PRESENTACION DE 750 ML</h4>
+                                                                        </CENTER>
+                                                                        <input type="button" onclick="seeOldParr700()"
+                                                                            class="btnCantModal"
+                                                                            value="INGRESAR CANTIDAD"
+                                                                            id="btnOldParr750">
+                                                                        <div id="divOldParr750" style="display: none">
+                                                                            <input name="caras_oldparr750"
+                                                                                id="caras_oldparr750"
+                                                                                class="form-control" type="number"
+                                                                                value="{{ old('caras_oldparr750, $reporte->caras_oldparr750') }}"
+                                                                                disabled>
+                                                                            <input type="hidden" name="oldparr750"
+                                                                                id="oldparr750" value="oldparr750_si"
+                                                                                disabled>
+                                                                        </div>
+                                                                    </div><br>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Continuar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tbody>
                                     </table>
                                     </p>
@@ -2026,6 +3653,7 @@
                             <div class="card">
                                 <img src="{{ asset('/storage/buchannas.png') }}" class="img_botellasPq swing"
                                     alt="Skyscrapers" />
+                                <p><br></p>
                                 <div class="card-body">
                                     <h5 class="double-shadow">Buchanna&acute;s</h5>
                                     <p class="card-text">
@@ -2042,26 +3670,102 @@
                                                     <td>700 ml</td>
                                                     <td>{{ $reporte->caras_buchannas700 }}</td>
                                                 </tr>
+                                                <tr>
+                                                    <button type="button" class="btnCant" data-toggle="modal"
+                                                        data-target="#BuchannasModal">
+                                                        Modificar caras del producto
+                                                    </button>
+                                                </tr>
                                             @else
                                                 <tr>
                                                     <td></td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <button type="button" class="btnCant" data-toggle="modal"
+                                                        data-target="#BuchannasModal">
+                                                        Modificar caras del producto
+                                                    </button>
                                                 </tr>
                                             @endif
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="BuchannasModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="ttulo">
+                                                                <green><span>Modifique las cantidades si es necesario</span>
+                                                                </green>
+                                                            </div>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="card">
+                                                                <div class="col">
+                                                                    <div class="col">
+                                                                        <img src="{{ asset('/storage/buchannas.png') }}"
+                                                                            class="img_botellasPq" />
+                                                                    </div>
+                                                                    <div class="container">
+                                                                        <CENTER>
+                                                                            <h4>PRESENTACION DE 750 ML</h4>
+                                                                        </CENTER>
+                                                                        <input type="button"
+                                                                            onclick="seeBuchannas700()"
+                                                                            class="btnCantModal"
+                                                                            value="INGRESAR CANTIDAD"
+                                                                            id="btnBuchannas700">
+                                                                        <div id="divBuchannas700" style="display: none">
+                                                                            <input name="caras_buchannas700"
+                                                                                id="caras_buchannas700"
+                                                                                class="form-control" type="number"
+                                                                                value="{{ old('caras_buchannas700, $reporte->caras_buchannas700') }}"
+                                                                                disabled>
+                                                                            <input type="hidden" name="buchannas700"
+                                                                                id="buchannas700"
+                                                                                value="buchannas700_si" disabled>
+                                                                        </div>
+                                                                    </div><br>
+                                                                    <div class="container">
+                                                                        <CENTER>
+                                                                            <h4>PRESENTACION DE 375 ML</h4>
+                                                                        </CENTER>
+                                                                        <input type="button"
+                                                                            onclick="seeBuchannas375()"
+                                                                            class="btnCantModal"
+                                                                            value="INGRESAR CANTIDAD"
+                                                                            id="btnBuchannas375">
+                                                                        <div id="divBuchannas375" style="display: none">
+                                                                            <input name="caras_buchannas375"
+                                                                                id="caras_buchannas375"
+                                                                                class="form-control" type="number"
+                                                                                value="{{ old('caras_buchannas375, $reporte->caras_buchannas375') }}"
+                                                                                disabled>
+                                                                            <input type="hidden" name="buchannas375"
+                                                                                id="buchannas375"
+                                                                                value="buchannas375_si" disabled>
+                                                                        </div>
+                                                                    </div><br>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Continuar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             @if ($reporte->buchannas375 == 'buchannas375_si')
                                                 <tr>
                                                     <td>375 ml</td>
                                                     <td>{{ $reporte->caras_buchannas375 }}</td>
                                                 </tr>
                                             @else
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
                                                 <tr>
                                                     <td></td>
                                                     <td></td>
@@ -2119,17 +3823,19 @@
                                 <div class="name1">Se audito bien<br> la visibilidad <br>de la marca</div>
                             </div>
                             <br>
-                        <div style="display: none" id="EditCalVisi">
+                            <div style="display: none" id="EditCalVisi">
+                                <hr>
+                                <select name="cal_marc_visible" id="cal_marc_visible"
+                                    class="form-control selectpicker selector " data-style="btn-primary"
+                                    title="Seleccionar visibilidad de la marca" required disabled>
+                                    <option disabled value="old{'cal_marc_visible'}" checked>Seleccione una opción
+                                    </option>
+                                    @foreach ($cal_marc_visible as $calVisi)
+                                        <option value="{{ $calVisi }}">{{ $calVisi }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <hr>
-                            <select name="cal_marc_visible[]" id="cal_marc_visible" class="form-control selectpicker selector "
-                                data-style="btn-primary" title="Seleccionar visibilidad de la marca" required disabled>
-                                <option disabled value="old{'cal_marc_visible'}" checked>Seleccione una opción </option>
-                                @foreach ($cal_marc_visible as $calVisi)
-                                    <option value="{{ $calVisi }}">{{ $calVisi }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <hr>
                             <br>
                             <div class="toggle-wrapper">
                                 <div class="toggle checkcross32">
@@ -2142,17 +3848,19 @@
                                 <div class="name1">Se audito bien<br> el estado <br>de la marca</div>
                             </div>
                             <br>
-                        <div style="display: none" id="EditCalEstado">
+                            <div style="display: none" id="EditCalEstado">
+                                <hr>
+                                <select name="cal_marc_danados" id="cal_marc_danados"
+                                    class="form-control selectpicker selector " data-style="btn-primary"
+                                    title="Seleccionar visibilidad de la marca" required disabled>
+                                    <option disabled value="old{'cal_marc_danados'}" checked>Seleccione una opción
+                                    </option>
+                                    @foreach ($cal_marc_danados as $calEst)
+                                        <option value="{{ $calEst }}">{{ $calEst }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <hr>
-                            <select name="cal_marc_danados[]" id="cal_marc_danados" class="form-control selectpicker selector "
-                                data-style="btn-primary" title="Seleccionar visibilidad de la marca" required disabled>
-                                <option disabled value="old{'cal_marc_danados'}" checked>Seleccione una opción </option>
-                                @foreach ($cal_marc_danados as $calEst)
-                                    <option value="{{ $calEst }}">{{ $calEst }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <hr>
                             <br>
                             <div class="toggle-wrapper">
                                 <div class="toggle checkcross33">
@@ -2167,16 +3875,20 @@
                             <br>
                             <div style="display: none" id="EditCalEtiquetas">
                                 <hr>
-                                <select name="cal_marc_et_danados[]" id="cal_marc_et_danados" class="form-control selectpicker selector "
-                                    data-style="btn-primary" title="Seleccionar calidad de las etiquetas de la marcas" required disabled>
-                                    <option disabled value="old{'cal_marc_et_danados'}" checked>Seleccione una opción </option>
+                                <select name="cal_marc_et_danados" id="cal_marc_et_danados"
+                                    class="form-control selectpicker selector " data-style="btn-primary"
+                                    title="Seleccionar calidad de las etiquetas de la marcas" required disabled>
+                                    <option disabled value="old{'cal_marc_et_danados'}" checked>Seleccione una opción
+                                    </option>
                                     @foreach ($cal_marc_et_danados as $calMarEt)
                                         <option value="{{ $calMarEt }}">{{ $calMarEt }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <hr>
+
                         </div>
+
                         <nat class="bt-menu">
                             <ul>
                                 <li class="bt_li"><button type="button" class="botOn js-zoom-in15"><i
@@ -2198,8 +3910,10 @@
                                 <red>Calidad dice:</red>
                             </div>
                             <input class="noClass" type="text" name="calMarcVisi" id="inpCalMarcVisi" required>
-                            <input class="noClass" type="text" name="calMarcEstado" id="inpCalMarcEstado" required>
-                            <input class="noClass" type="text" name="calMarcEtiqueta" id="inpCalMarcEtiqueta" required>
+                            <input class="noClass" type="text" name="calMarcEstado" id="inpCalMarcEstado"
+                                required>
+                            <input class="noClass" type="text" name="calMarcEtiqueta" id="inpCalMarcEtiqueta"
+                                required>
                         </nat>
                     </div>
                     @if ($reporte->seleccionLinealDiageo = !null)
@@ -2229,6 +3943,136 @@
                         vendida es
                         <strong>{{ $reporte->comp_ron2 }}</strong>, ambas ocupan {{ $reporte->caras_comp_ron }} caras.
                     </p>
+                    <p>
+                        <input type="button" value="Modificar el comparativo de rones" data-target="#CompRonModal"
+                            data-toggle="modal" class="btnCompModal" onclick="seeCompRon()">
+                    </p>
+                    <!-- Modal -->
+                    <div class="modal fade" id="CompRonModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Ajuste el reporte </span>
+                                        </green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img src="{{ asset('/storage/ronx3.png') }}"
+                                                    class="img_botellasComp" />
+                                            </div>
+                                            <div class="container">
+                                                <ul>
+                                                    <div class="row">
+                                                        <div class="col-sm-12" style="background: rgb(224, 248, 224)">
+                                                            <div
+                                                                class="custom-control custom-radio custom-control-inline">
+                                                                <input type="checkbox" class="custom-control-input"
+                                                                    checked>
+                                                                <input type="hidden" name="hay_ron" id="hay_ron"
+                                                                    value="hay_ron_si" disabled>
+                                                                <label class="custom-control-label" for="hay_ron_si">Hay
+                                                                    rones de la competencia</label>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-8 col-sm-6"
+                                                                    style="background: rgb(198, 198, 235)">
+                                                                    {{ Form::label('comp_ron1', 'Primera marca más vendida') }}
+                                                                    <select name="comp_ron1" id="comp_ron1"
+                                                                        class="form-control" required disabled>
+                                                                        <option selected value="">--</option>
+                                                                        @foreach ($competenciaRon as $Ron)
+                                                                            <option value="{{ $Ron }}">
+                                                                                {{ $Ron }} </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    {{ Form::label('precio_comp_ron1', 'Precio $$ 750 ml') }}
+                                                                    <input type="text" name="precio_comp_ron1"
+                                                                        id="precio_comp_ron1" class="form-control"
+                                                                        style="border-radius: 0.3rem;" maxlength="6"
+                                                                        minlength="1" autocomplete="off" required
+                                                                        disabled>
+                                                                    <hr>
+                                                                    <span id="texto14"></span>
+                                                                    <hr>
+                                                                    @include('errors.errors', [
+                                                                        'field' => 'precio_comp_ron1',
+                                                                    ])
+                                                                </div>
+                                                                <div class="col-4 col-sm-6"
+                                                                    style="background: rgb(240, 240, 200)">
+                                                                    {{ Form::label('comp_ron2', 'Segunda marca más vendida') }}
+
+                                                                    <select name="comp_ron2" id="comp_ron2"
+                                                                        class="form-control" required disabled>
+                                                                        <option selected value="">--</option>
+                                                                        @foreach ($competenciaRon as $Ron)
+                                                                            <option value="{{ $Ron }}">
+                                                                                {{ $Ron }} </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    {{ Form::label('precio_comp_ron2', 'Precio $$ 750 ml') }}
+                                                                    <input type="text" name="precio_comp_ron2"
+                                                                        id="precio_comp_ron2" class="form-control"
+                                                                        style="border-radius: 0.3rem;" maxlength="6"
+                                                                        minlength="1" autocomplete="off" required
+                                                                        disabled>
+                                                                    <hr>
+                                                                    <span id="texto15"></span>
+                                                                    <hr>
+                                                                    @include('errors.errors', [
+                                                                        'field' => 'precio_comp_ron2',
+                                                                    ])
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            {{ Form::label('caras_comp_ron', 'Cantidad de caras en el lineal de rones') }}
+                                                            <input type="number" class="form-control" placeholder=""
+                                                                name="caras_comp_ron" id="caras_comp_ron"
+                                                                aria-label="caras_comp_ron" required disabled>
+                                                            @include('errors.errors', [
+                                                                'field' => 'caras_comp_ron',
+                                                            ])
+                                                            <br>
+                                                            <div class="d-flex justify-content-center">
+                                                                <div class="ttulo">
+                                                                    <green><span>Foto del lineal de ron</span></green>
+                                                                </div>
+                                                                <br>
+                                                                <input type="file" id="seleccionLinealR"
+                                                                    accept="image/*" required disabled>
+                                                                <input type="hidden" value="{{ $seleccionLinealR }}"
+                                                                    name="seleccionLinealR">
+                                                                <br><br>
+                                                                <img class="card-img-top" id="imagenLinearlR">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                            </div><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <nat class="bt-menu">
                         <ul>
                             <li class="bt_li"><button type="button" class="botOn js-zoom-in16"><i
@@ -2265,6 +4109,147 @@
                         es <strong>{{ $reporte->comp_aguard2 }}</strong>,
                         ambas ocupan {{ $reporte->caras_comp_aguardiente }} caras.
                     </p>
+
+
+                    <p>
+                        <input type="button" value="Modificar el comparativo de aguardiente"
+                            data-target="#CompAguaModal" data-toggle="modal" class="btnCompModal"
+                            onclick="seeCompAgua()">
+                    </p>
+                    <!-- Modal -->
+                    <div class="modal fade" id="CompAguaModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Ajuste el reporte </span>
+                                        </green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img src="{{ asset('/storage/aguardientes.png') }}"
+                                                    class="img_botellasComp" />
+                                            </div>
+                                            <div class="container">
+                                                <ul>
+                                                    <div class="row">
+                                                        <div class="col-sm-12" style="background: rgb(224, 248, 224)">
+                                                            <div
+                                                                class="custom-control custom-radio custom-control-inline">
+                                                                <input type="checkbox" class="custom-control-input"
+                                                                    checked>
+                                                                <input type="hidden" name="hay_aguardiente"
+                                                                    id="hay_aguardiente" value="hay_aguardiente_si"
+                                                                    disabled>
+                                                                <label class="custom-control-label"
+                                                                    for="hay_aguardiente_si">Hay
+                                                                    aguardientes de la competencia</label>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-8 col-sm-6"
+                                                                    style="background: rgb(198, 198, 235)">
+                                                                    {{ Form::label('comp_aguard1', 'Primera marca más vendida') }}
+                                                                    <select name="comp_aguard1" id="comp_aguard1"
+                                                                        class="form-control" required disabled>
+                                                                        <option selected value="">--</option>
+                                                                        @foreach ($competenciaAguardiente as $Agua)
+                                                                            <option value="{{ $Agua }}">
+                                                                                {{ $Agua }} </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    {{ Form::label('precio_comp_aguardiente1', 'Precio $$ 750 ml') }}
+                                                                    <input type="text"
+                                                                        name="precio_comp_aguardiente1"
+                                                                        id="precio_comp_aguardiente1"
+                                                                        class="form-control"
+                                                                        style="border-radius: 0.3rem;" maxlength="6"
+                                                                        minlength="1" autocomplete="off" required
+                                                                        disabled>
+                                                                    <hr>
+                                                                    <span id="texto16"></span>
+                                                                    <hr>
+                                                                    @include('errors.errors', [
+                                                                        'field' => 'precio_comp_aguardiente1',
+                                                                    ])
+                                                                </div>
+                                                                <div class="col-4 col-sm-6"
+                                                                    style="background: rgb(240, 240, 200)">
+                                                                    {{ Form::label('comp_aguard2', 'Segunda marca más vendida') }}
+
+                                                                    <select name="comp_aguard2" id="comp_aguard2"
+                                                                        class="form-control" required disabled>
+                                                                        <option selected value="">--</option>
+                                                                        @foreach ($competenciaAguardiente as $Agua)
+                                                                            <option value="{{ $Agua }}">
+                                                                                {{ $Agua }} </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    {{ Form::label('precio_comp_aguardiente2', 'Precio $$ 750 ml') }}
+                                                                    <input type="text"
+                                                                        name="precio_comp_aguardiente2"
+                                                                        id="precio_comp_aguardiente2"
+                                                                        class="form-control"
+                                                                        style="border-radius: 0.3rem;" maxlength="6"
+                                                                        minlength="1" autocomplete="off" required
+                                                                        disabled>
+                                                                    <hr>
+                                                                    <span id="texto17"></span>
+                                                                    <hr>
+                                                                    @include('errors.errors', [
+                                                                        'field' => 'precio_comp_aguardiente2',
+                                                                    ])
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            {{ Form::label('caras_comp_aguardiente', 'Cantidad de caras en el lineal de aguardientes') }}
+                                                            <input type="number" class="form-control" placeholder=""
+                                                                name="caras_comp_aguardiente"
+                                                                id="caras_comp_aguardiente"
+                                                                aria-label="caras_comp_aguardiente" required disabled>
+                                                            @include('errors.errors', [
+                                                                'field' => 'caras_comp_aguardiente',
+                                                            ])
+                                                            <br>
+                                                            <div class="d-flex justify-content-center">
+                                                                <div class="ttulo">
+                                                                    <green><span>Foto del lineal de aguardientes</span>
+                                                                    </green>
+                                                                </div>
+                                                                <br>
+
+                                                                <input type="hidden" id="fotoLinealA"
+                                                                    name="seleccionLinealA"
+                                                                    value="auditorias_pics/Aguardiente_{{ $reporte->precarga_id }}.png"
+                                                                    required disabled>
+                                                                <input type="file" id="seleccionLinealA"
+                                                                    name="fotoLinealA" accept="image/*" disabled>
+                                                                <br><br>
+                                                                <img class="card-img-top" id="imagenLinearlA">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                            </div><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <nat class="bt-menu">
                         <ul>
                             <li class="bt_li"><button type="button" class="botOn js-zoom-in17"><i
@@ -2292,23 +4277,100 @@
         <div class="col-12" style="margin: 1rem; background: rgb(193, 243, 250); text-align: center;">
             <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">VISIBILIDAD DE LA MARCA</h1>
         </div>
-        <hr>
         <ul>
             <div class="row">
-                <div class="col card-box-xm">
+                <div class="col-4 card-boxComp">
                     <h5 class="center">RONES JUNTO A BLACK & WHITE</h5>
                     <p class= "parrafoJustificado">
                         <span>
                             <blue>Auditor dice:</blue>
                         </span>
                         @if (file_exists($reporte->ron_byw))
-                            La marca <strong> Black & White </strong> esta ubicada correctamente junto a los
-                            rones de la competencia
-                        @else
                             La marca <strong> Black & White </strong> no esta correctamente ubicada junto a
                             los rones de la competencia
+                        @else
+                            La marca <strong> Black & White </strong> esta ubicada correctamente junto a los
+                            rones de la competencia
                         @endif
                     </p>
+                    <br>
+                    <input type="button" value="Modificar rones junto a B&W" data-target="#CompRonvsBlackModal"
+                        data-toggle="modal" class="btnComp2Modal" onclick="seeCompRonBlack()">
+                    <br>
+                    <div class="modal fade" id="CompRonvsBlackModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Ajuste la respuesta según la evidencia </span>
+                                        </green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img src="{{ asset('/storage/ron_b&w.png') }}"
+                                                    class="img_botellasComp" />
+                                            </div>
+                                            <div class="container">
+                                                <ul>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <CENTER>
+                                                                <h4>BLACK & WHITE ESTA EXHIBIDO JUNTO A LOS RONES DE LA
+                                                                    COMPETENCIA?</h4>
+                                                            </CENTER>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="ron_byw" id="ron_byw_si" value="ron_byw_si"
+                                                                    disabled>
+                                                                <label class="form-check-label"
+                                                                    for="ron_byw_si">SI</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="ron_byw" id="ron_byw_no" value="ron_byw_no"
+                                                                    disabled>
+                                                                <label class="form-check-label"
+                                                                    for="ron_byw_no">NO</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="text-align: center">
+                                                        <div class="col">
+                                                            <br><br>
+                                                            <hr>
+                                                            <green> <span>Tome foto del branding</span></green>
+                                                            <input type="hidden" id="fotoron_byw"
+                                                                name="seleccionron_byw"
+                                                                value="auditorias_pics/ron_byw_{{ $reporte->precarga_id }}.png"
+                                                                required disabled>
+                                                            <input type="file" id="seleccionron_byw"
+                                                                name="fotoron_byw" accept="image/*" disabled>
+                                                            <img class="card-img-mate" id="imagenron_byw">
+                                                            <br><br>
+                                                        </div>
+                                                    </div>
+
+                                                </ul>
+                                            </div><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="toggle-wrapper">
                         <div class="toggle checkcross34">
                             <input id="checkcross34" type="checkbox" style="display: none">
@@ -2330,7 +4392,7 @@
                             <li class="bt_li"><button type="button" class="botOn js-rotate-left18"><i
                                         class="fas fa-undo" alt="giro izquierda"></i></button></li>
                         </ul>
-                        <div id="msgRonBlack">
+                        <div style="margin-left: 0.5rem;" id="msgRonBlack">
                             <red>Calidad dice:</red>
                         </div>
                         <input class="noClass" type="text" id="inpRonBlack" name="RonBlack" required>
@@ -2352,20 +4414,101 @@
         <hr>
         <ul>
             <div class="row">
-                <div class="col card-box-xm">
+                <div class="col-4 card-boxComp">
                     <h5 class="center">RONES JUNTO A JHONNIE WALKER</h5>
                     <p class= "parrafoJustificado">
                         <span>
                             <blue>Auditor dice:</blue>
                         </span>
                         @if ($reporte->ron_jhonny == 'ron_jhonny_si')
-                            La marca <strong> Jhonnie Walker</strong> esta ubicada correctamente junto a
-                            los rones de la competencia.
-                        @else
                             La marca <strong> Jhonnie Walker</strong> no esta correctamente ubicada junto
                             a los rones de la competencia.
+                        @else
+                            La marca <strong> Jhonnie Walker</strong> esta ubicada correctamente junto a
+                            los rones de la competencia.
                         @endif
                     </p>
+                    <br>
+                    <input type="button" value="Modificar rones junto a Jhonnie Walker"
+                        data-target="#CompRonvsJhonnieModal" data-toggle="modal" class="btnComp2Modal"
+                        onclick="seeCompRonJhonnie()">
+                    <br>
+                    <div class="modal fade" id="CompRonvsJhonnieModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Ajuste la respuesta según la evidencia </span>
+                                        </green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img src="{{ asset('/storage/ron_jhonny.png') }}"
+                                                    class="img_botellasComp" />
+                                            </div>
+                                            <div class="container">
+                                                <ul>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <CENTER>
+                                                                <h4>JHONNIE WALKER ESTA EXHIBIDO JUNTO A LOS RONES DE LA
+                                                                    COMPETENCIA?</h4>
+                                                            </CENTER>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="ron_jhonny" id="ron_jhonny_si"
+                                                                    value="ron_jhonny_si" disabled>
+                                                                <label class="form-check-label"
+                                                                    for="ron_jhonny_si">SI</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="ron_jhonny" id="ron_jhonny_no"
+                                                                    value="ron_jhonny_no" disabled>
+                                                                <label class="form-check-label"
+                                                                    for="ron_jhonny_no">NO</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="text-align: center">
+                                                        <div class="col">
+                                                            <br><br>
+                                                            <hr>
+                                                            <green> <span>Tome foto de los rones junto a jhonnie walker
+                                                                </span></green>
+                                                            <input type="hidden" id="fotoron_jhonny"
+                                                                name="seleccionron_jhonny"
+                                                                value="auditorias_pics/ron_jhonny_{{ $reporte->precarga_id }}.png"
+                                                                required disabled>
+                                                            <input type="file" id="seleccionron_jhonny"
+                                                                name="fotoron_jhonny" accept="image/*" disabled>
+                                                            <img class="card-img-mate" id="imagenron_jhonny">
+                                                            <br><br>
+                                                        </div>
+                                                    </div>
+
+                                                </ul>
+                                            </div><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     <div class="toggle-wrapper">
                         <div class="toggle checkcross35">
                             <input id="checkcross35" type="checkbox" style="display: none">
@@ -2387,18 +4530,16 @@
                             <li class="bt_li"><button type="button" class="botOn js-rotate-left19"><i
                                         class="fas fa-undo" alt="giro izquierda"></i></button></li>
                         </ul>
-                        <div id="msgJhonnie">
+                        <div style="margin-left: 0.5rem;" id="msgJhonnie">
                             <input class="noClass" type="text" id="inpJhonnie" name="ronVsJhonnie" required>
                             <red>Calidad dice:</red>
                         </div>
                     </nat>
                 </div>
                 <div class="col-8">
-                    @if (file_exists($reporte->seleccion_jhonny))
-                        {
+                    @if (file_exists($reporte->seleccionron_jhonny))
                         <img id="imageJhonnie"
                             src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/ron_jhonny_' . $reporte->precarga_id . '.png'))) }}" />
-                        }
                     @else
                         <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                     @endif
@@ -2408,20 +4549,100 @@
         <hr>
         <ul>
             <div class="row">
-                <div class="col card-box-xm">
+                <div class="col-4 card-boxComp">
                     <h5 class="center">AGUARDIENTE JUNTO A SMIRNOFF</h5>
                     <p class= "parrafoJustificado">
                         <span>
                             <blue>Auditor dice:</blue>
                         </span>
                         @if ($reporte->aguard_smirnoff == 'aguard_smirnoff_si')
-                            La marca <strong>Smirnoff X1</strong> esta ubicada correctamente junto a los
-                            aguardientes de la competencia
-                        @else
                             La marca <strong>Smirnoff X1</strong> no esta correctamente ubicada junto a los
-                            aguardientes de la competencia
+                            aguardientes de la competencia.
+                        @else
+                            La marca <strong>Smirnoff X1</strong> esta ubicada correctamente junto a los
+                            aguardientes de la competencia.
                         @endif
                     </p>
+                    <br>
+                    <input type="button" value="Modificar aguardientes junto a Smirnoff"
+                        data-target="#CompAguavsSmirModal" data-toggle="modal" class="btnComp2Modal"
+                        onclick="seeCompAguaSmir()">
+                    <br>
+                    <div class="modal fade" id="CompAguavsSmirModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="ttulo">
+                                        <green><span>Ajuste la respuesta según la evidencia </span>
+                                        </green>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col">
+                                            <div class="col">
+                                                <img src="{{ asset('/storage/aguardiente_smirnoff.png') }}"
+                                                    class="img_botellasComp" />
+                                            </div>
+                                            <div class="container">
+                                                <ul>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <CENTER>
+                                                                <h4>SMIRNOFF ESTA EXHIBIDO JUNTO A LOS AGUARDIENTES DE LA
+                                                                    COMPETENCIA?</h4>
+                                                            </CENTER>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="aguard_smirnoff" id="aguard_smirnoff_si"
+                                                                    value="aguard_smirnoff_si" disabled>
+                                                                <label class="form-check-label"
+                                                                    for="aguard_smirnoff_si">SI</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="aguard_smirnoff" id="aguard_smirnoff_no"
+                                                                    value="aguard_smirnoff_no" disabled>
+                                                                <label class="form-check-label"
+                                                                    for="aguard_smirnoff_no">NO</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="text-align: center">
+                                                        <div class="col">
+                                                            <br><br>
+                                                            <hr>
+                                                            <green> <span>Tome foto de aguardientes junto a Smirnoff </span>
+                                                            </green>
+                                                            <input type="hidden" id="fotoaguard_smirnoff"
+                                                                name="seleccionaguard_smirnoff"
+                                                                value="auditorias_pics/aguard_smirnoff_{{ $reporte->precarga_id }}.png"
+                                                                required disabled>
+                                                            <input type="file" id="seleccionaguard_smirnoff"
+                                                                name="fotoaguard_smirnoff" accept="image/*" disabled>
+                                                            <img class="card-img-mate" id="imagenaguard_smirnoff">
+                                                            <br><br>
+                                                        </div>
+                                                    </div>
+
+                                                </ul>
+                                            </div><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Continuar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="toggle-wrapper">
                         <div class="toggle checkcross36">
                             <input id="checkcross36" type="checkbox" style="display: none">
@@ -2526,7 +4747,7 @@
                     <h5 class="center">OBSEVACIONES DE CIERRE</h5>
                     <blue>Auditor dice:</blue>
                     <p class="parrafoJustificado detalle">
-                        {{ $reporte->observacionesDetallista }}
+                        <textarea name="observacionesDetallista" id="observacionesDetallista" cols="60" rows="7">{{ $reporte->observacionesDetallista }}</textarea>
                     </p>
                 </div>
             </div>
@@ -2604,7 +4825,7 @@
                     <h5 class="center">OBSERVACIONES DE CALIDAD</h5>
                     <p class="parrafoJustificado">
                         <textarea class="comentario" placeholder="Observaciones de calidad" id="observacionesCalidad"
-                            name="observacionesCalidad" rows="8" maxlength="300" minlength="10" required></textarea>
+                            name="revisionCalidad" rows="8" maxlength="300" minlength="10" required></textarea>
                         <span class="badge bg-primary float-right" id="characterCount">0/300</span>
                     </p>
                     <br><br>
@@ -2722,6 +4943,20 @@
             }
         }
     </script>
+
+    <script>
+        function editor() {
+            var opcion = $('#tipologia').val();
+            if (opcion == 'Otro') {
+                $('#divOtroCual').show();
+                $('#cual').prop("disabled", false);
+            } else {
+                $('#divOtroCual').hide();
+                $('#cual').prop("disabled", true);
+            }
+        }
+    </script>
+
     <script>
         $('textarea').keyup(function() {
             $('#characterCount').text($(this).val().length + "/300")
@@ -2817,6 +5052,7 @@
         var inpTipologia = document.getElementById('inpTipologia');
         var inpCriticidadTipologia = document.getElementById('criticidadTipologia');
         var divTipologia = document.getElementById('EditTipologia');
+        var divOtroCual = document.getElementById('divOtroCual');
         if (miCheckbox3 != null) {
             miCheckbox3.addEventListener('click', function() {
                 if (miCheckbox3.checked) {
@@ -2832,11 +5068,1107 @@
                     inpTipologia.value = "se audito bien la tipologia";
                     inpCriticidadTipologia.value = 0;
                     divTipologia.style.display = "none";
+                    divOtroCual.style.display = "none";
                     $('#tipologia').prop('disabled', true);
                 }
             });
         }
     </script>
+
+    <script>
+        function seeCenefa() {
+            $("#cenefa").prop('disabled', false);
+            $("#cenefa_visi_si").prop('disabled', false);
+            $("#cenefa_visi_no").prop('disabled', false);
+            $("#cenefa_colo_si").prop('disabled', false);
+            $("#cenefa_colo_no").prop('disabled', false);
+            $("#seleccionCenefa").prop('disabled', false);
+        }
+    </script>
+
+    <script>
+        function seeAfiche() {
+            $("#afiche").prop('disabled', false);
+            $("#afiche_visi_si").prop('disabled', false);
+            $("#afiche_visi_no").prop('disabled', false);
+            $("#afiche_colo_si").prop('disabled', false);
+            $("#afiche_colo_no").prop('disabled', false);
+            $("#afiche_combo_si").prop('disabled', false);
+            $("#afiche_combo_no").prop('disabled', false);
+            $("#marca_combo").prop('disabled', false);
+            $("#combox1_si").prop('disabled', false);
+            $("#combox1_no").prop('disabled', false);
+            $("#combox2_si").prop('disabled', false);
+            $("#combox2_no").prop('disabled', false);
+            $("#combox3_si").prop('disabled', false);
+            $("#combox3_no").prop('disabled', false);
+            $("#seleccionAfiche").prop('disabled', false);
+        }
+    </script>
+
+    <script>
+        function seeMarco() {
+            $("#marco").prop('disabled', false);
+            $("#marco_visi_si").prop('disabled', false);
+            $("#marco_visi_no").prop('disabled', false);
+            $("#marco_colo_si").prop('disabled', false);
+            $("#marco_colo_no").prop('disabled', false);
+            $("#divMarco_Img").show();
+            $("#seleccionMarco").prop('disabled', false);
+        }
+    </script>
+
+    <script>
+        function seeRompetrafico() {
+            $("#rompetraficos").prop('disabled', false);
+            $("#prod_rt_visibles_si").prop('disabled', false);
+            $("#prod_rt_visibles_no").prop('disabled', false);
+            $("#prod_rt_properly_si").prop('disabled', false);
+            $("#prod_rt_properly_no").prop('disabled', false);
+            $("#divRompetrafico_Img").show();
+            $("#seleccionRompetrafico").prop('disabled', false);
+        }
+    </script>
+    <script>
+        function seeFaxada() {
+            $("#fachadas").prop('disabled', false);
+            $("#fachadas_visi_si").prop('disabled', false);
+            $("#fachadas_visi_no").prop('disabled', false);
+            $("#fachadas_colo_si").prop('disabled', false);
+            $("#fachadas_colo_no").prop('disabled', false);
+            $("#divFachada_Img").show();
+            $("#seleccionFaxada").prop('disabled', false);
+        }
+    </script>
+
+    <script>
+        function seeHielera() {
+            $("#hielera").prop('disabled', false);
+            $("#hl_con_prod_si").prop('disabled', false);
+            $("#hl_con_prod_no").prop('disabled', false);
+            $("#prod_hl_visible_si").prop('disabled', false);
+            $("#prod_hl_visible_no").prop('disabled', false);
+            $("#prod_hl_danadas_si").prop('disabled', false);
+            $("#prod_hl_danadas_no").prop('disabled', false);
+            $("#divHielera_Img").show();
+            $("#seleccionHielera").prop('disabled', false);
+        }
+    </script>
+    <script>
+        function seeBase_H() {
+            $("#bases_h").prop('disabled', false);
+            $("#prod_baseshl_visible_si").prop('disabled', false);
+            $("#prod_baseshl_visible_no").prop('disabled', false);
+            $("#prod_baseshl_danadas_si").prop('disabled', false);
+            $("#prod_baseshl_danadas_no").prop('disabled', false);
+            $("#baseshl_con_prod_si").prop('disabled', false);
+            $("#baseshl_con_prod_no").prop('disabled', false);
+            $("#divBaseHielera_Img").show();
+            $("#seleccionBase_h").prop('disabled', false);
+        }
+    </script>
+
+
+    <script>
+        function seeDosificadorD() {
+            $("#dosificadorD").prop('disabled', false);
+            $("#prod_dsD_visibles_si").prop('disabled', false);
+            $("#prod_dsD_visibles_no").prop('disabled', false);
+            $("#prod_dsD_danados_si").prop('disabled', false);
+            $("#prod_dsD_danados_no").prop('disabled', false);
+            $("#prod_dsD_diferentes_si").prop('disabled', false);
+            $("#prod_dsD_diferentes_no").prop('disabled', false);
+            $("#divDosificadorD").show();
+            $("#seleccionDosificadorD").prop('disabled', false);
+        }
+    </script>
+    <script>
+        function seeDosificadorS() {
+            $("#dosificadorS").prop('disabled', false);
+            $("#prod_dsS_visibles_si").prop('disabled', false);
+            $("#prod_dsS_visibles_no").prop('disabled', false);
+            $("#prod_dsS_danados_si").prop('disabled', false);
+            $("#prod_dsS_danados_no").prop('disabled', false);
+            $("#prod_dsS_diferentes_si").prop('disabled', false);
+            $("#prod_dsS_diferentes_no").prop('disabled', false);
+            $("#divDosificadorS").show();
+            $("#seleccionDosificadorS").prop('disabled', false);
+        }
+    </script>
+    <script>
+        function seeBranding() {
+            $("#branding").prop('disabled', false);
+            $("#branding_visible_si").prop('disabled', false);
+            $("#branding_visible_no").prop('disabled', false);
+            $("#branding_danados_si").prop('disabled', false);
+            $("#branding_danados_no").prop('disabled', false);
+            $("#divBrandingPic").show();
+            $("#seleccionBranding").prop('disabled', false);
+        }
+    </script>
+
+    <script>
+        function seeVasos() {
+            $("#vasos").prop('disabled', false);
+            $("#vasos_visibles_si").prop('disabled', false);
+            $("#vasos_visibles_no").prop('disabled', false);
+            $("#vasos_quebrados_si").prop('disabled', false);
+            $("#vasos_quebrados_no").prop('disabled', false);
+            $("#divVasosPic").show();
+            $("#seleccionVasos").prop('disabled', false);
+        }
+    </script>
+
+
+
+    <script>
+        function seeBlack1000() {
+            $("#divBlack1000").show();
+            $("#caras_bAndw1000").prop('disabled', false);
+            $("#bAndw1000").prop('disabled', false);
+            $("#btnblack1000").hide();
+        }
+    </script>
+    <script>
+        function seeBlack700() {
+            $("#divBlack700").show();
+            $("#caras_bAndw700").prop('disabled', false);
+            $("#bAndw700").prop('disabled', false);
+            $("#btnblack700").hide();
+        }
+    </script>
+    <script>
+        function seeBlack375() {
+            $("#divBlack375").show();
+            $("#caras_bAndw375").prop('disabled', false);
+            $("#bAndw375").prop('disabled', false);
+            $("#btnblack375").hide();
+        }
+    </script>
+
+    <script>
+        function seeSmirnoff700() {
+            $("#divSmirnoff700").show();
+            $("#caras_smirnoff700").prop('disabled', false);
+            $("#smirnoff700").prop('disabled', false);
+            $("#btnsmirnoff700").hide();
+        }
+    </script>
+    <script>
+        function seeSmirnoff375() {
+            $("#divSmirnoff375").show();
+            $("#caras_smirnoff375").prop('disabled', false);
+            $("#smirnoff375").prop('disabled', false);
+            $("#btnsmirnoff375").hide();
+        }
+    </script>
+
+    <script>
+        function seeSmirnoff_ns700() {
+            $("#divSmirnoff_ns700").show();
+            $("#caras_smirnoff_ns700").prop('disabled', false);
+            $("#smirnoff_ns700").prop('disabled', false);
+            $("#btnsmirnoff_ns700").hide();
+        }
+    </script>
+    <script>
+        function seeSmirnoff_ns375() {
+            $("#divSmirnoff_ns375").show();
+            $("#caras_smirnoff_ns375").prop('disabled', false);
+            $("#smirnoff_ns375").prop('disabled', false);
+            $("#btnsmirnoff_ns375").hide();
+        }
+    </script>
+
+
+
+    <script>
+        function seeJhonnie1000() {
+            $("#divjhonnie1000").show();
+            $("#caras_jhonnie1000").prop('disabled', false);
+            $("#jhonnie1000").prop('disabled', false);
+            $("#btnJhonnie1000").hide();
+        }
+    </script>
+    <script>
+        function seeJhonnie700() {
+            $("#divJhonnie700").show();
+            $("#caras_jhonnie700").prop('disabled', false);
+            $("#jhonnie700").prop('disabled', false);
+            $("#btnJhonnie700").hide();
+        }
+    </script>
+    <script>
+        function seeJhonnie375() {
+            $("#divJhonnie375").show();
+            $("#caras_jhonnie375").prop('disabled', false);
+            $("#jhonnie375").prop('disabled', false);
+            $("#btnJhonnie375").hide();
+        }
+    </script>
+
+    <script>
+        function seeOldParr700() {
+            $("#divOldParr750").show();
+            $("#caras_oldparr750").prop('disabled', false);
+            $("#oldparr750").prop('disabled', false);
+            $("#btnOldParr750").hide();
+        }
+    </script>
+
+
+
+    <script>
+        function seeBuchannas700() {
+            $("#divBuchannas700").show();
+            $("#caras_buchannas700").prop('disabled', false);
+            $("#buchannas700").prop('disabled', false);
+            $("#btnBuchannas700").hide();
+        }
+    </script>
+    <script>
+        function seeBuchannas375() {
+            $("#divBuchannas375").show();
+            $("#caras_buchannas375").prop('disabled', false);
+            $("#buchannas375").prop('disabled', false);
+            $("#btnBuchannas375").hide();
+        }
+    </script>
+    <script>
+        function seeCompRon() {
+            $("#hay_ron").prop('disabled', false);
+            $("#comp_ron1").prop('disabled', false);
+            $("#precio_comp_ron1").prop('disabled', false);
+            $("#comp_ron2").prop('disabled', false);
+            $("#precio_comp_ron2").prop('disabled', false);
+            $("#caras_comp_ron").prop('disabled', false);
+            $("#seleccionLinealR").prop('disabled', false);
+        }
+    </script>
+    <script>
+        function seeCompAgua() {
+            $("#hay_aguardiente").prop('disabled', false);
+            $("#comp_aguard1").prop('disabled', false);
+            $("#precio_comp_aguardiente1").prop('disabled', false);
+            $("#comp_aguard2").prop('disabled', false);
+            $("#precio_comp_aguardiente2").prop('disabled', false);
+            $("#caras_comp_aguardiente").prop('disabled', false);
+            $("#seleccionLinealA").prop('disabled', false);
+            $("#fotoLinealA").prop('disabled', false);
+        }
+    </script>
+    <script>
+        function seeCompRonBlack() {
+            $("#ron_byw_si").prop('disabled', false);
+            $("#ron_byw_no").prop('disabled', false);
+            $("#seleccionron_byw").prop('disabled', false);
+            $("#fotoron_byw").prop('disabled', false);
+        }
+    </script>
+    <script>
+        function seeCompRonJhonnie() {
+            $("#ron_jhonny_si").prop('disabled', false);
+            $("#ron_jhonny_no").prop('disabled', false);
+            $("#seleccionron_jhonny").prop('disabled', false);
+            $("#fotoron_jhonny").prop('disabled', false);
+        }
+    </script>
+
+    <script>
+        function seeCompAguaSmir() {
+            $("#aguard_smirnoff_si").prop('disabled', false);
+            $("#aguard_smirnoff_no").prop('disabled', false);
+            $("#seleccionaguard_smirnoff").prop('disabled', false);
+            $("#fotoaguard_smirnoff").prop('disabled', false);
+        }
+    </script>
+
+
+
+    <script>
+        document.getElementById("precio_comp_ron1").addEventListener("keyup", function(e) {
+            document.getElementById("texto14").innerHTML = NumeroALetras(this.value);
+        });
+
+
+        function Unidades(num) {
+
+            switch (num) {
+                case 1:
+                    return "UN";
+                case 2:
+                    return "DOS";
+                case 3:
+                    return "TRES";
+                case 4:
+                    return "CUATRO";
+                case 5:
+                    return "CINCO";
+                case 6:
+                    return "SEIS";
+                case 7:
+                    return "SIETE";
+                case 8:
+                    return "OCHO";
+                case 9:
+                    return "NUEVE";
+            }
+
+            return "";
+        }
+
+        function Decenas(num) {
+
+            decena = Math.floor(num / 10);
+            unidad = num - (decena * 10);
+
+            switch (decena) {
+                case 1:
+                    switch (unidad) {
+                        case 0:
+                            return "DIEZ";
+                        case 1:
+                            return "ONCE";
+                        case 2:
+                            return "DOCE";
+                        case 3:
+                            return "TRECE";
+                        case 4:
+                            return "CATORCE";
+                        case 5:
+                            return "QUINCE";
+                        default:
+                            return "DIECI" + Unidades(unidad);
+                    }
+                case 2:
+                    switch (unidad) {
+                        case 0:
+                            return "VEINTE";
+                        default:
+                            return "VEINTI" + Unidades(unidad);
+                    }
+                case 3:
+                    return DecenasY("TREINTA", unidad);
+                case 4:
+                    return DecenasY("CUARENTA", unidad);
+                case 5:
+                    return DecenasY("CINCUENTA", unidad);
+                case 6:
+                    return DecenasY("SESENTA", unidad);
+                case 7:
+                    return DecenasY("SETENTA", unidad);
+                case 8:
+                    return DecenasY("OCHENTA", unidad);
+                case 9:
+                    return DecenasY("NOVENTA", unidad);
+                case 0:
+                    return Unidades(unidad);
+            }
+        } //Unidades()
+
+        function DecenasY(strSin, numUnidades) {
+            if (numUnidades > 0)
+                return strSin + " Y " + Unidades(numUnidades)
+
+            return strSin;
+        } //DecenasY()
+
+        function Centenas(num) {
+
+            centenas = Math.floor(num / 100);
+            decenas = num - (centenas * 100);
+
+            switch (centenas) {
+                case 1:
+                    if (decenas > 0)
+                        return "CIENTO " + Decenas(decenas);
+                    return "CIEN";
+                case 2:
+                    return "DOSCIENTOS " + Decenas(decenas);
+                case 3:
+                    return "TRESCIENTOS " + Decenas(decenas);
+                case 4:
+                    return "CUATROCIENTOS " + Decenas(decenas);
+                case 5:
+                    return "QUINIENTOS " + Decenas(decenas);
+                case 6:
+                    return "SEISCIENTOS " + Decenas(decenas);
+                case 7:
+                    return "SETECIENTOS " + Decenas(decenas);
+                case 8:
+                    return "OCHOCIENTOS " + Decenas(decenas);
+                case 9:
+                    return "NOVECIENTOS " + Decenas(decenas);
+            }
+
+            return Decenas(decenas);
+        } //Centenas()
+
+        function Seccion(num, divisor, strSingular, strPlural) {
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            letras = "";
+
+            if (cientos > 0)
+                if (cientos > 1)
+                    letras = Centenas(cientos) + " " + strPlural;
+                else
+                    letras = strSingular;
+
+            if (resto > 0)
+                letras += "";
+
+            return letras;
+        } //Seccion()
+
+        function Miles(num) {
+            divisor = 1000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMiles = Seccion(num, divisor, "MIL", "MIL");
+            strCentenas = Centenas(resto);
+
+            if (strMiles == "")
+                return strCentenas;
+
+            return strMiles + " " + strCentenas;
+
+            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
+        } //Miles()
+
+        function Millones(num) {
+            divisor = 1000000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
+            strMiles = Miles(resto);
+
+            if (strMillones == "")
+                return strMiles;
+
+            return strMillones + " " + strMiles;
+
+            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
+        } //Millones()
+
+        function NumeroALetras(num, centavos) {
+            var data = {
+                numero: num,
+                enteros: Math.floor(num),
+                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+                letrasCentavos: "",
+            };
+            if (centavos == undefined || centavos == false) {
+                data.letrasMonedaPlural = "PESOS";
+                data.letrasMonedaSingular = "PESO";
+            } else {
+                data.letrasMonedaPlural = "CENTAVOS";
+                data.letrasMonedaSingular = "CENTAVO";
+            }
+
+            if (data.centavos > 0)
+                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
+
+            if (data.enteros == 0)
+                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+            if (data.enteros == 1)
+                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
+            else
+                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+        } //NumeroALetras()
+    </script>
+
+    <script>
+        document.getElementById("precio_comp_ron2").addEventListener("keyup", function(e) {
+            document.getElementById("texto15").innerHTML = NumeroALetras(this.value);
+        });
+
+
+        function Unidades(num) {
+
+            switch (num) {
+                case 1:
+                    return "UN";
+                case 2:
+                    return "DOS";
+                case 3:
+                    return "TRES";
+                case 4:
+                    return "CUATRO";
+                case 5:
+                    return "CINCO";
+                case 6:
+                    return "SEIS";
+                case 7:
+                    return "SIETE";
+                case 8:
+                    return "OCHO";
+                case 9:
+                    return "NUEVE";
+            }
+
+            return "";
+        }
+
+        function Decenas(num) {
+
+            decena = Math.floor(num / 10);
+            unidad = num - (decena * 10);
+
+            switch (decena) {
+                case 1:
+                    switch (unidad) {
+                        case 0:
+                            return "DIEZ";
+                        case 1:
+                            return "ONCE";
+                        case 2:
+                            return "DOCE";
+                        case 3:
+                            return "TRECE";
+                        case 4:
+                            return "CATORCE";
+                        case 5:
+                            return "QUINCE";
+                        default:
+                            return "DIECI" + Unidades(unidad);
+                    }
+                case 2:
+                    switch (unidad) {
+                        case 0:
+                            return "VEINTE";
+                        default:
+                            return "VEINTI" + Unidades(unidad);
+                    }
+                case 3:
+                    return DecenasY("TREINTA", unidad);
+                case 4:
+                    return DecenasY("CUARENTA", unidad);
+                case 5:
+                    return DecenasY("CINCUENTA", unidad);
+                case 6:
+                    return DecenasY("SESENTA", unidad);
+                case 7:
+                    return DecenasY("SETENTA", unidad);
+                case 8:
+                    return DecenasY("OCHENTA", unidad);
+                case 9:
+                    return DecenasY("NOVENTA", unidad);
+                case 0:
+                    return Unidades(unidad);
+            }
+        } //Unidades()
+
+        function DecenasY(strSin, numUnidades) {
+            if (numUnidades > 0)
+                return strSin + " Y " + Unidades(numUnidades)
+
+            return strSin;
+        } //DecenasY()
+
+        function Centenas(num) {
+
+            centenas = Math.floor(num / 100);
+            decenas = num - (centenas * 100);
+
+            switch (centenas) {
+                case 1:
+                    if (decenas > 0)
+                        return "CIENTO " + Decenas(decenas);
+                    return "CIEN";
+                case 2:
+                    return "DOSCIENTOS " + Decenas(decenas);
+                case 3:
+                    return "TRESCIENTOS " + Decenas(decenas);
+                case 4:
+                    return "CUATROCIENTOS " + Decenas(decenas);
+                case 5:
+                    return "QUINIENTOS " + Decenas(decenas);
+                case 6:
+                    return "SEISCIENTOS " + Decenas(decenas);
+                case 7:
+                    return "SETECIENTOS " + Decenas(decenas);
+                case 8:
+                    return "OCHOCIENTOS " + Decenas(decenas);
+                case 9:
+                    return "NOVECIENTOS " + Decenas(decenas);
+            }
+
+            return Decenas(decenas);
+        } //Centenas()
+
+        function Seccion(num, divisor, strSingular, strPlural) {
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            letras = "";
+
+            if (cientos > 0)
+                if (cientos > 1)
+                    letras = Centenas(cientos) + " " + strPlural;
+                else
+                    letras = strSingular;
+
+            if (resto > 0)
+                letras += "";
+
+            return letras;
+        } //Seccion()
+
+        function Miles(num) {
+            divisor = 1000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMiles = Seccion(num, divisor, "MIL", "MIL");
+            strCentenas = Centenas(resto);
+
+            if (strMiles == "")
+                return strCentenas;
+
+            return strMiles + " " + strCentenas;
+
+            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
+        } //Miles()
+
+        function Millones(num) {
+            divisor = 1000000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
+            strMiles = Miles(resto);
+
+            if (strMillones == "")
+                return strMiles;
+
+            return strMillones + " " + strMiles;
+
+            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
+        } //Millones()
+
+        function NumeroALetras(num, centavos) {
+            var data = {
+                numero: num,
+                enteros: Math.floor(num),
+                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+                letrasCentavos: "",
+            };
+            if (centavos == undefined || centavos == false) {
+                data.letrasMonedaPlural = "PESOS";
+                data.letrasMonedaSingular = "PESO";
+            } else {
+                data.letrasMonedaPlural = "CENTAVOS";
+                data.letrasMonedaSingular = "CENTAVO";
+            }
+
+            if (data.centavos > 0)
+                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
+
+            if (data.enteros == 0)
+                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+            if (data.enteros == 1)
+                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
+            else
+                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+        } //NumeroALetras()
+    </script>
+    <script>
+        document.getElementById("precio_comp_aguardiente1").addEventListener("keyup", function(e) {
+            document.getElementById("texto16").innerHTML = NumeroALetras(this.value);
+        });
+
+
+        function Unidades(num) {
+
+            switch (num) {
+                case 1:
+                    return "UN";
+                case 2:
+                    return "DOS";
+                case 3:
+                    return "TRES";
+                case 4:
+                    return "CUATRO";
+                case 5:
+                    return "CINCO";
+                case 6:
+                    return "SEIS";
+                case 7:
+                    return "SIETE";
+                case 8:
+                    return "OCHO";
+                case 9:
+                    return "NUEVE";
+            }
+
+            return "";
+        }
+
+        function Decenas(num) {
+
+            decena = Math.floor(num / 10);
+            unidad = num - (decena * 10);
+
+            switch (decena) {
+                case 1:
+                    switch (unidad) {
+                        case 0:
+                            return "DIEZ";
+                        case 1:
+                            return "ONCE";
+                        case 2:
+                            return "DOCE";
+                        case 3:
+                            return "TRECE";
+                        case 4:
+                            return "CATORCE";
+                        case 5:
+                            return "QUINCE";
+                        default:
+                            return "DIECI" + Unidades(unidad);
+                    }
+                case 2:
+                    switch (unidad) {
+                        case 0:
+                            return "VEINTE";
+                        default:
+                            return "VEINTI" + Unidades(unidad);
+                    }
+                case 3:
+                    return DecenasY("TREINTA", unidad);
+                case 4:
+                    return DecenasY("CUARENTA", unidad);
+                case 5:
+                    return DecenasY("CINCUENTA", unidad);
+                case 6:
+                    return DecenasY("SESENTA", unidad);
+                case 7:
+                    return DecenasY("SETENTA", unidad);
+                case 8:
+                    return DecenasY("OCHENTA", unidad);
+                case 9:
+                    return DecenasY("NOVENTA", unidad);
+                case 0:
+                    return Unidades(unidad);
+            }
+        } //Unidades()
+
+        function DecenasY(strSin, numUnidades) {
+            if (numUnidades > 0)
+                return strSin + " Y " + Unidades(numUnidades)
+
+            return strSin;
+        } //DecenasY()
+
+        function Centenas(num) {
+
+            centenas = Math.floor(num / 100);
+            decenas = num - (centenas * 100);
+
+            switch (centenas) {
+                case 1:
+                    if (decenas > 0)
+                        return "CIENTO " + Decenas(decenas);
+                    return "CIEN";
+                case 2:
+                    return "DOSCIENTOS " + Decenas(decenas);
+                case 3:
+                    return "TRESCIENTOS " + Decenas(decenas);
+                case 4:
+                    return "CUATROCIENTOS " + Decenas(decenas);
+                case 5:
+                    return "QUINIENTOS " + Decenas(decenas);
+                case 6:
+                    return "SEISCIENTOS " + Decenas(decenas);
+                case 7:
+                    return "SETECIENTOS " + Decenas(decenas);
+                case 8:
+                    return "OCHOCIENTOS " + Decenas(decenas);
+                case 9:
+                    return "NOVECIENTOS " + Decenas(decenas);
+            }
+
+            return Decenas(decenas);
+        } //Centenas()
+
+        function Seccion(num, divisor, strSingular, strPlural) {
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            letras = "";
+
+            if (cientos > 0)
+                if (cientos > 1)
+                    letras = Centenas(cientos) + " " + strPlural;
+                else
+                    letras = strSingular;
+
+            if (resto > 0)
+                letras += "";
+
+            return letras;
+        } //Seccion()
+
+        function Miles(num) {
+            divisor = 1000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMiles = Seccion(num, divisor, "MIL", "MIL");
+            strCentenas = Centenas(resto);
+
+            if (strMiles == "")
+                return strCentenas;
+
+            return strMiles + " " + strCentenas;
+
+            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
+        } //Miles()
+
+        function Millones(num) {
+            divisor = 1000000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
+            strMiles = Miles(resto);
+
+            if (strMillones == "")
+                return strMiles;
+
+            return strMillones + " " + strMiles;
+
+            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
+        } //Millones()
+
+        function NumeroALetras(num, centavos) {
+            var data = {
+                numero: num,
+                enteros: Math.floor(num),
+                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+                letrasCentavos: "",
+            };
+            if (centavos == undefined || centavos == false) {
+                data.letrasMonedaPlural = "PESOS";
+                data.letrasMonedaSingular = "PESO";
+            } else {
+                data.letrasMonedaPlural = "CENTAVOS";
+                data.letrasMonedaSingular = "CENTAVO";
+            }
+
+            if (data.centavos > 0)
+                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
+
+            if (data.enteros == 0)
+                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+            if (data.enteros == 1)
+                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
+            else
+                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+        } //NumeroALetras()
+    </script>
+
+
+    <script>
+        document.getElementById("precio_comp_aguardiente2").addEventListener("keyup", function(e) {
+            document.getElementById("texto17").innerHTML = NumeroALetras(this.value);
+        });
+
+
+        function Unidades(num) {
+
+            switch (num) {
+                case 1:
+                    return "UN";
+                case 2:
+                    return "DOS";
+                case 3:
+                    return "TRES";
+                case 4:
+                    return "CUATRO";
+                case 5:
+                    return "CINCO";
+                case 6:
+                    return "SEIS";
+                case 7:
+                    return "SIETE";
+                case 8:
+                    return "OCHO";
+                case 9:
+                    return "NUEVE";
+            }
+
+            return "";
+        }
+
+        function Decenas(num) {
+
+            decena = Math.floor(num / 10);
+            unidad = num - (decena * 10);
+
+            switch (decena) {
+                case 1:
+                    switch (unidad) {
+                        case 0:
+                            return "DIEZ";
+                        case 1:
+                            return "ONCE";
+                        case 2:
+                            return "DOCE";
+                        case 3:
+                            return "TRECE";
+                        case 4:
+                            return "CATORCE";
+                        case 5:
+                            return "QUINCE";
+                        default:
+                            return "DIECI" + Unidades(unidad);
+                    }
+                case 2:
+                    switch (unidad) {
+                        case 0:
+                            return "VEINTE";
+                        default:
+                            return "VEINTI" + Unidades(unidad);
+                    }
+                case 3:
+                    return DecenasY("TREINTA", unidad);
+                case 4:
+                    return DecenasY("CUARENTA", unidad);
+                case 5:
+                    return DecenasY("CINCUENTA", unidad);
+                case 6:
+                    return DecenasY("SESENTA", unidad);
+                case 7:
+                    return DecenasY("SETENTA", unidad);
+                case 8:
+                    return DecenasY("OCHENTA", unidad);
+                case 9:
+                    return DecenasY("NOVENTA", unidad);
+                case 0:
+                    return Unidades(unidad);
+            }
+        } //Unidades()
+
+        function DecenasY(strSin, numUnidades) {
+            if (numUnidades > 0)
+                return strSin + " Y " + Unidades(numUnidades)
+
+            return strSin;
+        } //DecenasY()
+
+        function Centenas(num) {
+
+            centenas = Math.floor(num / 100);
+            decenas = num - (centenas * 100);
+
+            switch (centenas) {
+                case 1:
+                    if (decenas > 0)
+                        return "CIENTO " + Decenas(decenas);
+                    return "CIEN";
+                case 2:
+                    return "DOSCIENTOS " + Decenas(decenas);
+                case 3:
+                    return "TRESCIENTOS " + Decenas(decenas);
+                case 4:
+                    return "CUATROCIENTOS " + Decenas(decenas);
+                case 5:
+                    return "QUINIENTOS " + Decenas(decenas);
+                case 6:
+                    return "SEISCIENTOS " + Decenas(decenas);
+                case 7:
+                    return "SETECIENTOS " + Decenas(decenas);
+                case 8:
+                    return "OCHOCIENTOS " + Decenas(decenas);
+                case 9:
+                    return "NOVECIENTOS " + Decenas(decenas);
+            }
+
+            return Decenas(decenas);
+        } //Centenas()
+
+        function Seccion(num, divisor, strSingular, strPlural) {
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            letras = "";
+
+            if (cientos > 0)
+                if (cientos > 1)
+                    letras = Centenas(cientos) + " " + strPlural;
+                else
+                    letras = strSingular;
+
+            if (resto > 0)
+                letras += "";
+
+            return letras;
+        } //Seccion()
+
+        function Miles(num) {
+            divisor = 1000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMiles = Seccion(num, divisor, "MIL", "MIL");
+            strCentenas = Centenas(resto);
+
+            if (strMiles == "")
+                return strCentenas;
+
+            return strMiles + " " + strCentenas;
+
+            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
+        } //Miles()
+
+        function Millones(num) {
+            divisor = 1000000;
+            cientos = Math.floor(num / divisor)
+            resto = num - (cientos * divisor)
+
+            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
+            strMiles = Miles(resto);
+
+            if (strMillones == "")
+                return strMiles;
+
+            return strMillones + " " + strMiles;
+
+            //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
+        } //Millones()
+
+        function NumeroALetras(num, centavos) {
+            var data = {
+                numero: num,
+                enteros: Math.floor(num),
+                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+                letrasCentavos: "",
+            };
+            if (centavos == undefined || centavos == false) {
+                data.letrasMonedaPlural = "PESOS";
+                data.letrasMonedaSingular = "PESO";
+            } else {
+                data.letrasMonedaPlural = "CENTAVOS";
+                data.letrasMonedaSingular = "CENTAVO";
+            }
+
+            if (data.centavos > 0)
+                data.letrasCentavos = "CON " + NumeroALetras(data.centavos, true);
+
+            if (data.enteros == 0)
+                return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+            if (data.enteros == 1)
+                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
+            else
+                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+        } //NumeroALetras()
+    </script>
+
     <script>
         var miCheckbox4 = document.getElementById('checkcross4');
         var msgCenefaVisi = document.getElementById('msgCenefaVisi');
@@ -2891,6 +6223,235 @@
         }
     </script>
 
+
+    <script>
+        const $seleccionCenefa = document.querySelector("#seleccionCenefa"),
+            $imagenCenefa = document.querySelector("#imagenCenefa");
+        $seleccionCenefa.addEventListener("change", () => {
+            const archivos = $seleccionCenefa.files;
+            if (!archivos || !archivos.length) {
+                $imagenCenefa.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenCenefa.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionAfiche = document.querySelector("#seleccionAfiche"),
+            $imagenAfiche = document.querySelector("#imagenAfiche");
+        $seleccionAfiche.addEventListener("change", () => {
+            const archivos = $seleccionAfiche.files;
+            if (!archivos || !archivos.length) {
+                $imagenAfiche.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenAfiche.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionMarco = document.querySelector("#seleccionMarco"),
+            $imagenMarco = document.querySelector("#imagenMarco");
+        $seleccionMarco.addEventListener("change", () => {
+            const archivos = $seleccionMarco.files;
+            if (!archivos || !archivos.length) {
+                $imagenMarco.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenMarco.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionRompetrafico = document.querySelector("#seleccionRompetrafico"),
+            $imagenRompetrafico = document.querySelector("#imagenRompetrafico");
+        $seleccionRompetrafico.addEventListener("change", () => {
+            const archivos = $seleccionRompetrafico.files;
+            if (!archivos || !archivos.length) {
+                $imagenRompetrafico.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenRompetrafico.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionFaxada = document.querySelector("#seleccionFaxada"),
+            $imagenFaxada = document.querySelector("#imagenFaxada");
+        $seleccionFaxada.addEventListener("change", () => {
+            const archivos = $seleccionFaxada.files;
+            if (!archivos || !archivos.length) {
+                $imagenFaxada.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenFaxada.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionHielera = document.querySelector("#seleccionHielera"),
+            $imagenHielera = document.querySelector("#imagenHielera");
+        $seleccionHielera.addEventListener("change", () => {
+            const archivos = $seleccionHielera.files;
+            if (!archivos || !archivos.length) {
+                $imagenHielera.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenHielera.src = objectURL;
+        });
+    </script>
+
+    <script>
+        const $seleccionBase_h = document.querySelector("#seleccionBase_h"),
+            $imagenBase_h = document.querySelector("#imagenBase_h");
+        $seleccionBase_h.addEventListener("change", () => {
+            const archivos = $seleccionBase_h.files;
+            if (!archivos || !archivos.length) {
+                $imagenBase_h.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenBase_h.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionDosificadorD = document.querySelector("#seleccionDosificadorD"),
+            $imagenDosificadorD = document.querySelector("#imagenDosificadorD");
+        $seleccionDosificadorD.addEventListener("change", () => {
+            const archivos = $seleccionDosificadorD.files;
+            if (!archivos || !archivos.length) {
+                $imagenDosificadorD.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenDosificadorD.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionDosificadorS = document.querySelector("#seleccionDosificadorS"),
+            $imagenDosificadorS = document.querySelector("#imagenDosificadorS");
+        $seleccionDosificadorS.addEventListener("change", () => {
+            const archivos = $seleccionDosificadorS.files;
+            if (!archivos || !archivos.length) {
+                $imagenDosificadorS.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenDosificadorS.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionBranding = document.querySelector("#seleccionBranding"),
+            $imagenBranding = document.querySelector("#imagenBranding");
+        $seleccionBranding.addEventListener("change", () => {
+            const archivos = $seleccionBranding.files;
+            if (!archivos || !archivos.length) {
+                $imagenBranding.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenBranding.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionVasos = document.querySelector("#seleccionVasos"),
+            $imagenVasos = document.querySelector("#imagenVasos");
+        $seleccionVasos.addEventListener("change", () => {
+            const archivos = $seleccionVasos.files;
+            if (!archivos || !archivos.length) {
+                $imagenVasos.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenVasos.src = objectURL;
+        });
+    </script>
+    php
+    <script>
+        const $seleccionLinealR = document.querySelector("#seleccionLinealR"),
+            $imagenLinearlR = document.querySelector("#imagenLinearlR");
+
+        $seleccionLinealR.addEventListener("change", () => {
+            const archivos = $seleccionLinealR.files;
+            if (!archivos || !archivos.length) {
+                $imagenLinearlR.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenLinearlR.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionLinealA = document.querySelector("#seleccionLinealA"),
+            $imagenLinearlA = document.querySelector("#imagenLinearlA");
+
+        $seleccionLinealA.addEventListener("change", () => {
+            const archivos = $seleccionLinealA.files;
+            if (!archivos || !archivos.length) {
+                $imagenLinearlA.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenLinearlA.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionron_jhonny = document.querySelector("#seleccionron_jhonny"),
+            $imagenron_jhonny = document.querySelector("#imagenron_jhonny");
+        $seleccionron_jhonny.addEventListener("change", () => {
+            const archivos = $seleccionron_jhonny.files;
+            if (!archivos || !archivos.length) {
+                $imagenron_jhonny.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenron_jhonny.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionron_byw = document.querySelector("#seleccionron_byw"),
+            $imagenron_byw = document.querySelector("#imagenron_byw");
+        $seleccionron_byw.addEventListener("change", () => {
+            const archivos = $seleccionron_byw.files;
+            if (!archivos || !archivos.length) {
+                $imagenron_byw.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenron_byw.src = objectURL;
+        });
+    </script>
+    <script>
+        const $seleccionaguard_smirnoff = document.querySelector("#seleccionaguard_smirnoff"),
+            $imagenaguard_smirnoff = document.querySelector("#imagenaguard_smirnoff");
+        $seleccionaguard_smirnoff.addEventListener("change", () => {
+            const archivos = $seleccionaguard_smirnoff.files;
+            if (!archivos || !archivos.length) {
+                $imagenaguard_smirnoff.src = "";
+                return;
+            }
+            const primerArchivo = archivos[0];
+            const objectURL = URL.createObjectURL(primerArchivo);
+            $imagenaguard_smirnoff.src = objectURL;
+        });
+    </script>
 
     <script>
         var miCheckbox6 = document.getElementById('checkcross6');
@@ -3598,15 +7159,15 @@
                         inpVasosVisi.value = "se audito mal la visibilidad de los vasos y copas";
                         criticidadVasosVisi.value = 1;
                         EditVasosVisi.style.display = "block";
-                        $('#vasos_visibles').prop('disabled', false )
+                        $('#vasos_visibles').prop('disabled', false)
 
                     }
                 } else {
                     msgVasosVisi.innerText = 'Según la validación, los vasos y las copas son visibles';
                     inpVasosVisi.value = "se audito bien la visibilidad de los vasos y copas";
                     criticidadVasosVisi.value = 0;
-                        EditVasosVisi.style.display = "none";
-                        $('#vasos_visibles').prop('disabled', true )
+                    EditVasosVisi.style.display = "none";
+                    $('#vasos_visibles').prop('disabled', true)
 
                 }
             });
@@ -3629,15 +7190,15 @@
                         inpVasosColo.value = "se audito mal el estado de los vasos y copas";
                         criticidadVasosEstado.value = 1;
                         EditVasosEstado.style.display = "block";
-                        $('#vasos_quebrados').prop('disabled', false )
+                        $('#vasos_quebrados').prop('disabled', false)
 
                     }
                 } else {
                     msgVasosEstado.innerText = 'Los vasos y las copas estan en optimas condiciones';
                     inpVasosEstado.value = "se audito bien el estado de los vasos y copas";
                     criticidadVasosEstado.value = 0;
-                     EditVasosEstado.style.display = "none";
-                        $('#vasos_quebrados').prop('disabled', true )
+                    EditVasosEstado.style.display = "none";
+                    $('#vasos_quebrados').prop('disabled', true)
 
                 }
             });
@@ -3659,8 +7220,8 @@
                     if (miCheckbox31.checked = "true") {
                         inpCalMarcVisi.value = "se audito mal la visibilidad de los productos del lineal Diageo";
                         criticidadCalMarcVisi.value = 1;
-                    EditCalVisi.style.display = "block";
-                    $('#cal_marc_visible').prop('disabled', false );
+                        EditCalVisi.style.display = "block";
+                        $('#cal_marc_visible').prop('disabled', false);
 
                     }
                 } else {
@@ -3668,7 +7229,7 @@
                     inpCalMarcVisi.value = "se audito bien la visibilidad de los productos del lineal Diageo";
                     criticidadCalMarcVisi.value = 0;
                     EditCalVisi.style.display = "none";
-                    $('#cal_marc_visible').prop('disabled', true );
+                    $('#cal_marc_visible').prop('disabled', true);
 
                 }
             });
@@ -3692,15 +7253,15 @@
                         inpCalMarcEstado.value = "se audito mal el estado de los productos del lineal Diageo";
                         criticidadCalMarcEstado.value = 1;
                         EditCalEstado.style.display = "block";
-                        $('#cal_marc_danados').prop('disabled', false );
+                        $('#cal_marc_danados').prop('disabled', false);
 
                     }
                 } else {
                     msgCalMarcEstado.innerText = 'Los productos de la marca se encuentran en optimas condiciones';
                     inpCalMarcEstado.value = "se audito bien el estado de los productos del lineal Diageo";
                     criticidadCalMarcEstado.value = 0;
-                        EditCalEstado.style.display = "none";
-                        $('#cal_marc_danados').prop('disabled', true );
+                    EditCalEstado.style.display = "none";
+                    $('#cal_marc_danados').prop('disabled', true);
 
                 }
             });
@@ -3722,15 +7283,15 @@
                         criticidadCalMarcEtiqueta.value = 1;
                         inpCalMarcEtiqueta.value = "se audito mal el estado de las etiquetas de la marca Diageo";
                         EditCalEtiquetas.style.display = ("block");
-                        $('#cal_marc_et_danados').prop('disabled', false );
+                        $('#cal_marc_et_danados').prop('disabled', false);
 
                     }
                 } else {
                     msgCalMarcEtiqueta.innerText = 'Se pueden apreciar correctamente los productos de la marca';
                     inpCalMarcEtiqueta.value = "se auditor bien el estado de las etiquetas de la marca Diageo";
                     criticidadCalMarcEtiqueta.value = 0;
-                        EditCalEtiquetas.style.display = ("none");
-                        $('#cal_marc_et_danados').prop('disabled', true );
+                    EditCalEtiquetas.style.display = ("none");
+                    $('#cal_marc_et_danados').prop('disabled', true);
 
                 }
             });

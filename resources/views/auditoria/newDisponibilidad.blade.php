@@ -620,7 +620,6 @@
                 </div>
             </div>
             <div class="col-sm-4 card-box-marcas">
-
                 <legend class="marcasT">&iquest;Tienen las etiquetas en buen estado? ( no Est&aacute;n
                     rayadas, levantadas, buen tono de color)</legend>
                 <fieldset class="radiosT">

@@ -111,6 +111,7 @@ class GiftsController extends Controller
                 [
                     'gift' => $request->gift,
                     'cant_gift' => $request->cant_gift,
+                    'criticidad' => "paso 7 - gift",
                 ]
             );
         } else {
@@ -118,6 +119,7 @@ class GiftsController extends Controller
                 [
                     'gift' => $request->gift,
                     'cant_gift' => 0,
+                    'criticidad' => "paso 7 - gift",
                 ]
             );
         }

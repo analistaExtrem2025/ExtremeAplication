@@ -30,7 +30,12 @@ class Auditoria extends Model
         'noConcreciones',
         'cual',
         'observaciones',
-        'fotoActiv'
+        'fotoActiv',
+    ];
+
+    protected $casts = [
+        'star' => 'datetime:d-m-Y',
+
     ];
 
     public function auditoria()

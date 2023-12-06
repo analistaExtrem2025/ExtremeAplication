@@ -324,14 +324,14 @@ return [
                     'url'  => '/diageo_cerrados',
                     'icon' => 'fas fa-store-slash',
                     'shift' => 'ml-4',
-                   // 'can'  => 'encuesta.diageo.index'
+                    // 'can'  => 'encuesta.diageo.index'
                 ],
                 [
                     'text' => 'Revision de Calidad',
                     'url'  => 'qualitys',
                     'icon' => 'fas fa-cog',
                     'shift' => 'ml-4',
-                   // 'can'  => 'encuesta.diageo.edit'
+                    // 'can'  => 'encuesta.diageo.edit'
                 ],
                 [
                     'text'  => 'Reemplazos',
@@ -376,7 +376,6 @@ return [
                     'shift' => 'ml-4',
                     'can'   => 'admin.home',
                 ],
-
                 [
                     'text'  => 'Inactivos',
                     'text'  => 'Inactivos',
@@ -385,13 +384,22 @@ return [
                     'shift' => 'ml-4',
                     'can'    =>  'admin.diageo',
                 ],
-                // [
-                //     'text'  => 'Dashboard Auditorias',
-                //     'route' => 'dashboard.index',
-                //     'icon'  => 'fas fa-chart-pie',
-                //     'shift' => 'ml-4',
-                //     //'can'   =>  'admin.diageo'
-                // ],
+
+            ],
+        ],
+        [
+            'text'    => 'PDF Auditorias',
+            'icon'    => 'far fa-file-pdf',
+            'icon_color' => 'info',
+            'can'  => 'ExportPdf.index',
+            'submenu' => [
+                [
+                    'text'  => 'Listado de auditorias',
+                    'route' => 'pdf.index',
+                    'icon'  => 'far fa-eye',
+                    'shift' => 'ml-4',
+                    'can'   => 'ExportPdf.index',
+                ],
             ],
         ],
         [
@@ -407,7 +415,7 @@ return [
                     'icon'  => 'fas fa-users fa-fw',
                     'shift' => 'ml-4',
                     'can'   => 'admin.home',
-                   //'can'   =>  'admin.diageo'
+                    //'can'   =>  'admin.diageo'
                 ],
                 [
                     'text'  => 'Permisos',

@@ -69,6 +69,7 @@ class Disponibilidad extends Model
         'seleccionLinealDiageo',
         'seleccionLinealA',
         'seleccionLinealR',
+        'criticidad',
     ];
 
     public $timestamps = false;

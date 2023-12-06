@@ -18,6 +18,7 @@ class Segmento extends Model
         'caja_aguardiente',
         'caja_ron',
         'caja_whiskey',
+        'criticidad'
     ];
 
     public $timestamps = false;
