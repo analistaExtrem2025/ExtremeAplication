@@ -179,6 +179,7 @@ class CalidadAuditoriaController extends Controller
             [
                 'revisionCalidad' =>  $request->observacionesCalidad,
                 'fechaCalidad' => $now,
+                'revisadoPor' => $revisadoPor,
                 'criticidad' => $criticidad
             ]
         );
@@ -1165,7 +1166,7 @@ class CalidadAuditoriaController extends Controller
         }
 
         $mergeData = [
-            "revisadoPor" => Auth::user()->name,
+            "revisionCalidad" => Auth::user()->name,
             "fechaCalidad" => $now,
         ];
        //dd($request->all());
@@ -1235,6 +1236,7 @@ class CalidadAuditoriaController extends Controller
                 'fotoron_byw',
                 'fotoron_jhonny',
                 'fotoaguard_smirnoff',
+                'revisadoPor'
             ]
         );
 

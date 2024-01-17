@@ -61,6 +61,12 @@ class GeneralidadesController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        if ($request->precarga_id % 2 === 0) {
+            $calidad = "LAURA VANESSA CARRASCO NIÑO";
+        } else {
+            $calidad = "CRISTIAN JULIAN  ROJAS RIVERA";
+        }
         $now = Carbon::now();
         $precarga = PuntosAuditoria::where('id', $request->precarga_id);
         $precarga->update(
@@ -71,12 +77,14 @@ class GeneralidadesController extends Controller
         );
 
         $disponibilidad = Generalidades::findOrFail($id);
-            $disponibilidad->update(
-                [
-                    'observacionesDetallista' => $request->observacionesDetallista,
 
-                ]
-            );
+        $disponibilidad->update(
+            [
+                'observacionesDetallista' => $request->observacionesDetallista,
+                'criticidad' => 'Pendiente Calidad',
+                'revisadoPor' =>  $calidad,
+            ]
+        );
         return redirect('auditoria');
     }
 

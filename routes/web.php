@@ -17,7 +17,9 @@ use App\Http\Controllers\ExhibicionController;
 use App\Http\Controllers\ExportPdfController;
 use App\Http\Controllers\GeneralidadesController;
 use App\Http\Controllers\GiftsController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MaterialesController;
+use App\Http\Controllers\PqryRtasController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\QualityController;
 use App\Http\Controllers\ReemplazoController;
@@ -109,5 +111,18 @@ Route::get('inactivos', [CalidadAuditoriaController::class, 'inactivos'])->name(
 Route::resource('asignaciones', AsignacionesController::class);
 Route::get('downloadPdf/{id}', [ExportPdfController::class, 'downloadPdf'])->name('downloadPdf');
 
+Route::get('indexVisitor', [AuditoriaController::class, 'indexVisitor'])->name('indexVisitor');
+Route::post('storeVisitor', [AuditoriaController::class, 'storeVisitor'])->name('storeVisitor');
 
 Route::resource('pdf', ExportPdfController::class);
+
+Route::get('notificacionEdit/{id}', [HomeController::class, 'notificacionEdit'])->name('notificacionEdit');
+Route::put('notificacionStore', [AuditoriaController::class, 'notificacionStore'])->name('auditorias.notificacionStore');
+
+
+Route::post('/deposit', [App\Http\Controllers\DepositController::class,'deposit'])->name('deposit');
+
+
+Route::resource('PqryRtas', PqryRtasController::class);
+
+

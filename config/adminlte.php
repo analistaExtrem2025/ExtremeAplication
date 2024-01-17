@@ -378,14 +378,45 @@ return [
                 ],
                 [
                     'text'  => 'Inactivos',
-                    'text'  => 'Inactivos',
                     'route' => 'tapados.index',
                     'icon'  => 'fas fa-skull-crossbones',
                     'shift' => 'ml-4',
-                    'can'    =>  'admin.diageo',
+                    'can'   => 'admin.home',
+                    // 'can'    =>  'admin.diageo',
+                ],
+
+                // [
+                //     'text'  => 'Visitantes',
+                //     'route' => 'indexVisitor',
+                //     'icon'  => 'fas fa-glasses',
+                //     'shift' => 'ml-4',
+                //     'can'   => 'admin.home',
+                //     // 'can'    =>  'admin.diageo',
+                // ],
+
+
+
+            ],
+        ],
+
+        [
+            'text' => 'Auditorias Gestionadas',
+            'icon'  => 'fas fa-glasses',
+            'icon_color' => 'info',
+            //'can' => 'indexVisitor',
+            'submenu' => [
+
+                [
+                    'text'  => 'PQRS',
+                    'route' => 'indexVisitor',
+                    'icon' => 'fas fa-tasks',
+                    'shift' => 'ml-4',
+                   // 'can' => 'indexVisitor',
+                    // 'can'    =>  'admin.diageo',
                 ],
 
             ],
+
         ],
         [
             'text'    => 'PDF Auditorias',

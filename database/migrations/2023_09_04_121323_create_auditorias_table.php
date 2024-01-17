@@ -16,7 +16,7 @@ return new class extends Migration
             'auditorias',
             function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->bigInteger('precarga_id');
+                $table->unsignedInteger('precarga_id');
                 $table->string('razonSocial', 150);
                 $table->bigInteger('nit');
                 $table->string('direccion', 150);

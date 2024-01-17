@@ -6,6 +6,16 @@
     <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Arapey:400,400i,600|Open+Sans:300" rel="stylesheet">
     <link href="{{ asset('css/auditoria.css') }}" rel="stylesheet">
+    <style>
+        .noClass {
+
+            width: 0px;
+            background: transparent;
+            color: transparent;
+            border: transparent;
+
+        }
+    </style>
 @stop
 @section('content')
 
@@ -679,20 +689,22 @@
     <hr>
     <ul>
         <div class="row">
-            <img class="img_botellasx3 swing" src="{{ asset('/storage/ronx3.png') }}" style="text-align: center" />
-            <div class="col-sm-6 card-box-double" id="card_double">
+            <div>
+                <img class="img_botellasx3 swing" src="{{ asset('/storage/ronx3.png') }}" style="text-align: center" />
+            </div>
+            <div class="col-12 card-box-double" id="card_double">
                 <div class="card-comp">
                     <legend>&iquest; Hay <b>Rones</b> de la competencia?</legend>
                     <fieldset>
                         <label>
-                            <input type="radio" onchange="javascript:showContent7()" id="RonesCompSi" name="RonesComp"
-                                value="RonesCompSi">
+                            <input type="radio" onchange="javascript:showContent7()" id="RonesCompSi" name="hay_ron"
+                                value="hay_ron_Si">
                             <span>Si</span>
                         </label>
                         <input type="text" class="noClass" id="InputRonesComp" required>
                         <label>
-                            <input type="radio" onchange="javascript:showContent7()" id="RonesCompNo" name="RonesComp"
-                                value="RonesCompNo" />
+                            <input type="radio" onchange="javascript:showContent7()" id="RonesCompNo" name="hay_ron"
+                                value="hay_ron_No" />
                             <span>No</span>
                         </label>
                     </fieldset>
@@ -732,10 +744,12 @@
                         aria-label="caras_comp_ron" required>
                     @include('errors.errors', ['field' => 'caras_comp_ron'])
                     <br>
-                    <div class="d-flex justify-content-center">
-                        <div class="ttulo">
-                            <green><span>Foto del lineal de ron</span></green>
-                        </div>
+                    <div class="ttulo">
+                        <green><span>Foto del lineal de ron</span></green>
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-left">
+
                         <br>
                         <input type="file" id="seleccionLinealR" name="seleccionLinealR" accept="image/*" required
                             disabled>
@@ -750,21 +764,25 @@
     <hr>
     <ul>
         <div class="row">
+
+            <div>
+
             <img class="img_botellasx3 swing" src="{{ asset('/storage/aguardientes.png') }}"
                 style="text-align: center" />
-            <div class="col-sm-6 card-box-double" id="card_double2">
+            </div>
+            <div class="col-12 card-box-double" id="card_double2">
                 <div class="card-comp">
                     <legend>&iquest; Hay <b>Aguardientes</b> de la competencia?</legend>
                     <fieldset>
                         <label>
-                            <input type="radio" onchange="javascript:showContent8()" id="AguarCompSi" name="AguarComp"
-                                value="AguarCompSi">
+                            <input type="radio" onchange="javascript:showContent8()" id="AguarCompSi"
+                                name="hay_aguardiente" value="hay_aguardiente_Si">
                             <span>Si</span>
                         </label>
                         <input type="text" class="noClass" id="InputAguarComp" required>
                         <label>
-                            <input type="radio" onchange="javascript:showContent8()" id="AguarCompNo" name="AguarComp"
-                                value="AguarCompNo">
+                            <input type="radio" onchange="javascript:showContent8()" id="AguarCompNo"
+                                name="hay_aguardiente" value="hay_aguardiente_No">
                             <span>No</span>
                         </label>
                     </fieldset>
@@ -806,12 +824,15 @@
                         id="caras_comp_aguardiente" aria-label="caras_comp_aguardiente" required>
                     @include('errors.errors', ['field' => 'caras_comp_aguardiente'])
                     <br>
-                    <div class="d-flex justify-content-center">
-                        <div class="ttulo">
-                            <green><span>Foto del lineal de ron</span></green>
-                        </div>
+                    <div class="ttulo">
+                        <green><span>Foto del lineal de ron</span></green>
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-left">
+
                         <br>
-                        <input type="file" id="seleccionLinealA" name="seleccionLinealA" accept="image/*" required disabled>
+                        <input type="file" id="seleccionLinealA" name="seleccionLinealA" accept="image/*" required
+                            disabled>
                         <br><br>
                         <img class="card-img-top" id="imagenLinearlA">
                     </div>
@@ -1418,7 +1439,6 @@
         }
     </script>
 
-
     <script>
         function showContent8() {
             element8 = document.getElementById("DivSComAguard");
@@ -1490,11 +1510,7 @@
     </script>
 
 
-
-
     <script>
-        // Jquery Dependency
-
         $("input[data-type='currency']").on({
             keyup: function() {
                 formatCurrency($(this));

@@ -1,10 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Bienvenido')
+@section('title', 'Bienvenid@s')
 
 @section('content_header')
     <h1>Bienvenido</h1>
-
 @stop
 
 @section('content')

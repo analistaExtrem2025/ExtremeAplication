@@ -1117,10 +1117,10 @@
                                 <br>
                                 <div style="display: none" id="EditRompeVisi">
                                     <hr>
-                                    <select name="rompe_visi" id="rompe_visi" class="form-control selectpicker selector"
+                                    <select name="prod_rt_visibles" id="rompe_visi" class="form-control selectpicker selector"
                                         data-style="btn-primary" title="Seleccionar visibilidad rompetrafico" required
                                         disabled>
-                                        <option disabled value="old{'rompe_visi'}" checked>Seleccione una opción </option>
+                                        <option disabled value="old{'prod_rt_visibles'}" checked>Seleccione una opción </option>
                                         @foreach ($rompe_visi as $romVis)
                                             <option value="{{ $romVis }}">{{ $romVis }}</option>
                                         @endforeach
@@ -1141,10 +1141,10 @@
                                 <br>
                                 <div style="display: none" id="EditRompeColo">
                                     <hr>
-                                    <select name="rompe_colo" id="rompe_colo" class="form-control selectpicker selector"
+                                    <select name="prod_rt_properly" id="rompe_colo" class="form-control selectpicker selector"
                                         data-style="btn-primary" title="Seleccionar colocación rompetrafico" required
                                         disabled>
-                                        <option disabled value="old{'rompe_colo'}" checked>Seleccione una opción </option>
+                                        <option disabled value="old{'prod_rt_properly'}" checked>Seleccione una opción </option>
                                         @foreach ($rompe_colo as $marCol)
                                             <option value="{{ $marCol }}">{{ $marCol }}</option>
                                         @endforeach
@@ -2556,8 +2556,6 @@
                                     no se encuentra en buen estado.
                                 @endif
                             </p>
-
-
                             <div class="col">
                                 <div class="toggle-wrapper">
                                     <div class="toggle checkcross27">
@@ -7098,7 +7096,7 @@
         if (miCheckbox27 != null) {
             miCheckbox27.addEventListener('click', function() {
                 if (miCheckbox27.checked) {
-                    msgBrandingVisi.innerText = 'se confirma que el branding esta visible';
+                    msgBrandingVisi.innerText = 'se confirma que el branding no esta visible';
                     if (miCheckbox27.checked = "true") {
                         inpBrandingVisi.value = "se audito mal la visibilidad del branding";
                         criticidadBrandingVisi.value = 1;
@@ -7120,22 +7118,22 @@
         var miCheckbox28 = document.getElementById('checkcross28');
         var msgBrandingEstado = document.getElementById('msgBrandingEstado');
         var inpBrandingEstado = document.getElementById('inpBrandingEstado');
-        var inpCriticidadBrandingEstado = document.getElementById('criticidadBrandingEstado');
+        var criticidadBrandingEstado = document.getElementById('criticidadBrandingEstado');
         var EditBrandingEstado = document.getElementById('EditBrandingEstado');
         if (miCheckbox28 != null) {
             miCheckbox28.addEventListener('click', function() {
                 if (miCheckbox28.checked) {
                     msgBrandingEstado.innerText = 'El branding se encuentra en mal estado';
                     if (miCheckbox28.checked = "true") {
-                        inpBrandingColo.value = "se audito mal el estado del branding";
-                        inpCriticidadBrandingEstado.value = 1;
+                        inpBrandingEstado.value = "se audito mal el estado del branding";
+                        criticidadBrandingEstado.value = 1;
                         EditBrandingEstado.style.display = "block";
                         $("#branding_danados").prop('disabled', false);
                     }
                 } else {
                     msgBrandingEstado.innerText = 'Según la validación, el branding esta en buen estado';
                     inpBrandingEstado.value = "se audito bien el estado del branding";
-                    inpCriticidadBrandingEstado.value = 0;
+                    criticidadBrandingEstado.value = 0;
                     EditBrandingEstado.style.display = "none";
                     $("#branding_danados").prop('disabled', true);
                 }
@@ -7187,7 +7185,7 @@
                 if (miCheckbox30.checked) {
                     msgVasosEstado.innerText = 'Los vasos y copas estan en mal estado';
                     if (miCheckbox30.checked = "true") {
-                        inpVasosColo.value = "se audito mal el estado de los vasos y copas";
+                        inpVasosEstado.value = "se audito mal el estado de los vasos y copas";
                         criticidadVasosEstado.value = 1;
                         EditVasosEstado.style.display = "block";
                         $('#vasos_quebrados').prop('disabled', false)
@@ -7387,7 +7385,7 @@
             miCheckbox37.addEventListener('click', function() {
                 if (miCheckbox37.checked) {
                     msgGift.innerText =
-                        'no se entrego gift';
+                        'se reporto mal la entrega del gift';
                     if (miCheckbox37.checked = "true") {
                         inpGift.value =
                             "se audito mal la entrega del gift";
@@ -7397,7 +7395,7 @@
                     }
                 } else {
                     msgGift.innerText =
-                        'La entrega del gift se confirma con la foto';
+                        'se registro bien la entrega del gift';
                     inpGift.value = "se audito bien la entrega del gift";
                     $("#ingreso11").val(0);
 

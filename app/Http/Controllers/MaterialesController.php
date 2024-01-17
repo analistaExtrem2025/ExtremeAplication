@@ -79,6 +79,8 @@ class MaterialesController extends Controller
             $nombreCenefa = "_" . $request->precarga_id . '.' . 'png';
             $destinoCenefa = public_path('auditorias_pics/Cenefa');
             $request->seleccionCenefa->move($destinoCenefa, $nombreCenefa);
+            $auditoria->seleccionCenefa =  'auditorias_pics/Cenefa' . $nombreCenefa;
+            $auditoria->save();
             $redCenefa = Image::make($destinoCenefa . '/' . $nombreCenefa);
             $redCenefa->resize(
                 380,
@@ -107,20 +109,21 @@ class MaterialesController extends Controller
                 }
             );
             $redCenefa->save($destinoCenefa . $nombreCenefa);
-            $auditoria->seleccionCenefa = 'auditorias_pics/Cenefa' .  $nombreCenefa;
+            $auditoria->seleccionCenefa = 'auditoria/Cenefa' . $request->precarga_id . '.png';
             $auditoria->save();
         } else {
-
             $auditoria->seleccionCenefa = 'public\img\no_diponible.png';
             $auditoria->save();
         }
 
-
         if ($request->hasFile('seleccionAfiche')) {
+
             $imagenAfiche = $request->file('seleccionAfiche');
             $nombreAfiche = "_" . $request->precarga_id . '.' . 'png';
             $destinoAfiche = public_path('auditorias_pics/Afiche');
             $request->seleccionAfiche->move($destinoAfiche, $nombreAfiche);
+            $auditoria->seleccionAfiche =  'auditorias_pics/Afiche' . $nombreAfiche;
+            $auditoria->save();
             $redAfiche = Image::make($destinoAfiche . '/' . $nombreAfiche);
             $redAfiche->resize(
                 380,
@@ -130,7 +133,7 @@ class MaterialesController extends Controller
                 }
             );
             $redAfiche->text(
-                'Afiche' . " " .
+                'Cenefa' . " " .
                     $auditoria->star . " " .
                     $auditoria->direccion . " " .
                     $auditoria->municipio . " " .
@@ -149,12 +152,14 @@ class MaterialesController extends Controller
                 }
             );
             $redAfiche->save($destinoAfiche . $nombreAfiche);
-            $auditoria->seleccionAfiche = 'auditorias_pics/Afiche' .  $nombreAfiche;
+            $auditoria->seleccionAfiche = 'auditoria/Afiche' . $request->precarga_id . '.png';
             $auditoria->save();
         } else {
             $auditoria->seleccionAfiche = 'public\img\no_diponible.png';
             $auditoria->save();
         }
+
+
 
         if ($request->hasFile('seleccionMarco')) {
             $imagenMarco = $request->file('seleccionMarco');
@@ -189,8 +194,9 @@ class MaterialesController extends Controller
                 }
             );
             $redMarco->save($destinoMarco . $nombreMarco);
-            $auditoria->seleccionMarco = 'auditorias_pics/Marco' .  $nombreMarco;
+            $auditoria->seleccionMarco = 'auditoria/Marco' . $request->precarga_id . '.png';
             $auditoria->save();
+
         } else {
             $auditoria->seleccionMarco = 'public\img\no_diponible.png';
             $auditoria->save();
@@ -230,8 +236,9 @@ class MaterialesController extends Controller
                 }
             );
             $redRompetrafico->save($destinoRompetrafico . $nombreRompetrafico);
-            $auditoria->seleccionRompetrafico = 'auditorias_pics/Rompetrafico' .  $nombreRompetrafico;
+            $auditoria->seleccionRompetrafico = 'auditoria/Rompetrafico_' . $request->precarga_id . '.png';
             $auditoria->save();
+
         } else {
             $auditoria->seleccionRompetrafico = 'public\img\no_diponible.png';
             $auditoria->save();
@@ -270,7 +277,7 @@ class MaterialesController extends Controller
                 }
             );
             $redFaxada->save($destinoFaxada . $nombreFaxada);
-            $auditoria->seleccionFaxada = 'auditorias_pics/Faxada' .  $nombreFaxada;
+            $auditoria->seleccionFaxada = 'auditoria/Faxada' . $request->precarga_id . '.png';
             $auditoria->save();
         } else {
             $auditoria->seleccionFaxada = 'public\img\no_diponible.png';
@@ -310,7 +317,7 @@ class MaterialesController extends Controller
                 }
             );
             $redHielera->save($destinoHielera . $nombreHielera);
-            $auditoria->seleccionHielera = 'auditorias_pics/Hielera' .  $nombreHielera;
+            $auditoria->seleccionHielera = 'auditoria/Hielera' . $request->precarga_id . '.png';
             $auditoria->save();
         } else {
             $auditoria->seleccionHielera = 'public\img\no_diponible.png';
@@ -350,8 +357,10 @@ class MaterialesController extends Controller
                 }
             );
             $redBase_h->save($destinoBase_h . $nombreBase_h);
-            $auditoria->seleccionBase_h = 'auditorias_pics/Base_h' .  $nombreBase_h;
+            $auditoria->seleccionBase_h = 'auditoria/Base_h' . $request->precarga_id . '.png';
             $auditoria->save();
+
+
         } else {
             $auditoria->seleccionBase_h = 'public\img\no_diponible.png';
             $auditoria->save();
@@ -390,7 +399,7 @@ class MaterialesController extends Controller
                 }
             );
             $redDosificadorD->save($destinoDosificadorD . $nombreDosificadorD);
-            $auditoria->seleccionDosificadorD = 'auditorias_pics/DosificadorD' .  $nombreDosificadorD;
+            $auditoria->seleccionDosificadorD = 'auditoria/DosificadorD' . $request->precarga_id . '.png';
             $auditoria->save();
         } else {
             $auditoria->seleccionDosificadorD = 'public\img\no_diponible.png';
@@ -430,7 +439,7 @@ class MaterialesController extends Controller
                 }
             );
             $redDosificadorS->save($destinoDosificadorS . $nombreDosificadorS);
-            $auditoria->seleccionDosificadorS = 'auditorias_pics/DosificadorS' .  $nombreDosificadorS;
+            $auditoria->seleccionDosificadorS = 'auditoria/DosificadorS_' . $request->precarga_id . '.png';
             $auditoria->save();
         } else {
             $auditoria->seleccionDosificadorS = 'public\img\no_diponible.png';
@@ -470,7 +479,7 @@ class MaterialesController extends Controller
                 }
             );
             $redBranding->save($destinoBranding . $nombreBranding);
-            $auditoria->seleccionBranding = 'auditorias_pics/Branding' .  $nombreBranding;
+            $auditoria->seleccionBranding = 'auditoria/Branding_' . $request->precarga_id . '.png';
             $auditoria->save();
         } else {
             $auditoria->seleccionBranding = 'public\img\no_diponible.png';
@@ -510,63 +519,106 @@ class MaterialesController extends Controller
                 }
             );
             $redVasos->save($destinoVasos . $nombreVasos);
-            $auditoria->seleccionVasos = 'auditorias_pics/Vasos' .  $nombreVasos;
+            $auditoria->seleccionVasos = 'auditoria/Vasos_' . $request->precarga_id . '.png';
             $auditoria->save();
         } else {
             $auditoria->seleccionVasos = 'public\img\no_diponible.png';
             $auditoria->save();
         }
 
-
         $materiales = Materiales::findOrFail($id);
-        $materiales->update(
+
+        $cenefaVyes = $request->cenefa == "cenefa_si" ? $request->cenefa_visi : "no aplica";
+        $cenefaCyes = $request->cenefa == "cenefa_si" ? $request->cenefa_colo : "no aplica";
+        $aficheVyes = $request->afiche == "afiche_si" ? $request->afiche_visi : "no aplica";
+        $aficheCyes = $request->afiche == "afiche_si" ? $request->afiche_colo : "no aplica";
+        $aficheCom = $request->afiche == "afiche_si" ? $request->aficheCombotizado : "no aplica";
+        $aficheMarcyes = $request->aficheCombotizado == "afiche_combo_si" ? $request->marca_combo : "no aplica";
+        $aficheCom1yes = $request->aficheCombotizado == "afiche_combo_si" ? $request->combox1 : "no aplica";
+        $aficheCom2yes = $request->aficheCombotizado == "afiche_combo_si" ? $request->combox2 : "no aplica";
+        $aficheCom3yes = $request->aficheCombotizado == "afiche_combo_si" ? $request->combox3 : "no aplica";
+        $marcoVyes = $request->marco == "marco_si" ? $request->marco_visi : "no aplica";
+        $marcoCyes = $request->marco == "marco_si" ? $request->marco_colo : "no aplica";
+        $rompetraficoVyes = $request->rompetraficos == "rompetraficos_si" ? $request->prod_rt_visibles : "no aplica";
+        $rompetraficoCyes = $request->rompetraficos == "rompetraficos_si" ? $request->prod_rt_properly : "no aplica";
+        $fachadasVyes = $request->fachadas == "fachadas_si" ? $request->fachadas_visi : "no aplica";
+        $fachadasCyes = $request->fachadas == "fachadas_si" ? $request->fachadas_colo : "no aplica";
+        $hieleraVyes = $request->hielera == "hielera_si" ? $request->prod_hl_visible : "no aplica";
+        $hieleraPyes = $request->hielera == "hielera_si" ? $request->hl_con_prod : "no aplica";
+        $hieleraDyes = $request->hielera == "hielera_si" ? $request->prod_hl_danadas : "no aplica";
+        $bhieleraVyes = $request->bases_h == "bases_h_si" ? $request->prod_baseshl_visible : "no aplica";
+        $bhieleraPyes = $request->bases_h == "bases_h_si" ? $request->baseshl_con_prod : "no aplica";
+        $bhieleraDyes = $request->bases_h == "bases_h_si" ? $request->prod_baseshl_danadas : "no aplica";
+        $dosificadorDVyes = $request->dosificadorD == "dosificadorD_si" ? $request->prod_dsD_visibles : "no aplica";
+        $dosificadorDPyes = $request->dosificadorD == "dosificadorD_si" ? $request->prod_dsD_diferentes : "no aplica";
+        $dosificadorDDyes = $request->dosificadorD == "dosificadorD_si" ? $request->prod_dsD_danados : "no aplica";
+        $dosificadorSVyes = $request->dosificadorS == "dosificadorS_si" ? $request->prod_dsS_visibles : "no aplica";
+        $dosificadorSPyes = $request->dosificadorS == "dosificadorS_si" ? $request->prod_dsS_diferentes : "no aplica";
+        $dosificadorSDyes = $request->dosificadorS == "dosificadorS_si" ? $request->prod_dsS_danados : "no aplica";
+        $brandingVyes = $request->branding == "branding_si" ? $request->branding_visible : "no aplica";
+        $brandingPyes = $request->branding == "branding_si" ? $request->branding_danados : "no aplica";
+        $vasosVyes = $request->vasos == "vasos_si" ? $request->vasos_visibles : "no aplica";
+        $vasosPyes = $request->vasos == "vasos_si" ? $request->vasos_quebrados : "no aplica";
+
+        $mergeData = [
+            'cenefa_visi' => $cenefaVyes,
+            'cenefa_colo' => $cenefaCyes,
+            'afiche_visi' => $aficheVyes,
+            'afiche_colo' => $aficheCyes,
+            'marca_combo' => $aficheMarcyes,
+            'aficheCombotizado' => $aficheCom,
+            'combox1' =>  $aficheCom1yes,
+            'combox2' =>  $aficheCom2yes,
+            'combox3' =>  $aficheCom3yes,
+            'marco_visi' => $marcoVyes,
+            'marco_colo' => $marcoCyes,
+            'prod_rt_visibles' => $rompetraficoVyes,
+            'prod_rt_properly' => $rompetraficoCyes,
+            'fachadas_visi' => $fachadasVyes,
+            'fachadas_colo' => $fachadasCyes,
+            'hl_con_prod' => $hieleraVyes,
+            'prod_hl_visible' => $hieleraPyes,
+            'prod_hl_danadas' => $hieleraDyes,
+            'baseshl_con_prod' => $bhieleraVyes,
+            'prod_baseshl_visible' => $bhieleraPyes,
+            'prod_baseshl_danadas' => $bhieleraDyes,
+            'prod_dsD_visibles' => $dosificadorDVyes,
+            'prod_dsD_diferentes' => $dosificadorDPyes,
+            'prod_dsD_danados' => $dosificadorDDyes,
+            'prod_dsS_visibles' => $dosificadorSVyes,
+            'prod_dsS_diferentes' => $dosificadorSPyes,
+            'prod_dsS_danados' => $dosificadorSDyes,
+            'branding_visible' => $brandingVyes,
+            'branding_danados' => $brandingPyes,
+            'vasos_visibles' => $vasosVyes,
+            'vasos_quebrados' => $vasosPyes,
+            'criticidad' => 'paso 4 - materiales',
+        ];
+        $datosMateriales = request()->merge($mergeData)->except(
             [
-                'cenefa' => $request->cenefa,
-                'cenefa_visi' => $request->cenefa_visi,
-                'cenefa_colo' => $request->cenefa_colo,
-                'marca_combo' => $request->marca_combo,
-                'afiche' => $request->afiche,
-                'afiche_visi' => $request->afiche_visi,
-                'afiche_colo' => $request->afiche_colo,
-                'aficheCombotizado' => $request->aficheCombotizado,
-                'combox1' => $request->combox1,
-                'combox2' => $request->combox2,
-                'combox3' => $request->combox3,
-                'marco' => $request->marco,
-                'marco_visi' => $request->marco_visi,
-                'marco_colo' => $request->marco_colo,
-                'rompetraficos' => $request->rompetraficos,
-                'prod_rt_visibles' => $request->prod_rt_visibles,
-                'prod_rt_properly' => $request->prod_rt_properly,
-                'fachadas' => $request->fachadas,
-                'fachadas_visi' => $request->fachadas_visi,
-                'fachadas_colo' => $request->fachadas_colo,
-                'hielera' => $request->hielera,
-                'hl_con_prod' => $request->hl_con_prod,
-                'prod_hl_visible' => $request->prod_hl_visible,
-                'prod_hl_danadas' => $request->prod_hl_danadas,
-                'bases_h' => $request->bases_h,
-                'baseshl_con_prod' => $request->baseshl_con_prod,
-                'prod_baseshl_visible' => $request->prod_baseshl_visible,
-                'prod_baseshl_danadas' => $request->prod_baseshl_danadas,
-                "dosificadorD" => $request->dosificadorD,
-                "prod_dsD_visibles" => $request->prod_dsD_visibles,
-                "prod_dsD_diferentes" => $request->prod_dsD_diferentes,
-                "prod_dsD_danados" => $request->prod_dsD_danados,
-                'dosificadorS' => $request->dosificadorS,
-                'prod_dsS_visibles' => $request->prod_dsS_visibles,
-                'prod_dsS_diferentes' => $request->prod_dsS_diferentes,
-                'prod_dsS_danados' => $request->prod_dsS_danados,
-                'branding' => $request->branding,
-                'branding_visible' => $request->branding_visible,
-                'branding_danados' => $request->branding_danados,
-                'vasos' => $request->vasos,
-                'vasos_visibles' => $request->vasos_visibles,
-                'vasos_quebrados' => $request->vasos_quebrados,
-                'criticidad' => 'paso 4 - materiales',
+                '_method',
+                '_token',
+                'seleccionCenefa',
+                'seleccionAfiche',
+                'seleccionMarco',
+                'seleccionRompetrafico',
+                'seleccionFaxada',
+                'seleccionHielera',
+                'seleccionBase_h',
+                'seleccionDosificadorD',
+                'seleccionDosificadorS',
+                'seleccionBranding',
+                'seleccionVasos',
 
             ]
         );
+
+        Materiales::where('id', '=', $id)->update($datosMateriales);
+        $id =  $materiales->precarga_id;
+        $concretado = PuntosAuditoria::findOrFail($id);
+        $concretado->estatusGestion = 'paso 4 - materiales';
+        $concretado->save();
+
 
         return redirect('disponibilidad');
     }

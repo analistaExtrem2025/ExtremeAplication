@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Auditoria;
 use App\Models\Exhibicion;
+use App\Models\PuntosAuditoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
@@ -146,13 +147,6 @@ class ExhibicionController extends Controller
             $auditoria->seleccionron_jhonny = 'public\img\no_diponible.png';
             $auditoria->save();
         }
-
-
-
-
-
-
-
         if ($request->hasFile('seleccionaguard_smirnoff')) {
 
             $imagenaguard_smirnoff = $request->file('seleccionaguard_smirnoff');
@@ -195,26 +189,36 @@ class ExhibicionController extends Controller
         }
 
 
-        //dd($request->all());
-        if ($request->ron_jhonny != null) {
-            $materiales->update(
-                [
-                    'ron_byw' => $request->ron_byw,
-                    'ron_jhonny' => $request->ron_jhonny,
-                    'aguard_smirnoff' => $request->aguard_smirnoff,
-                    'criticidad' => 'paso 6 - Exhibicion',
-                ]
-            );
-        } else {
-            $materiales->update(
-                [
-                    'ron_byw' => $request->ron_byw,
-                    'aguard_smirnoff' => $request->aguard_smirnoff,
-                    'criticidad' => 'paso 6 - Exhibicion',
 
-                ]
-            );
-        }
+        $ronBlack = $request->ron_byw == "ron_byw_si" ? $request->ron_byw : "ron_byw_no";
+        $ronJhonnie = $request->ron_jhonny == "ron_jhonny_si" ? $request->ron_jhonny : "ron_jhonny_no";
+        $aguaSmir = $request->aguard_smirnoff == "aguard_smirnoff_si" ? $request->aguard_smirnoff : "aguard_smirnoff_no";
+
+
+        $mergeData = [
+
+            'ron_byw' => $ronBlack,
+            'ron_jhonny' => $ronJhonnie,
+            'aguard_smirnoff' => $aguaSmir,
+            'criticidad' => 'paso 6 - Exhibicion',
+        ];
+
+        $datosExhibicion = request()->merge($mergeData)->except(
+            [
+                '_method',
+                '_token',
+                'seleccionron_byw',
+                'seleccionron_jhonny',
+                'seleccionaguard_smirnoff',
+            ]
+        );
+
+        Exhibicion::where('id', '=', $id)->update($datosExhibicion);
+        $id =  $materiales->precarga_id;
+        $concretado = PuntosAuditoria::findOrFail($id);
+        $concretado->estatusGestion = 'paso 6 - Exhibicion';
+        $concretado->save();
+
         return redirect('gifts');
     }
 

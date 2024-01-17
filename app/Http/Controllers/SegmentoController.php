@@ -46,9 +46,9 @@ class SegmentoController extends Controller
 
         $segmento = [
 
-            "Gold" => "Gold",
-            "Silver" => "Silver",
-            "Bronce" => "Bronce",
+            'Gold' => 'Gold',
+            'Silver' => 'Silver',
+            'Bronce' => 'Bronce',
         ];
         $puntos_auditoria = Segmento::findOrFail($id);
 
@@ -75,7 +75,7 @@ class SegmentoController extends Controller
         $datos = PuntosAuditoria::select('segmentacion')->where('id', $segmento->precarga_id)->get()->pluck('segmentacion');
         $datosReporte = request()->except('_token');
         if ($request->hasFile('fotosegmento')) {
-            $imagenSegmento= $request->file('fotosegmento');
+            $imagenSegmento = $request->file('fotosegmento');
             $nombreSegmento = "_" . $request->precarga_id . '.' . 'png';
             $destinoSegmento = public_path('auditorias_pics/segmento');
             $request->fotosegmento->move($destinoSegmento, $nombreSegmento);
@@ -119,10 +119,14 @@ class SegmentoController extends Controller
                     'caja_aguardiente' => $request->caja_aguardiente,
                     'caja_ron' => $request->caja_ron,
                     'caja_whiskey' => $request->caja_whiskey,
-                    'fotosegmento' => 'auditorias_pics/segmento'. $nombreSegmento,
+                    'fotosegmento' => 'auditorias_pics/segmento' . $nombreSegmento,
                     'criticidad' => 'paso 3 - segmento',
                 ]
             );
+            $id =  $segmento->precarga_id;
+            $concretado = PuntosAuditoria::findOrFail($id);
+            $concretado->estatusGestion = 'paso 3 - segmento';
+            $concretado->save();
         } else if ($request->state_segmento == 'segmento_si') {
             $segmento->update(
                 [
@@ -132,10 +136,14 @@ class SegmentoController extends Controller
                     'caja_aguardiente' => $request->caja_aguardiente,
                     'caja_ron' => $request->caja_ron,
                     'caja_whiskey' => $request->caja_whiskey,
-                    'fotosegmento' => 'auditorias_pics/segmento'. $nombreSegmento,
+                    'fotosegmento' => 'auditorias_pics/segmento' . $nombreSegmento,
                     'criticidad' => 'paso 3 - segmento',
                 ]
             );
+            $id =  $segmento->precarga_id;
+            $concretado = PuntosAuditoria::findOrFail($id);
+            $concretado->estatusGestion = 'paso 3 - segmento';
+            $concretado->save();
         }
         return redirect('materiales');
     }

@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\AuditoriasExport;
 use App\Exports\PuntosExport;
 use App\Models\Auditoria;
+use App\Models\Pqr;
 
 class HomeController extends Controller
 {
@@ -20,7 +21,6 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
 
 
 
@@ -47,4 +47,15 @@ class HomeController extends Controller
 
         return Excel::download(new PuntosExport, 'puntos-list.xlsx');
     }
+
+
+    public function notificacionEdit($id)
+    {
+        $pqr = Pqr::findOrFail($id);
+
+
+        return view('notificacionEdit', compact('pqr'));
+    }
+
+
 }

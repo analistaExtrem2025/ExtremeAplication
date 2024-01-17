@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Auditoria;
 use App\Models\Disponibilidad;
+use App\Models\PuntosAuditoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
@@ -91,7 +92,7 @@ class DisponibilidadController extends Controller
     public function update(Request $request, $id)
     {
 
-     //dd($request->all());
+        //dd($request->all());
         $auditoria = Auditoria::where('precarga_id', $request->precarga_id)->first();
         $nombreRon = "_" . $request->precarga_id . '.' . 'png';
         $nombreAguardiente = "_" . $request->precarga_id . '.' . 'png';
@@ -111,11 +112,11 @@ class DisponibilidadController extends Controller
                 }
             );
             $redLinealDiageo->text(
-                'Lineal Diageo' . " ".
-                    $auditoria->star. " ".
-                    $auditoria->direccion. " ".
-                    $auditoria->municipio. " ".
-                    $auditoria->lat. " ".
+                'Lineal Diageo' . " " .
+                    $auditoria->star . " " .
+                    $auditoria->direccion . " " .
+                    $auditoria->municipio . " " .
+                    $auditoria->lat . " " .
                     $auditoria->lon,
                 0,
                 10,
@@ -129,11 +130,9 @@ class DisponibilidadController extends Controller
                     $font->countLines(4);
                 }
             );
-            $redLinealDiageo->save($destinoLinealDiageo. $nombreLinealDiageo);
+            $redLinealDiageo->save($destinoLinealDiageo . $nombreLinealDiageo);
             $auditoria->seleccionLinealDiageo = 'auditorias_pics/LinealDiageo' .  $nombreLinealDiageo;
             $auditoria->save();
-
-
         } else {
             $auditoria->seleccionLinealDiageo = 'public\img\no_diponible.png';
             $auditoria->save();
@@ -153,11 +152,11 @@ class DisponibilidadController extends Controller
                 }
             );
             $redRon->text(
-                'Compet Ron' . " ".
-                    $auditoria->star. " ".
-                    $auditoria->direccion. " ".
-                    $auditoria->municipio. " ".
-                    $auditoria->lat. " ".
+                'Compet Ron' . " " .
+                    $auditoria->star . " " .
+                    $auditoria->direccion . " " .
+                    $auditoria->municipio . " " .
+                    $auditoria->lat . " " .
                     $auditoria->lon,
                 0,
                 10,
@@ -194,11 +193,11 @@ class DisponibilidadController extends Controller
                 }
             );
             $redAguardiente->text(
-                'Compet Aguardiente' . " ".
-                    $auditoria->star. " ".
-                    $auditoria->direccion. " ".
-                    $auditoria->municipio. " ".
-                    $auditoria->lat. " ".
+                'Compet Aguardiente' . " " .
+                    $auditoria->star . " " .
+                    $auditoria->direccion . " " .
+                    $auditoria->municipio . " " .
+                    $auditoria->lat . " " .
                     $auditoria->lon,
                 0,
                 10,
@@ -220,72 +219,152 @@ class DisponibilidadController extends Controller
             $auditoria->save();
         }
 
-        //dd($request->all());
-
         $disponibilidad = Disponibilidad::findOrFail($id);
-        $disponibilidad->update(
+
+
+
+        $black1000     = $request->bAndw1000 == "bAndw1000_si" ? $request->bAndw1000 : "no aplica";
+        $black1000C    = $request->bAndw1000 == "bAndw1000_si" ? $request->caras_bAndw1000 : "0";
+        $black1000P    = $request->bAndw1000 == "bAndw1000_si" ? $request->precio_bAndw1000 : "0";
+
+        $black700      = $request->bAndw700 == "bAndw700_si" ? $request->bAndw700 : "no aplica";
+        $black700C     = $request->bAndw700 == "bAndw700_si" ? $request->caras_bAndw700 : "0";
+        $black700P     = $request->bAndw700 == "bAndw700_si" ? $request->precio_bAndw700 : "0";
+
+        $black375      = $request->bAndw375 == "bAndw375_si" ? $request->bAndw375 : "no aplica";
+        $black375C     = $request->bAndw375 == "bAndw375_si" ? $request->caras_bAndw375 : "0";
+        $black375P     = $request->bAndw375 == "bAndw375_si" ? $request->precio_bAndw375 : "0";
+
+        $smir700       = $request->smirnoff700 == "smirnoff700_si" ? $request->smirnoff700 : "no aplica";
+        $smir700C      = $request->smirnoff700 == "smirnoff700_si" ? $request->caras_smirnoff700 : "0";
+        $smir700P      = $request->smirnoff700 == "smirnoff700_si" ? $request->precio_smirnoff700 : "0";
+
+        $smir375       = $request->smirnoff375 == "smirnoff375_si" ? $request->smirnoff375 : "no aplica";
+        $smir375C      = $request->smirnoff375 == "smirnoff375_si" ? $request->caras_smirnoff375 : "0";
+        $smir375P      = $request->smirnoff375 == "smirnoff375_si" ? $request->precio_smirnoff375 : "0";
+
+        $smirNs700     = $request->smirnoff_ns700 == "smirnoff_ns700_si" ? $request->smirnoff_ns700 : "no aplica";
+        $smirNs700C    = $request->smirnoff_ns700 == "smirnoff_ns700_si" ? $request->caras_smirnoff_ns700 : "0";
+        $smirNs700P    = $request->smirnoff_ns700 == "smirnoff_ns700_si" ? $request->precio_smirnoff_ns700 : "0";
+
+        $smirNs375     = $request->smirnoff_ns375 == "smirnoff_ns375_si" ? $request->smirnoff_ns375 : "no aplica";
+        $smirNs375C    = $request->smirnoff_ns375 == "smirnoff_ns375_si" ? $request->caras_smirnoff_ns375 : "0";
+        $smirNs375P    = $request->smirnoff_ns375 == "smirnoff_ns375_si" ? $request->precio_smirnoff_ns375 : "0";
+
+        $johnnie1000   = $request->jhonnie1000 == "jhonnie1000_si" ? $request->jhonnie1000 : "no aplica";
+        $johnnie1000C  = $request->jhonnie1000 == "jhonnie1000_si" ? $request->caras_jhonnie1000 : "0";
+        $johnnie1000P  = $request->jhonnie1000 == "jhonnie1000_si" ? $request->precio_jhonnie1000 : "0";
+
+        $johnnie700    = $request->jhonnie700 == "jhonnie700_si" ? $request->jhonnie700 : "no aplica";
+        $johnnie700C   = $request->jhonnie700 == "jhonnie700_si" ? $request->caras_jhonnie700 : "0";
+        $johnnie700P   = $request->jhonnie700 == "jhonnie700_si" ? $request->precio_jhonnie700 : "0";
+
+        $johnnie375    = $request->jhonnie375 == "jhonnie375_si" ? $request->jhonnie375 : "no aplica";
+        $johnnie375C   = $request->jhonnie375 == "jhonnie375_si" ? $request->caras_jhonnie375 : "0";
+        $johnnie375P   = $request->jhonnie375 == "jhonnie375_si" ? $request->precio_jhonnie375 : "0";
+
+        $old750        = $request->oldparr750 == "oldparr750_si" ? $request->oldparr750 : "no aplica";
+        $old750C       = $request->oldparr750 == "oldparr750_si" ? $request->caras_oldparr750 : "0";
+        $old750P       = $request->oldparr750 == "oldparr750_si" ? $request->precio_oldparr750 : "0";
+
+        $buchannas700  = $request->buchannas700 == "buchannas700_si" ? $request->buchannas700 : "no aplica";
+        $buchannas700C = $request->buchannas700 == "buchannas700_si" ? $request->caras_buchannas700 : "0";
+        $buchannas700P = $request->buchannas700 == "buchannas700_si" ? $request->precio_buchannas700 : "0";
+
+        $buchannas375  = $request->buchannas375 == "buchannas375_si" ? $request->buchannas375 : "no aplica";
+        $buchannas375C = $request->buchannas375 == "buchannas375_si" ? $request->caras_buchannas375 : "0";
+        $buchannas375P = $request->buchannas375 == "buchannas375_si" ? $request->precio_buchannas375 : "0";
+
+        $ron1          = $request->hay_ron == "hay_ron_Si" ? $request->comp_ron1 : "no aplica";
+        $ron1P         = $request->hay_ron == "hay_ron_Si" ? $request->precio_comp_ron1 : "0";
+        $ron2          = $request->hay_ron == "hay_ron_Si" ? $request->comp_ron2 : "no aplica";
+        $ron2P         = $request->hay_ron == "hay_ron_Si" ? $request->precio_comp_ron2 : "0";
+        $ron1C         = $request->hay_ron == "hay_ron_Si" ? $request->caras_comp_ron : "0";
+        $agua1         = $request->hay_aguardiente == "hay_aguardiente_Si" ? $request->comp_aguard1 : "no aplica";
+        $agua1P        = $request->hay_aguardiente == "hay_aguardiente_Si" ? $request->precio_comp_aguardiente1 : "0";
+        $agua2         = $request->hay_aguardiente == "hay_aguardiente_Si" ? $request->comp_aguard2 : "no aplica";
+        $agua2P        = $request->hay_aguardiente == "hay_aguardiente_Si" ? $request->precio_comp_aguardiente2 : "0";
+        $agua1C        = $request->hay_aguardiente == "hay_aguardiente_Si" ? $request->caras_comp_aguardiente : "0";
+
+
+
+        $mergeData = [
+            'bAndw1000' => $black1000,
+            'caras_bAndw1000' => $black1000C,
+            'precio_bAndw1000' => $black1000P,
+            'bAndw700' => $black700,
+            'caras_bAndw700' => $black700C,
+            'precio_bAndw700' => $black700P,
+            'bAndw375' => $black375,
+            'caras_bAndw375' => $black375C,
+            'precio_bAndw375' => $black375P,
+            'smirnoff700' => $smir700,
+            'caras_smirnoff700' => $smir700C,
+            'precio_smirnoff700' => $smir700P,
+            'smirnoff375' => $smir375,
+            'caras_smirnoff375' => $smir375C,
+            'precio_smirnoff375' => $smir375P,
+            'smirnoff_ns700' => $smirNs700,
+            'caras_smirnoff_ns700' => $smirNs700C,
+            'precio_smirnoff_ns700' => $smirNs700P,
+            'smirnoff_ns375' => $smirNs375,
+            'caras_smirnoff_ns375' => $smirNs375C,
+            'precio_smirnoff_ns375' => $smirNs375P,
+            'jhonnie1000' => $johnnie1000,
+            'caras_jhonnie1000' => $johnnie1000C,
+            'precio_jhonnie1000' => $johnnie1000P,
+            'jhonnie700' => $johnnie700,
+            'caras_jhonnie700' => $johnnie700C,
+            'precio_jhonnie700' => $johnnie700P,
+            'jhonnie375' =>  $johnnie375 ,
+            'caras_jhonnie375' =>  $johnnie375C,
+            'precio_jhonnie375' =>  $johnnie375P,
+            'oldparr750' => $old750,
+            'caras_oldparr750' => $old750C,
+            'precio_oldparr750' => $old750P,
+            'buchannas700' => $buchannas700,
+            'caras_buchannas700' => $buchannas700C,
+            'precio_buchannas700' => $buchannas700P,
+            'buchannas375' => $buchannas375,
+            'caras_buchannas375' => $buchannas375C,
+            'precio_buchannas375' => $buchannas375P,
+            'comp_ron1' =>  $ron1 ,
+            'precio_comp_ron1' =>  $ron1P,
+            'comp_ron2' =>  $ron2 ,
+            'precio_comp_ron2' =>  $ron2P,
+            'caras_comp_ron' =>  $ron1C,
+            'comp_aguard1' =>  $agua1,
+            'precio_comp_aguardiente1' =>  $agua1P,
+            'comp_aguard2' =>  $agua2,
+            'precio_comp_aguardiente2' =>  $agua2P,
+            'caras_comp_aguardiente' =>  $agua1C,
+            'hay_ron' => $request->hay_ron,
+            'hay_aguardiente' => $request->hay_aguardiente
+        ];
+        $datosDisponibilidad = request()->merge($mergeData)->except(
             [
-                'bAndw1000' => $request->bAndw1000,
-                'caras_bAndw1000' => $request->caras_bAndw1000,
-                'precio_bAndw1000' => $request->precio_bAndw1000,
-                'bAndw700' => $request->bAndw700,
-                'caras_bAndw700' => $request->caras_bAndw700,
-                'precio_bAndw700' => $request->precio_bAndw700,
-                'bAndw375' => $request->bAndw375,
-                'caras_bAndw375' => $request->caras_bAndw375,
-                'precio_bAndw375' => $request->precio_bAndw375,
-                'smirnoff700' => $request->smirnoff700,
-                'caras_smirnoff700' => $request->caras_smirnoff700,
-                'precio_smirnoff700' => $request->precio_smirnoff700,
-                'smirnoff375' => $request->smirnoff375,
-                'caras_smirnoff375' => $request->caras_smirnoff375,
-                'precio_smirnoff375' => $request->precio_smirnoff375,
-                'smirnoff_ns700' => $request->smirnoff_ns700,
-                'caras_smirnoff_ns700' => $request->caras_smirnoff_ns700,
-                'precio_smirnoff_ns700' => $request->precio_smirnoff_ns700,
-                'smirnoff_ns375' => $request->smirnoff_ns375,
-                'caras_smirnoff_ns375' => $request->caras_smirnoff_ns375,
-                'precio_smirnoff_ns375' => $request->precio_smirnoff_ns375,
-                'jhonnie1000' => $request->jhonnie1000,
-                'caras_jhonnie1000' => $request->caras_jhonnie1000,
-                'precio_jhonnie1000' => $request->precio_jhonnie1000,
-                'jhonnie700' => $request->jhonnie700,
-                'caras_jhonnie700' => $request->caras_jhonnie700,
-                'precio_jhonnie700' => $request->precio_jhonnie700,
-                'jhonnie375' => $request->jhonnie375,
-                'caras_jhonnie375' => $request->caras_jhonnie375,
-                'precio_jhonnie375' => $request->precio_jhonnie375,
-                'oldparr750' => $request->oldparr750,
-                'caras_oldparr750' => $request->caras_oldparr750,
-                'precio_oldparr750' => $request->precio_oldparr750,
-                'buchannas700' => $request->buchannas700,
-                'caras_buchannas700' => $request->caras_buchannas700,
-                'precio_buchannas700' => $request->precio_buchannas700,
-                'buchannas375' => $request->buchannas375,
-                'caras_buchannas375' => $request->caras_buchannas375,
-                'precio_buchannas375' => $request->precio_buchannas375,
-                'cal_marc_visible' => $request->cal_marc_visible,
-                'cal_marc_danados' => $request->cal_marc_danados,
-                'cal_marc_et_danados' => $request->cal_marc_et_danados,
-                'hay_ron' => $request->hay_ron,
-                'hay_aguardiente' => $request->hay_aguardiente,
-                'comp_ron1' => $request->comp_ron1,
-                'caras_comp_ron' => $request->caras_comp_ron,
-                'precio_comp_ron1' => $request->precio_comp_ron1,
-                'comp_ron2' => $request->comp_ron2,
-                'precio_comp_ron2' => $request->precio_comp_ron2,
-                'comp_aguard1' => $request->comp_aguard1,
-                'caras_comp_aguardiente' => $request->caras_comp_aguardiente,
-                'precio_comp_aguardiente1' => $request->precio_comp_aguardiente1,
-                'comp_aguard2' => $request->comp_aguard2,
-                'precio_comp_aguardiente2' => $request->precio_comp_aguardiente2,
-                'seleccionLinealDiageo' => 'auditorias_pics/LinealDiageo' .  $nombreLinealDiageo,
-                'seleccionLinealR' => 'auditorias_pics/Ron'.  $nombreRon,
-                'seleccionLinealA' =>'auditorias_pics/Aguardiente' .  $nombreAguardiente,
-                'criticidad' => 'paso 5 - disponibilidad',
+                '_method',
+                '_token',
+                'seleccionLinealDiageo',
+                'seleccionLinealR',
+                'seleccionLinealA',
+                'Blackywhite',
+                'Smirnoff',
+                'SmirnoffNs',
+                'Jhonnie',
+                'OldParr',
+                'Buchannas',
+                'RonesComp',
+                'AguarComp'
 
             ]
         );
+
+        Disponibilidad::where('id', '=', $id )->update($datosDisponibilidad);
+        $id =  $disponibilidad->precarga_id;
+        $concretado = PuntosAuditoria::findOrFail($id);
+        $concretado->estatusGestion = 'paso 5 - disponibilidad';
+        $concretado->save();
         return redirect('exhibicion');
     }
 

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Auditoria;
+use App\Models\Pqr;
 use App\Models\PuntosAuditoria;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator as FacadesValidator;
 use Intervention\Image\Facades\Image;
 use Validator;
 
@@ -20,17 +22,166 @@ class AuditoriaController extends Controller
      */
     public function index()
     {
+        $role = auth()->user()->role;
+        $today = Carbon::now();
+        $today = Carbon::parse($today);
+
+
         $date = Carbon::today();
         $date = $date->toDateString();
 
         $puntos_auditoria = PuntosAuditoria::all();
+        //if (auth()->user()->can('encuesta.diageo.edit')) {
+        // if ($role == 3) {
+        $finalizados = Auditoria::where(
+            'criticidad',
+            'Pendiente Calidad'
+        )->get()->count();
+        $finalizadosHoy = Auditoria::whereDate('created_at', $today)
+            ->where(
+                'criticidad',
+                'Pendiente Calidad'
+            )->get()->count();
+
+        $calidadOk = Auditoria::where('criticidad', 'sin errores')
+            ->get()->count();
+        $calidadFondo = Auditoria::where('criticidad', 'error critico de fondo')
+            ->get()->count();
+        $calidadForma = Auditoria::where('criticidad', 'error critico de forma')
+            ->get()->count();
+        $calidadAmbos = Auditoria::where('criticidad', 'errores criticos de fondo y forma')
+            ->get()->count();
+        $pendienteCierre = Auditoria::where('criticidad', 'paso 1 - activacion')
+            ->orWhere('criticidad', 'paso 2 - tipologia')
+            ->orWhere('criticidad', 'paso 3 - segmento')
+            ->orWhere('criticidad', 'paso 4 - materiales')
+            ->orWhere('criticidad', 'paso 5 - disponibilidad')
+            ->orWhere('criticidad', 'paso 6 - Exhibicion')
+            ->orWhere('criticidad', 'paso 7 - gift')
+            ->get()->count();
+        // }
 
         // $puntos_auditoria = PuntosAuditoria::where('asignadoA', Auth::user()->name)
-        //     ->where('estatusGestion', 'Asignado')
+        //      ->whereNot('estatusGestion', 'Diligenciado')
+        //     ->whereNot('estatusGestion', 'gestionado - no concretado')
         //     ->where('fechaAsignado', $date)
         //     ->get();
-        return view('auditoria.index', compact('puntos_auditoria'));
+        return view(
+            'auditoria.index',
+            compact(
+                'puntos_auditoria',
+                'finalizadosHoy',
+                'finalizados',
+                'calidadFondo',
+                'calidadForma',
+                'calidadAmbos',
+                'pendienteCierre'
+            )
+        );
     }
+
+    public function indexVisitor()
+    {
+
+        $todos = Auditoria::where('criticidad', 'sin errores')->where('created_at', '>=', '2023-12-01')->get();
+
+        $gold = Auditoria::where('criticidad', 'sin errores')->where('segmento', 'Gold')->where('created_at', '>=', '2023-12-01')->get();
+        $silver = Auditoria::where('criticidad', 'sin errores')->where('segmento', 'Silver')->where('created_at', '>=', '2023-12-01')->get();
+        $bronce = Auditoria::where('criticidad', 'sin errores')->where('segmento', 'Bronce')->where('created_at', '>=', '2023-12-01')->get();
+
+        $bar = Auditoria::where('criticidad', 'sin errores')->where('tipologia', 'Bar estándar')->where('created_at', '>=', '2023-12-01')->get();
+        $tienda = Auditoria::where('criticidad', 'sin errores')->where('tipologia', 'Tienda de consumo')->where('created_at', '>=', '2023-12-01')->get();
+        $lico = Auditoria::where('criticidad', 'sin errores')->where('tipologia', 'Licobares')->where('created_at', '>=', '2023-12-01')->get();
+        $juegos = Auditoria::where('criticidad', 'sin errores')->where('tipologia', 'Juegos típicos')->where('created_at', '>=', '2023-12-01')->get();
+        $otro = Auditoria::where('criticidad', 'sin errores')->where('tipologia', 'otro')->where('created_at', '>=', '2023-12-01')->get();
+        $area = [
+            'Calidad' => 'Calidad',
+            'Operativa' => 'Operativa',
+            'Desarrollo' => 'Desarrollo',
+            'Administrativa' => 'Administrativa',
+            'Estadistica' => 'Estadistica'
+        ];
+
+
+        return view('auditoria.IndexVisitor', compact('todos', 'gold', 'silver', 'bronce', 'bar', 'tienda', 'lico', 'juegos', 'otro', 'area'));
+    }
+
+
+    public function storeVisitor(Request $request)
+    {
+        if (Pqr::latest('id')->first() == null) {
+            $ultimoId = 1;
+        } else {
+            $ultimoId = Pqr::latest('id')->first()->id + 1;
+        }
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'area' => 'required',
+                'tituloReq' => 'required',
+                'detalle' => 'required',
+
+
+            ]
+        );
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        } else {
+
+            $datosReporte = request()->except('_token');
+            if ($request->hasFile('evidenciapqr')) {
+                $imagen = $request->file('evidenciapqr');
+                $nombre = "_" . $ultimoId . '.' . 'png';
+                $destino = public_path('PQR');
+                $request->evidenciapqr->move($destino, $nombre);
+                $red = Image::make($destino . '/' . $nombre);
+                $red->resize(
+                    380,
+                    null,
+                    function ($constraint) {
+                        $constraint->aspectRatio();
+                    }
+                );
+                $red->text(
+                    $request->id . " " .
+                        $request->area . " " .
+                        $request->tituloReq . " " .
+                        $request->detalle . " ",
+
+                    0,
+                    10,
+                    function ($font) {
+                        $font->file(1);
+                        $font->color('#00ff40');
+                        $font->size(65);
+                        $font->align('left');
+                        $font->valign('top');
+                        $font->angle(45);
+                        $font->countLines(4);
+                    }
+                );
+                $red->save($destino . $nombre);
+            }
+            $pqr = new Pqr();
+            $pqr->area = $request->area;
+            $pqr->creado_por = Auth::user()->name;
+            $pqr->femsa_id = $request->femsa_id;
+            $pqr->tituloReq = $request->tituloReq;
+            $pqr->detalle = $request->detalle;
+            $pqr->observaciones = $request->observaciones;
+            $pqr->estatusRespuesta = "Caso creado";
+            if ($request->hasFile('evidenciapqr')) {
+                $pqr->evidenciapqr = "evidenciaPqr/PQR" . $nombre;
+            } else {
+                $pqr->evidenciapqr = "no registra evidencia";
+            }
+
+            // dd( $pqr);
+            $pqr->save();
+            return redirect('indexVisitor')->with("caso creado exitosamene");
+        }
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -131,14 +282,21 @@ class AuditoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make(
+
+        if ($request->precarga_id % 2 === 0) {
+            $calidad = "LAURA VANESSA CARRASCO NIÑO";
+        } else {
+            $calidad = "CRISTIAN JULIAN  ROJAS RIVERA";
+        }
+
+        $validator = FacadesValidator::make(
             $request->all(),
             [
                 'precarga_id' => 'unique:auditorias',
             ],
             $messages =
                 [
-                    'unique' => 'el registro con el id :'.  $request->precarga_id. ', ya se guardo con anterioridad',
+                    'unique' => 'el registro con el id :' .  $request->precarga_id . ', ya se guardo con anterioridad',
                 ]
         );
         if ($validator->fails()) {
@@ -196,8 +354,12 @@ class AuditoriaController extends Controller
                 $activacion->barrio = $request->barrio;
                 $activacion->activacion = $request->activacion;
                 $activacion->fotoActiv = 'auditorias_pics/fachadas' .  $nombre;
-                $activacion->estatusGestion = 'Pendiente - tipologia';
+                $activacion->criticidad = 'paso 1 - activacion';
                 $activacion->save();
+                $id =  $request->precarga_id;
+                $concretado = PuntosAuditoria::findOrFail($id);
+                $concretado->estatusGestion = 'paso 1 - activacion';
+                $concretado->save();
                 return redirect('tipologia');
             } else if ($request->activacion == 'inactivo') {
                 $activacion = new Auditoria();
@@ -218,14 +380,19 @@ class AuditoriaController extends Controller
                 $activacion->cual = $request->cual;
                 $activacion->observaciones = $request->observaciones;
                 $activacion->fotoActiv = 'auditorias_pics/fachadas' .  $nombre;
-
+                $activacion->revisionCalidad =  $calidad;
+                $activacion->criticidad =  'Pendiente Calidad';
                 $activacion->save();
-                $now = Carbon::now();
-                $id =  $request->precarga_id;
-                $no_concretado = PuntosAuditoria::findOrFail($id);
-                $no_concretado->estatusGestion = 'gestionado - no concretado';
-                $no_concretado->fechaFinalizado = $now;
-                $no_concretado->save();
+                $fechaFinalizado = Carbon::now();
+                $id = $request->precarga_id;
+                $concretado = PuntosAuditoria::where('id', $id)->get();
+                //dd($concretado);
+                $estatusGestion = 'gestionado - no concretado';
+                $mergeData = [
+                    'estatusGestion' => $estatusGestion,
+                    'fechaFinalizado' => $fechaFinalizado,
+                ];
+                PuntosAuditoria::where('id', '=', $id)->update($mergeData);
                 return redirect('auditoria');
             }
         }
@@ -324,6 +491,17 @@ class AuditoriaController extends Controller
                 'usuario'
             )
         );
+    }
+
+    public function notificacionStore(Request $request, $id)
+    {
+
+        $id = $request->id;
+        $pqr = request()->except(['_token', '_method']);
+
+        dd($pqr);
+        Pqr::where('id', '=', $id)->update($pqr);
+        return back();
     }
 
 

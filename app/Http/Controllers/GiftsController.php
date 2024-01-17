@@ -78,11 +78,11 @@ class GiftsController extends Controller
                 }
             );
             $redGift->text(
-                'Gift' . " ".
-                    $auditoria->star. " ".
-                    $auditoria->direccion. " ".
-                    $auditoria->municipio. " ".
-                    $auditoria->lat. " ".
+                'Gift' . " " .
+                    $auditoria->star . " " .
+                    $auditoria->direccion . " " .
+                    $auditoria->municipio . " " .
+                    $auditoria->lat . " " .
                     $auditoria->lon,
                 0,
                 10,
@@ -123,6 +123,11 @@ class GiftsController extends Controller
                 ]
             );
         }
+
+        $id =  $disponibilidad->precarga_id;
+        $concretado = PuntosAuditoria::findOrFail($id);
+        $concretado->estatusGestion = "paso 7 - gift";
+        $concretado->save();
         return redirect('generalidades');
     }
 
