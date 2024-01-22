@@ -45,6 +45,7 @@
             <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Area</th>
                     <th>Fecha de creación</th>
                     <th>Titulo</th>
                     <th>Estatus del caso</th>
@@ -55,6 +56,7 @@
                 @foreach ($pqr as $it)
                 <tr>
                     <td>{{ $it->id  }}</td>
+                    <td>{{ $it->area }}</td>
                     <td>{{ $it->created_at  }}</td>
                     <td>{{ $it->tituloReq  }}</td>
                     <td>{{ $it->estatusRespuesta }}</td>

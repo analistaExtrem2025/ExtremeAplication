@@ -63,9 +63,10 @@ class GeneralidadesController extends Controller
     {
 
         if ($request->precarga_id % 2 === 0) {
-            $calidad = "LAURA VANESSA CARRASCO NIÑO";
+            $calidad = "MARIA ALEJANDRA LEMUS CASTIBLANCO";
+
         } else {
-            $calidad = "CRISTIAN JULIAN  ROJAS RIVERA";
+            $calidad = "FLORALBA RINCON ROMERO";
         }
         $now = Carbon::now();
         $precarga = PuntosAuditoria::where('id', $request->precarga_id);

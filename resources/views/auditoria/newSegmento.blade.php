@@ -57,16 +57,16 @@
                     <div class="col" style="text-align: center">
                         <label class="col-sm-9 flexbox">Cuantas cajas vende en el mes de cervezas</label>
                         <input class="col-sm-9 p-2 boxes" name="caja_cerveza" id="caja_cerveza" value="" type="number"
-                            autocomplete="off" required>
+                            autocomplete="off" maxlength="3" min="0" max="500" onkeypress="if (this.value.length > 2) return false;" required>
                         <br><br><label class="col-sm-9 flexbox">Cuantas cajas vende en el mes de aguardientes</label>
                         <input class="col-sm-9 p-2 boxes" type="number" name="caja_aguardiente" id="caja_aguardiente"
-                            autocomplete="off" value="" required>
+                            autocomplete="off" value="" maxlength="3" min="0"  max="100" onkeypress="if (this.value.length > 2) return false;"  required>
                         <br><br><label class="col-sm-9 flexbox">Cuantas cajas vende en el mes de rones</label>
                         <input class="col-sm-9 p-2 boxes" type="number" id="caja_ron" name="caja_ron" value=""
-                            autocomplete="off" required>
+                            autocomplete="off" maxlength="3" min="0"  max="100" onkeypress="if (this.value.length > 2) return false;"  required>
                         <br><br><label class="col-sm-9 flexbox">Cuantas cajas vende en el mes de whiskey</label>
                         <input class="col-sm-9 p-2 mb-4 boxes" type="number" id="caja_whiskey" name="caja_whiskey" value=""
-                            autocomplete="off" required>
+                            autocomplete="off" maxlength="3" min="0"  max="100" onkeypress="if (this.value.length > 2) return false;"  required>
                             <br>
                     </div>
                 </div>

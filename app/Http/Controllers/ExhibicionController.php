@@ -200,7 +200,7 @@ class ExhibicionController extends Controller
             'ron_byw' => $ronBlack,
             'ron_jhonny' => $ronJhonnie,
             'aguard_smirnoff' => $aguaSmir,
-            'criticidad' => 'paso 6 - Exhibicion',
+            'criticidad' => 'paso 7 - Exhibicion',
         ];
 
         $datosExhibicion = request()->merge($mergeData)->except(
@@ -216,7 +216,7 @@ class ExhibicionController extends Controller
         Exhibicion::where('id', '=', $id)->update($datosExhibicion);
         $id =  $materiales->precarga_id;
         $concretado = PuntosAuditoria::findOrFail($id);
-        $concretado->estatusGestion = 'paso 6 - Exhibicion';
+        $concretado->estatusGestion = 'paso 7 - Exhibicion';
         $concretado->save();
 
         return redirect('gifts');
