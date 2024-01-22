@@ -29,7 +29,8 @@
                     <div class="switch-toggle switch-3 switch-candy" style="height: 50%; width:80%">
                         <input id="gift_si" name="gift" type="radio" value="gift_si" />
                         <label for="gift_si">SI</label>
-                        <input id="gift_choose" name="gift" type="radio" value="gift_choose" checked="checked" disabled />
+                        <input id="gift_choose" name="gift" type="radio" value="gift_choose" checked="checked"
+                            disabled />
                         <label for="gift_choose">¿Entrego gift en el PDV?</label>
                         <input id="gift_no" name="gift" type="radio" value="gift_no" />
                         <label for="gift_no">NO</label>
@@ -37,20 +38,25 @@
                     </div>
                 </div>
                 <br><br>
-
+                <div class="box_cont">
+                    <input type="text" class="noClass" id="mtgift" style="text-align: center"
+                        placeholder="indique si hay gift" value="" required>
+                </div>
 
                 <div id="divCantGif" style="display: none">
                     <div class="row" style="text-align: center">
 
-                    <label for="">Cantidad entrgada</label>
-                    <input  class="form-control" type="number" name="cant_gift" autocomplete="off">
-                    <br><br><br><br>
-                    <div class="col" id="divgift" style="display: block">
-                        <input type="file" id="selecciongift" name="selecciongift" accept="image/*">
-                        <img class="card-img-mate" id="imagengift">
-                        <script src="script.js"></script>
+                        <label for="">Cantidad entrgada</label>
+                        <input class="form-control" type="number" name="cant_gift" id="cant_gift" autocomplete="off"
+                            required disabled min="1">
+                        <br><br><br><br>
+                        <div class="col" id="divgift" style="display: block">
+                            <input type="file" id="selecciongift" name="selecciongift" accept="image/*" required
+                                disabled>
+                            <img class="card-img-mate" id="imagengift">
+                            <script src="script.js"></script>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -63,11 +69,20 @@
     <script>
         $(document).ready(function() {
             $("input[type=radio]").click(function(event) {
+                var inputgift = document.getElementById('mtgift');
                 var valor1 = $(event.target).val();
                 if (valor1 == "gift_no") {
                     $("#divCantGif").hide();
+                    inputgift.value = "gift ok";
+                    $("#cant_gift").prop('disabled', true)
+                    $("#selecciongift").prop('disabled', true)
                 } else if (valor1 == "gift_si") {
                     $("#divCantGif").show();
+                    inputgift.value = "gift ok";
+                    $("#cant_gift").prop('disabled', false)
+                    $("#selecciongift").prop('disabled', false)
+
+
                 }
             });
         });

@@ -145,6 +145,7 @@ class AuditoriaEditable extends Model
         'seleccionLinealDiageo',
         'seleccionLinealA',
         'seleccionLinealR',
+        'revisionCalidad'
 
     ];
 

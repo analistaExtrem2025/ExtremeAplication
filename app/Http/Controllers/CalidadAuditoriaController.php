@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Auditoria;
 use App\Models\AuditoriaEditable;
 use App\Models\Materiales;
+use App\Models\Pqr;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -179,6 +180,7 @@ class CalidadAuditoriaController extends Controller
             [
                 'revisionCalidad' =>  $request->observacionesCalidad,
                 'fechaCalidad' => $now,
+                'revisadoPor' => $revisadoPor,
                 'criticidad' => $criticidad
             ]
         );
@@ -572,6 +574,19 @@ class CalidadAuditoriaController extends Controller
                 ]
             )->all()
         );
+
+        if ($request->criticidad == "error critico de fondo" || $request->criticidad == "errores criticos de fondo y forma" )
+        {
+            $pqr = new Pqr();
+            $pqr->area = $request->auditadoPor;
+            $pqr->creado_por = Auth::user()->name;
+            $pqr->femsa_id = $request->precarga_id;
+            $pqr->tituloReq = "devolución desde calidad";
+            $pqr->detalle = "el caso con el id". $request->precarga_id.  "es devuelto porque se hayaron". $request->criticidad;
+            $pqr->estatusRespuesta = "Punto devuelto";
+            $pqr->save();
+
+        }
         $auditoria = AuditoriaEditable::where('id', $request->id)->first();
 
         //  dd($auditoria);
@@ -1118,15 +1133,9 @@ class CalidadAuditoriaController extends Controller
                     $font->countLines(4);
                 }
             );
-
             $redron_jhonny->save($destinoron_jhonny . $nombreron_jhonny);
             $auditoria->save();
         }
-
-
-
-
-
         if ($request->hasFile('fotoaguard_smirnoff')) {
 
             $imagenaguard_smirnoff = $request->file('fotoaguard_smirnoff');
@@ -1163,14 +1172,10 @@ class CalidadAuditoriaController extends Controller
             $redaguard_smirnoff->save($destinoaguard_smirnoff . $nombreaguard_smirnoff);
             $auditoria->save();
         }
-
         $mergeData = [
-            "revisadoPor" => Auth::user()->name,
+            "revisionCalidad" => Auth::user()->name,
             "fechaCalidad" => $now,
         ];
-       //dd($request->all());
-
-
         $datosCalidad = request()->merge($mergeData)->except(
             [
                 '_method',
@@ -1235,6 +1240,7 @@ class CalidadAuditoriaController extends Controller
                 'fotoron_byw',
                 'fotoron_jhonny',
                 'fotoaguard_smirnoff',
+                'revisadoPor'
             ]
         );
 

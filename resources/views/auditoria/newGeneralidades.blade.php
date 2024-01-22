@@ -25,7 +25,7 @@
                 <br><br>
                 <div class="col">
             <label for="Observaciones"></label>
-            {!! Form::textarea('observacionesDetallista', null, ['class' => 'form-control', 'col' => 2, 'row' => 2, 'placeholder' => 'Observaciones' ]) !!}<span class="badge bg-primary float-right" id="characterCount">0/200</span>
+            {!! Form::textarea('observacionesDetallista', null, ['class' => 'form-control', 'col' => 2, 'row' => 2, 'placeholder' => 'Observaciones', 'required' ])  !!}<span class="badge bg-primary float-right" id="characterCount">0/200</span>
                </div>
             </div>
         </div>

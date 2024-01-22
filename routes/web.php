@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\AsignacionesController;
 use App\Http\Controllers\AuditoriaController;
 use App\Http\Controllers\CalidadAuditoriaController;
+use App\Http\Controllers\ComparativoMarcasController;
 // use App\Http\Controllers\DashboardAuditoriasController;
 use App\Http\Controllers\DiageoActivadosController;
 use App\Http\Controllers\DiageoCerradosController;
@@ -17,7 +18,9 @@ use App\Http\Controllers\ExhibicionController;
 use App\Http\Controllers\ExportPdfController;
 use App\Http\Controllers\GeneralidadesController;
 use App\Http\Controllers\GiftsController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MaterialesController;
+use App\Http\Controllers\PqryRtasController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\QualityController;
 use App\Http\Controllers\ReemplazoController;
@@ -99,6 +102,7 @@ Route::resource('tipologia', TipologiaController::class);
 Route::resource('segmento', SegmentoController::class);
 Route::resource('materiales', MaterialesController::class);
 Route::resource('disponibilidad', DisponibilidadController::class);
+Route::resource('comparativo', ComparativoMarcasController::class);
 Route::resource('tapados', TapadosController::class);
 Route::resource('exhibicion', ExhibicionController::class);
 Route::resource('gifts', GiftsController::class);
@@ -109,5 +113,13 @@ Route::get('inactivos', [CalidadAuditoriaController::class, 'inactivos'])->name(
 Route::resource('asignaciones', AsignacionesController::class);
 Route::get('downloadPdf/{id}', [ExportPdfController::class, 'downloadPdf'])->name('downloadPdf');
 
+Route::get('indexVisitor', [AuditoriaController::class, 'indexVisitor'])->name('indexVisitor');
+Route::post('storeVisitor', [AuditoriaController::class, 'storeVisitor'])->name('storeVisitor');
 
 Route::resource('pdf', ExportPdfController::class);
+
+Route::get('notificacionEdit/{id}', [HomeController::class, 'notificacionEdit'])->name('notificacionEdit');
+Route::put('notificacionStore', [AuditoriaController::class, 'notificacionStore'])->name('auditorias.notificacionStore');
+Route::resource('PqryRtas', PqryRtasController::class);
+
+

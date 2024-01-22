@@ -6,6 +6,16 @@
     <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Arapey:400,400i,600|Open+Sans:300" rel="stylesheet">
     <link href="{{ asset('css/auditoria.css') }}" rel="stylesheet">
+    <style>
+        .noClass {
+
+            width: 0px;
+            background: transparent;
+            color: transparent;
+            border: transparent;
+
+        }
+    </style>
 @stop
 @section('content')
 
@@ -675,150 +685,7 @@
             </div>
         </div>
     </ul>
-    <hr>
-    <hr>
-    <ul>
-        <div class="row">
-            <img class="img_botellasx3 swing" src="{{ asset('/storage/ronx3.png') }}" style="text-align: center" />
-            <div class="col-sm-6 card-box-double" id="card_double">
-                <div class="card-comp">
-                    <legend>&iquest; Hay <b>Rones</b> de la competencia?</legend>
-                    <fieldset>
-                        <label>
-                            <input type="radio" onchange="javascript:showContent7()" id="RonesCompSi" name="RonesComp"
-                                value="RonesCompSi">
-                            <span>Si</span>
-                        </label>
-                        <input type="text" class="noClass" id="InputRonesComp" required>
-                        <label>
-                            <input type="radio" onchange="javascript:showContent7()" id="RonesCompNo" name="RonesComp"
-                                value="RonesCompNo" />
-                            <span>No</span>
-                        </label>
-                    </fieldset>
-                </div>
-                <div id="DivSComRones" style="display: none">
-                    {{ Form::label('comp_ron1', 'Primera marca más vendida') }}
-                    <select name="comp_ron1" id="comp_ron1" class="form-control" required disabled>
-                        <option selected value="">--</option>
-                        @foreach ($competenciaRon as $Ron)
-                            <option value="{{ $Ron }}">{{ $Ron }} </option>
-                        @endforeach
-                    </select>
-                    {{ Form::label('precio_comp_ron1', 'Precio $$ 750 ml') }}
-                    <input type="text" name="precio_comp_ron1" id="precio_comp_ron1" class="form-control"
-                        style="border-radius: 0.3rem;" maxlength="6" minlength="1" autocomplete="off" required>
-                    <hr>
-                    <span id="texto14"></span>
-                    <hr>
-                    @include('errors.errors', ['field' => 'precio_comp_ron1'])
-                    {{ Form::label('comp_ron2', 'Segunda marca más vendida') }}
 
-                    <select name="comp_ron2" id="comp_ron2" class="form-control" required disabled>
-                        <option selected value="">--</option>
-                        @foreach ($competenciaRon as $Ron)
-                            <option value="{{ $Ron }}">{{ $Ron }} </option>
-                        @endforeach
-                    </select>
-                    {{ Form::label('precio_comp_ron2', 'Precio $$ 750 ml') }}
-                    <input type="text" name="precio_comp_ron2" id="precio_comp_ron2" class="form-control"
-                        style="border-radius: 0.3rem;" maxlength="6" minlength="1" autocomplete="off" required>
-                    <hr>
-                    <span id="texto15"></span>
-                    <hr>
-                    @include('errors.errors', ['field' => 'precio_comp_ron2'])
-                    {{ Form::label('caras_comp_ron', 'Cantidad de caras en el lineal de rones') }}
-                    <input type="number" class="form-control" placeholder="" name="caras_comp_ron" id="caras_comp_ron"
-                        aria-label="caras_comp_ron" required>
-                    @include('errors.errors', ['field' => 'caras_comp_ron'])
-                    <br>
-                    <div class="d-flex justify-content-center">
-                        <div class="ttulo">
-                            <green><span>Foto del lineal de ron</span></green>
-                        </div>
-                        <br>
-                        <input type="file" id="seleccionLinealR" name="seleccionLinealR" accept="image/*" required
-                            disabled>
-                        <br><br>
-                        <img class="card-img-top" id="imagenLinearlR">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </ul>
-
-    <hr>
-    <ul>
-        <div class="row">
-            <img class="img_botellasx3 swing" src="{{ asset('/storage/aguardientes.png') }}"
-                style="text-align: center" />
-            <div class="col-sm-6 card-box-double" id="card_double2">
-                <div class="card-comp">
-                    <legend>&iquest; Hay <b>Aguardientes</b> de la competencia?</legend>
-                    <fieldset>
-                        <label>
-                            <input type="radio" onchange="javascript:showContent8()" id="AguarCompSi" name="AguarComp"
-                                value="AguarCompSi">
-                            <span>Si</span>
-                        </label>
-                        <input type="text" class="noClass" id="InputAguarComp" required>
-                        <label>
-                            <input type="radio" onchange="javascript:showContent8()" id="AguarCompNo" name="AguarComp"
-                                value="AguarCompNo">
-                            <span>No</span>
-                        </label>
-                    </fieldset>
-                </div>
-                <div id="DivSComAguard" style="display: none">
-                    {{ Form::label('comp_aguard1', 'Primera marca más vendida') }}
-                    <select name="comp_aguard1" id="comp_aguard1" class="form-control" required disabled>
-                        <option selected value="">--</option>
-                        @foreach ($competenciaAguardiente as $Agua)
-                            <option value="{{ $Agua }}">{{ $Agua }} </option>
-                        @endforeach
-                    </select>
-                    {{ Form::label('precio_comp_aguardiente1', 'Precio $$ 750 ml') }}
-                    <input type="text" name="precio_comp_aguardiente1" id="precio_comp_aguardiente1"
-                        class="form-control" style="border-radius: 0.3rem;" maxlength="6" minlength="1"
-                        autocomplete="off" required>
-                    <hr>
-                    <span id="texto16"></span>
-                    <hr>
-                    @include('errors.errors', ['field' => 'costo_unitario'])
-                    {{ Form::label('comp_aguard2', 'Segunda marca más vendida') }}
-
-                    <select name="comp_aguard2" id="comp_aguard2" class="form-control" required disabled>
-                        <option selected value="">--</option>
-                        @foreach ($competenciaAguardiente as $Agua)
-                            <option value="{{ $Agua }}">{{ $Agua }} </option>
-                        @endforeach
-                    </select>
-                    {{ Form::label('precio_comp_aguardiente2', 'Precio $$ 750 ml') }}
-                    <input type="text" name="precio_comp_aguardiente2" id="precio_comp_aguardiente2"
-                        class="form-control" style="border-radius: 0.3rem;" maxlength="6" minlength="1"
-                        autocomplete="off" required>
-                    <hr>
-                    <span id="texto17"></span>
-                    <hr>
-                    @include('errors.errors', ['field' => 'precio_comp_aguardiente2'])
-                    {{ Form::label('caras_comp_aguardiente', 'Caras en el lineal de aguardientes') }}
-                    <input type="number" class="form-control" placeholder="" name="caras_comp_aguardiente"
-                        id="caras_comp_aguardiente" aria-label="caras_comp_aguardiente" required>
-                    @include('errors.errors', ['field' => 'caras_comp_aguardiente'])
-                    <br>
-                    <div class="d-flex justify-content-center">
-                        <div class="ttulo">
-                            <green><span>Foto del lineal de ron</span></green>
-                        </div>
-                        <br>
-                        <input type="file" id="seleccionLinealA" name="seleccionLinealA" accept="image/*" required disabled>
-                        <br><br>
-                        <img class="card-img-top" id="imagenLinearlA">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </ul>
 
     {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton', 'style' => 'z-index:99999']) !!}
     {!! Form::close() !!}
@@ -1418,7 +1285,6 @@
         }
     </script>
 
-
     <script>
         function showContent8() {
             element8 = document.getElementById("DivSComAguard");
@@ -1490,11 +1356,7 @@
     </script>
 
 
-
-
     <script>
-        // Jquery Dependency
-
         $("input[data-type='currency']").on({
             keyup: function() {
                 formatCurrency($(this));

@@ -22,9 +22,12 @@
             <div class="ttulo">
                 <green><span>Confirme si Black & White exhibido junto rones</span></green>
             </div>
+
             <div class="col card-box-exhi">
+
                 <div class="col">
                     <img class="img_afiche" src="{{ asset('/storage/ron_b&w.png') }}" />
+
                     <div class="switch-toggle switch-3 switch-candy" style="height: 50%; width:80%">
                         <input id="ron_byw_si" name="ron_byw" type="radio" value="ron_byw_si" onchange="showContent1()" />
                         <label for="ron_byw_si">SI</label>
@@ -36,8 +39,11 @@
                         <a></a>
                     </div>
                 </div>
+
+
                 <div class="box_cont">
-                    <input type="text" class="noClass" id="Inputron_byw" style="text-align: center" required>
+                    <input type="text" class="noClass" id="mtronblack" style="text-align: center"
+                        placeholder="indique si hay ron junto a black & white" value="" required>
                 </div>
                 <div class="row" style="text-align: center">
                     <div class="col">
@@ -65,18 +71,21 @@
                     <div class="col">
                         <img class="img_afiche" src="{{ asset('/storage/ron_jhonny.png') }}" />
                         <div class="switch-toggle switch-3 switch-candy" style="height: 50%; width:80%">
-                            <input id="ron_jhonny_si" name="ron_jhonny" type="radio" value="ron_jhonny_si" onchange="showContent2()" />
+                            <input id="ron_jhonny_si" name="ron_jhonny" type="radio" value="ron_jhonny_si"
+                                onchange="showContent2()" />
                             <label for="ron_jhonny_si">SI</label>
                             <input id="ron_jhonny_choose" name="ron_jhonny" type="radio" value="ron_jhonny_choose"
                                 checked="checked" disabled />
                             <label for="ron_jhonny_choose">Ron junto a Johnnie Walker Red</label>
-                            <input id="ron_jhonny_no" name="ron_jhonny" type="radio" value="ron_jhonny_no" onchange="showContent2()" />
+                            <input id="ron_jhonny_no" name="ron_jhonny" type="radio" value="ron_jhonny_no"
+                                onchange="showContent2()" />
                             <label for="ron_jhonny_no">NO</label>
                             <a></a>
                         </div>
                     </div>
                     <div class="box_cont">
-                        <input type="text" class="noClass" id="Inputron_jhonny" style="text-align: center" required>
+                        <input type="text" class="noClass" id="mtronjohnnie" style="text-align: center"
+                            placeholder="indique si hay ron junto a johnnie walker" value="" required>
                     </div>
                     <div class="row" style="text-align: center">
                         <div class="col">
@@ -103,20 +112,21 @@
                 <div class="col">
                     <img class="img_afiche" src="{{ asset('/storage/aguardiente_smirnoff.png') }}" />
                     <div class="switch-toggle switch-3 switch-candy" style="height: 50%; width:80%">
-                        <input id="aguard_smirnoff_si" name="aguard_smirnoff" type="radio"
-                            value="aguard_smirnoff_si" onchange="showContent3()" />
+                        <input id="aguard_smirnoff_si" name="aguard_smirnoff" type="radio" value="aguard_smirnoff_si"
+                            onchange="showContent3()" />
                         <label for="aguard_smirnoff_si">SI</label>
                         <input id="aguard_smirnoff_choose" name="aguard_smirnoff" type="radio"
                             value="aguard_smirnoff_choose" checked="checked" disabled />
                         <label for="aguard_smirnoff_choose">Aguardiente junto a Smirnoff x1</label>
-                        <input id="aguard_smirnoff_no" name="aguard_smirnoff" type="radio"
-                            value="aguard_smirnoff_no" onchange="showContent3()" />
+                        <input id="aguard_smirnoff_no" name="aguard_smirnoff" type="radio" value="aguard_smirnoff_no"
+                            onchange="showContent3()" />
                         <label for="aguard_smirnoff_no">NO</label>
                         <a></a>
                     </div>
                 </div>
                 <div class="box_cont">
-                    <input type="text" class="noClass" id="Inputaguard_smirnoff" style="text-align: center" required>
+                    <input type="text" class="noClass" id="mtaguasmirnoff" style="text-align: center"
+                        placeholder="indique si hay aguardiente junto a smirnoff" value="" required>
                 </div>
                 <div class="row" style="text-align: center">
                     <div class="col">
@@ -140,53 +150,51 @@
 @stop
 @section('js')
 
-<script>
-    function showContent1() {
-        check1 = document.getElementById("ron_byw_si");
-        check1no = document.getElementById("ron_byw_no");
-        if (check1.checked) {
-            $("#Inputron_byw").val("1");
-            $("#seleccionron_byw").prop('disabled', false)
-        } else if (check1no.checked) {
-            $("#Inputron_byw ").val("0");
-            $("#seleccionron_byw").prop('disabled', true)
+    <script>
+        function showContent1() {
+            check1 = document.getElementById("ron_byw_si");
+            check1no = document.getElementById("ron_byw_no");
+            var inputronblack = document.getElementById('mtronblack');
+            if (check1.checked) {
+                $("#seleccionron_byw").prop('disabled', false)
+                inputronblack.value = "ron junto a b&w ok";
+            } else if (check1no.checked) {
+                $("#seleccionron_byw").prop('disabled', false)
+                inputronblack.value = "ron junto a b&w ok";
+            }
         }
-    }
-</script>
+    </script>
 
 
-<script>
-    function showContent2() {
-        check2 = document.getElementById("ron_jhonny_si");
-        check2no = document.getElementById("ron_jhonny_no");
-        if (check2.checked) {
-            $("#Inputron_jhonny").val("1");
-            $("#seleccionron_jhonny").prop('disabled', false)
-        } else if (check2no.checked) {
-            $("#Inputron_jhonny ").val("0");
-            $("#seleccionron_jhonny").prop('disabled', true)
+    <script>
+        function showContent2() {
+            check2 = document.getElementById("ron_jhonny_si");
+            check2no = document.getElementById("ron_jhonny_no");
+            var inputronjohnnie = document.getElementById('mtronjohnnie');
+            if (check2.checked) {
+                inputronjohnnie.value = "ron junto a johnnie ok";
+                $("#seleccionron_jhonny").prop('disabled', false)
+            } else if (check2no.checked) {
+                inputronjohnnie.value = "ron junto a johnnie ok";
+                $("#seleccionron_jhonny").prop('disabled', false)
+            }
         }
-    }
-</script>
+    </script>
 
-<script>
-    function showContent3() {
-        check3 = document.getElementById("aguard_smirnoff_si");
-        check3no = document.getElementById("aguard_smirnoff_no");
-        if (check3.checked) {
-            $("#Inputaguard_smirnoff").val("1");
-            $("#seleccionaguard_smirnoff").prop('disabled', false)
-        } else if (check3no.checked) {
-            $("#Inputaguard_smirnoff ").val("0");
-            $("#seleccionaguard_smirnoff").prop('disabled', true)
+    <script>
+        function showContent3() {
+            check3 = document.getElementById("aguard_smirnoff_si");
+            check3no = document.getElementById("aguard_smirnoff_no");
+            var inputaguasmirnoff = document.getElementById('mtaguasmirnoff');
+            if (check3.checked) {
+                inputaguasmirnoff.value = "aguardient junto a smirnoff ok";
+                $("#seleccionaguard_smirnoff").prop('disabled', false)
+            } else if (check3no.checked) {
+                inputaguasmirnoff.value = "aguardient junto a smirnoff ok";
+                $("#seleccionaguard_smirnoff").prop('disabled', false)
+            }
         }
-    }
-</script>
-
-
-
-
-
+    </script>
 
     <script>
         const $seleccionron_jhonny = document.querySelector("#seleccionron_jhonny"),

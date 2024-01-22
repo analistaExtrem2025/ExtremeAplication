@@ -20,6 +20,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+
+
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -61,6 +63,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -71,6 +74,8 @@
                 </div>
             </div>
         </nav>
+
+
 
         <main class="py-4">
             @yield('content')
