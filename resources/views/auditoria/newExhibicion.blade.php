@@ -159,7 +159,7 @@
                 $("#seleccionron_byw").prop('disabled', false)
                 inputronblack.value = "ron junto a b&w ok";
             } else if (check1no.checked) {
-                $("#seleccionron_byw").prop('disabled', true)
+                $("#seleccionron_byw").prop('disabled', false)
                 inputronblack.value = "ron junto a b&w ok";
             }
         }
@@ -176,7 +176,7 @@
                 $("#seleccionron_jhonny").prop('disabled', false)
             } else if (check2no.checked) {
                 inputronjohnnie.value = "ron junto a johnnie ok";
-                $("#seleccionron_jhonny").prop('disabled', true)
+                $("#seleccionron_jhonny").prop('disabled', false)
             }
         }
     </script>
@@ -191,7 +191,7 @@
                 $("#seleccionaguard_smirnoff").prop('disabled', false)
             } else if (check3no.checked) {
                 inputaguasmirnoff.value = "aguardient junto a smirnoff ok";
-                $("#seleccionaguard_smirnoff").prop('disabled', true)
+                $("#seleccionaguard_smirnoff").prop('disabled', false)
             }
         }
     </script>

@@ -111,7 +111,7 @@ class GiftsController extends Controller
                 [
                     'gift' => $request->gift,
                     'cant_gift' => $request->cant_gift,
-                    'criticidad' => "paso 7 - gift",
+                    'criticidad' => "paso 8 - gift",
                 ]
             );
         } else {
@@ -119,14 +119,14 @@ class GiftsController extends Controller
                 [
                     'gift' => $request->gift,
                     'cant_gift' => 0,
-                    'criticidad' => "paso 7 - gift",
+                    'criticidad' => "paso 8 - gift",
                 ]
             );
         }
 
         $id =  $disponibilidad->precarga_id;
         $concretado = PuntosAuditoria::findOrFail($id);
-        $concretado->estatusGestion = "paso 7 - gift";
+        $concretado->estatusGestion = "paso 8 - gift";
         $concretado->save();
         return redirect('generalidades');
     }

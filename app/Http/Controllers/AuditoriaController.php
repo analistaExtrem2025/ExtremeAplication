@@ -25,39 +25,63 @@ class AuditoriaController extends Controller
         $role = auth()->user()->role;
         $today = Carbon::now();
         $today = Carbon::parse($today);
-
-
         $date = Carbon::today();
+        $inicioMes = Carbon::now()->startOfMonth();
         $date = $date->toDateString();
-
-        $puntos_auditoria = PuntosAuditoria::all();
-        //if (auth()->user()->can('encuesta.diageo.edit')) {
-        // if ($role == 3) {
+        $usuario = Auth::user()->name;
+        $puntos_auditoria = PuntosAuditoria::where('asignadoA', Auth::user()->name)
+            ->whereNot('estatusGestion', 'Diligenciado')
+            ->whereNot('estatusGestion', 'gestionado - no concretado')
+            ->where('fechaAsignado', $date)
+            ->get();
+        $asignados = PuntosAuditoria::whereDate('fechaAsignado', $today)
+            ->where('estatusGestion', 'Asignado')
+            ->where('asignadoA', $usuario)
+            ->get()
+            ->count();
+        $asignadosNoGestionado = PuntosAuditoria::whereDate('fechaAsignado', '<>',  $today)
+            ->where('estatusGestion', 'Asignado')
+            ->where('asignadoA', $usuario)
+            ->get()
+            ->count();
         $finalizados = Auditoria::where(
             'criticidad',
             'Pendiente Calidad'
-        )->get()->count();
+        )
+            ->where('promotor', $usuario)
+            ->whereRaw('month(star) = month(now())')
+            ->get()->count();
         $finalizadosHoy = Auditoria::whereDate('created_at', $today)
             ->where(
                 'criticidad',
                 'Pendiente Calidad'
-            )->get()->count();
-
+            )
+            ->where('promotor', $usuario)
+            ->get()->count();
         $calidadOk = Auditoria::where('criticidad', 'sin errores')
+            ->whereRaw('month(star) = month(now())')
+            ->where('promotor', $usuario)
             ->get()->count();
         $calidadFondo = Auditoria::where('criticidad', 'error critico de fondo')
+            ->whereRaw('month(star) = month(now())')
+            ->where('promotor', $usuario)
             ->get()->count();
         $calidadForma = Auditoria::where('criticidad', 'error critico de forma')
+            ->whereRaw('month(star) = month(now())')
+            ->where('promotor', $usuario)
             ->get()->count();
         $calidadAmbos = Auditoria::where('criticidad', 'errores criticos de fondo y forma')
+            ->whereRaw('month(star) = month(now())')
+            ->where('promotor', $usuario)
             ->get()->count();
         $pendienteCierre = Auditoria::where('criticidad', 'paso 1 - activacion')
             ->orWhere('criticidad', 'paso 2 - tipologia')
             ->orWhere('criticidad', 'paso 3 - segmento')
             ->orWhere('criticidad', 'paso 4 - materiales')
             ->orWhere('criticidad', 'paso 5 - disponibilidad')
-            ->orWhere('criticidad', 'paso 6 - Exhibicion')
-            ->orWhere('criticidad', 'paso 7 - gift')
+            ->orWhere('criticidad', 'paso 6 - comparativo')
+            ->orWhere('criticidad', 'paso 7 - Exhibicion')
+            ->orWhere('criticidad', 'paso 8 - gift')
             ->get()->count();
         // }
 
@@ -70,12 +94,14 @@ class AuditoriaController extends Controller
             'auditoria.index',
             compact(
                 'puntos_auditoria',
+                'asignados',
                 'finalizadosHoy',
                 'finalizados',
                 'calidadFondo',
                 'calidadForma',
                 'calidadAmbos',
-                'pendienteCierre'
+                'pendienteCierre',
+                'asignadosNoGestionado'
             )
         );
     }
@@ -120,14 +146,11 @@ class AuditoriaController extends Controller
                 'area' => 'required',
                 'tituloReq' => 'required',
                 'detalle' => 'required',
-
-
             ]
         );
         if ($validator->fails()) {
             return back()->withErrors($validator);
         } else {
-
             $datosReporte = request()->except('_token');
             if ($request->hasFile('evidenciapqr')) {
                 $imagen = $request->file('evidenciapqr');
@@ -175,14 +198,10 @@ class AuditoriaController extends Controller
             } else {
                 $pqr->evidenciapqr = "no registra evidencia";
             }
-
-            // dd( $pqr);
             $pqr->save();
             return redirect('indexVisitor')->with("caso creado exitosamene");
         }
     }
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -199,14 +218,12 @@ class AuditoriaController extends Controller
             'Juegos típicos' => 'Juegos típicos',
             'Otro' => 'Otro',
         ];
-
         $segmento = [
 
             "Gold" => "Gold",
             "Silver" => "Silver",
             "Bronce" => "Bronce",
         ];
-
         $noConcreciones = [
             'El cliente no permitio' => 'El cliente no permitio',
             'PDV cerrado' => 'PDV cerrado',
@@ -215,7 +232,6 @@ class AuditoriaController extends Controller
             'Negocio terminado' => 'Negocio terminado',
             'Otro motivo' => 'Otro motivo',
         ];
-
         $diageoMarca = [
             "Black & White" => "Black & White",
             "Smirnoff x 1" => "Smirnoff x 1",
@@ -241,11 +257,12 @@ class AuditoriaController extends Controller
         ];
 
         $competenciaRon = [
-            'Viejo de caldas' => 'Viejo de caldas',
-            'Medellín añejo 3 años' => 'Medellín añejo 3 años',
-            'Santa Fe' => 'Santa Fe',
+            'Ron viejo de caldas' => 'Ron viejo de caldas',
+            'Ron Medellín añejo 3 años' => 'Ron Medellín añejo 3 años',
+            'Ron Santa Fe' => 'Ron Santa Fe',
+            'Ron Marquez' => 'Ron Marquez',
+            'Ron Barcardi' => 'Ron Barcardi',
             'Otro' => 'Otro',
-            'Ninguno' => 'Ninguno',
         ];
         $competenciaAguardiente = [
             'Antioqueño con azúcar' => 'Antioqueño con azúcar',
@@ -284,9 +301,9 @@ class AuditoriaController extends Controller
     {
 
         if ($request->precarga_id % 2 === 0) {
-            $calidad = "LAURA VANESSA CARRASCO NIÑO";
+            $calidad = "MARIA ALEJANDRA LEMUS CASTIBLANCO";
         } else {
-            $calidad = "CRISTIAN JULIAN  ROJAS RIVERA";
+            $calidad = "FLORALBA RINCON ROMERO";
         }
 
         $validator = FacadesValidator::make(
@@ -425,6 +442,7 @@ class AuditoriaController extends Controller
         $noConcreciones = [
             'El cliente no permitio' => 'El cliente no permitio',
             'PDV cerrado' => 'PDV cerrado',
+            'PDV cerrado segunda visita' => 'PDV cerrado segunda visita',
             'Dirección no existente' => 'Dirección no existente',
             'Incumplimiento de agencía' => 'Incumplimiento de agencía',
             'Negocio terminado' => 'Negocio terminado',
@@ -455,9 +473,11 @@ class AuditoriaController extends Controller
         ];
 
         $competenciaRon = [
-            'Viejo de caldas' => 'Viejo de caldas',
-            'Medellín añejo 3 años' => 'Medellín añejo 3 años',
-            'Santa Fe' => 'Santa Fe',
+            'Ron viejo de caldas' => 'Ron viejo de caldas',
+            'Ron Medellín añejo 3 años' => 'Ron Medellín añejo 3 años',
+            'Ron Santa Fe' => 'Ron Santa Fe',
+            'Ron Marquez' => 'Ron Marquez',
+            'Ron Barcardi' => 'Ron Barcardi',
             'Otro' => 'Otro',
         ];
         $competenciaAguardiente = [
@@ -498,8 +518,7 @@ class AuditoriaController extends Controller
 
         $id = $request->id;
         $pqr = request()->except(['_token', '_method']);
-
-        dd($pqr);
+        // dd($pqr);
         Pqr::where('id', '=', $id)->update($pqr);
         return back();
     }

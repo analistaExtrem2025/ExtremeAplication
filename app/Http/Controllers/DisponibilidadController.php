@@ -43,11 +43,12 @@ class DisponibilidadController extends Controller
     public function show($id)
 
     {
-
         $competenciaRon = [
-            'Viejo de caldas' => 'Viejo de caldas',
-            'Medellín añejo 3 años' => 'Medellín añejo 3 años',
-            'Santa Fe' => 'Santa Fe',
+            'Ron viejo de caldas' => 'Ron viejo de caldas',
+            'Ron Medellín añejo 3 años' => 'Ron Medellín añejo 3 años',
+            'Ron Santa Fe' => 'Ron Santa Fe',
+            'Ron Marquez' => 'Ron Marquez',
+            'Ron Barcardi' => 'Ron Barcardi',
             'Otro' => 'Otro',
             'Ninguno' => 'Ninguno',
         ];
@@ -138,90 +139,7 @@ class DisponibilidadController extends Controller
             $auditoria->save();
         }
 
-        if ($request->hasFile('seleccionLinealR')) {
-            $imagenRon = $request->file('seleccionLinealR');
-            $nombreRon = "_" . $request->precarga_id . '.' . 'png';
-            $destinoRon = public_path('auditorias_pics/Ron');
-            $request->seleccionLinealR->move($destinoRon, $nombreRon);
-            $redRon = Image::make($destinoRon . '/' . $nombreRon);
-            $redRon->resize(
-                380,
-                null,
-                function ($constraint) {
-                    $constraint->aspectRatio();
-                }
-            );
-            $redRon->text(
-                'Compet Ron' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
-                0,
-                10,
-                function ($font) {
-                    $font->file(1);
-                    $font->color('#00ff40');
-                    $font->size(65);
-                    $font->align('left');
-                    $font->valign('top');
-                    $font->angle(45);
-                    $font->countLines(4);
-                }
-            );
-            $redRon->save($destinoRon . $nombreRon);
-            $auditoria->seleccionLinealR = 'auditorias_pics/Ron' .  $nombreRon;
-            $auditoria->save();
-        } else {
-            $auditoria->seleccionLinealR = 'public\img\no_diponible.png';
-            $auditoria->save();
-        }
-
-
-        if ($request->hasFile('seleccionLinealA')) {
-            $imagenAguardiente = $request->file('seleccionLinealA');
-            $nombreAguardiente = "_" . $request->precarga_id . '.' . 'png';
-            $destinoAguardiente = public_path('auditorias_pics/Aguardiente');
-            $request->seleccionLinealA->move($destinoAguardiente, $nombreAguardiente);
-            $redAguardiente = Image::make($destinoAguardiente . '/' . $nombreAguardiente);
-            $redAguardiente->resize(
-                380,
-                null,
-                function ($constraint) {
-                    $constraint->aspectRatio();
-                }
-            );
-            $redAguardiente->text(
-                'Compet Aguardiente' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
-                0,
-                10,
-                function ($font) {
-                    $font->file(1);
-                    $font->color('#00ff40');
-                    $font->size(65);
-                    $font->align('left');
-                    $font->valign('top');
-                    $font->angle(45);
-                    $font->countLines(4);
-                }
-            );
-            $redAguardiente->save($destinoAguardiente . $nombreAguardiente);
-            $auditoria->seleccionLinealA = 'auditorias_pics/Aguardiente' .  $nombreAguardiente;
-            $auditoria->save();
-        } else {
-            $auditoria->seleccionLinealA = 'public\img\no_diponible.png';
-            $auditoria->save();
-        }
-
         $disponibilidad = Disponibilidad::findOrFail($id);
-
-
 
         $black1000     = $request->bAndw1000 == "bAndw1000_si" ? $request->bAndw1000 : "no aplica";
         $black1000C    = $request->bAndw1000 == "bAndw1000_si" ? $request->caras_bAndw1000 : "0";
@@ -275,17 +193,6 @@ class DisponibilidadController extends Controller
         $buchannas375C = $request->buchannas375 == "buchannas375_si" ? $request->caras_buchannas375 : "0";
         $buchannas375P = $request->buchannas375 == "buchannas375_si" ? $request->precio_buchannas375 : "0";
 
-        $ron1          = $request->hay_ron == "hay_ron_Si" ? $request->comp_ron1 : "no aplica";
-        $ron1P         = $request->hay_ron == "hay_ron_Si" ? $request->precio_comp_ron1 : "0";
-        $ron2          = $request->hay_ron == "hay_ron_Si" ? $request->comp_ron2 : "no aplica";
-        $ron2P         = $request->hay_ron == "hay_ron_Si" ? $request->precio_comp_ron2 : "0";
-        $ron1C         = $request->hay_ron == "hay_ron_Si" ? $request->caras_comp_ron : "0";
-        $agua1         = $request->hay_aguardiente == "hay_aguardiente_Si" ? $request->comp_aguard1 : "no aplica";
-        $agua1P        = $request->hay_aguardiente == "hay_aguardiente_Si" ? $request->precio_comp_aguardiente1 : "0";
-        $agua2         = $request->hay_aguardiente == "hay_aguardiente_Si" ? $request->comp_aguard2 : "no aplica";
-        $agua2P        = $request->hay_aguardiente == "hay_aguardiente_Si" ? $request->precio_comp_aguardiente2 : "0";
-        $agua1C        = $request->hay_aguardiente == "hay_aguardiente_Si" ? $request->caras_comp_aguardiente : "0";
-
 
 
         $mergeData = [
@@ -328,18 +235,7 @@ class DisponibilidadController extends Controller
             'buchannas375' => $buchannas375,
             'caras_buchannas375' => $buchannas375C,
             'precio_buchannas375' => $buchannas375P,
-            'comp_ron1' =>  $ron1 ,
-            'precio_comp_ron1' =>  $ron1P,
-            'comp_ron2' =>  $ron2 ,
-            'precio_comp_ron2' =>  $ron2P,
-            'caras_comp_ron' =>  $ron1C,
-            'comp_aguard1' =>  $agua1,
-            'precio_comp_aguardiente1' =>  $agua1P,
-            'comp_aguard2' =>  $agua2,
-            'precio_comp_aguardiente2' =>  $agua2P,
-            'caras_comp_aguardiente' =>  $agua1C,
-            'hay_ron' => $request->hay_ron,
-            'hay_aguardiente' => $request->hay_aguardiente
+
         ];
         $datosDisponibilidad = request()->merge($mergeData)->except(
             [
@@ -353,9 +249,7 @@ class DisponibilidadController extends Controller
                 'SmirnoffNs',
                 'Jhonnie',
                 'OldParr',
-                'Buchannas',
-                'RonesComp',
-                'AguarComp'
+                'Buchannas'
 
             ]
         );
@@ -364,8 +258,9 @@ class DisponibilidadController extends Controller
         $id =  $disponibilidad->precarga_id;
         $concretado = PuntosAuditoria::findOrFail($id);
         $concretado->estatusGestion = 'paso 5 - disponibilidad';
+        //$concretado->estatusGestion = 'paso 5 - disponibilidad';
         $concretado->save();
-        return redirect('exhibicion');
+        return redirect('comparativo');
     }
 
     /**

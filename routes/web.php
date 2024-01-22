@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\AsignacionesController;
 use App\Http\Controllers\AuditoriaController;
 use App\Http\Controllers\CalidadAuditoriaController;
+use App\Http\Controllers\ComparativoMarcasController;
 // use App\Http\Controllers\DashboardAuditoriasController;
 use App\Http\Controllers\DiageoActivadosController;
 use App\Http\Controllers\DiageoCerradosController;
@@ -101,6 +102,7 @@ Route::resource('tipologia', TipologiaController::class);
 Route::resource('segmento', SegmentoController::class);
 Route::resource('materiales', MaterialesController::class);
 Route::resource('disponibilidad', DisponibilidadController::class);
+Route::resource('comparativo', ComparativoMarcasController::class);
 Route::resource('tapados', TapadosController::class);
 Route::resource('exhibicion', ExhibicionController::class);
 Route::resource('gifts', GiftsController::class);
@@ -118,11 +120,6 @@ Route::resource('pdf', ExportPdfController::class);
 
 Route::get('notificacionEdit/{id}', [HomeController::class, 'notificacionEdit'])->name('notificacionEdit');
 Route::put('notificacionStore', [AuditoriaController::class, 'notificacionStore'])->name('auditorias.notificacionStore');
-
-
-Route::post('/deposit', [App\Http\Controllers\DepositController::class,'deposit'])->name('deposit');
-
-
 Route::resource('PqryRtas', PqryRtasController::class);
 
 
