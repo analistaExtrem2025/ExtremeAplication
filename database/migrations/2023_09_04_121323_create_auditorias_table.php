@@ -154,10 +154,16 @@ return new class extends Migration
                 $table->string('precio_comp_aguardiente2', 20)->nullable();
                 $table->binary('seleccionLinealA')->nullable();
                 $table->string('ron_byw', 10)->nullable();
+                $table->string('bloquebyw', 10)->nullable();
+                $table->string('carasbloquebyw', 25)->nullable();
                 $table->binary('seleccionron_byw')->nullable();
                 $table->string('ron_jhonny', 13)->nullable();
+                $table->string('bloquejohnnie', 10)->nullable();
+                $table->string('carasbloquejohnnie', 25)->nullable();
                 $table->binary('seleccionron_jhonny')->nullable();
                 $table->string('aguard_smirnoff', 18)->nullable();
+                $table->string('bloquesmirnoff', 10)->nullable();
+                $table->string('carasbloquesmirnoff', 25)->nullable();
                 $table->binary('seleccionaguard_smirnoff')->nullable();
                 $table->string('gift', 7)->nullable();
                 $table->integer('cant_gift')->nullable();

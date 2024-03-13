@@ -15,10 +15,16 @@ class TapadosController extends Controller
      */
     public function index()
     {
-        $auditoria = Auditoria::Where('star', '>=', '2000-01-01 00:00:00')
-        //$auditoria = Auditoria::Where('star', '>=', '2023-11-15 00:00:00')
-            ->where('activacion', 'activo')
+        $auditoria = Auditoria::Where('star', '>=', '2024-01-01 00:00:00')
+            //$auditoria = Auditoria::Where('star', '>=', '2023-11-15 00:00:00')
+            // ->where('activacion', 'inactivo')
+            ->where('OtraTipologia', 999999)
+           // ->orWhere('noConcreciones', 'PDV cerrado segunda visita')
             ->get();
+
+
+            $auditoria = Auditoria::where('OtraTipologia', 999999)
+                ->get();
         return view('auditoria.galeriaIndex', compact('auditoria'));
     }
 
@@ -27,7 +33,6 @@ class TapadosController extends Controller
      */
     public function create()
     {
-
     }
 
     /**

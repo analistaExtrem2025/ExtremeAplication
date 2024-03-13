@@ -25,15 +25,20 @@ class AuditoriaController extends Controller
         $role = auth()->user()->role;
         $today = Carbon::now();
         $today = Carbon::parse($today);
+        $hoy = Carbon::now();
+        $hora = $hoy->toTimeString();
         $date = Carbon::today();
         $inicioMes = Carbon::now()->startOfMonth();
         $date = $date->toDateString();
         $usuario = Auth::user()->name;
+
         $puntos_auditoria = PuntosAuditoria::where('asignadoA', Auth::user()->name)
             ->whereNot('estatusGestion', 'Diligenciado')
             ->whereNot('estatusGestion', 'gestionado - no concretado')
             ->where('fechaAsignado', $date)
             ->get();
+
+
         $asignados = PuntosAuditoria::whereDate('fechaAsignado', $today)
             ->where('estatusGestion', 'Asignado')
             ->where('asignadoA', $usuario)
@@ -93,6 +98,7 @@ class AuditoriaController extends Controller
         return view(
             'auditoria.index',
             compact(
+                'hora',
                 'puntos_auditoria',
                 'asignados',
                 'finalizadosHoy',
@@ -220,9 +226,9 @@ class AuditoriaController extends Controller
         ];
         $segmento = [
 
-            "Gold" => "Gold",
-            "Silver" => "Silver",
-            "Bronce" => "Bronce",
+            "gold" => "gold",
+            "silver" => "silver",
+            "bronce" => "bronce",
         ];
         $noConcreciones = [
             'El cliente no permitio' => 'El cliente no permitio',
@@ -281,6 +287,7 @@ class AuditoriaController extends Controller
         return view(
             'auditoria.create',
             compact(
+
                 'si_no',
                 'tipologia',
                 'noConcreciones',
@@ -300,11 +307,37 @@ class AuditoriaController extends Controller
     public function store(Request $request)
     {
 
-        if ($request->precarga_id % 2 === 0) {
+
+        $case1 = 'bronce';
+        $case2 = 'silver';
+        $case3 = 'gold';
+        $case4 = '["bronce"]';
+        $case5 = '["silver"]';
+        $case6 = '["gold"]';
+        if ($request->segmento == $case1) {
+            $calidad = "FLORALBA RINCON ROMERO";
+        } elseif ($request->segmento == $case2 ) {
+            $calidad = "MARIA ALEJANDRA LEMUS CASTIBLANCO";
+        } elseif ($request->segmento == $case3 ) {
+            $calidad = "MARIA ALEJANDRA LEMUS CASTIBLANCO";
+        } elseif ($request->segmento == $case4) {
+            $calidad = "FLORALBA RINCON ROMERO";
+        } elseif ($request->segmento == $case5 ) {
+            $calidad = "MARIA ALEJANDRA LEMUS CASTIBLANCO";
+        } elseif ($request->segmento == $case6 ) {
             $calidad = "MARIA ALEJANDRA LEMUS CASTIBLANCO";
         } else {
-            $calidad = "FLORALBA RINCON ROMERO";
+            $calidad = "sin asignar";
         }
+
+
+
+
+        // if ($request->precarga_id % 2 === 0) {
+        //     $calidad = "MARIA ALEJANDRA LEMUS CASTIBLANCO";
+        // } else {
+        //     $calidad = "FLORALBA RINCON ROMERO";
+        // }
 
         $validator = FacadesValidator::make(
             $request->all(),
@@ -372,6 +405,7 @@ class AuditoriaController extends Controller
                 $activacion->activacion = $request->activacion;
                 $activacion->fotoActiv = 'auditorias_pics/fachadas' .  $nombre;
                 $activacion->criticidad = 'paso 1 - activacion';
+                $activacion->codigo_femsa = $request->codigo_femsa;
                 $activacion->save();
                 $id =  $request->precarga_id;
                 $concretado = PuntosAuditoria::findOrFail($id);
@@ -395,15 +429,17 @@ class AuditoriaController extends Controller
                 $activacion->activacion = $request->activacion;
                 $activacion->noConcreciones = $request->noConcreciones;
                 $activacion->cual = $request->cual;
+                $activacion->segmento = $request->segmento;
+                $activacion->tipologia = $request->tipologia;
                 $activacion->observaciones = $request->observaciones;
                 $activacion->fotoActiv = 'auditorias_pics/fachadas' .  $nombre;
                 $activacion->revisionCalidad =  $calidad;
                 $activacion->criticidad =  'Pendiente Calidad';
+                $activacion->codigo_femsa = $request->codigo_femsa;
                 $activacion->save();
                 $fechaFinalizado = Carbon::now();
                 $id = $request->precarga_id;
                 $concretado = PuntosAuditoria::where('id', $id)->get();
-                //dd($concretado);
                 $estatusGestion = 'gestionado - no concretado';
                 $mergeData = [
                     'estatusGestion' => $estatusGestion,
@@ -433,9 +469,9 @@ class AuditoriaController extends Controller
 
         $segmento = [
 
-            "Gold" => "Gold",
-            "Silver" => "Silver",
-            "Bronce" => "Bronce",
+            "gold" => "gold",
+            "silver" => "silver",
+            "bronce" => "bronce",
 
         ];
 

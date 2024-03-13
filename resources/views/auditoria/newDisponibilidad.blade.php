@@ -687,7 +687,7 @@
     </ul>
 
 
-    {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton', 'style' => 'z-index:99999']) !!}
+    {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton', 'style' => 'z-index:99999', 'onclick' => 'OcultarButton(this)']) !!}
     {!! Form::close() !!}
     </p>
 
@@ -4810,4 +4810,10 @@
             $imagenLinearlA.src = objectURL;
         });
     </script>
+    <script>
+        function OcultarButton(btn)
+        {
+            $(btn).fadeOut();
+        }
+      </script>
 @stop

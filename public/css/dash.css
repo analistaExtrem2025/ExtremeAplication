@@ -1,0 +1,882 @@
+#myChart {
+    max-width: 100%;
+}
+
+marquee {
+    color: rgba(22, 103, 216, 0.493);
+    font-weight: bold;
+}
+
+.userTable {
+    font-size: 12px;
+}
+
+.t1 {
+    text-align: center;
+    padding: 1rem;
+    font-weight: bold;
+}
+
+.left-card {
+    width: 45%;
+    background-color: teal;
+    background:
+        radial-gradient(transparent 70%, 90%, rgba(25, 25, 112, 0.65) 105%),
+        linear-gradient(-30deg, teal, lightBlue 40%, teal);
+    border-radius: 0.75rem;
+    padding: 2rem;
+
+    margin: 1rem;
+}
+
+.rigth-card {
+    width: 45%;
+    background-color: teal;
+    background:
+        radial-gradient(transparent 70%, 90%, rgba(25, 25, 112, 0.65) 105%),
+        linear-gradient(-30deg, teal, lightBlue 40%, teal);
+    border-radius: 0.75rem;
+    padding: 2rem;
+
+}
+
+.rigth-card1 {
+    width: 100%;
+    background-color: teal;
+    background:
+        radial-gradient(transparent 70%, 90%, rgba(25, 25, 112, 0.65) 105%),
+        linear-gradient(-30deg, teal, lightBlue 40%, teal);
+    border-radius: 0.75rem;
+    padding: 2rem;
+
+    margin: 1rem;
+}
+
+.three-card {
+
+    width: 32.5%;
+    height: 460px;
+    min-width: 250px;
+    background-color: teal;
+    background:
+        radial-gradient(transparent 70%, 90%, rgba(25, 25, 112, 0.65) 105%),
+        linear-gradient(-30deg, teal, lightBlue 40%, teal);
+    border-radius: 0.75rem;
+    margin: 1rem;
+    margin-right: -0.5rem;
+    color: aliceblue;
+    font-weight: bold;
+}
+
+.top-card {
+    width: 50%;
+    background-color: teal;
+    background:
+        radial-gradient(transparent 70%, 90%, rgba(25, 25, 112, 0.65) 105%),
+        linear-gradient(-30deg, teal, lightBlue 40%, teal);
+    border-radius: 0.75rem;
+    height: 650px;
+    color: aliceblue;
+    font-weight: bold;
+    margin: 1rem;
+    min-width: 100%
+}
+
+
+.top-card th {
+
+    color: black;
+    text-align: center;
+}
+
+.card-B {
+    background-color: teal;
+    background: radial-gradient(transparent 70%, 90%, rgba(25, 25, 112, 0.65) 105%), linear-gradient(-30deg, teal, lightBlue 40%, teal);
+    height: 60px;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.two-card {
+    width: 48%;
+    height: 200px;
+    background-color: teal;
+    background:
+        radial-gradient(transparent 70%, 90%, rgba(25, 25, 112, 0.65) 105%),
+        linear-gradient(-30deg, teal, lightBlue 40%, teal);
+    border-radius: 0.75rem;
+    margin: 1rem;
+    margin-right: -0.5rem;
+    color: aliceblue;
+    font-weight: bolds;
+}
+
+.two-cardA {
+    width: 48%;
+    height: 500px;
+    background-color: teal;
+    background:
+        radial-gradient(transparent 70%, 90%, rgba(25, 25, 112, 0.65) 105%),
+        linear-gradient(-30deg, teal, lightBlue 40%, teal);
+    border-radius: 0.75rem;
+    margin: 1rem;
+    margin-right: -0.5rem;
+    color: aliceblue;
+    font-weight: bolds;
+}
+
+
+.full-card {
+    width: 100%;
+    background-color: teal;
+    background:
+        radial-gradient(transparent 70%, 90%, rgba(25, 25, 112, 0.65) 105%),
+        linear-gradient(-30deg, teal, lightBlue 40%, teal);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    color: aliceblue;
+    font-weight: bold;
+
+}
+
+.activeTable {
+    font-size: 12px;
+    border-radius: 0.75rem;
+}
+
+.activeTable thead {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    background: rgb(12, 70, 156);
+}
+
+.activeTable thead:hover {
+    color: white;
+    background: rgb(5, 50, 119);
+}
+
+
+.activeTable tfoot {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    background: rgb(12, 70, 156);
+}
+
+.activeTable tfoot:hover {
+    color: white;
+    background: rgb(5, 50, 119);
+}
+
+.actTr1 {
+    background: rgba(6, 82, 197, 0.493);
+
+}
+
+
+.actThG {
+    color: rgba(10, 0, 184, 1);
+    font-weight: bold;
+    background-image: radial-gradient(circle at 50% -3.03%, #ffff2e 0, #ffe51e 25%, #e2c20c 50%, #c4a000 75%, #a78200 100%) !important;
+    border-color: black;
+    border-style: double;
+
+}
+
+.actThS {
+    color: rgba(10, 0, 184, 1);
+    font-weight: bold;
+    background-image: radial-gradient(circle at 50% -3.27%, #73ffff 0, #74e4ff 25%, #6db8ef 50%, #618eb5 75%, #516981 100%) !important;
+    border-color: black;
+    border-style: double;
+
+}
+
+.actThB {
+    color: rgba(10, 0, 184, 1);
+    font-weight: bold;
+    background-image: linear-gradient(180deg, #ffd800 0, #ffc800 10%, #ffb700 20%, #ffa500 30%, #f7910d 40%, #eb7c18 50%, #dd681f 60%, #cf5624 70%, #c34728 80%, #b8392d 90%, #af2d31 100%) !important;
+    border-color: black;
+    border-style: double;
+
+}
+
+.actTh2 {
+    color: black;
+    background: rgb(250, 250, 250);
+    background: radial-gradient(circle, rgba(250, 250, 250, 1) 0%, rgba(136, 148, 246, 1) 53%, rgba(222, 225, 250, 1) 98%) !important;
+    /* background: radial-gradient(circle, rgba(10, 0, 184, 1) 0%, rgba(111, 135, 218, 1) 98%, rgba(138, 136, 136, 1) 93%) !important; */
+    border-color: black;
+    border-style: double;
+
+}
+
+.actTh2A {
+    color: black;
+    background: rgb(238, 255, 240);
+    background: radial-gradient(circle, rgba(238, 255, 240, 1) 17%, rgba(250, 250, 250, 1) 25%, rgba(145, 255, 135, 0.8771105854451156) 48%, rgba(255, 255, 255, 1) 63%);
+    /* background: rgb(170,211,168);
+
+    background: radial-gradient(circle, rgba(170,211,168,1) 0%, rgba(250,250,250,1) 18%, rgba(48,153,46,1) 48%, rgba(120,185,112,1) 78%, rgba(255,255,255,1) 93%); */
+    border-color: black;
+    border-style: double;
+    font-size: 14px;
+
+}
+
+.actTh2B {
+    color: black;
+    background: rgb(238, 255, 240);
+    background: radial-gradient(circle, rgba(238, 255, 240, 1) 17%, rgba(250, 250, 250, 1) 25%, rgba(252, 135, 255, 0.8771105854451156) 48%, rgba(255, 255, 255, 1) 63%);
+    border-color: black;
+    border-style: double;
+    font-size: 14px;
+
+}
+
+.actTh2C {
+    color: black;
+    background: radial-gradient(circle, rgb(178, 184, 0) 0%, rgb(211, 218, 111) 98%, rgb(138, 138, 136) 93%) !important;
+    border-color: black;
+    border-style: double;
+    font-size: 14px;
+
+}
+
+.actTh3 {
+    background: white !important;
+    color: black;
+    text-align: center;
+    border-color: black;
+    border-style: ridge;
+    font-size: 12px;
+}
+
+.canGen {
+
+    font-size: 14px;
+    border-color: black;
+    border-style: ridge;
+}
+
+.actTr2 {
+    background: white;
+}
+
+.actTr3 {
+    background: rgba(22, 103, 216, 0.493);
+    color: white;
+
+}
+
+.actTr4 {
+    background: rgb(255, 255, 255 .747);
+    color: black;
+}
+
+.actTr5 {
+    text-align: center;
+    color: black;
+}
+
+
+.th6 {
+    font-size: 13px;
+    background: rgb(238, 255, 240);
+    font-weight: bold;
+    background: radial-gradient(circle, rgba(238, 255, 240, 1) 17%, rgba(250, 250, 250, 1) 25%, rgba(218, 247, 166, 1) 48%, rgba(255, 255, 255, 1) 63%) !important;
+}
+
+
+.th7 {
+    font-size: 13px;
+    font-weight: bold;
+    background: rgb(238, 255, 240);
+    background: radial-gradient(circle, rgba(238, 255, 240, 1) 17%, rgba(250, 250, 250, 1) 25%, rgba(255, 166, 186, 1) 48%, rgba(255, 255, 255, 1) 63%) !important;
+}
+
+red {
+    color: red;
+}
+
+.TableTop {
+    margin: 1rem;
+    text-align: center;
+    border-color: black;
+    border-style: double;
+}
+
+.TableTop td {
+    background: rgb(255, 255, 255);
+    color: black;
+}
+
+.TableTop td:hover {
+
+    background: rgb(208, 204, 177);
+}
+
+.cityName {
+    text-align: left;
+    font-weight: bold;
+    background: #50747b;
+    color: white;
+}
+
+.userName {
+    text-align: right;
+    background: #D5D8DC;
+}
+
+.userTableTop {
+    background: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.totalCity {
+    background: #072F8A;
+    color: white !important;
+}
+
+.totalCityLigth {
+    background: #aeb4c2 !important;
+    color: rgb(0, 0, 0) !important;
+}
+
+.nameCity {
+    background: #D5D8DC !important;
+}
+
+.totalAvery {
+    width: 80px;
+}
+
+.prom {
+    width: 380px !important;
+}
+
+.userTableSeg .th1,
+.th5 {
+
+    background: white;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    border-color: black;
+    border-style: ridge;
+
+}
+
+.userTableSeg .th2 {
+    background-image: radial-gradient(circle at 61.49% 30.1%, #ffff6d 0, #fff163 16.67%, #ffd85b 33.33%, #f2bd53 50%, #dea34c 66.67%, #cc8d47 83.33%, #bb7b43 100%);
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+
+.userTableSeg .th3 {
+    background-image: linear-gradient(180deg, #a6ffff 0, #a2edff 25%, #9dd5f2 50%, #96bed5 75%, #8ea8b9 100%);
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+
+.userTableSeg .th4 {
+    background-image: radial-gradient(circle at 40.24% -5.38%, #ffe77c 0, #ffdc7a 8.33%, #ffcf78 16.67%, #ffc176 25%, #f8b273 33.33%, #eaa170 41.67%, #d8906c 50%, #c58067 58.33%, #b37263 66.67%, #a3675f 75%, #955e5c 83.33%, #8a5759 91.67%, #805258 100%);
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+
+.citys {
+    background: linear-gradient(180deg, #798C8C, #AEBFBE, #D7D9D7, #F2EFDF);
+    background-size: 100% 100%;
+    color: black;
+    text-align: left;
+    width: 200px;
+}
+
+.citys:hover {
+    background: linear-gradient(180deg, #F2EFDF, #D7D9D7, #AEBFBE, #798C8C);
+
+}
+
+
+.citysA {
+    background: linear-gradient(180deg, #798C8C, #AEBFBE, #D7D9D7, #F2EFDF);
+    background-size: 100% 100%;
+    color: black;
+    text-align: left;
+    width: 200px;
+    border-color: black;
+    border-style: ridge;
+}
+
+.citysA:hover {
+    background: linear-gradient(180deg, #F2EFDF, #D7D9D7, #AEBFBE, #798C8C);
+
+}
+
+.totales1 {
+    text-align: left;
+    background: linear-gradient(45deg, rgba(0, 184, 25, 1) 0%, rgba(119, 217, 127, 1) 51%, rgba(162, 221, 162, 1) 81%) !important;
+    border-color: black;
+    border-style: ridge;
+}
+
+.totales2 {
+    text-align: left;
+    background: linear-gradient(45deg, rgba(179, 0, 184, 1) 0%, rgba(214, 119, 217, 1) 51%, rgba(221, 162, 201, 1) 81%);
+    border-color: black;
+    border-style: ridge;
+}
+
+.totales3 {
+    text-align: left;
+    background: linear-gradient(45deg, rgba(171, 184, 0, 1) 0%, rgba(208, 217, 119, 1) 51%, rgba(218, 221, 162, 1) 81%);
+    border-color: black;
+    border-style: ridge;
+}
+
+
+
+.operativo1 {
+    border-color: black;
+    background: #b91d47;
+    color: white;
+    border-style: ridge;
+    font-size: 9px !important;
+}
+
+.operativo2 {
+    border-color: black;
+    background: #00aba9;
+    color: rgb(1, 0, 0);
+    border-style: ridge;
+    font-size: 9px !important;
+}
+
+.operativo3 {
+    border-color: black;
+    background: #2b5797;
+    color: white;
+    border-style: ridge;
+    font-size: 9px !important;
+}
+
+.operativo4 {
+    border-color: black;
+    background: #0bef20;
+    color: black;
+    border-style: ridge;
+    font-size: 9px !important;
+}
+
+.operativo5 {
+    border-color: black;
+    background: #eafd01;
+    color: black;
+    border-style: ridge;
+    font-size: 9px !important;
+}
+
+.calidad1 {
+    border-color: black;
+    background: #b91d47;
+    color: white;
+    border-style: ridge;
+    font-size: 9px !important;
+
+}
+
+.calidad2 {
+    border-color: black;
+    background: #00aba9;
+    color: rgb(1, 0, 0);
+    border-style: ridge;
+    font-size: 9px !important;
+
+}
+
+.calidad3 {
+    border-color: black;
+    background: #2b5797;
+    color: white;
+    border-style: ridge;
+    font-size: 9px !important;
+    width: 140px !important;
+}
+
+.calidad4 {
+    border-color: black;
+    background: #0bef20;
+    color: black;
+    border-style: ridge;
+    font-size: 9px !important;
+    width: 140px !important;
+}
+
+.calidad5 {
+    border-color: black;
+    background: #eafd01;
+    color: black;
+    border-style: ridge;
+    font-size: 9px !important;
+}
+
+
+.status {
+    margin-top: 2rem;
+    font-size: 10px;
+    color: black;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: center;
+
+}
+
+
+
+.statusXl {
+    margin-top: 2rem;
+    font-size: 10px;
+    color: black;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    text-align: center;
+
+}
+
+.status tbody {
+    background: white !important;
+    color: black;
+    text-align: center;
+    border-color: black;
+    border-style: ridge;
+}
+
+.topcal {
+    background: white !important;
+    width: 350px;
+    color: black;
+    text-align: center;
+    border-color: black;
+    border-style: ridge;
+    text-align: left !important;
+}
+
+.tcal {
+    background: white !important;
+    color: black;
+    border-color: black;
+    border-style: ridge;
+    text-align: right !important;
+}
+
+.tcalA {
+    background: white !important;
+    color: black;
+    text-align: center;
+    border-color: black;
+    border-style: ridge !important;
+    font-size: 13px;
+
+}
+
+.cont {
+
+    display: flex;
+    width: 100%;
+    height: 40px;
+    color: black;
+    font-size: 60px;
+    line-height: 40px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 9999;
+    margin: 0 0 0 20rem;
+
+
+}
+
+.cont ul {
+    list-style: none;
+    padding-left: 2px;
+    animation: cambiar 15s infinite;
+    -webkit-animation: cambiar 15s infinite;
+}
+
+.cont ul,
+R {
+    margin: 0;
+    font-size: 35px;
+}
+
+.cont t {
+    text-align: center;
+    color: rgb(2, 0, 116);
+    font-weight: bolder;
+}
+
+@keyframes cambiar {
+
+    0% {
+        margin-top: 0;
+    }
+
+    20% {
+        margin-top: 0;
+    }
+
+    25% {
+        margin-top: -40px;
+    }
+
+    50% {
+        margin-top: -40px;
+    }
+
+    55% {
+        margin-top: -80px;
+    }
+
+    80% {
+        margin-top: -80px;
+    }
+
+    85% {
+        margin-top: -40px;
+    }
+
+    95% {
+        margin-top: -40px;
+    }
+
+    100% {
+        margin-top: 0;
+    }
+}
+
+.cumpli {
+
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 18px;
+    color: #1f2ac7;
+}
+
+
+/**/
+
+@-webkit-keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.refresh {
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    border: 0;
+    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    display: block;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    transition: all 300ms ease 0ms;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    z-index: 99;
+}
+
+.refresh .icon {
+    fill: #323232;
+}
+
+.refresh:hover {
+    background: #def4d7;
+    cursor: pointer;
+}
+
+.refresh:active .icon {
+    fill: #5ac938;
+}
+
+.refresh.loading {
+    background: #def4d7;
+    cursor: wait;
+}
+
+.refresh.loading .icon {
+    fill: #5ac938;
+    -webkit-animation: rotating 1.2s linear infinite;
+    animation: rotating 1.2s linear infinite;
+}
+
+.reloj {
+
+    background: transparent;
+
+}
+
+.inputReloj {
+
+    color: white;
+    background: transparent;
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 8pt;
+    text-align: left;
+    border-color: none;
+    border-style: none;
+    size: 10;
+
+
+}
+
+
+.inputFecha {
+
+    color: white;
+    background: transparent;
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 8pt;
+    text-align: right;
+    border-color: none;
+    border-style: none;
+    size: 10;
+}
+
+.greenTop {
+    vertical-align: middle !important;
+
+    font-size: 14px;
+    color: black;
+    background: rgb(238, 255, 240);
+    background: radial-gradient(circle, rgba(238, 255, 240, 1) 17%, rgba(250, 250, 250, 1) 25%, rgba(145, 255, 135, 0.8771105854451156) 48%, rgba(255, 255, 255, 1) 63%) !important;
+}
+
+.yellowTop {
+    vertical-align: middle !important;
+    margin: 50%;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+    background: rgb(238, 255, 240);
+    background: radial-gradient(circle, rgba(238, 255, 240, 1) 17%, rgba(250, 250, 250, 1) 25%, rgba(237, 255, 107, 1) 48%, rgba(255, 255, 255, 1) 63%);
+}
+
+.redTop {
+    vertical-align: middle !important;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+    background: rgb(238, 255, 240);
+    background: radial-gradient(circle, rgba(238, 255, 240, 1) 17%, rgba(250, 250, 250, 1) 25%, rgba(255, 107, 107, 1) 48%, rgba(255, 255, 255, 1) 63%);
+}
+
+.silverColor {
+    vertical-align: middle !important;
+    text-align: center;
+    font-size: 20px;
+    color: rgba(21, 221, 13, 1);
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 11%, rgba(171, 161, 154, 1) 23%, rgba(163, 170, 168, 1) 37%, rgba(227, 220, 220, 1) 47%, rgba(250, 250, 250, 1) 77%);
+}
+
+.statuspqr {
+    margin-top: 2rem;
+    font-size: 10px;
+    color: black;
+    margin-left: 0;
+    margin-right: 1rem;
+    text-align: center;
+    width: 100%;
+    border-radius: 0.75rem;
+}
+
+.statuspqr tbody {
+    background: white !important;
+    color: black;
+    text-align: center;
+    border-color: #B1CFAD;
+    border-style: groove;
+}
+
+.statuspqr thead {
+    background: rgb(194, 9, 9) !important;
+    color: black;
+    text-align: center;
+    border-color: #B1CFAD;
+    border-style: groove;
+}
+
+.imgOro {
+
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.imgPlata {
+
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.imgBronce {
+
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.none {
+    background: rgb(183,183,183);
+    background: linear-gradient(90deg, rgba(183,183,183,1) 0%, rgba(224,224,237,1) 46%, rgba(172,172,172,1) 100%);
+}
+
+.dataPick{
+
+    font-size: 12px !important;
+    background: #fff;
+    color:black;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    width: 350px;
+}
+.dataPick span{
+    font-size: 12px !important;
+    color:black;
+
+}
+
+.selector {
+    background: red;
+    border: none;
+    font-size: 14px;
+    height: 30px;
+    padding: 5px;
+    width: 250px;
+ }

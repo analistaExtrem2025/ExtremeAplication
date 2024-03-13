@@ -31,12 +31,16 @@ class Auditoria extends Model
         'cual',
         'observaciones',
         'fotoActiv',
+        'criticidad',
+        'fechaRevision',
+        'revisadoPor',
+        'estadoCalidad',
+        'codigo_femsa'
     ];
 
     protected $casts = [
-        'star' => 'datetime:d-m-Y',
-
-    ];
+        'star' => 'date',
+     ];
 
     public function auditoria()
     {

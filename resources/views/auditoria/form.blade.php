@@ -68,7 +68,7 @@
             <div class="input">
                 <input type="text" name="tipologia" id="tipologia" type="text" value="{{ $puntos_auditoria->tipologia }}" readonly>
             </div>
-
+                <input type="hidden" name="codigo_femsa" id="codigo_femsa" value="{{ $puntos_auditoria->codigo_femsa }}">
         </main>
     </div>
     <div class="accordion" id="divSeccion2" style="display: none">
@@ -175,7 +175,8 @@
                             </div>
                         </div>
                         </p>
-                        {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton']) !!}
+                        {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'btn', 'onclick' => 'OcultarButton(this)']) !!}
+
                     </div>
                     {!! Form::close() !!}
 
@@ -216,3 +217,10 @@
             $('#characterCount').text($(this).val().length + "/200")
         })
     </script>
+
+    <script>
+        function OcultarButton(btn)
+        {
+            $(btn).fadeOut();
+        }
+      </script>

@@ -37,5 +37,10 @@ class PuntosAuditoria extends Model
         'estatusGestion',
         'fechaAsignado',
         'fechaFinalizado'
+
     ];
+
+    protected $casts = [
+        'fechaAsignado' => 'datetime',
+     ];
 }

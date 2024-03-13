@@ -56,6 +56,7 @@ class RegisterController extends Controller
             'departamento' => ['required'],
             'municipio' => ['required'],
             'role' => ['required'],
+            'area' => ['nullable'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -75,6 +76,7 @@ class RegisterController extends Controller
             'departamento' => $data['departamento'],
             'municipio' => $data['municipio'],
             'role' => $data['role'],
+            'area' => $data['area'],
             'password' => Hash::make($data['password']),
         ]);
     }

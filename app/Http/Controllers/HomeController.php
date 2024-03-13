@@ -52,9 +52,13 @@ class HomeController extends Controller
     public function notificacionEdit($id)
     {
         $pqr = Pqr::findOrFail($id);
-
-
         return view('notificacionEdit', compact('pqr'));
+    }
+
+    public function notificacionShow($id)
+    {
+        $pqr = Pqr::findOrFail($id);
+        return view('notificacionShow', compact('pqr'));
     }
 
 

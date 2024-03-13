@@ -5,7 +5,7 @@
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 @stop
 @section('content_header')
-    <h1 class="head-title">Edición de rutas y asignaciones</h1>
+    <h1 class="head-title">Edición individual de rutas y asignaciones</h1>
 @stop
 @section('content')
     <ul>
@@ -184,6 +184,7 @@
                         <option value="sin cobertura">Punto sin cobertura</option>
                         <option value="zona roja">Zona roja </option>
                         <option value=" ">Sin promotor en la zona</option>
+                        <option value=" ">Ninguna</option>
                         </select>
                     </div>
                     <input type="hidden" name="asignadoA" id="asignadoA3" disabled value="">

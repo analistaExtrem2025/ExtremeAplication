@@ -2,6 +2,7 @@
 @section('title', 'Bienvenido')
 @section('content_header')
     <h1>Listado de auditorias </h1>
+
 @stop
 @section('content')
     <div class="container">

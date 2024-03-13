@@ -50,7 +50,7 @@ class AsignacionesController extends Controller
             $datos = request()->except('sele', '_token', '_method');
             $merge = [
                 'fechaAsignado' => $request->fechaAsignado,
-                'fechaFinalizado' => " ",
+                'fechaFinalizado' => null,
                 'asignadoA' => $request->asignadoA,
             ];
 
@@ -58,9 +58,13 @@ class AsignacionesController extends Controller
         } else if ($request->sele == 'elimina') {
             $merge = [
                 'asignadoA' => null,
+                'fechaAsignado' => null,
+                'fechaFinalizado' => null,
             ];
             //dd($request->all());
+
             $datos = request()->merge($merge)->except(['_token', '_method', 'sele',]);
+
             $puntos_auditoria->update($datos);
         }
         return back();

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Auditoria;
+use App\Models\AuditoriaH;
 use App\Models\ExportPdf;
 use App\Models\PuntosAuditoria;
+use App\Models\PuntosAuditoriaH;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+
 
 class ExportPdfController extends Controller
 {
@@ -62,8 +63,6 @@ class ExportPdfController extends Controller
     public function downloadPdf($id)
     {
         $auditoriaPdf = Auditoria::findOrFail($id);
-
-        $auditoriaPdf = Auditoria::findOrFail($id);
         $seg = PuntosAuditoria::select('puntos_auditoria.segmentacion')
                 ->leftjoin('auditorias', 'puntos_auditoria.id', '=', 'auditorias.precarga_id')->get()->pluck('segmentacion');
 
@@ -79,9 +78,18 @@ class ExportPdfController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ExportPdf $exportPdf)
+    public function edit($id)
     {
-        //
+        $auditoriaPdf = AuditoriaH::findOrFail($id);
+        $seg = PuntosAuditoriaH::select('puntos_auditoria_historico.segmentacion')
+                ->leftjoin('auditorias_historico', 'puntos_auditoria_historico.id', '=', 'auditorias_historico.precarga_id')->get()->pluck('segmentacion');
+
+        $tip = PuntosAuditoriaH::select('puntos_auditoria_historico.tipologia')
+        ->leftjoin('auditorias_historico', 'puntos_auditoria_historico.id', '=', 'auditorias_historico.precarga_id')->get()->pluck('tipologia');
+
+        $pdf =  Pdf::loadView('pdf.show', compact('seg', 'tip'), ['auditoriaPdf' => $auditoriaPdf])->setOptions(['defaultFont' => 'sans-serif']);
+        set_time_limit(300);
+        return $pdf->stream();
     }
 
     /**
