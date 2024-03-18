@@ -2,11 +2,14 @@
 
 @section('title', 'Bienvenid@s')
 
+
 @section('content_header')
+
     <h1>Bienvenido</h1>
 @stop
 
 @section('content')
+
 
     @if (Auth::user()->role == 1 || Auth::user()->role == 2)
         <p>

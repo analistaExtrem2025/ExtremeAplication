@@ -35,15 +35,22 @@
     </style>
     @php
         use App\Models\Pqr;
-        $pqr = Pqr::where('area', Auth::user()->area)
-            ->orWhere('area', Auth::user()->name)
-            ->whereNot('estatusRespuesta', 'Caso cerrado')
-            ->get();
+
+        $area = auth()->user()->area;
+        $usuario = auth()->user()->user;
+
+        if (Auth::user()->role == 1 || Auth::user()->role == 2)
+          $pqr = Pqr::where('area', $area)
+          ->where('estatusRespuesta',  'Caso creado')->get();
+        elseif (Auth::user()->role == 3 )
+          $pqr = Pqr::where('area', $usuario)
+          ->where('estatusRespuesta',  'Punto devuelto')->get();
+        elseif (Auth::user()->role == 4 )
+          $pqr = Pqr::where('area', $usuario)
+          ->where('estatusRespuesta',  'En tramite')->get();
         $rta = Pqr::where('estatusRespuesta', 'Caso cerrado')
             ->where('creado_por', Auth::user()->name)
             ->get();
-            //dd($rta);
-
     @endphp
 </head>
 
