@@ -333,6 +333,7 @@
         <tbody>
             @foreach ($puntos_auditoria as $PdeA)
                 <tr>
+
                     <td>{{ $PdeA->id }}</td>
                     <td>{{ $PdeA->razonSocial }}</td>
                     <td>{{ $PdeA->nombreNegocio }}</td>
@@ -404,6 +405,18 @@
                             </div>
                         </td>
                     @endif
+
+                    <th>id</th>
+                    <th>Razon Social</th>
+                    <th>Nombre del negocio</th>
+                    <th>Direccion</th>
+                    <th>Razón Social</th>
+                    <th>Dirección</th>
+                    <th>Barrio</th>
+                    <th>Segmento</th>
+                    <th>Tipología</th>
+                    <th width="105px">Acciones</th>
+
                 </tr>
             @endforeach
         </tbody>
