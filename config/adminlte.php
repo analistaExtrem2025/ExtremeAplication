@@ -349,6 +349,14 @@ return [
             'can'  => 'encuesta.diageo.index',
             'submenu' => [
                 [
+                    'text'  => 'Dashboard',
+                    'route' => 'dash.index',
+                    'icon'  => 'fas fa-tachometer-alt',
+                    'shift' => 'ml-4',
+                    'can'  => 'auditoria.edit',
+                ],
+
+                [
                     'text'  => 'Ver Auditorias',
                     'route' => 'auditoria.index',
                     'icon'  => 'fas fa-binoculars',
@@ -385,14 +393,22 @@ return [
                     // 'can'    =>  'admin.diageo',
                 ],
 
-                // [
-                //     'text'  => 'Visitantes',
-                //     'route' => 'indexVisitor',
-                //     'icon'  => 'fas fa-glasses',
-                //     'shift' => 'ml-4',
-                //     'can'   => 'admin.home',
-                //     // 'can'    =>  'admin.diageo',
-                // ],
+                [
+                    'text'  => 'Panel de control',
+                    'route' => 'dash.index',
+                    'icon'  => 'fas fa-chess-pawn',
+                    'shift' => 'ml-4',
+                    'can'   => 'admin.home',
+                    // 'can'    =>  'admin.diageo',
+                ],
+                [
+                    'text'  => 'Auditorias migradas',
+                    'route' => 'indexH',
+                    'icon'  => 'far fa-file-archive',
+                    'shift' => 'ml-4',
+                    // 'can'   => 'auditoria.indexH',
+                ],
+
 
 
 
@@ -411,8 +427,15 @@ return [
                     'route' => 'indexVisitor',
                     'icon' => 'fas fa-tasks',
                     'shift' => 'ml-4',
-                   // 'can' => 'indexVisitor',
+                    // 'can' => 'indexVisitor',
                     // 'can'    =>  'admin.diageo',
+                ],
+                [
+                    'text'  => 'Control de gestión PQR´s',
+                    'route' => 'dashPqr.index',
+                    'icon'  => 'fas fa-tachometer-alt',
+                    'shift' => 'ml-4',
+                    //'can'  => 'dashPqr.index',
                 ],
 
             ],
@@ -431,6 +454,7 @@ return [
                     'shift' => 'ml-4',
                     'can'   => 'ExportPdf.index',
                 ],
+
             ],
         ],
         [

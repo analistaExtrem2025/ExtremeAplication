@@ -16,7 +16,8 @@ class Generalidades extends Model
         'id',
         'precarga_id',
         'observacionesDetallista',
-        'criticidad'
+        'criticidad',
+        'revisadoPor'
 
     ];
 

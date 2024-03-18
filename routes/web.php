@@ -5,9 +5,9 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\AsignacionesController;
 use App\Http\Controllers\AuditoriaController;
+use App\Http\Controllers\AuditoriasTableroController;
 use App\Http\Controllers\CalidadAuditoriaController;
 use App\Http\Controllers\ComparativoMarcasController;
-// use App\Http\Controllers\DashboardAuditoriasController;
 use App\Http\Controllers\DiageoActivadosController;
 use App\Http\Controllers\DiageoCerradosController;
 use App\Http\Controllers\DiageoClienteFemsaController;
@@ -27,6 +27,9 @@ use App\Http\Controllers\ReemplazoController;
 use App\Http\Controllers\SegmentoController;
 use App\Http\Controllers\TapadosController;
 use App\Http\Controllers\TipologiaController;
+use App\Http\Controllers\DashPqrController;
+
+
 // use App\Http\Controllers\PDFController;
 
 /*
@@ -112,14 +115,21 @@ Route::resource('Galeria', CalidadAuditoriaController::class);
 Route::get('inactivos', [CalidadAuditoriaController::class, 'inactivos'])->name('inactivos');
 Route::resource('asignaciones', AsignacionesController::class);
 Route::get('downloadPdf/{id}', [ExportPdfController::class, 'downloadPdf'])->name('downloadPdf');
-
 Route::get('indexVisitor', [AuditoriaController::class, 'indexVisitor'])->name('indexVisitor');
 Route::post('storeVisitor', [AuditoriaController::class, 'storeVisitor'])->name('storeVisitor');
-
 Route::resource('pdf', ExportPdfController::class);
-
 Route::get('notificacionEdit/{id}', [HomeController::class, 'notificacionEdit'])->name('notificacionEdit');
+Route::get('notificacionShow/{id}', [HomeController::class, 'notificacionShow'])->name('notificacionShow');
 Route::put('notificacionStore', [AuditoriaController::class, 'notificacionStore'])->name('auditorias.notificacionStore');
 Route::resource('PqryRtas', PqryRtasController::class);
+Route::resource('dash',  AuditoriasTableroController::class);
+Route::resource('dashPqr', DashPqrController::class);
+
+
+
+Route::get('indexH', [CalidadAuditoriaController::class, 'indexH'])->name('indexH');
+Route::get('editH/{id}', [CalidadAuditoriaController::class, 'editH'])->name('editH');
+Route::get('showPdfCalidad', [CalidadAuditoriaController::class, 'showPdfCalidad'])->name('showPdfCalidad');
+Route::get('downloadPdfCalidad/{id}', [CalidadAuditoriaController::class, 'downloadPdfCalidad'])->name('downloadPdfCalidad');
 
 

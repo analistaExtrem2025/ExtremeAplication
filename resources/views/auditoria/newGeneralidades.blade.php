@@ -31,7 +31,7 @@
         </div>
     </div>
     </p>
-    {!! Form::submit('Finalizar', ['class' => 'btn btn-primary', 'id' => 'boton']) !!}
+    {!! Form::submit('Finalizar', ['class' => 'btn btn-primary', 'id' => 'boton', 'onclick' => 'OcultarButton(this)']) !!}
     {!! Form::close() !!}
 @stop
 @push('js')
@@ -40,4 +40,10 @@
             $('#characterCount').text($(this).val().length + "/200")
         })
     </script>
+    <script>
+        function OcultarButton(btn)
+        {
+            $(btn).fadeOut();
+        }
+      </script>
 @endpush

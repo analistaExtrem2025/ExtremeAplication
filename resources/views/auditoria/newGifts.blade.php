@@ -62,7 +62,7 @@
         </div>
     </div>
     </p>
-    {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton']) !!}
+    {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton', 'onclick' => 'OcultarButton(this)']) !!}
     {!! Form::close() !!}
 @stop
 @section('js')
@@ -101,4 +101,11 @@
             $imagengift.src = objectURL;
         });
     </script>
+
+    <script>
+        function OcultarButton(btn)
+        {
+            $(btn).fadeOut();
+        }
+      </script>
 @stop

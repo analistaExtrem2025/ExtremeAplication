@@ -163,10 +163,16 @@ class AuditoriasExport implements FromCollection, WithHeadings
             'precio_comp_aguardiente2',
             'seleccionLinealA',
             'ron_byw',
+            'bloquebyw',
+            'carasbloquebyw',
             'seleccionron_byw',
             'ron_jhonny',
+            'bloquejohnnie',
+            'carasbloquejohnnie',
             'seleccionron_jhonny',
             'aguard_smirnoff',
+            'bloquesmirnoff',
+            'carasbloquesmirnoff',
             'seleccionaguard_smirnoff',
             'gift',
             'cant_gift',
@@ -178,6 +184,8 @@ class AuditoriasExport implements FromCollection, WithHeadings
             'revisionCalidad',
             'fechaCalidad',
             'criticidad',
+            'codigo_femsa',
+
         ];
     }
 }

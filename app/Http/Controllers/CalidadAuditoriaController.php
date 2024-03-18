@@ -6,9 +6,13 @@ use App\Models\calidadAuditoria;
 use Illuminate\Http\Request;
 use App\Models\Auditoria;
 use App\Models\AuditoriaEditable;
+use App\Models\AuditoriaH;
 use App\Models\Materiales;
 use App\Models\Pqr;
+use App\Models\PuntosAuditoria;
+use App\Models\PuntosAuditoriaH;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
@@ -34,8 +38,8 @@ class CalidadAuditoriaController extends Controller
 
 
         $user = User::select('name')->where('name', 'Fernando Alexander Carillo Leon')->get();
-        $user2 = User::select('name')->where('name', 'MAIDA MARCELA ROJAS PIRAGAUTA')->get();
-        if (Auth::user()->name == 'Fernando Alexander Carillo Leon' ||  Auth::user()->name == 'MAIDA MARCELA ROJAS PIRAGAUTA') {
+        $user2 = User::select('name')->where('name', 'MARIA ALEJANDRA LEMUS CASTIBLANCO')->get();
+        if (Auth::user()->name == 'Fernando Alexander Carillo Leon' ||  Auth::user()->name == 'MARIA ALEJANDRA LEMUS CASTIBLANCO') {
             $puntos_auditoria = Auditoria::Where('star', '>=', '2000-01-01 00:00:00')
                 //$auditoria = Auditoria::Where('star', '>=', '2023-11-15 00:00:00')
                 //->where('activacion' 'inactivos')
@@ -265,7 +269,7 @@ class CalidadAuditoriaController extends Controller
             'Tiendas / Minimercados' => 'Tiendas / Minimercados',
             'Transportador' => 'Transportador',
 
-            ];
+        ];
 
         $segmento = [
 
@@ -444,12 +448,24 @@ class CalidadAuditoriaController extends Controller
             "Multimarca" => "Multimarca",
         ];
 
-        $seleccionLinealR = "auditorias_pics/Ron_".$reporte->precarga_id. ".png";
-        $seleccionLinealA = "auditorias_pics/Aguardiente_".$reporte->precarga_id. ".png";
+
+        $caras = [
+            "Ninguno" => "Ninguno",
+            "1" => "1",
+            "2" => "2",
+            "3" => "3",
+            "4" => "4",
+            "5" => "5",
+            "Mas de Cinco" => "Mas de Cinco",
+        ];
+
+        $seleccionLinealR = "auditorias_pics/Ron_" . $reporte->precarga_id . ".png";
+        $seleccionLinealA = "auditorias_pics/Aguardiente_" . $reporte->precarga_id . ".png";
 
         $calificacion = [1 => "si", 0 => 'no'];
         //dd($reporte);
         return view('auditoria.galeriaEdit', compact(
+            'caras',
             'star',
             'reporte',
             'calificacion',
@@ -575,19 +591,17 @@ class CalidadAuditoriaController extends Controller
             )->all()
         );
 
-        if ($request->criticidad == "error critico de fondo" || $request->criticidad == "errores criticos de fondo y forma" )
-        {
+        if ($request->criticidad == "error critico de fondo" || $request->criticidad == "errores criticos de fondo y forma") {
             $pqr = new Pqr();
             $pqr->area = $request->auditadoPor;
             $pqr->creado_por = Auth::user()->name;
             $pqr->femsa_id = $request->precarga_id;
             $pqr->tituloReq = "devolución desde calidad";
-            $pqr->detalle = "el caso con el id". $request->precarga_id.  "es devuelto porque se hayaron". $request->criticidad;
+            $pqr->detalle = "El caso con el id " . $request->precarga_id .  " fue devuelto porque se halló un " . $request->criticidad;
             $pqr->estatusRespuesta = "Punto devuelto";
             $pqr->save();
-
         }
-        $auditoria = AuditoriaEditable::where('id', $request->id)->first();
+        //$auditoria = AuditoriaEditable::where('id', $request->id)->first();
 
         //  dd($auditoria);
 
@@ -608,11 +622,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redCenefa->text(
                 'Cenefa' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -626,8 +640,8 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redCenefa->save($destinoCenefa . $nombreCenefa);
-            $auditoria->seleccionCenefa = 'auditorias_pics/Cenefa' .  $nombreCenefa;
-            $auditoria->save();
+            $calidadAuditoria->seleccionCenefa = 'auditorias_pics/Cenefa' .  $nombreCenefa;
+            $calidadAuditoria->save();
         }
         if ($request->hasFile('seleccionAfiche')) {
             $imagenAfiche = $request->file('seleccionAfiche');
@@ -644,11 +658,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redAfiche->text(
                 'Afiche' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -662,8 +676,8 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redAfiche->save($destinoAfiche . $nombreAfiche);
-            $auditoria->seleccionAfiche = 'auditorias_pics/Afiche' .  $nombreAfiche;
-            $auditoria->save();
+            $calidadAuditoria->seleccionAfiche = 'auditorias_pics/Afiche' .  $nombreAfiche;
+            $calidadAuditoria->save();
         }
         if ($request->hasFile('seleccionMarco')) {
             $imagenMarco = $request->file('seleccionMarco');
@@ -680,11 +694,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redMarco->text(
                 'Marco' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -698,10 +712,10 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redMarco->save($destinoMarco . $nombreMarco);
-            $auditoria->seleccionMarco = 'auditorias_pics/Marco' .  $nombreMarco;
-            $auditoria->save();
+            $calidadAuditoria->seleccionMarco = 'auditorias_pics/Marco' .  $nombreMarco;
+            $calidadAuditoria->save();
         }
-        if ($request->hasFile('seleccionRompetrafico') ) {
+        if ($request->hasFile('seleccionRompetrafico')) {
 
             $imagenRompetrafico = $request->file('seleccionRompetrafico');
             $nombreRompetrafico = "_" . $request->precarga_id . '.' . 'png';
@@ -717,11 +731,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redRompetrafico->text(
                 'Rompetrafico' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -734,10 +748,10 @@ class CalidadAuditoriaController extends Controller
                     $font->countLines(4);
                 }
             );
-            $auditoria->seleccionRompetrafico = 'auditorias_pics/Rompetrafico' .  $nombreRompetrafico;
+            $calidadAuditoria->seleccionRompetrafico = 'auditorias_pics/Rompetrafico' .  $nombreRompetrafico;
             $redRompetrafico->save($destinoRompetrafico . $nombreRompetrafico);
 
-            $auditoria->save();
+            $calidadAuditoria->save();
         }
         if ($request->hasFile('seleccionFaxada')) {
             $imagenFaxada = $request->file('seleccionFaxada');
@@ -754,11 +768,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redFaxada->text(
                 'Faxada' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -772,8 +786,8 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redFaxada->save($destinoFaxada . $nombreFaxada);
-            $auditoria->seleccionFaxada = 'auditorias_pics/Faxada' .  $nombreFaxada;
-            $auditoria->save();
+            $calidadAuditoria->seleccionFaxada = 'auditorias_pics/Faxada' .  $nombreFaxada;
+            $calidadAuditoria->save();
         }
         if ($request->hasFile('seleccionHielera')) {
             $imagenHielera = $request->file('seleccionHielera');
@@ -790,11 +804,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redHielera->text(
                 'Hielera' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -808,8 +822,8 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redHielera->save($destinoHielera . $nombreHielera);
-            $auditoria->seleccionHielera = 'auditorias_pics/Hielera' .  $nombreHielera;
-            $auditoria->save();
+            $calidadAuditoria->seleccionHielera = 'auditorias_pics/Hielera' .  $nombreHielera;
+            $calidadAuditoria->save();
         }
         if ($request->hasFile('seleccionBase_h')) {
             $imagenBase_h = $request->file('seleccionBase_h');
@@ -826,11 +840,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redBase_h->text(
                 'Base hielera' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -844,8 +858,8 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redBase_h->save($destinoBase_h . $nombreBase_h);
-            $auditoria->seleccionBase_h = 'auditorias_pics/Base_h' .  $nombreBase_h;
-            $auditoria->save();
+            $calidadAuditoria->seleccionBase_h = 'auditorias_pics/Base_h' .  $nombreBase_h;
+            $calidadAuditoria->save();
         }
         if ($request->hasFile('seleccionDosificadorD')) {
             $imagenDosificadorD = $request->file('seleccionDosificadorD');
@@ -862,11 +876,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redDosificadorD->text(
                 'Dosificador doble' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -880,8 +894,8 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redDosificadorD->save($destinoDosificadorD . $nombreDosificadorD);
-            $auditoria->seleccionDosificadorD = 'auditorias_pics/DosificadorD' .  $nombreDosificadorD;
-            $auditoria->save();
+            $calidadAuditoria->seleccionDosificadorD = 'auditorias_pics/DosificadorD' .  $nombreDosificadorD;
+            $calidadAuditoria->save();
         }
         if ($request->hasFile('seleccionDosificadorS')) {
             $imagenDosificadorS = $request->file('seleccionDosificadorS');
@@ -898,11 +912,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redDosificadorS->text(
                 'Dosificador sencillo' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -916,8 +930,8 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redDosificadorS->save($destinoDosificadorS . $nombreDosificadorS);
-            $auditoria->seleccionDosificadorS = 'auditorias_pics/DosificadorS' .  $nombreDosificadorS;
-            $auditoria->save();
+            $calidadAuditoria->seleccionDosificadorS = 'auditorias_pics/DosificadorS' .  $nombreDosificadorS;
+            $calidadAuditoria->save();
         }
         if ($request->hasFile('seleccionBranding')) {
             $imagenBranding = $request->file('seleccionBranding');
@@ -934,11 +948,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redBranding->text(
                 'Branding' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -952,8 +966,8 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redBranding->save($destinoBranding . $nombreBranding);
-            $auditoria->seleccionBranding = 'auditorias_pics/Branding' .  $nombreBranding;
-            $auditoria->save();
+            $calidadAuditoria->seleccionBranding = 'auditorias_pics/Branding' .  $nombreBranding;
+            $calidadAuditoria->save();
         }
         if ($request->hasFile('seleccionVasos')) {
             $imagenVasos = $request->file('seleccionVasos');
@@ -970,11 +984,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redVasos->text(
                 'Vasos' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -988,8 +1002,8 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redVasos->save($destinoVasos . $nombreVasos);
-            $auditoria->seleccionVasos = 'auditorias_pics/Vasos' .  $nombreVasos;
-            $auditoria->save();
+            $calidadAuditoria->seleccionVasos = 'auditorias_pics/Vasos' .  $nombreVasos;
+            $calidadAuditoria->save();
         }
         if ($request->hasFile('seleccionLinealR')) {
             $imagenRon = $request->file('seleccionLinealR');
@@ -1005,12 +1019,12 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redRon->text(
-                'Compet Ron' . " ".
-                    $auditoria->star. " ".
-                    $auditoria->direccion. " ".
-                    $auditoria->municipio. " ".
-                    $auditoria->lat. " ".
-                    $auditoria->lon,
+                'Compet Ron' . " " .
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -1024,8 +1038,8 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redRon->save($destinoRon . $nombreRon);
-            $auditoria->seleccionLinealR = 'auditorias_pics/Ron' .  $nombreRon;
-            $auditoria->save();
+            $calidadAuditoria->seleccionLinealR = 'auditorias_pics/Ron' .  $nombreRon;
+            $calidadAuditoria->save();
         }
         if ($request->hasFile('fotoLinealA')) {
             $imagenAguardiente = $request->file('fotoLinealA');
@@ -1041,12 +1055,12 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redAguardiente->text(
-                'Compet Aguardiente' . " ".
-                    $auditoria->star. " ".
-                    $auditoria->direccion. " ".
-                    $auditoria->municipio. " ".
-                    $auditoria->lat. " ".
-                    $auditoria->lon,
+                'Compet Aguardiente' . " " .
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -1060,7 +1074,7 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redAguardiente->save($destinoAguardiente . $nombreAguardiente);
-            $auditoria->save();
+            $calidadAuditoria->save();
         }
 
         if ($request->hasFile('fotoron_byw')) {
@@ -1078,11 +1092,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redron_byw->text(
                 'Ron vs B&W' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -1096,7 +1110,7 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redron_byw->save($destinoron_byw . $nombreron_byw);
-            $auditoria->save();
+            $calidadAuditoria->save();
         }
 
 
@@ -1116,11 +1130,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redron_jhonny->text(
                 'Ron vs Jhonnie' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -1134,7 +1148,7 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redron_jhonny->save($destinoron_jhonny . $nombreron_jhonny);
-            $auditoria->save();
+            $calidadAuditoria->save();
         }
         if ($request->hasFile('fotoaguard_smirnoff')) {
 
@@ -1152,11 +1166,11 @@ class CalidadAuditoriaController extends Controller
             );
             $redaguard_smirnoff->text(
                 'Aguardiente vs Smirnoff' . " " .
-                    $auditoria->star . " " .
-                    $auditoria->direccion . " " .
-                    $auditoria->municipio . " " .
-                    $auditoria->lat . " " .
-                    $auditoria->lon,
+                    $calidadAuditoria->star . " " .
+                    $calidadAuditoria->direccion . " " .
+                    $calidadAuditoria->municipio . " " .
+                    $calidadAuditoria->lat . " " .
+                    $calidadAuditoria->lon,
                 0,
                 10,
                 function ($font) {
@@ -1170,12 +1184,15 @@ class CalidadAuditoriaController extends Controller
                 }
             );
             $redaguard_smirnoff->save($destinoaguard_smirnoff . $nombreaguard_smirnoff);
-            $auditoria->save();
+            $calidadAuditoria->save();
         }
         $mergeData = [
-            "revisionCalidad" => Auth::user()->name,
+            "revisionCalidad" => $request->revisionCalidad,
             "fechaCalidad" => $now,
+            "criticidad" => $criticidad,
+
         ];
+
         $datosCalidad = request()->merge($mergeData)->except(
             [
                 '_method',
@@ -1243,8 +1260,8 @@ class CalidadAuditoriaController extends Controller
                 'revisadoPor'
             ]
         );
+        //dd($id);
 
-       //dd($datosCalidad);
         AuditoriaEditable::where('precarga_id', '=', $id)->update($datosCalidad);
         return redirect('/Galeria')->with('info', 'El punto se ha registrado correctamente');
     }
@@ -1257,4 +1274,51 @@ class CalidadAuditoriaController extends Controller
         Auditoria::destroy($id);
         return back()->with('status_success', 'registro eliminado exitosamente');
     }
+
+
+    public function indexH()
+    {
+        $historico = AuditoriaH::where('criticidad', 'sin errores')->get();
+        return view('auditoria.indexH', compact('historico'));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function showPdfCalidad($id)
+    {
+        $auditoriaPdf = AuditoriaH::findOrFail($id);
+        $seg = PuntosAuditoriaH::select('puntos_auditoria_historico.segmentacion')
+                ->leftjoin('auditorias_historico', 'puntos_auditoria_historico.id', '=', 'auditorias_historico.precarga_id')->get()->pluck('segmentacion');
+
+        $tip = PuntosAuditoriaH::select('puntos_auditoria_historico.tipologia')
+        ->leftjoin('auditorias_historico', 'puntos_auditoria_historico.id', '=', 'auditorias_historico.precarga_id')->get()->pluck('tipologia');
+
+        $pdf =  Pdf::loadView('pdf.show', compact('seg', 'tip'), ['auditoriaPdf' => $auditoriaPdf])->setOptions(['defaultFont' => 'sans-serif']);
+        set_time_limit(300);
+        return $pdf->stream();
+
+    }
+
+        /**
+     * Display the specified resource.
+     */
+    public function downloadPdfCalidad($id)
+    {
+        $auditoriaPdf = AuditoriaH::findOrFail($id);
+        $seg = PuntosAuditoriaH::select('puntos_auditoria_historico.segmentacion')
+                ->leftjoin('auditorias_historico', 'puntos_auditoria_historico.id', '=', 'auditorias_historico.precarga_id')->get()->pluck('segmentacion');
+
+        $tip = PuntosAuditoriaH::select('puntos_auditoria_historico.tipologia')
+        ->leftjoin('auditorias_historico', 'puntos_auditoria_historico.id', '=', 'auditorias_historico.precarga_id')->get()->pluck('tipologia');
+
+        $pdf =  Pdf::loadView('pdf.show', compact('seg', 'tip'), ['auditoriaPdf' => $auditoriaPdf])->setOptions(['defaultFont' => 'sans-serif']);
+        set_time_limit(300);
+        return $pdf->download();
+
+    }
+
+
+
+
 }

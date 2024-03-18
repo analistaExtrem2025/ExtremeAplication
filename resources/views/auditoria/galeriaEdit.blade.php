@@ -411,6 +411,7 @@
                         <div class="col-8">
                             <img id="imageCenefa"
                                 src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Cenefa_' . $reporte->precarga_id . '.png'))) }}" />
+
                         </div>
                     </div>
                 </ul>
@@ -707,6 +708,8 @@
                         <div class="col-8">
                             <img id="imageAfiche"
                                 src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Afiche_' . $reporte->precarga_id . '.png'))) }}" />
+
+
                         </div>
 
                 </ul>
@@ -980,6 +983,7 @@
                         <div class="col-8">
                             <img id="imageMarco"
                                 src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Marco_' . $reporte->precarga_id . '.png'))) }}" />
+
                         </div>
                     </div>
                 </ul>
@@ -1117,10 +1121,11 @@
                                 <br>
                                 <div style="display: none" id="EditRompeVisi">
                                     <hr>
-                                    <select name="prod_rt_visibles" id="rompe_visi" class="form-control selectpicker selector"
-                                        data-style="btn-primary" title="Seleccionar visibilidad rompetrafico" required
-                                        disabled>
-                                        <option disabled value="old{'prod_rt_visibles'}" checked>Seleccione una opción </option>
+                                    <select name="prod_rt_visibles" id="rompe_visi"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar visibilidad rompetrafico" required disabled>
+                                        <option disabled value="old{'prod_rt_visibles'}" checked>Seleccione una opción
+                                        </option>
                                         @foreach ($rompe_visi as $romVis)
                                             <option value="{{ $romVis }}">{{ $romVis }}</option>
                                         @endforeach
@@ -1141,10 +1146,11 @@
                                 <br>
                                 <div style="display: none" id="EditRompeColo">
                                     <hr>
-                                    <select name="prod_rt_properly" id="rompe_colo" class="form-control selectpicker selector"
-                                        data-style="btn-primary" title="Seleccionar colocación rompetrafico" required
-                                        disabled>
-                                        <option disabled value="old{'prod_rt_properly'}" checked>Seleccione una opción </option>
+                                    <select name="prod_rt_properly" id="rompe_colo"
+                                        class="form-control selectpicker selector" data-style="btn-primary"
+                                        title="Seleccionar colocación rompetrafico" required disabled>
+                                        <option disabled value="old{'prod_rt_properly'}" checked>Seleccione una opción
+                                        </option>
                                         @foreach ($rompe_colo as $marCol)
                                             <option value="{{ $marCol }}">{{ $marCol }}</option>
                                         @endforeach
@@ -1626,6 +1632,7 @@
                         <div class="col-8">
                             <img id="imageHielera"
                                 src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/Hielera_' . $reporte->precarga_id . '.png'))) }}" />
+
                         </div>
                     </div>
                 </ul>
@@ -2933,7 +2940,7 @@
                                                     <div class="col">
                                                         <br><br>
                                                         <hr>
-                                                        <green> <span>Tome foto del branding</span></green>
+                                                        <green> <span>Tome foto de los vasos y copas</span></green>
                                                         <input type="file" id="seleccionVasos"
                                                             name="seleccionVasos" accept="image/*" disabled>
                                                         <img class="card-img-mate" id="imagenVasos">
@@ -3687,8 +3694,8 @@
                                                 </tr>
                                             @endif
                                             <!-- Modal -->
-                                            <div class="modal fade" id="BuchannasModal" tabindex="-1" role="dialog"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="BuchannasModal" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -4095,6 +4102,9 @@
             </div>
         </ul>
         <hr>
+
+
+
         <ul>
             <div class="row">
                 <div class="col card-box-xs">
@@ -4277,18 +4287,42 @@
         </div>
         <ul>
             <div class="row">
-                <div class="col-4 card-boxComp">
+                <div class="col-4 card-box-mid">
                     <h5 class="center">RONES JUNTO A BLACK & WHITE</h5>
                     <p class= "parrafoJustificado">
                         <span>
                             <blue>Auditor dice:</blue>
                         </span>
-                        @if (file_exists($reporte->ron_byw))
-                            La marca <strong> Black & White </strong> no esta correctamente ubicada junto a
+                        @if ($reporte->ron_byw == 'ron_byw_si')
+                            La marca <strong> Black & White </strong> esta ubicada correctamente junto a
                             los rones de la competencia
-                        @else
-                            La marca <strong> Black & White </strong> esta ubicada correctamente junto a los
-                            rones de la competencia
+                            @if ($reporte->bloquebyw == 'bloquebyw_si')
+                                estan dispuestas en bloque
+                            @elseif ($reporte->bloquebyw == 'bloquebyw_no')
+                                no estan dispuestas en bloque
+                            @endif
+                            @if ($reporte->carasbloquebyw == "Ninguna")
+                            no hay ninguna cara registrada
+                            @elseif ($reporte->carasbloquebyw == "Mas de cinco")
+                            hay mas de cinco caras
+                            @elseif ($reporte->carasbloquebyw > 0 || $reporte->carasbloquebyw < 6 )
+                            hay {{ $reporte->carasbloquebyw}} caras
+                            @endif
+                        @elseif ($reporte->ron_byw == 'ron_byw_no')
+                            La marca <strong> Black & White </strong> no esta ubicada junto a
+                            los rones de la competencia
+                            @if ($reporte->bloquebyw == 'bloquebyw_si')
+                                estan dispuestas en bloque
+                            @elseif ($reporte->bloquebyw == 'bloquebyw_no')
+                                no estan dispuestas en bloque
+                            @endif
+                            @if ($reporte->carasbloquebyw == "Ninguna")
+                            no hay ninguna cara registrada
+                            @elseif ($reporte->carasbloquebyw == "Mas de cinco")
+                            hay mas de cinco caras dispersas
+                            @elseif ($reporte->carasbloquebyw > 0 || $reporte->carasbloquebyw < 6 )
+                            se encontraron {{ $reporte->carasbloquebyw}} caras dispersas,
+                            @endif
                         @endif
                     </p>
                     <br>
@@ -4339,11 +4373,51 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <CENTER>
+                                                                <h4> BLACK & WHITE ESTA UBICADA EN BLOQUE EN LA ESTANTERIA?</h4>
+                                                            </CENTER>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="bloquebyw" id="bloquebyw_si" value="bloquebyw_si"
+                                                                    disabled>
+                                                                <label class="form-check-label"
+                                                                    for="bloquebyw_si">SI</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="bloquebyw" id="bloquebyw_no" value="bloquebyw_no"
+                                                                    disabled>
+                                                                <label class="form-check-label"
+                                                                    for="bloquebyw_no">NO</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <CENTER>
+                                                                <h4> INDIQUE EL NUMERO DE CARAS QUE ESTAN EN BLOQUE</h4>
+                                                            </CENTER>
+
+                                                            <div class="field__body">
+                                                                <div class="select-box">
+                                                                    <select class="custom-select"  name="carasbloquebyw" id="carasbloquebyw">
+                                                                        <option value="" selected disabled>Seleccione las caras que estan en bloque</option>
+                                                                        @foreach ($caras as $cara)
+                                                                        <option value="{{$cara}}">{{$cara}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                              </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row" style="text-align: center">
                                                         <div class="col">
                                                             <br><br>
                                                             <hr>
-                                                            <green> <span>Tome foto del branding</span></green>
+                                                            <green> <span>Tome foto del producto de la marca</span></green>
                                                             <input type="hidden" id="fotoron_byw"
                                                                 name="seleccionron_byw"
                                                                 value="auditorias_pics/ron_byw_{{ $reporte->precarga_id }}.png"
@@ -4397,14 +4471,21 @@
                     </nat>
                 </div>
                 <div class="col-8">
-                    @if (file_exists($reporte->seleccionron_byw))
-                        {
+
+                    @if ($reporte->ron_byw == 'ron_byw_si')
                         <img id="imageRonBlack"
                             src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/ron_byw_' . $reporte->precarga_id . '.png'))) }}" />
-                        }
                     @else
                         <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
                     @endif
+
+                    {{--  @if ($reporte->seleccionron_byw == "public\img\no_diponible.png")
+            <img id="imageNoDisponible" src="{{ asset('img/no_diponible.png') }}" />
+            @else
+            <img id="imageRonBlack"
+            src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/ron_byw_' . $reporte->precarga_id . '.png'))) }}" />
+
+            @endif  --}}
 
                 </div>
             </div>
@@ -4412,18 +4493,42 @@
         <hr>
         <ul>
             <div class="row">
-                <div class="col-4 card-boxComp">
+                <div class="col-4 card-box-mid">
                     <h5 class="center">RONES JUNTO A JHONNIE WALKER</h5>
                     <p class= "parrafoJustificado">
                         <span>
                             <blue>Auditor dice:</blue>
                         </span>
                         @if ($reporte->ron_jhonny == 'ron_jhonny_si')
-                            La marca <strong> Jhonnie Walker</strong> no esta correctamente ubicada junto
-                            a los rones de la competencia.
-                        @else
-                            La marca <strong> Jhonnie Walker</strong> esta ubicada correctamente junto a
-                            los rones de la competencia.
+                            La marca <strong> Johnnie Walker </strong> esta ubicada correctamente junto a
+                            los rones de la competencia
+                            @if ($reporte->bloquejohnnie == 'bloquejohnnie_si')
+                                estan dispuestas en bloque
+                            @elseif ($reporte->bloquejohnnie == 'bloquejohnnie_no')
+                                no estan dispuestas en bloque
+                            @endif
+                            @if ($reporte->carasbloquejohnnie == "Ninguna")
+                            no hay ninguna cara registrada
+                            @elseif ($reporte->carasbloquejohnnie == "Mas de cinco")
+                            hay mas de cinco caras
+                            @elseif ($reporte->carasbloquejohnnie > 0 || $reporte->carasbloquejohnnie < 6 )
+                            hay {{ $reporte->carasbloquejohnnie}} caras
+                            @endif
+                        @elseif ($reporte->ron_jhonny == 'ron_jhonny_no')
+                            La marca <strong> Johnnie Walker </strong> no esta ubicada junto a
+                            los rones de la competencia
+                            @if ($reporte->bloquejohnnie == 'bloquejohnnie_si')
+                                estan dispuestas en bloque
+                            @elseif ($reporte->bloquejohnnie == 'bloquejohnnie_no')
+                                no estan dispuestas en bloque
+                            @endif
+                            @if ($reporte->carasbloquejohnnie == "Ninguna")
+                            no hay ninguna cara registrada
+                            @elseif ($reporte->carasbloquejohnnie == "Mas de cinco")
+                            hay mas de cinco caras dispersas
+                            @elseif ($reporte->carasbloquejohnnie > 0 || $reporte->carasbloquejohnnie < 6 )
+                            se encontraron {{ $reporte->carasbloquejohnnie}} caras dispersas,
+                            @endif
                         @endif
                     </p>
                     <br>
@@ -4475,6 +4580,46 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <CENTER>
+                                                                <h4> JOHNNIE WALKER ESTA UBICADA EN BLOQUE EN LA ESTANTERIA?</h4>
+                                                            </CENTER>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="bloquejohnnie" id="bloquejohnnie_si" value="bloquejohnnie_si"
+                                                                    disabled>
+                                                                <label class="form-check-label"
+                                                                    for="bloquejohnnie_si">SI</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="bloquejohnnie" id="bloquejohnnie_no" value="bloquejohnnie_no"
+                                                                    disabled>
+                                                                <label class="form-check-label"
+                                                                    for="bloquejohnnie_no">NO</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <CENTER>
+                                                                <h4> INDIQUE EL NUMERO DE CARAS QUE ESTAN EN BLOQUE</h4>
+                                                            </CENTER>
+
+                                                            <div class="field__body">
+                                                                <div class="select-box">
+                                                                    <select class="custom-select"  name="carasbloquejohnnie" id="carasbloquejohnnie">
+                                                                        <option value="" selected disabled>Seleccione las caras que estan en bloque</option>
+                                                                        @foreach ($caras as $cara)
+                                                                        <option value="{{$cara}}">{{$cara}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                              </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row" style="text-align: center">
                                                         <div class="col">
                                                             <br><br>
@@ -4504,9 +4649,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                     <div class="toggle-wrapper">
                         <div class="toggle checkcross35">
                             <input id="checkcross35" type="checkbox" style="display: none">
@@ -4535,7 +4677,7 @@
                     </nat>
                 </div>
                 <div class="col-8">
-                    @if (file_exists($reporte->seleccionron_jhonny))
+                    @if ($reporte->ron_jhonny == 'ron_jhonny_si')
                         <img id="imageJhonnie"
                             src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/ron_jhonny_' . $reporte->precarga_id . '.png'))) }}" />
                     @else
@@ -4547,19 +4689,47 @@
         <hr>
         <ul>
             <div class="row">
-                <div class="col-4 card-boxComp">
+                <div class="col-4 card-box-mid">
                     <h5 class="center">AGUARDIENTE JUNTO A SMIRNOFF</h5>
                     <p class= "parrafoJustificado">
                         <span>
                             <blue>Auditor dice:</blue>
                         </span>
                         @if ($reporte->aguard_smirnoff == 'aguard_smirnoff_si')
-                            La marca <strong>Smirnoff X1</strong> no esta correctamente ubicada junto a los
-                            aguardientes de la competencia.
-                        @else
-                            La marca <strong>Smirnoff X1</strong> esta ubicada correctamente junto a los
-                            aguardientes de la competencia.
+                            La marca <strong> Smirnoff X1 </strong> esta ubicada correctamente junto a
+                            los rones de la competencia
+                            @if ($reporte->bloquesmirnoff == 'bloquesmirnoff_si')
+                                estan dispuestas en bloque
+                            @elseif ($reporte->bloquesmirnoff == 'bloquesmirnoff_no')
+                                no estan dispuestas en bloque
+                            @endif
+                            @if ($reporte->carasbloquesmirnoff == "Ninguna")
+                            no hay ninguna cara registrada
+                            @elseif ($reporte->carasbloquesmirnoff == "Mas de cinco")
+                            hay mas de cinco caras
+                            @elseif ($reporte->carasbloquesmirnoff > 0 || $reporte->carasbloquesmirnoff < 6 )
+                            hay {{ $reporte->carasbloquesmirnoff}} caras
+                            @endif
+                        @elseif ($reporte->aguard_smirnoff == 'aguard_smirnoff_no')
+                            La marca <strong> Smirnoff X1 </strong> no esta ubicada junto a
+                            los rones de la competencia
+                            @if ($reporte->bloquesmirnoff == 'bloquesmirnoff_si')
+                                estan dispuestas en bloque
+                            @elseif ($reporte->bloquesmirnoff == 'bloquesmirnoff_no')
+                                no estan dispuestas en bloque
+                            @endif
+                            @if ($reporte->carasbloquesmirnoff == "Ninguna")
+                            no hay ninguna cara registrada
+                            @elseif ($reporte->carasbloquesmirnoff == "Mas de cinco")
+                            hay mas de cinco caras dispersas
+                            @elseif ($reporte->carasbloquesmirnoff > 0 || $reporte->carasbloquesmirnoff < 6 )
+                            se encontraron {{ $reporte->carasbloquesmirnoff}} caras dispersas,
+                            @endif
                         @endif
+
+
+
+
                     </p>
                     <br>
                     <input type="button" value="Modificar aguardientes junto a Smirnoff"
@@ -4610,6 +4780,46 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <CENTER>
+                                                                <h4> SMIRNOFF ESTA UBICADA EN BLOQUE EN LA ESTANTERIA?</h4>
+                                                            </CENTER>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="bloquesmirnoff" id="bloquesmirnoff_si" value="bloquesmirnoff_si"
+                                                                    disabled>
+                                                                <label class="form-check-label"
+                                                                    for="bloquesmirnoff_si">SI</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="bloquesmirnoff" id="bloquesmirnoff_no" value="bloquesmirnoff_no"
+                                                                    disabled>
+                                                                <label class="form-check-label"
+                                                                    for="bloquesmirnoff_no">NO</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <CENTER>
+                                                                <h4> INDIQUE EL NUMERO DE CARAS QUE ESTAN EN BLOQUE</h4>
+                                                            </CENTER>
+
+                                                            <div class="field__body">
+                                                                <div class="select-box">
+                                                                    <select class="custom-select"  name="carasbloquesmirnoff" id="carasbloquesmirnoff">
+                                                                        <option value="" selected disabled>Seleccione las caras que estan en bloque</option>
+                                                                        @foreach ($caras as $cara)
+                                                                        <option value="{{$cara}}">{{$cara}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                              </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row" style="text-align: center">
                                                         <div class="col">
                                                             <br><br>
@@ -4626,7 +4836,6 @@
                                                             <br><br>
                                                         </div>
                                                     </div>
-
                                                 </ul>
                                             </div><br>
                                         </div>
@@ -4669,7 +4878,8 @@
                     </nat>
                 </div>
                 <div class="col-8">
-                    @if (file_exists($reporte->seleccionaguard_smirnoff))
+
+                    @if ($reporte->aguard_smirnoff == 'aguard_smirnoff_si')
                         {
                         <img id="imageSmirnoff"
                             src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('auditorias_pics/aguard_smirnoff_' . $reporte->precarga_id . '.png'))) }}" />
@@ -5358,6 +5568,9 @@
     <script>
         function seeCompRonBlack() {
             $("#ron_byw_si").prop('disabled', false);
+            $("#bloquebyw_si").prop('disabled', false);
+            $("#bloquebyw_no").prop('disabled', false);
+            $("#carasbloquebyw").prop('disabled', false);
             $("#ron_byw_no").prop('disabled', false);
             $("#seleccionron_byw").prop('disabled', false);
             $("#fotoron_byw").prop('disabled', false);
@@ -5367,6 +5580,9 @@
         function seeCompRonJhonnie() {
             $("#ron_jhonny_si").prop('disabled', false);
             $("#ron_jhonny_no").prop('disabled', false);
+            $("#bloquejohnnie_si").prop('disabled', false);
+            $("#bloquejohnnie_no").prop('disabled', false);
+            $("#carasbloquejohnnie").prop('disabled', false);
             $("#seleccionron_jhonny").prop('disabled', false);
             $("#fotoron_jhonny").prop('disabled', false);
         }
@@ -5376,6 +5592,9 @@
         function seeCompAguaSmir() {
             $("#aguard_smirnoff_si").prop('disabled', false);
             $("#aguard_smirnoff_no").prop('disabled', false);
+            $("#bloquesmirnoff_si").prop('disabled', false);
+            $("#bloquesmirnoff_no").prop('disabled', false);
+            $("#carasbloquesmirnoff").prop('disabled', false);
             $("#seleccionaguard_smirnoff").prop('disabled', false);
             $("#fotoaguard_smirnoff").prop('disabled', false);
         }

@@ -62,12 +62,16 @@ class GeneralidadesController extends Controller
     public function update(Request $request, $id)
     {
 
-        if ($request->precarga_id % 2 === 0) {
-            $calidad = "MARIA ALEJANDRA LEMUS CASTIBLANCO";
+        // if ($request->precarga_id % 2 === 0) {
+        //     $calidad = "MARIA ALEJANDRA LEMUS CASTIBLANCO";
 
-        } else {
-            $calidad = "FLORALBA RINCON ROMERO";
-        }
+        // } else {
+        //     $calidad = "FLORALBA RINCON ROMERO";
+        // }
+
+
+
+
         $now = Carbon::now();
         $precarga = PuntosAuditoria::where('id', $request->precarga_id);
         $precarga->update(
@@ -77,13 +81,17 @@ class GeneralidadesController extends Controller
             ]
         );
 
+
         $disponibilidad = Generalidades::findOrFail($id);
+        $case4 = '["bronce"]';
+        $case5 = '["silver"]';
+        $case6 = '["gold"]';
 
         $disponibilidad->update(
             [
                 'observacionesDetallista' => $request->observacionesDetallista,
-                'criticidad' => 'Pendiente Calidad',
-                'revisadoPor' =>  $calidad,
+                'revisadoPor' => ($request->segmento == $case4 ? "FLORALBA RINCON ROMERO" : "MARIA ALEJANDRA LEMUS CASTIBLANCO"),
+                'criticidad' => 'Pendiente Calidad'
             ]
         );
         return redirect('auditoria');

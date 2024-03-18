@@ -6,6 +6,11 @@
 
 @section('content_header')
     <h1>Listado de auditorias </h1>
+@can('auditoria.indexH')
+    <a href="{{url('indexH')}}">Historico de auditorias</a>
+@endcan
+
+
 
 @stop
 

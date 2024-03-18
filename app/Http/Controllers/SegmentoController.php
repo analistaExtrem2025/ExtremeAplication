@@ -46,9 +46,9 @@ class SegmentoController extends Controller
 
         $segmento = [
 
-            'Gold' => 'Gold',
-            'Silver' => 'Silver',
-            'Bronce' => 'Bronce',
+            'gold' => 'gold',
+            'silver' => 'silver',
+            'bronce' => 'bronce',
         ];
         $puntos_auditoria = Segmento::findOrFail($id);
 

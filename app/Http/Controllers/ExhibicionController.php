@@ -44,8 +44,17 @@ class ExhibicionController extends Controller
     {
         $puntos_auditoria = Exhibicion::findOrFail($id);
         $usuario = Auth::user()->municipio;
+        $caras = [
+            "Ninguno" => "Ninguno",
+            "1" => "1",
+            "2" => "2",
+            "3" => "3",
+            "4" => "4",
+            "5" => "5",
+            "Mas de Cinco" => "Mas de Cinco",
+        ];
 
-        return view('auditoria.newExhibicion', compact('puntos_auditoria', 'usuario'));
+        return view('auditoria.newExhibicion', compact('puntos_auditoria', 'usuario', 'caras'));
     }
 
     /**
@@ -191,6 +200,11 @@ class ExhibicionController extends Controller
 
 
         $ronBlack = $request->ron_byw == "ron_byw_si" ? $request->ron_byw : "ron_byw_no";
+
+
+
+
+
         $ronJhonnie = $request->ron_jhonny == "ron_jhonny_si" ? $request->ron_jhonny : "ron_jhonny_no";
         $aguaSmir = $request->aguard_smirnoff == "aguard_smirnoff_si" ? $request->aguard_smirnoff : "aguard_smirnoff_no";
 
@@ -202,6 +216,8 @@ class ExhibicionController extends Controller
             'aguard_smirnoff' => $aguaSmir,
             'criticidad' => 'paso 7 - Exhibicion',
         ];
+
+
 
         $datosExhibicion = request()->merge($mergeData)->except(
             [

@@ -203,12 +203,10 @@
 @stop
 
 @section('content')
-
 <div class="container">
     <div class="row">
         <!-- flex-container -->
         <div class="col-md-12 flex-container">
-
             <!-- flex-item -->
             <div class="flex-item">
                 <div class="flex-item-inner">
@@ -317,10 +315,97 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <table class="table table-bordered data-table" id="auditorias_table">
-            <thead>
+@if ($hora >= "11:00:00")
+<div class="container">
+    <table class="table table-bordered data-table" id="auditorias_table">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Razon Social</th>
+                <th>Nombre del negocio</th>
+                <th>Direccion</th>
+                <th>Barrio</th>
+                <th>Segmento</th>
+                <th>Tipologia</th>
+                <th width="105px">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($puntos_auditoria as $PdeA)
                 <tr>
+
+                    <td>{{ $PdeA->id }}</td>
+                    <td>{{ $PdeA->razonSocial }}</td>
+                    <td>{{ $PdeA->nombreNegocio }}</td>
+                    <td>{{ $PdeA->direccion }}</td>
+                    <td>{{ $PdeA->barrio }}</td>
+                    <td>{{ $PdeA->segmentacion }}</td>
+                    <td>{{ $PdeA->tipologia }}</td>
+                    @if ($PdeA->estatusGestion == 'Asignado')
+                        <td>
+                            <div class="btn-group" role="group" aria-label="BasicExample" title="inicio">
+                                <a href="{{ url('/auditoria/' . $PdeA->id) }}" class="btnIndexInicio"><i
+                                        class="far fa-play-circle"></i></a>
+                            </div>
+                        </td>
+                    @elseif ($PdeA->estatusGestion == 'paso 1 - activacion')
+                        <td>
+                            <div class="btn-group" role="group" aria-label="BasicExample" title="tipologia">
+                                <a href="{{ url('/tipologia/' . $PdeA->precarga_id) }}" class="btnIndexPendiente"><i
+                                        class="fas fa-exclamation-circle"></i></a>
+                            </div>
+                        </td>
+                    @elseif ($PdeA->estatusGestion == 'paso 2 - tipologia')
+                        <td>
+                            <div class="btn-group" role="group" aria-label="BasicExample" title="segmento">
+                                <a href="{{ url('/segmento/' . $PdeA->precarga_id) }}" class="btnIndexPendiente"><i
+                                        class="fas fa-exclamation-circle"></i></a>
+                            </div>
+                        </td>
+                    @elseif ($PdeA->estatusGestion == 'paso 3 - segmento')
+                        <td>
+                            <div class="btn-group" role="group" aria-label="BasicExample" title="materiales">
+                                <a href="{{ url('/materiales/' . $PdeA->precarga_id) }}" class="btnIndexPendiente"><i
+                                        class="fas fa-exclamation-circle"></i></a>
+                            </div>
+                        </td>
+                    @elseif ($PdeA->estatusGestion == 'paso 4 - materiales')
+                        <td>
+                            <div class="btn-group" role="group" aria-label="BasicExample" title="disponibilidad">
+                                <a href="{{ url('/disponibilidad/' . $PdeA->precarga_id) }}"
+                                    class="btnIndexPendiente"><i class="fas fa-exclamation-circle"></i></a>
+                            </div>
+                        </td>
+                    @elseif ($PdeA->estatusGestion == 'paso 5 - disponibilidad')
+                        <td>
+                            <div class="btn-group" role="group" aria-label="BasicExample" title="exhibicion">
+                                <a href="{{ url('/comparativo/' . $PdeA->precarga_id) }}" class="btnIndexPendiente"><i
+                                        class="fas fa-exclamation-circle"></i></a>
+                            </div>
+                        </td>
+                        @elseif ($PdeA->estatusGestion == 'paso 6 - comparativo')
+                        <td>
+                            <div class="btn-group" role="group" aria-label="BasicExample" title="exhibicion">
+                                <a href="{{ url('/exhibicion/' . $PdeA->precarga_id) }}" class="btnIndexPendiente"><i
+                                        class="fas fa-exclamation-circle"></i></a>
+                            </div>
+                        </td>
+                    @elseif ($PdeA->estatusGestion == 'paso 7 - Exhibicion')
+                        <td>
+                            <div class="btn-group" role="group" aria-label="BasicExample" title="gifts">
+                                <a href="{{ url('/gifts/' . $PdeA->precarga_id) }}" class="btnIndexPendiente"><i
+                                        class="fas fa-exclamation-circle"></i></a>
+                            </div>
+                        </td>
+                    @elseif ($PdeA->estatusGestion == 'paso 8 - gift')
+                        <td>
+                            <div class="btn-group" role="group" aria-label="BasicExample" title="generalidades">
+                                <a href="{{ url('/generalidades/' . $PdeA->precarga_id) }}"
+                                    class="btnIndexPendiente"><i class="fas fa-exclamation-circle"></i></a>
+                            </div>
+                        </td>
+                    @endif
+
                     <th>id</th>
                     <th>Razon Social</th>
                     <th>Nombre del negocio</th>
@@ -331,87 +416,16 @@
                     <th>Segmento</th>
                     <th>Tipología</th>
                     <th width="105px">Acciones</th>
+
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($puntos_auditoria as $PdeA)
-                    <tr>
-                        <td>{{ $PdeA->id }}</td>
-                        <td>{{ $PdeA->razonSocial }}</td>
-                        <td>{{ $PdeA->nombreNegocio }}</td>
-                        <td>{{ $PdeA->direccion }}</td>
-                        <td>{{ $PdeA->barrio }}</td>
-                        <td>{{ $PdeA->segmentacion }}</td>
-                        <td>{{ $PdeA->tipologia }}</td>
-                        @if ($PdeA->estatusGestion == 'Asignado')
-                            <td>
-                                <div class="btn-group" role="group" aria-label="BasicExample" title="inicio">
-                                    <a href="{{ url('/auditoria/' . $PdeA->id) }}" class="btnIndexInicio"><i
-                                            class="far fa-play-circle"></i></a>
-                                </div>
-                            </td>
-                        @elseif ($PdeA->estatusGestion == 'paso 1 - activacion')
-                            <td>
-                                <div class="btn-group" role="group" aria-label="BasicExample" title="tipologia">
-                                    <a href="{{ url('/tipologia/' . $PdeA->precarga_id) }}" class="btnIndexPendiente"><i
-                                            class="fas fa-exclamation-circle"></i></a>
-                                </div>
-                            </td>
-                        @elseif ($PdeA->estatusGestion == 'paso 2 - tipologia')
-                            <td>
-                                <div class="btn-group" role="group" aria-label="BasicExample" title="segmento">
-                                    <a href="{{ url('/segmento/' . $PdeA->precarga_id) }}" class="btnIndexPendiente"><i
-                                            class="fas fa-exclamation-circle"></i></a>
-                                </div>
-                            </td>
-                        @elseif ($PdeA->estatusGestion == 'paso 3 - segmento')
-                            <td>
-                                <div class="btn-group" role="group" aria-label="BasicExample" title="materiales">
-                                    <a href="{{ url('/materiales/' . $PdeA->precarga_id) }}" class="btnIndexPendiente"><i
-                                            class="fas fa-exclamation-circle"></i></a>
-                                </div>
-                            </td>
-                        @elseif ($PdeA->estatusGestion == 'paso 4 - materiales')
-                            <td>
-                                <div class="btn-group" role="group" aria-label="BasicExample" title="disponibilidad">
-                                    <a href="{{ url('/disponibilidad/' . $PdeA->precarga_id) }}"
-                                        class="btnIndexPendiente"><i class="fas fa-exclamation-circle"></i></a>
-                                </div>
-                            </td>
-                        @elseif ($PdeA->estatusGestion == 'paso 5 - disponibilidad')
-                            <td>
-                                <div class="btn-group" role="group" aria-label="BasicExample" title="exhibicion">
-                                    <a href="{{ url('/comparativo/' . $PdeA->precarga_id) }}" class="btnIndexPendiente"><i
-                                            class="fas fa-exclamation-circle"></i></a>
-                                </div>
-                            </td>
-                            @elseif ($PdeA->estatusGestion == 'paso 6 - comparativo')
-                            <td>
-                                <div class="btn-group" role="group" aria-label="BasicExample" title="exhibicion">
-                                    <a href="{{ url('/exhibicion/' . $PdeA->precarga_id) }}" class="btnIndexPendiente"><i
-                                            class="fas fa-exclamation-circle"></i></a>
-                                </div>
-                            </td>
-                        @elseif ($PdeA->estatusGestion == 'paso 7 - Exhibicion')
-                            <td>
-                                <div class="btn-group" role="group" aria-label="BasicExample" title="gifts">
-                                    <a href="{{ url('/gifts/' . $PdeA->precarga_id) }}" class="btnIndexPendiente"><i
-                                            class="fas fa-exclamation-circle"></i></a>
-                                </div>
-                            </td>
-                        @elseif ($PdeA->estatusGestion == 'paso 8 - gift')
-                            <td>
-                                <div class="btn-group" role="group" aria-label="BasicExample" title="generalidades">
-                                    <a href="{{ url('/generalidades/' . $PdeA->precarga_id) }}"
-                                        class="btnIndexPendiente"><i class="fas fa-exclamation-circle"></i></a>
-                                </div>
-                            </td>
-                        @endif
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+@endif
+
+
+
 @stop
 @section('js')
     {{--  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  --}}

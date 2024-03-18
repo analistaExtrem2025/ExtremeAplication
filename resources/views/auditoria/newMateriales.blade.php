@@ -4,7 +4,7 @@
 @section('css')
 
     <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
-    {{--   <link href="https://fonts.googleapis.com/css?family=Arapey:400,400i,600|Open+Sans:300" rel="stylesheet">  --}}
+     {{--  <link href="https://fonts.googleapis.com/css?family=Arapey:400,400i,600|Open+Sans:300" rel="stylesheet">  --}}
     <link href="{{ asset('css/auditoria.css') }}" rel="stylesheet">
 @stop
 @section('content')
@@ -1336,7 +1336,7 @@
 
 
     <div id="divSubmit" style="display: block">
-        {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton']) !!}
+        {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton', 'onclick' => 'OcultarButton(this)']) !!}
     </div>
     <br><br>
     {!! Form::close() !!}
@@ -2413,5 +2413,12 @@
         $imagenVasos.src = objectURL;
     });
 </script>
+
+<script>
+    function OcultarButton(btn)
+    {
+        $(btn).fadeOut();
+    }
+  </script>
 
 @stop

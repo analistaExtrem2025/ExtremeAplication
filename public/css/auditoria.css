@@ -2428,6 +2428,15 @@ label > input[type="radio"] {
     color: transparent;
     border: transparent;
     text-align: center;
+}
 
+.input-group-text{
 
+    width: 500px;
+    margin-right: 1rem;
+}
+
+.form-check{
+
+    text-align: center;
 }

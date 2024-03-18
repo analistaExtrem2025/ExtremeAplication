@@ -1118,15 +1118,38 @@ Luego de la visita se confirma que los productos de la marca no son visibles,
 
 
             <p class="card-text">
-                @if ($auditoriaPdf->ron_byw == 'ron_byw_si')
-                    Durante la visita se confirma que la marca <strong> Black & White </strong> esta
-                    ubicada correctamente junto a
-                    los rones de la competencia.
-                @else
-                    Durante la visita se confirma que la marca <strong> Black & White </strong> no esta
-                    correctamente ubicada junto
-                    a los rones de la competencia.
+                @if ($auditoriaPdf->ron_jhonny == 'ron_jhonny_si')
+                La marca <strong> Johnnie Walker </strong> esta ubicada correctamente junto a
+                los rones de la competencia
+                @if ($auditoriaPdf->bloquejohnnie == 'bloquejohnnie_si')
+                    estan dispuestas en bloque
+                @elseif ($auditoriaPdf->bloquejohnnie == 'bloquejohnnie_no')
+                    no estan dispuestas en bloque
                 @endif
+                @if ($auditoriaPdf->carasbloquejohnnie == "Ninguna")
+                no hay ninguna cara registrada
+                @elseif ($auditoriaPdf->carasbloquejohnnie == "Mas de cinco")
+                hay mas de cinco caras
+                @elseif ($auditoriaPdf->carasbloquejohnnie > 0 || $auditoriaPdf->carasbloquejohnnie < 6 )
+                hay {{ $auditoriaPdf->carasbloquejohnnie}} caras
+                @endif
+            @elseif ($auditoriaPdf->ron_jhonny == 'ron_jhonny_no')
+                La marca <strong> Johnnie Walker </strong> no esta ubicada junto a
+                los rones de la competencia
+                @if ($auditoriaPdf->bloquejohnnie == 'bloquejohnnie_si')
+                    estan dispuestas en bloque
+                @elseif ($auditoriaPdf->bloquejohnnie == 'bloquejohnnie_no')
+                    no estan dispuestas en bloque
+                @endif
+                @if ($auditoriaPdf->carasbloquejohnnie == "Ninguna")
+                no hay ninguna cara registrada
+                @elseif ($auditoriaPdf->carasbloquejohnnie == "Mas de cinco")
+                hay mas de cinco caras dispersas
+                @elseif ($auditoriaPdf->carasbloquejohnnie > 0 || $auditoriaPdf->carasbloquejohnnie < 6 )
+                se encontraron {{ $auditoriaPdf->carasbloquejohnnie}} caras dispersas,
+                @endif
+            @endif
+
             </p>
 
         </div>
@@ -1147,14 +1170,37 @@ Luego de la visita se confirma que los productos de la marca no son visibles,
 
             <p class="card-text">
                 @if ($auditoriaPdf->ron_jhonny == 'ron_jhonny_si')
-                    Durante la visita se confirma que la marca <strong> Jhonnie Walker </strong> esta
-                    ubicada correctamente junto a
-                    los rones de la competencia.
-                @else
-                    Durante la visita se confirma que la marca <strong> Jhonnie Walker </strong> no esta
-                    correctamente ubicada junto
-                    a los rones de la competencia.
+                La marca <strong> Johnnie Walker </strong> esta ubicada correctamente junto a
+                los rones de la competencia
+                @if ($auditoriaPdf->bloquejohnnie == 'bloquejohnnie_si')
+                    estan dispuestas en bloque
+                @elseif ($auditoriaPdf->bloquejohnnie == 'bloquejohnnie_no')
+                    no estan dispuestas en bloque
                 @endif
+                @if ($auditoriaPdf->carasbloquejohnnie == "Ninguna")
+                no hay ninguna cara registrada
+                @elseif ($auditoriaPdf->carasbloquejohnnie == "Mas de cinco")
+                hay mas de cinco caras
+                @elseif ($auditoriaPdf->carasbloquejohnnie > 0 || $auditoriaPdf->carasbloquejohnnie < 6 )
+                hay {{ $auditoriaPdf->carasbloquejohnnie}} caras
+                @endif
+            @elseif ($auditoriaPdf->ron_jhonny == 'ron_jhonny_no')
+                La marca <strong> Johnnie Walker </strong> no esta ubicada junto a
+                los rones de la competencia
+                @if ($auditoriaPdf->bloquejohnnie == 'bloquejohnnie_si')
+                    estan dispuestas en bloque
+                @elseif ($auditoriaPdf->bloquejohnnie == 'bloquejohnnie_no')
+                    no estan dispuestas en bloque
+                @endif
+                @if ($auditoriaPdf->carasbloquejohnnie == "Ninguna")
+                no hay ninguna cara registrada
+                @elseif ($auditoriaPdf->carasbloquejohnnie == "Mas de cinco")
+                hay mas de cinco caras dispersas
+                @elseif ($auditoriaPdf->carasbloquejohnnie > 0 || $auditoriaPdf->carasbloquejohnnie < 6 )
+                se encontraron {{ $auditoriaPdf->carasbloquejohnnie}} caras dispersas,
+                @endif
+            @endif
+
             </p>
         </div>
         <div class="contenedor-triple-materiales">
@@ -1172,14 +1218,36 @@ Luego de la visita se confirma que los productos de la marca no son visibles,
 
             <p class="card-text">
                 @if ($auditoriaPdf->aguard_smirnoff == 'aguard_smirnoff_si')
-                    Durante la visita se confirma que la marca <strong> Smirnoff X1 </strong> esta
-                    ubicada correctamente junto a
-                    los rones de la competencia.
-                @else
-                    Durante la visita se confirma que la marca <strong> Smirnoff X1 </strong> no esta
-                    correctamente ubicada junto
-                    a los rones de la competencia.
+                La marca <strong> Smirnoff X1 </strong> esta ubicada correctamente junto a
+                los rones de la competencia
+                @if ($auditoriaPdf->bloquesmirnoff == 'bloquesmirnoff_si')
+                    estan dispuestas en bloque
+                @elseif ($auditoriaPdf->bloquesmirnoff == 'bloquesmirnoff_no')
+                    no estan dispuestas en bloque
                 @endif
+                @if ($auditoriaPdf->carasbloquesmirnoff == "Ninguna")
+                no hay ninguna cara registrada
+                @elseif ($auditoriaPdf->carasbloquesmirnoff == "Mas de cinco")
+                hay mas de cinco caras
+                @elseif ($auditoriaPdf->carasbloquesmirnoff > 0 || $auditoriaPdf->carasbloquesmirnoff < 6 )
+                hay {{ $auditoriaPdf->carasbloquesmirnoff}} caras
+                @endif
+            @elseif ($auditoriaPdf->aguard_smirnoff == 'aguard_smirnoff_no')
+                La marca <strong> Smirnoff X1 </strong> no esta ubicada junto a
+                los rones de la competencia
+                @if ($auditoriaPdf->bloquesmirnoff == 'bloquesmirnoff_si')
+                    estan dispuestas en bloque
+                @elseif ($auditoriaPdf->bloquesmirnoff == 'bloquesmirnoff_no')
+                    no estan dispuestas en bloque
+                @endif
+                @if ($auditoriaPdf->carasbloquesmirnoff == "Ninguna")
+                no hay ninguna cara registrada
+                @elseif ($auditoriaPdf->carasbloquesmirnoff == "Mas de cinco")
+                hay mas de cinco caras dispersas
+                @elseif ($auditoriaPdf->carasbloquesmirnoff > 0 || $auditoriaPdf->carasbloquesmirnoff < 6 )
+                se encontraron {{ $auditoriaPdf->carasbloquesmirnoff}} caras dispersas,
+                @endif
+            @endif
             </p>
         </div>
     </ul>
