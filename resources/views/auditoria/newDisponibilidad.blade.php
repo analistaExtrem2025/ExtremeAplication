@@ -5,7 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Arapey:400,400i,600|Open+Sans:300" rel="stylesheet">
-    <link href="{{ asset('css/auditoria.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/disponibilidad.css') }}" rel="stylesheet">
     <style>
         .noClass {
 
@@ -34,7 +34,7 @@
     <p>
     <ul>
         <div class="row">
-            <div class="col-sm-2 card-box">
+            <div class="col-sm card-box">
                 <div class="card-bottles">
                     <legend>&iquest; Hay <b>Black & White</b>?</legend>
                     <div class="form-check">
@@ -150,7 +150,7 @@
     <hr>
     <ul>
         <div class="row">
-            <div class="col-sm-2 card-box">
+            <div class="col-sm card-box">
                 <div class="card-bottles">
                     <legend>&iquest; Hay <b>Smirnoff X1</b>?</legend>
                     <div class="form-check">
@@ -241,7 +241,7 @@
 
     <ul>
         <div class="row">
-            <div class="col-sm-2 card-box">
+            <div class="col-sm card-box">
                 <div class="card-bottles">
                     <legend>&iquest; Hay <b>Smirnoff X1 <br> sin az&uacute;car</b> ?</legend>
                     <div class="form-check">
@@ -336,7 +336,7 @@
     <hr>
     <ul>
         <div class="row">
-            <div class="col-sm-2 card-box">
+            <div class="col-sm card-box">
                 <div class="card-bottles">
                     <legend>&iquest; Hay <b>Johnnie Walker</b>?</legend>
                     <div class="form-check">
@@ -455,7 +455,7 @@
     <hr>
     <ul>
         <div class="row">
-            <div class="col-sm-2 card-box">
+            <div class="col-sm card-box">
                 <div class="card-bottles">
                     <legend>&iquest; Hay <b>Old Parr</b>?</legend>
                     <div class="form-check">
@@ -517,7 +517,7 @@
     <hr>
     <ul>
         <div class="row">
-            <div class="col-sm-2 card-box">
+            <div class="col-sm card-box">
                 <div class="card-bottles">
                     <legend>&iquest; Hay <b>Buchannan&acute;s</b>?</legend>
                     <div class="form-check">
@@ -610,9 +610,9 @@
     <ul>
         <h5>CALIDAD DE LAS MARCAS</h5>
         <div class="row">
-            <div class="col-sm-4 card-box-marcas">
+            <div class="col-sm-12 card-box-marcas">
                 <div class="card-bottles-marcas">
-                    <legend class="marcasT">&iquest;Est&aacute;n visibles al consumidor? (no est&aacute;n
+                    <legend class="marcasT">&iquest; Los productos est&aacute;n visibles al consumidor? (no est&aacute;n
                         tapados con otros productos)</legend>
                     <fieldset class="radiosT">
                         <label>
@@ -629,9 +629,8 @@
                     </fieldset>
                 </div>
             </div>
-            <div class="col-sm-4 card-box-marcas">
-                <legend class="marcasT">&iquest;Tienen las etiquetas en buen estado? ( no Est&aacute;n
-                    rayadas, levantadas, buen tono de color)</legend>
+            <div class="col-sm-12 card-box-marcas">
+                <legend class="marcasT">&iquest;Est&aacute;n  dañados averiados sucios o en mal estado</legend>
                 <fieldset class="radiosT">
                     <label>
                         <input type="radio" id="cal_marc_danados_si" name="cal_marc_danados"
@@ -646,10 +645,10 @@
                     </label>
                 </fieldset>
             </div>
-            <div class="col-sm-4 card-box-marcas">
+            <div class="col-sm-12 card-box-marcas">
                 <div class="card-bottles-marcas">
-                    <legend class="marcasT">&iquest;Est&aacute;n las etiquetas visibles al
-                        consumidor</legend>
+                    <legend class="marcasT">&iquest; Las etiquetas se encuentran en buen estado? ( no Est&aacute;n
+                        rayadas, levantadas, buen tono de color)</legend>
                     <fieldset class="radiosT">
                         <label>
                             <input type="radio" id="cal_marc_et_danados_si" name="cal_marc_et_danados"
@@ -676,7 +675,7 @@
                 </div>
                 <div class="col">
                     <br>
-                    <input type="file" id="seleccionLinealDiageo" name="seleccionLinealDiageo" accept="image/*"
+                    <input class="fto" type="file" id="seleccionLinealDiageo" name="seleccionLinealDiageo" accept="image/*"
                         required>
                     <br><br>
                     <img class="card-img-top" id="imagenLinealDiageo">
@@ -685,6 +684,7 @@
             </div>
         </div>
     </ul>
+    <br><br><br>
 
 
     {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton', 'style' => 'z-index:99999', 'onclick' => 'OcultarButton(this)']) !!}

@@ -408,7 +408,12 @@ return [
                     'shift' => 'ml-4',
                     // 'can'   => 'auditoria.indexH',
                 ],
-
+                [
+                    'text'  => 'Mapas y gestion de rutas',
+                    'route' => 'maps',
+                    'icon'  => 'fas fa-map-marked-alt',
+                    'shift' => 'ml-4',
+                ],
 
 
 
@@ -456,7 +461,9 @@ return [
                 ],
 
             ],
+
         ],
+
         [
             'text'    => 'Administrativo',
             'icon'    => 'fas fa-user-shield',

@@ -817,9 +817,9 @@
                     </tr>
                     <tr class="actTr4">
                         <th class="totales2" scope="row">Total Gestionados</th>
-                        <td class="actTh3"> {{ $oro }} </td>
-                        <td class="actTh3"> {{ $plata }} </td>
-                        <td class="actTh3"> {{ $bronce }} </td>
+                        <td class="actTh3"> {{ $asignadosTotalesG }} </td>
+                        <td class="actTh3"> {{ $asignadosTotalesS }} </td>
+                        <td class="actTh3"> {{ $asignadosTotalesB }} </td>
                         <td class="actTh2"> {{ $totalAuditorias }} </td>
                     </tr>
                     <tr class="actTr4">

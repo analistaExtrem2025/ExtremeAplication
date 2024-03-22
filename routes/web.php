@@ -132,4 +132,7 @@ Route::get('editH/{id}', [CalidadAuditoriaController::class, 'editH'])->name('ed
 Route::get('showPdfCalidad', [CalidadAuditoriaController::class, 'showPdfCalidad'])->name('showPdfCalidad');
 Route::get('downloadPdfCalidad/{id}', [CalidadAuditoriaController::class, 'downloadPdfCalidad'])->name('downloadPdfCalidad');
 
+Route::get('maps', [AsignacionesController::class, 'maps'])->name('maps');
+Route::post('mapsStore', [AsignacionesController::class, 'mapsStore'])->name('mapsStore');
+
 

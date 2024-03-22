@@ -218,6 +218,12 @@ class AuditoriasTableroController extends Controller
         $bronceCal = Auditoria::where('segmento', 'like', '%bronce%')->where('municipio', 'CALI')->count();
         $totalCal = $oroCal + $plataCal + $bronceCal;
 
+        $asignadosTotalesG = ($oroBog + $oroMed + $oroBar + $oroBuc + $oroCal);
+        $asignadosTotalesS = ($plataBog + $plataMed + $plataBar + $plataBuc + $plataCal);
+        $asignadosTotalesB = ($bronceBog + $bronceMed + $bronceBar + $bronceBuc + $bronceCal);
+
+
+
         $asignadosBtaG = $puntos->where('segmentacion', 'gold')->where('municipio', 'BOGOTA')->where('estatusGestion', 'Asignado')->count();
         $diligenciadosBtaG = $puntos->where('segmentacion', 'gold')->where('municipio', 'BOGOTA')->where('estatusGestion', 'Diligenciado')->count();
         $noConcretadosBtaG = $puntos->where('segmentacion', 'gold')->where('municipio', 'BOGOTA')->where('estatusGestion', 'gestionado - no concretado')->count();
@@ -333,6 +339,8 @@ class AuditoriasTableroController extends Controller
             ->where('estatusGestion', 'like', '%paso %')
             ->count();
 
+        $asignadosTotalesS = ($asignadosBtaS + $asignadosMedS + $asignadosBarS + $asignadosBucS + $asignadosCalS);
+
         $asignadosB = $puntos->where('segmentacion', 'bronce')->where('estatusGestion', 'Asignado')->count();
         $diligenciadosB = $puntos->where('segmentacion', 'bronce')->where('estatusGestion', 'Diligenciado')->count();
         $noConcretadosB = $puntos->where('segmentacion', 'bronce')->where('estatusGestion', 'gestionado - no concretado')->count();
@@ -393,6 +401,10 @@ class AuditoriasTableroController extends Controller
             ->where('municipio', 'CALI')
             ->where('estatusGestion', 'like', '%paso %')
             ->count();
+
+        $asignadosTotalesB = ($asignadosBtaB + $asignadosMedB + $asignadosBarB + $asignadosBucB + $asignadosCalB);
+
+
         //sección de calidad
         $sinError = Auditoria::where('criticidad', 'sin errores')->count();
         $fondo = Auditoria::where('criticidad', 'error critico de fondo')->count();
@@ -1367,6 +1379,9 @@ class AuditoriasTableroController extends Controller
         $casosUs2 =  $sinErrorUs2 + $fondoUs2 + $formaUs2 + $ambosUs2 + $pendienteUs2;
 
         return view('auditoria.dash', compact(
+            'asignadosTotalesG',
+            'asignadosTotalesS',
+            'asignadosTotalesB',
             'totalpromOpeDiaGl',
             'prom1CumpDiaCrudoG',
             'totalpromOpeDiaSl',

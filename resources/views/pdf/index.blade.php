@@ -22,6 +22,7 @@
             <thead>
                 <tr>
                     <th>id</th>
+                    <th>Codigo Femsa</th>
                     <th>Raz&oacute;n Social</th>
                     <th>Direcci&oacute;n</th>
                     <th>Estado de activación</th>
@@ -36,6 +37,7 @@
                 @foreach ($auditoria as $encu)
                     <tr>
                         <td>{{ $encu->id }}</td>
+                        <td>{{ $encu->codigo_femsa }}</td>
                         <td>{{ $encu->razonSocial }}</td>
                         <td>{{ $encu->direccion }}</td>
                         <td>{{ $encu->activacion }}</td>

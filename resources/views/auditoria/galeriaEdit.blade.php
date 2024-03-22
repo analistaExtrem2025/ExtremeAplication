@@ -4301,12 +4301,12 @@
                             @elseif ($reporte->bloquebyw == 'bloquebyw_no')
                                 no estan dispuestas en bloque
                             @endif
-                            @if ($reporte->carasbloquebyw == "Ninguna")
-                            no hay ninguna cara registrada
-                            @elseif ($reporte->carasbloquebyw == "Mas de cinco")
-                            hay mas de cinco caras
-                            @elseif ($reporte->carasbloquebyw > 0 || $reporte->carasbloquebyw < 6 )
-                            hay {{ $reporte->carasbloquebyw}} caras
+                            @if ($reporte->carasbloquebyw == 'Ninguna')
+                                no hay ninguna cara registrada
+                            @elseif ($reporte->carasbloquebyw == 'Mas de cinco')
+                                hay mas de cinco caras
+                            @elseif ($reporte->carasbloquebyw > 0 || $reporte->carasbloquebyw < 6)
+                                hay {{ $reporte->carasbloquebyw }} caras
                             @endif
                         @elseif ($reporte->ron_byw == 'ron_byw_no')
                             La marca <strong> Black & White </strong> no esta ubicada junto a
@@ -4316,12 +4316,12 @@
                             @elseif ($reporte->bloquebyw == 'bloquebyw_no')
                                 no estan dispuestas en bloque
                             @endif
-                            @if ($reporte->carasbloquebyw == "Ninguna")
-                            no hay ninguna cara registrada
-                            @elseif ($reporte->carasbloquebyw == "Mas de cinco")
-                            hay mas de cinco caras dispersas
-                            @elseif ($reporte->carasbloquebyw > 0 || $reporte->carasbloquebyw < 6 )
-                            se encontraron {{ $reporte->carasbloquebyw}} caras dispersas,
+                            @if ($reporte->carasbloquebyw == 'Ninguna')
+                                no hay ninguna cara registrada
+                            @elseif ($reporte->carasbloquebyw == 'Mas de cinco')
+                                hay mas de cinco caras dispersas
+                            @elseif ($reporte->carasbloquebyw > 0 || $reporte->carasbloquebyw < 6)
+                                se encontraron {{ $reporte->carasbloquebyw }} caras dispersas,
                             @endif
                         @endif
                     </p>
@@ -4377,19 +4377,20 @@
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <CENTER>
-                                                                <h4> BLACK & WHITE ESTA UBICADA EN BLOQUE EN LA ESTANTERIA?</h4>
+                                                                <h4> BLACK & WHITE ESTA UBICADA EN BLOQUE EN LA ESTANTERIA?
+                                                                </h4>
                                                             </CENTER>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
-                                                                    name="bloquebyw" id="bloquebyw_si" value="bloquebyw_si"
-                                                                    disabled>
+                                                                    name="bloquebyw" id="bloquebyw_si"
+                                                                    value="bloquebyw_si" disabled>
                                                                 <label class="form-check-label"
                                                                     for="bloquebyw_si">SI</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
-                                                                    name="bloquebyw" id="bloquebyw_no" value="bloquebyw_no"
-                                                                    disabled>
+                                                                    name="bloquebyw" id="bloquebyw_no"
+                                                                    value="bloquebyw_no" disabled>
                                                                 <label class="form-check-label"
                                                                     for="bloquebyw_no">NO</label>
                                                             </div>
@@ -4403,14 +4404,18 @@
 
                                                             <div class="field__body">
                                                                 <div class="select-box">
-                                                                    <select class="custom-select"  name="carasbloquebyw" id="carasbloquebyw">
-                                                                        <option value="" selected disabled>Seleccione las caras que estan en bloque</option>
+                                                                    <select class="custom-select" name="carasbloquebyw"
+                                                                        id="carasbloquebyw">
+                                                                        <option value="" selected disabled>
+                                                                            Seleccione las caras que estan en bloque
+                                                                        </option>
                                                                         @foreach ($caras as $cara)
-                                                                        <option value="{{$cara}}">{{$cara}}</option>
+                                                                            <option value="{{ $cara }}">
+                                                                                {{ $cara }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
-                                                              </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row" style="text-align: center">
@@ -4507,12 +4512,12 @@
                             @elseif ($reporte->bloquejohnnie == 'bloquejohnnie_no')
                                 no estan dispuestas en bloque
                             @endif
-                            @if ($reporte->carasbloquejohnnie == "Ninguna")
-                            no hay ninguna cara registrada
-                            @elseif ($reporte->carasbloquejohnnie == "Mas de cinco")
-                            hay mas de cinco caras
-                            @elseif ($reporte->carasbloquejohnnie > 0 || $reporte->carasbloquejohnnie < 6 )
-                            hay {{ $reporte->carasbloquejohnnie}} caras
+                            @if ($reporte->carasbloquejohnnie == 'Ninguna')
+                                no hay ninguna cara registrada
+                            @elseif ($reporte->carasbloquejohnnie == 'Mas de cinco')
+                                hay mas de cinco caras
+                            @elseif ($reporte->carasbloquejohnnie > 0 || $reporte->carasbloquejohnnie < 6)
+                                hay {{ $reporte->carasbloquejohnnie }} caras
                             @endif
                         @elseif ($reporte->ron_jhonny == 'ron_jhonny_no')
                             La marca <strong> Johnnie Walker </strong> no esta ubicada junto a
@@ -4522,12 +4527,12 @@
                             @elseif ($reporte->bloquejohnnie == 'bloquejohnnie_no')
                                 no estan dispuestas en bloque
                             @endif
-                            @if ($reporte->carasbloquejohnnie == "Ninguna")
-                            no hay ninguna cara registrada
-                            @elseif ($reporte->carasbloquejohnnie == "Mas de cinco")
-                            hay mas de cinco caras dispersas
-                            @elseif ($reporte->carasbloquejohnnie > 0 || $reporte->carasbloquejohnnie < 6 )
-                            se encontraron {{ $reporte->carasbloquejohnnie}} caras dispersas,
+                            @if ($reporte->carasbloquejohnnie == 'Ninguna')
+                                no hay ninguna cara registrada
+                            @elseif ($reporte->carasbloquejohnnie == 'Mas de cinco')
+                                hay mas de cinco caras dispersas
+                            @elseif ($reporte->carasbloquejohnnie > 0 || $reporte->carasbloquejohnnie < 6)
+                                se encontraron {{ $reporte->carasbloquejohnnie }} caras dispersas,
                             @endif
                         @endif
                     </p>
@@ -4584,19 +4589,20 @@
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <CENTER>
-                                                                <h4> JOHNNIE WALKER ESTA UBICADA EN BLOQUE EN LA ESTANTERIA?</h4>
+                                                                <h4> JOHNNIE WALKER ESTA UBICADA EN BLOQUE EN LA ESTANTERIA?
+                                                                </h4>
                                                             </CENTER>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
-                                                                    name="bloquejohnnie" id="bloquejohnnie_si" value="bloquejohnnie_si"
-                                                                    disabled>
+                                                                    name="bloquejohnnie" id="bloquejohnnie_si"
+                                                                    value="bloquejohnnie_si" disabled>
                                                                 <label class="form-check-label"
                                                                     for="bloquejohnnie_si">SI</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
-                                                                    name="bloquejohnnie" id="bloquejohnnie_no" value="bloquejohnnie_no"
-                                                                    disabled>
+                                                                    name="bloquejohnnie" id="bloquejohnnie_no"
+                                                                    value="bloquejohnnie_no" disabled>
                                                                 <label class="form-check-label"
                                                                     for="bloquejohnnie_no">NO</label>
                                                             </div>
@@ -4610,14 +4616,19 @@
 
                                                             <div class="field__body">
                                                                 <div class="select-box">
-                                                                    <select class="custom-select"  name="carasbloquejohnnie" id="carasbloquejohnnie">
-                                                                        <option value="" selected disabled>Seleccione las caras que estan en bloque</option>
+                                                                    <select class="custom-select"
+                                                                        name="carasbloquejohnnie"
+                                                                        id="carasbloquejohnnie">
+                                                                        <option value="" selected disabled>
+                                                                            Seleccione las caras que estan en bloque
+                                                                        </option>
                                                                         @foreach ($caras as $cara)
-                                                                        <option value="{{$cara}}">{{$cara}}</option>
+                                                                            <option value="{{ $cara }}">
+                                                                                {{ $cara }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
-                                                              </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row" style="text-align: center">
@@ -4703,12 +4714,12 @@
                             @elseif ($reporte->bloquesmirnoff == 'bloquesmirnoff_no')
                                 no estan dispuestas en bloque
                             @endif
-                            @if ($reporte->carasbloquesmirnoff == "Ninguna")
-                            no hay ninguna cara registrada
-                            @elseif ($reporte->carasbloquesmirnoff == "Mas de cinco")
-                            hay mas de cinco caras
-                            @elseif ($reporte->carasbloquesmirnoff > 0 || $reporte->carasbloquesmirnoff < 6 )
-                            hay {{ $reporte->carasbloquesmirnoff}} caras
+                            @if ($reporte->carasbloquesmirnoff == 'Ninguna')
+                                no hay ninguna cara registrada
+                            @elseif ($reporte->carasbloquesmirnoff == 'Mas de cinco')
+                                hay mas de cinco caras
+                            @elseif ($reporte->carasbloquesmirnoff > 0 || $reporte->carasbloquesmirnoff < 6)
+                                hay {{ $reporte->carasbloquesmirnoff }} caras
                             @endif
                         @elseif ($reporte->aguard_smirnoff == 'aguard_smirnoff_no')
                             La marca <strong> Smirnoff X1 </strong> no esta ubicada junto a
@@ -4718,12 +4729,12 @@
                             @elseif ($reporte->bloquesmirnoff == 'bloquesmirnoff_no')
                                 no estan dispuestas en bloque
                             @endif
-                            @if ($reporte->carasbloquesmirnoff == "Ninguna")
-                            no hay ninguna cara registrada
-                            @elseif ($reporte->carasbloquesmirnoff == "Mas de cinco")
-                            hay mas de cinco caras dispersas
-                            @elseif ($reporte->carasbloquesmirnoff > 0 || $reporte->carasbloquesmirnoff < 6 )
-                            se encontraron {{ $reporte->carasbloquesmirnoff}} caras dispersas,
+                            @if ($reporte->carasbloquesmirnoff == 'Ninguna')
+                                no hay ninguna cara registrada
+                            @elseif ($reporte->carasbloquesmirnoff == 'Mas de cinco')
+                                hay mas de cinco caras dispersas
+                            @elseif ($reporte->carasbloquesmirnoff > 0 || $reporte->carasbloquesmirnoff < 6)
+                                se encontraron {{ $reporte->carasbloquesmirnoff }} caras dispersas,
                             @endif
                         @endif
 
@@ -4788,15 +4799,15 @@
                                                             </CENTER>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
-                                                                    name="bloquesmirnoff" id="bloquesmirnoff_si" value="bloquesmirnoff_si"
-                                                                    disabled>
+                                                                    name="bloquesmirnoff" id="bloquesmirnoff_si"
+                                                                    value="bloquesmirnoff_si" disabled>
                                                                 <label class="form-check-label"
                                                                     for="bloquesmirnoff_si">SI</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
-                                                                    name="bloquesmirnoff" id="bloquesmirnoff_no" value="bloquesmirnoff_no"
-                                                                    disabled>
+                                                                    name="bloquesmirnoff" id="bloquesmirnoff_no"
+                                                                    value="bloquesmirnoff_no" disabled>
                                                                 <label class="form-check-label"
                                                                     for="bloquesmirnoff_no">NO</label>
                                                             </div>
@@ -4810,14 +4821,19 @@
 
                                                             <div class="field__body">
                                                                 <div class="select-box">
-                                                                    <select class="custom-select"  name="carasbloquesmirnoff" id="carasbloquesmirnoff">
-                                                                        <option value="" selected disabled>Seleccione las caras que estan en bloque</option>
+                                                                    <select class="custom-select"
+                                                                        name="carasbloquesmirnoff"
+                                                                        id="carasbloquesmirnoff">
+                                                                        <option value="" selected disabled>
+                                                                            Seleccione las caras que estan en bloque
+                                                                        </option>
                                                                         @foreach ($caras as $cara)
-                                                                        <option value="{{$cara}}">{{$cara}}</option>
+                                                                            <option value="{{ $cara }}">
+                                                                                {{ $cara }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
-                                                              </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row" style="text-align: center">
