@@ -48,26 +48,23 @@
                                     <span class="input-group-text" id="inputGroup-sizing-default">Indique si B&W esta
                                         ubicada en bloque en la estanteria</span>
                                 </div>
-
                                 <div class="form-check">
-
                                     <label class="form-check-label" for="bloquebyw">
                                         Si
                                     </label>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input class="form-check-input" type="radio" id="bloquebyw" name="bloquebyw" value="bloquebyw_si">
-<br>
-<br>
-
-
+                                    <input class="form-check-input" type="radio" id="bloquebyw" name="bloquebyw"
+                                        value="bloquebyw_si">
+                                    <br>
+                                    <br>
                                     <label class="form-check-label" for="bloquebyw">
                                         No
                                     </label>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                        <input class="form-check-input" type="radio" id="bloquebyw" name="bloquebyw" value="bloquebyw_no">
+                                    <input class="form-check-input" type="radio" id="bloquebyw" name="bloquebyw"
+                                        value="bloquebyw_no">
                                 </div>
                             </div>
-
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Cuantas caras en bloque
@@ -77,7 +74,7 @@
                                     <select name="carasbloquebyw" id="" class="custom-select">
                                         <option value="" selected disabled>--</option>
                                         @foreach ($caras as $cara)
-                                        <option value="{{$cara}}">{{$cara}}</option>
+                                            <option value="{{ $cara }}">{{ $cara }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -139,16 +136,18 @@
                                         <label class="form-check-label" for="bloquejohnnie">
                                             Si
                                         </label>
-                                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                              <input class="form-check-input" type="radio" id="bloquejohnnie" name="bloquejohnnie" value="bloquejohnnie_si">
-<br>
-<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input class="form-check-input" type="radio" id="bloquejohnnie"
+                                            name="bloquejohnnie" value="bloquejohnnie_si">
+                                        <br>
+                                        <br>
 
                                         <label class="form-check-label" for="bloquejohnnie">
                                             No
                                         </label>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                <input class="form-check-input" type="radio" id="bloquejohnnie" name="bloquejohnnie" value="bloquejohnnie_no">
+                                        <input class="form-check-input" type="radio" id="bloquejohnnie"
+                                            name="bloquejohnnie" value="bloquejohnnie_no">
                                     </div>
                                 </div>
 
@@ -161,7 +160,7 @@
                                         <select name="carasbloquejohnnie" id="" class="custom-select">
                                             <option value="" selected disabled>--</option>
                                             @foreach ($caras as $cara)
-                                            <option value="{{$cara}}">{{$cara}}</option>
+                                                <option value="{{ $cara }}">{{ $cara }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -219,16 +218,18 @@
                                     <label class="form-check-label" for="bloquesmirnoff">
                                         Si
                                     </label>
-                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input class="form-check-input" type="radio" id="bloquesmirnoff" name="bloquesmirnoff" value="bloquesmirnoff_si">
-<br>
-<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input class="form-check-input" type="radio" id="bloquesmirnoff"
+                                        name="bloquesmirnoff" value="bloquesmirnoff_si">
+                                    <br>
+                                    <br>
 
                                     <label class="form-check-label" for="bloquesmirnoff">
                                         No
                                     </label>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                        <input class="form-check-input" type="radio" id="bloquesmirnoff" name="bloquesmirnoff" value="bloquesmirnoff_no">
+                                    <input class="form-check-input" type="radio" id="bloquesmirnoff"
+                                        name="bloquesmirnoff" value="bloquesmirnoff_no">
                                 </div>
                             </div>
 
@@ -241,7 +242,7 @@
                                     <select name="carasbloquesmirnoff" id="" class="custom-select">
                                         <option value="" selected disabled>--</option>
                                         @foreach ($caras as $cara)
-                                        <option value="{{$cara}}">{{$cara}}</option>
+                                            <option value="{{ $cara }}">{{ $cara }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -261,7 +262,11 @@
             </div>
         </div>
     </div>
-    {!! Form::submit('Siguiente', ['class' => 'btn btn-primary', 'id' => 'boton', 'onclick' => 'OcultarButton(this)']) !!}
+    {!! Form::submit('Siguiente', [
+        'class' => 'btn btn-primary',
+        'id' => 'boton',
+        'onclick' => 'OcultarButton(this)',
+    ]) !!}
     <br><br>
     </p>
     {!! Form::close() !!}
@@ -276,11 +281,11 @@
             var inputronblack = document.getElementById('mtronblack');
             if (check1.checked) {
                 $("#seleccionron_byw").prop('disabled', false)
-                card1.style.display=  "block";
+                card1.style.display = "block";
                 inputronblack.value = "ron junto a b&w ok";
             } else if (check1no.checked) {
                 $("#seleccionron_byw").prop('disabled', false)
-                card1.style.display=  "block";
+                card1.style.display = "block";
                 inputronblack.value = "ron junto a b&w ok";
             }
         }
@@ -296,11 +301,11 @@
             if (check2.checked) {
                 inputronjohnnie.value = "ron junto a johnnie ok";
                 $("#seleccionron_jhonny").prop('disabled', false)
-                card2.style.display=  "block";
+                card2.style.display = "block";
             } else if (check2no.checked) {
                 inputronjohnnie.value = "ron junto a johnnie ok";
                 $("#seleccionron_jhonny").prop('disabled', false)
-                card2.style.display=  "block";
+                card2.style.display = "block";
             }
         }
     </script>
@@ -314,11 +319,11 @@
             if (check3.checked) {
                 inputaguasmirnoff.value = "aguardient junto a smirnoff ok";
                 $("#seleccionaguard_smirnoff").prop('disabled', false)
-                card3.style.display=  "block";
+                card3.style.display = "block";
             } else if (check3no.checked) {
                 inputaguasmirnoff.value = "aguardient junto a smirnoff ok";
                 $("#seleccionaguard_smirnoff").prop('disabled', false)
-                card3.style.display=  "block";
+                card3.style.display = "block";
             }
         }
     </script>
@@ -367,9 +372,8 @@
     </script>
 
     <script>
-        function OcultarButton(btn)
-        {
+        function OcultarButton(btn) {
             $(btn).fadeOut();
         }
-      </script>
+    </script>
 @stop

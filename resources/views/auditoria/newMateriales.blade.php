@@ -1,10 +1,9 @@
 @extends('adminlte::page')
 @section('title', 'Materiales')
-
 @section('css')
 
     <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
-     {{--  <link href="https://fonts.googleapis.com/css?family=Arapey:400,400i,600|Open+Sans:300" rel="stylesheet">  --}}
+    <link href="https://fonts.googleapis.com/css?family=Arapey:400,400i,600|Open+Sans:300" rel="stylesheet">
     <link href="{{ asset('css/auditoria.css') }}" rel="stylesheet">
 @stop
 @section('content')

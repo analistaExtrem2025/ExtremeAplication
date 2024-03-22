@@ -16,6 +16,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Id precarga</th>
+                    <th>Cod femsa</th>
                     <th>Raz&oacute;n Social</th>
                     <th>Estado de activacion </th>
                     <th>Segmento</th>
@@ -29,6 +30,7 @@
                     <tr>
                         <td>{{ $encu->id }}</td>
                         <td>{{ $encu->precarga_id }}</td>
+                        <td>{{ $encu->codigo_femsa}}</td>
                         <td>{{ $encu->razonSocial }}</td>
                         <td>{{ $encu->activacion }}</td>
                         <td>{{ $encu->segmento }}</td>

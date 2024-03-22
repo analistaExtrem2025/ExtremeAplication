@@ -69,4 +69,57 @@ class AsignacionesController extends Controller
         }
         return back();
     }
+
+
+    public function maps()
+    {
+        $puntos_auditoria = PuntosAuditoria::first();
+
+        $direcciones = PuntosAuditoria::get();
+
+        $ciudades = [
+            "BOGOTA" => "BOGOTA",
+            "MEDELLIN" => "MEDELLIN",
+            "BARRANQUILLA" => "BARRANQUILLA",
+            "CALI" => "CALI",
+            "BUCARAMANGA" => "BUCARAMANGA"
+        ];
+
+        $bta =  PuntosAuditoria::where('municipio', "BOGOTA")->where('estatusGestion', NULL)->get()->pluck('direccion', 'id');
+        $med =  PuntosAuditoria::where('municipio', "MEDELLIN")->where('estatusGestion', NULL)->get()->pluck('direccion', 'id');
+        $cal =  PuntosAuditoria::where('municipio', "CALI")->where('estatusGestion', NULL)->get()->pluck('direccion', 'id');
+        $buc =  PuntosAuditoria::where('municipio', "BUCARAMANGA")->where('estatusGestion', NULL)->get()->pluck('direccion', 'id');
+        $bar =  PuntosAuditoria::where('municipio', "BARRANQUILLA")->where('estatusGestion', NULL)->get()->pluck('direccion', 'id');
+
+        $long = $puntos_auditoria->longitude;
+        $lat = $puntos_auditoria->latitude;
+
+        $coord = ["[" . $lat . "," . $long . "]"];
+
+        return view(
+            'auditoria.map',
+            compact(
+                'puntos_auditoria',
+                'long',
+                'lat',
+                'coord',
+                'ciudades',
+                'bta',
+                'med',
+                'cal',
+                'buc',
+                'bar',
+                'direcciones'
+            )
+        );
+    }
+
+    public function mapsStore(Request $request)
+    {
+        dd($request->all());
+        $datosCreacion = request()->except('token');
+        $notification = 'El punto se ha registrado correctamente.';
+    //    dd($request->all());
+        return redirect('/maps')->with(compact('notification'));
+    }
 }

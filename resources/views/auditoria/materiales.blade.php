@@ -2,8 +2,9 @@
 @section('title', 'Materiales')
 
 @section('css')
-    <link href="{{ asset('css/auditoria.css') }}" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css?family=Arapey:400,400i,600|Open+Sans:300" rel="stylesheet">
+    <link href="{{ asset('css/auditoria.css') }}" rel="stylesheet">
 @stop
 @section('content')
 <div class="progress">

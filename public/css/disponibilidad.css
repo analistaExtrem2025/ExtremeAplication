@@ -2474,3 +2474,11 @@ label > input[type="radio"] {
       color: #D8D8D8;
     }
 
+    .noClass {
+
+        width: 0px;
+        background: transparent;
+        color: transparent;
+        border: transparent;
+    }
+
